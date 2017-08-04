@@ -9,7 +9,7 @@
 * [全局容器](rong-qi-zhu-ru.md)
     * [应用上下文](rong-qi-zhu-ru/ying-yong-shang-xia-wen.md)
     * [请求上下文](rong-qi-zhu-ru/qing-qiu-shang-xia-wen.md)
-    * 定时器
+    * [定时器](定时器.md)
     * [连接池](rong-qi-zhu-ru/lian-jie-chi.md)
 * [控制器](kong-zhi-qi.md)
 * [路由器](lu-you.md)
@@ -20,5 +20,5 @@
 * [HTTP服务](http.md)
 * [日志](ri-zhi.md)
 * [异常处理](yi-chang-chu-li.md)
-* [缓存](缓存.md)
+* [服务治理](缓存.md)
 
