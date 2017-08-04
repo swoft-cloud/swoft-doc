@@ -73,8 +73,7 @@ BeanFactory负责初始化\(base.php\)、创建、查询beans。bean其实就是
 2. 根据名称获取Bean
 3. Bean是否存在
 
-
-```
+```php
 class BeanFactory implements BeanFactoryInterface
 {
 
@@ -91,7 +90,7 @@ class BeanFactory implements BeanFactoryInterface
         // ...
     }
 
-    
+
 
     /**
      * 查询Bean
@@ -119,9 +118,6 @@ class BeanFactory implements BeanFactoryInterface
 
 }
 ```
-
-
-
 
 
 
