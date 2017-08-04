@@ -1,6 +1,4 @@
-# BeanFactory
-
-BeanFactory负责初始化\(base.php\)、创建、查询beans。bean其实就是类的对象，通常通过base.php，配置一个bean，bean之间可以相互注入，也可以引用properties.php属性配置。
+# Bean配置
 
 Bean配置规则
 
@@ -15,7 +13,7 @@ Bean引用规则
 * ${beanName}这种方式引用Bean对象
 * 构造函数和成员属性都可以使用以上引用规则
 
-## 配置案例
+配置案例
 
 ```
 // properties.php
@@ -55,7 +53,7 @@ return [
 ];
 ```
 
-## Bean使用
+# Bean使用
 
 有多种方式可以使用已经配置并注入的类\(Bean\),得到的结果和一个类的实例是完全一样使用，并且默认注入的类是单列的。常用有两种方式
 
@@ -67,6 +65,13 @@ App::getBean("name");
 ApplicationContext::getBean('name');
 ```
 
+# BeanFactory
+
+BeanFactory负责初始化\(base.php\)、创建、查询beans。bean其实就是类的对象，通常通过base.php，配置一个bean，bean之间可以相互注入，也可以引用properties.php属性配置。常用方法如下
+
+1. createBean\(string $beanName, $beanConfig\)运行过程中创建一个Bean
+2. get\(string $name\) 根据名称获取Bean
+3. hasBean\($name\) Bean是否存在
 
 
 
