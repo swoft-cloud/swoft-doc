@@ -9,9 +9,9 @@ Bean配置规则
 
 
 ```
-// properties.php片段
+// properties.php
 
-// base.php片段
+// base.php
 
 return [
     'config'         => [
