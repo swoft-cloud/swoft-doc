@@ -69,9 +69,59 @@ ApplicationContext::getBean('name');
 
 BeanFactory负责初始化\(base.php\)、创建、查询beans。bean其实就是类的对象，通常通过base.php，配置一个bean，bean之间可以相互注入，也可以引用properties.php属性配置。常用方法如下
 
-1. createBean\(string $beanName, $beanConfig\)运行过程中创建一个Bean
-2. get\(string $name\) 根据名称获取Bean
-3. hasBean\($name\) Bean是否存在
+1. 运行过程中创建一个Bean
+2. 根据名称获取Bean
+3. Bean是否存在
+
+
+```
+class BeanFactory implements BeanFactoryInterface
+{
+
+    /**
+     * 注入一个bean
+     *
+     * @param string       $beanName   名称
+     * @param array|string $beanConfig 配置属性
+     *
+     * @return bool
+     */
+    public function createBean(string $beanName, $beanConfig)
+    {
+        // ...
+    }
+
+    
+
+    /**
+     * 查询Bean
+     *
+     * @param  string $name 名称
+     *
+     * @return mixed
+     */
+    public static function get(string $name)
+    {
+        // ...
+    }
+
+    /**
+     * Bean是否存在容器中
+     *
+     * @param  string $name 名称
+     *
+     * @return bool
+     */
+    public static function hasBean($name)
+    {
+        // ...
+    }
+
+}
+```
+
+
+
 
 
 
