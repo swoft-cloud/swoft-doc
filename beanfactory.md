@@ -9,6 +9,10 @@ Bean配置规则
 
 
 ```
+// properties.php片段
+
+// base.php片段
+
 return [
     'config'         => [
         'properties' => require_once __DIR__ . '/' . APP_ENV . '/properties.php',
