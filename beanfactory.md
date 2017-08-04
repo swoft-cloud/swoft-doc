@@ -15,7 +15,7 @@ Bean引用规则
 
 配置案例
 
-```
+```php
 // properties.php
 return [
     'config.service.user.maxActive' => 10,
@@ -60,9 +60,10 @@ return [
 * 通过名称从应用上下文获取
 * 应用简写App中获取
 
-```
+```php
 App::getBean("name");
 ApplicationContext::getBean('name');
+BeanFactory::getBean('name');
 ```
 
 # BeanFactory
@@ -85,7 +86,7 @@ class BeanFactory implements BeanFactoryInterface
      *
      * @return bool
      */
-    public function createBean(string $beanName, $beanConfig)
+    public static function createBean(string $beanName, $beanConfig)
     {
         // ...
     }
@@ -99,7 +100,7 @@ class BeanFactory implements BeanFactoryInterface
      *
      * @return mixed
      */
-    public static function get(string $name)
+    public static function getBean(string $name)
     {
         // ...
     }
