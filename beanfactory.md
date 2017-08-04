@@ -75,49 +75,26 @@ BeanFactory负责初始化\(base.php\)、创建、查询beans。bean其实就是
 3. Bean是否存在
 
 ```php
-class BeanFactory implements BeanFactoryInterface
-{
+// 类名创建
+BeanFactory::createBean("myBean", MyBean.class);
 
-    /**
-     * 注入一个bean
-     *
-     * @param string       $beanName   名称
-     * @param array|string $beanConfig 配置属性
-     *
-     * @return bool
-     */
-    public static function createBean(string $beanName, $beanConfig)
-    {
-        // ...
-    }
+// 配置创建
+$beanConfig = [
+    'class' => MyBean.class,
+    'pro1' => 'v1',
+    'pro2' => 'v2',
+    [ // 构造函数参数
+        'arg1',
+        '${beanName}'
+    ]
+];
+BeanFactory::createBean('myBean', $beanConfig);
 
+// 获取一个Bean,没有初始化，从配置中创建
+BeanFactory::getBean("name");
 
-
-    /**
-     * 查询Bean
-     *
-     * @param  string $name 名称
-     *
-     * @return mixed
-     */
-    public static function getBean(string $name)
-    {
-        // ...
-    }
-
-    /**
-     * Bean是否存在容器中
-     *
-     * @param  string $name 名称
-     *
-     * @return bool
-     */
-    public static function hasBean($name)
-    {
-        // ...
-    }
-
-}
+// 某个Bean是否已创建
+BeanFactory::hasBean("name");
 ```
 
 

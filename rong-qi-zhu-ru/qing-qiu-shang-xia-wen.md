@@ -2,64 +2,29 @@
 
 应用请求上下文，目前只提供BeanFactory的功能，后续会有新功能提供。
 
-
-
 ```php
+// 类名创建
+ApplicationContext::createBean("myBean", MyBean.class);
 
-class ApplicationContext
-{
-    /**
-     * 运行过程中创建一个Bean
-     *
-     * Below are some examples:
-     *
-     * // 类名称创建
-     * ApplicationContext::createBean('name', '\swoft\web\UrlManage');
-     *
-     * // 配置信息创建，切支持properties.php配置引用和bean引用
-     * ApplicationContext::createBean(
-     *  [
-     *      'class' => '\swoft\web\UrlManage',
-     *      'field' => 'value1',
-     *      'field2' => 'value'2
-     *  ]
-     * );
-     *
-     * @param string       $beanName the name of bean
-     * @param array|string $type     class definition
-     * @param array        $params   constructor parameters
-     *
-     * @return mixed
-     */
-    public static function createBean($beanName, $type, $params = [])
-    {
-        // ...
-    }
+// 配置创建
+$beanConfig = [
+    'class' => MyBean.class,
+    'pro1' => 'v1',
+    'pro2' => 'v2',
+];
+$constructorArgs = [
+    'arg1',
+    '${beanName}'
+];
+ApplicationContext::createBean('myBean', $beanConfig, $constructorArgs);
 
-    /**
-     * 查询一个bean
-     *
-     * @param string $name bean名称
-     *
-     * @return mixed
-     */
-    public static function getBean(string $name)
-    {
-        // ...
-    }
 
-    /**
-     * bean是否存在
-     *
-     * @param string $name Bean名称
-     *
-     * @return bool
-     */
-    public static function containsBean($name)
-    {
-        // ...
-    }
+// 获取一个Bean,没有初始化，从配置中创建
+ApplicationContext::getBean("name");
 
-}
+// 某个Bean是否已创建
+ApplicationContext::containsBean("name");
 ```
+
+
 
