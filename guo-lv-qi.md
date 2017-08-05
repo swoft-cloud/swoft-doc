@@ -8,7 +8,6 @@ filter一般用户请求过滤处理，比如全局参数验证、签名验证�
 ## 定义filter
 定义一个Filter很简单, 只需基础swoft\filter\Filter类，实现doFilter和denyFilter两个方法。doFilter实现filter处理逻辑，当filter逻辑验证不通过时，调用denyFilter。特别说明下，如果需要filter不通过的时候，直接返回用户数据，可以直接使用Response对象实现。
 
-
 ```php
 use swoft\filter\Filter;
 // ...
@@ -17,6 +16,7 @@ class LoginFilter extends Filter
 {
     public function doFilter(Request $request, Response $response, FilterChain $filterChain, int $currentIndex = 0)
     {
+        // 逻辑验证
         $uid = $request->getParameter('uid');
         if($uid != 6){
             $this->denyFilter($request, $response);
