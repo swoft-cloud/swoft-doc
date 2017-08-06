@@ -59,9 +59,10 @@ return [
 ```
 
 ## RPC使用
+
 RPC使用很久简单，第一步定义RPC服务函数，第二步调用使用
 
-定义RPC函数
+定义RPC函数,注意定义的服务名称XXXService且继承至InnerService，服务函数和正常定义函数一样的。RPC定义服务一般放在controllers/services/目录下面
 
 ```php
 namespace app\controllers\services;
@@ -98,12 +99,9 @@ class UserService extends InnerService
 }
 ```
 
-
-
 使用demo
+
 ```php
-
-
 // 直接调用
 $result = Service::call("user", 'User::getUserInfo', [2,6,8]);
 
