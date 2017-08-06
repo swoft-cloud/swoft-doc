@@ -33,7 +33,7 @@ return [
         'class' => JsonPacker::class
     ],
     // 服务发现bean, 目前系统支持consul,只行实现
-    'userProvider'       => [
+    'consulProvider'       => [
         'class' => \swoft\service\ConsulProvider::class
     ],
 
@@ -48,7 +48,7 @@ return [
         "balancer"        => '${randomBalancer}',// 连接创建负载
         "serviceName"     => 'user',// 服务名称，对应连接池的名称格式必须为xxxPool/xxxBreaker
         "useProvider"     => false,
-        'serviceprovider' => '${userProvider}' // useProvider为true使用，用于发现服务
+        'serviceprovider' => '${consulProvider}' // useProvider为true使用，用于发现服务
     ],
     // user服务熔断器
     "userBreaker" => [
