@@ -26,6 +26,40 @@ RPC服务由三大部分组成
 如下配置一个用user(用户)服务
 
 
+```php
+return [
+    // 服务发现bean
+    'userProvider'       => [
+        'class' => \swoft\service\ConsulProvider::class
+    ],
+    "userPool"           => [
+        "class"           => \swoft\pool\ServicePool::class,
+        "uri"             => '127.0.0.1:8099,127.0.0.1:8099',
+        "maxIdel"         => 6,
+        "maxActive"       => 10,
+        "timeout"         => '${config.service.user.timeout}',
+        "balancer"        => '${randomBalancer}',
+        "serviceName"     => 'user',
+        "useProvider"     => false,
+        'serviceprovider' => '${userProvider}'
+    ],
+    "redisPool"          => [
+        'class'     => \swoft\pool\RedisPool::class,
+        "maxIdel"   => 6,
+        "maxActive" => 10,
+        "timeout"   => 200,
+    ],
+
+    "userBreaker" => [
+        'class'           => \swoft\circuit\CircuitBreaker::class,
+        'delaySwithTimer' => 8000
+    ],
+];
+
+```
+
+
+
 ## RPC使用
 
 ```php
