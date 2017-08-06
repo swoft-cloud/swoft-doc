@@ -59,8 +59,50 @@ return [
 ```
 
 ## RPC使用
+RPC使用很久简单，第一步定义RPC服务函数，第二步调用使用
+
+定义RPC函数
 
 ```php
+namespace app\controllers\services;
+
+use swoft\web\InnerService;
+
+/**
+ * RPC服务函数
+ *
+ * @uses      UserService
+ * @version   2017年07月14日
+ * @author    stelin <phpcrazy@126.com>
+ * @copyright Copyright 2010-2016 swoft software
+ * @license   PHP Version 7.x {@link http://www.php.net/license/3_0.txt}
+ */
+class UserService extends InnerService
+{
+    public function getUserInfo(...$uids)
+    {
+        $user = [
+            'name' => 'boby',
+            'desc' => 'this is boby'
+        ];
+
+        $data = [];
+        foreach ($uids as $uid){
+
+            $user['uid'] = $uid;
+            $data[] = $user;
+        }
+
+        return $data;
+    }
+}
+```
+
+
+
+使用demo
+```php
+
 
 // 直接调用
 $result = Service::call("user", 'User::getUserInfo', [2,6,8]);
@@ -71,11 +113,9 @@ $res2 = Service::deferCall("user", 'User::getUserInfo', [3,6,9]);
 $users = $res->getResult();
 $users2 = $res2->getResult();
 
-$data['count'] = App::$app->count;
-$data['ret'] = $result;
-$data['deferRet'] = $users;
-$data['deferRet2'] = $users2;
-$this->outputJson($data);
+
+$deferRet = $users;
+$deferRet2 = $users2;
 ```
 
 
