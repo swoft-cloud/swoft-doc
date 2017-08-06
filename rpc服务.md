@@ -28,10 +28,12 @@ RPC服务由三大部分组成
 
 ```php
 return [
-    // 服务发现bean
+    // 服务发现bean, 目前系统支持consul,只行实现
     'userProvider'       => [
         'class' => \swoft\service\ConsulProvider::class
     ],
+    
+    // user服务连接池
     "userPool"           => [
         "class"           => \swoft\pool\ServicePool::class,
         "uri"             => '127.0.0.1:8099,127.0.0.1:8099',
