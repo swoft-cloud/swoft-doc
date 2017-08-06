@@ -28,6 +28,10 @@ RPC服务由三大部分组成
 
 ```php
 return [
+    // RCP打包、解包
+    "packer"          => [
+        'class' => JsonPacker::class
+    ],
     // 服务发现bean, 目前系统支持consul,只行实现
     'userProvider'       => [
         'class' => \swoft\service\ConsulProvider::class
