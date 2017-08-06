@@ -23,8 +23,8 @@ RPC服务由三大部分组成
 3. 数据包传输格式
 
 ## RPC服务配置
-如下配置一个用user(用户)服务
 
+如下配置一个用user\(用户\)服务
 
 ```php
 return [
@@ -32,29 +32,26 @@ return [
     'userProvider'       => [
         'class' => \swoft\service\ConsulProvider::class
     ],
-    
+
     // user服务连接池
-    "userPool"           => [
+    "userPool"            => [
         "class"           => \swoft\pool\ServicePool::class,
         "uri"             => '127.0.0.1:8099,127.0.0.1:8099', // useProvider为false时，从这里识别配置
         "maxIdel"         => 6,// 最大空闲连接数
         "maxActive"       => 10,// 最大活跃连接数
         "timeout"         => '${config.service.user.timeout}',// 引用properties.php配置值
         "balancer"        => '${randomBalancer}',// 连接创建负载
-        "serviceName"     => 'user',// 服务名称
+        "serviceName"     => 'user',// 服务名称，对应连接池的名称格式必须为xxxPool/xxxBreaker
         "useProvider"     => false,
         'serviceprovider' => '${userProvider}' // useProvider为true使用，用于发现服务
     ],
-    // user服务连接词
+    // user服务熔断器
     "userBreaker" => [
         'class'           => \swoft\circuit\CircuitBreaker::class,
         'delaySwithTimer' => 8000
     ],
 ];
-
 ```
-
-
 
 ## RPC使用
 
