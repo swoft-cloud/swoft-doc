@@ -41,7 +41,7 @@ return [
         "maxActive"       => 10,// 最大活跃连接数
         "timeout"         => '${config.service.user.timeout}',// 引用properties.php配置值
         "balancer"        => '${randomBalancer}',// 连接创建负载
-        "serviceName"     => 'user',
+        "serviceName"     => 'user',// 服务名称
         "useProvider"     => false,
         'serviceprovider' => '${userProvider}'
     ],
