@@ -43,15 +43,9 @@ return [
         "balancer"        => '${randomBalancer}',// 连接创建负载
         "serviceName"     => 'user',// 服务名称
         "useProvider"     => false,
-        'serviceprovider' => '${userProvider}'
+        'serviceprovider' => '${userProvider}' // useProvider为true使用，用于发现服务
     ],
-    "redisPool"          => [
-        'class'     => \swoft\pool\RedisPool::class,
-        "maxIdel"   => 6,
-        "maxActive" => 10,
-        "timeout"   => 200,
-    ],
-
+    // user服务连接词
     "userBreaker" => [
         'class'           => \swoft\circuit\CircuitBreaker::class,
         'delaySwithTimer' => 8000
