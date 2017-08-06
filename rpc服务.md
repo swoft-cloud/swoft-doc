@@ -36,7 +36,7 @@ return [
     // user服务连接池
     "userPool"           => [
         "class"           => \swoft\pool\ServicePool::class,
-        "uri"             => '127.0.0.1:8099,127.0.0.1:8099',
+        "uri"             => '127.0.0.1:8099,127.0.0.1:8099', // useProvider为false时，从这里识别配置
         "maxIdel"         => 6,
         "maxActive"       => 10,
         "timeout"         => '${config.service.user.timeout}',
