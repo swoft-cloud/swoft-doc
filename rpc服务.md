@@ -57,8 +57,11 @@ return [
 ## RPC使用
 
 ```php
+
+// 直接调用
 $result = Service::call("user", 'User::getUserInfo', [2,6,8]);
 
+//并发调用
 $res = Service::deferCall("user", 'User::getUserInfo', [3,6,9]);
 $res2 = Service::deferCall("user", 'User::getUserInfo', [3,6,9]);
 $users = $res->getResult();
