@@ -39,6 +39,7 @@ return [
         "uri"             => '127.0.0.1:8099,127.0.0.1:8099', // useProvider为false时，从这里识别配置
         "maxIdel"         => 6,// 最大空闲连接数
         "maxActive"       => 10,// 最大活跃连接数
+        "maxWait"         => 20,// 最大的等待连接数
         "timeout"         => '${config.service.user.timeout}',// 引用properties.php配置值
         "balancer"        => '${randomBalancer}',// 连接创建负载
         "serviceName"     => 'user',// 服务名称，对应连接池的名称格式必须为xxxPool/xxxBreaker
