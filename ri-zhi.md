@@ -35,7 +35,7 @@ App::counting("cache", 1, 10);
 ```
 
 # 日志配置
-注意的是日志必须配置一个输出handler,如下例子，定义两个handler,实现把不同的日志级别输出到不同的日志文件里面。
+注意的是日志必须配置一个输出handler,如下定义两个handler,实现把不同的日志级别输出到不同的日志文件里面。
 
 ```php
 return [
@@ -62,7 +62,7 @@ return [
     "logger" => [
         "class"         => \swoft\log\Logger::class,
         "name"          => SYSTEM_NAME,
-        "flushInterval" => 1,
+        "flushInterval" => 1,    // 定义输出日志的条数，日志累计达到多少条输出一次到文件，默认是10
         "handlers"      => [
             '${noticeHandler}',
             '${applicationHandler}'
