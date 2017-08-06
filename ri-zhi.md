@@ -34,6 +34,44 @@ App::counting("cache", 1, 10);
 2017/08/06 03:11:00 [notice] [swoft] [logid:598688c45cbbf] [spanid:0] [168(ms)] [2(MB)] [/index/log] [] profile[app.route.match=7.52(ms)/1,app.route=7.53(ms)/1,tag=13.58(ms)/1] counting[cache=1/10]
 ```
 
+# 日志配置
+注意的是日志必须配置一个输出handler,如下例子，定义两个handler,实现把不同的日志级别输出到不同的日志文件里面。
+
+```php
+return [
+    "noticeHandler"      => [
+        "class"     => \swoft\log\FileHandler::class,
+        "logFile"   => RUNTIME_PATH . "/notice.log",
+        'formatter' => '${lineFormate}',
+        "levels"    => [
+            \swoft\log\Logger::NOTICE,
+            \swoft\log\Logger::INFO,
+            \swoft\log\Logger::DEBUG,
+            \swoft\log\Logger::TRACE,
+        ]
+    ],
+    "applicationHandler" => [
+        "class"     => \swoft\log\FileHandler::class,
+        "logFile"   => RUNTIME_PATH . "/error.log",
+        'formatter' => '${lineFormate}',
+        "levels"    => [
+            \swoft\log\Logger::ERROR,
+            \swoft\log\Logger::WARNING
+        ]
+    ],
+    "logger" => [
+        "class"         => \swoft\log\Logger::class,
+        "name"          => SYSTEM_NAME,
+        "flushInterval" => 1,
+        "handlers"      => [
+            '${noticeHandler}',
+            '${applicationHandler}'
+        ]
+    ]
+];
+```
+
+
 
 
 
