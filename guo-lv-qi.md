@@ -44,7 +44,9 @@ class LoginFilter extends Filter
 
 ```php
 return [
+
     // ...
+    
     'commonParamsFilter' => [
         'class'      => \app\beans\filters\CommonParamsFilter::class,
         'uriPattern' => '/*', // 目录匹配
@@ -59,7 +61,9 @@ return [
             '${loginFilter}',
         ],
     ],    
+    
     // ...
+    
 ];
 ```
 

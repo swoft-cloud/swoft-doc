@@ -40,6 +40,9 @@ App::counting("cache", 1, 10);
 
 ```php
 return [
+
+    // ...
+
     "noticeHandler"      => [
         "class"     => \swoft\log\FileHandler::class,
         "logFile"   => RUNTIME_PATH . "/notice.log",
@@ -69,6 +72,9 @@ return [
             '${applicationHandler}'
         ]
     ]
+    
+    // ...
+
 ];
 ```
 

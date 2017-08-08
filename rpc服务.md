@@ -28,6 +28,9 @@ RPC服务由三大部分组成
 
 ```php
 return [
+
+    // ...
+
     // RCP打包、解包
     "packer"          => [
         'class' => JsonPacker::class
@@ -55,6 +58,9 @@ return [
         'class'           => \swoft\circuit\CircuitBreaker::class,
         'delaySwithTimer' => 8000
     ],
+    
+    // ...
+
 ];
 ```
 
