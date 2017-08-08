@@ -47,11 +47,11 @@ return [
     // ...
     'commonParamsFilter' => [
         'class'      => \app\beans\filters\CommonParamsFilter::class,
-        'uriPattern' => '/*',
+        'uriPattern' => '/*', // 目录匹配
     ],
     'loginFilter'        => [
         'class'      => \app\beans\filters\LoginFilter::class,
-        'uriPattern' => '/index/login',
+        'uriPattern' => '/index/login', // 精确匹配
     ],
     'filter'             => [
         'filters' => [
