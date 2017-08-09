@@ -58,7 +58,7 @@ return [
         'class'           => \swoft\circuit\CircuitBreaker::class,
         'delaySwithTimer' => 8000
     ],
-    
+
     // ...
 
 ];
