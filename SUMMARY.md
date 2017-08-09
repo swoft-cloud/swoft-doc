@@ -10,6 +10,8 @@
   * [BeanFactory](beanfactory.md)
   * [应用上下文](rong-qi-zhu-ru/qing-qiu-shang-xia-wen.md)
   * [请求上下文](rong-qi-zhu-ru/ying-yong-shang-xia-wen.md)
+  * [请求对象](qing-qiu-dui-xiang.md)
+  * [响应对象](xiang-ying-dui-xiang.md)
   * [定时器](定时器.md)
 * [控制器](kong-zhi-qi.md)
 * [路由器](lu-you.md)
