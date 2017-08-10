@@ -2,7 +2,7 @@
 
 启动服务支持HTTP和TCP同时启动，swoft.ini中配置。
 
-**\*\*常用命令\*\***
+**常用命令**
 
 ```java
 php
@@ -22,10 +22,7 @@ php swoft.php reload
 php swoft.php stop
 ```
 
-  
-
-
-**\*\*Swoft.ini参数\*\***
+**Swoft.ini**
 
 ```py
 [swoft]
