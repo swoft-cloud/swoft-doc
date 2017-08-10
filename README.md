@@ -15,6 +15,16 @@ swoft是基于swoole协程的高性能PHP微服务框架，内置http服务器�
 
 # Future
 
+* 连接池等待队列
+* 国际化i18
+* restful风格
+* mysql数据库ORM
+* inotify自动reload
+* crontab定时任务
+* 服务监控
+* 日志统计分析
+* 统一配置中心
+
 
 
 
