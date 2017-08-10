@@ -1,8 +1,10 @@
 # Summary
 
 * [介绍](README.md)
-* [安装配置](chapter1.md)
-* [快速使用](kuai-su-shi-yong.md)
+* [安装与配置](chapter1.md)
+  * [环境要求](chapter1/huan-jing-yao-qiu.md)
+  * [安装](chapter1/an-zhuang.md)
+  * [启动](chapter1/qi-dong.md)
 * [应用结构](ying-yong-jie-gou.md)
 * [全局容器](rong-qi-zhu-ru.md)
   * [BeanFactory](beanfactory.md)

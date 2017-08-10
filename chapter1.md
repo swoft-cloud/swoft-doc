@@ -1,3 +1,10 @@
-# First Chapter
+# 安装与配置
 
-GitBook allows you to organize your book into chapters, each chapter is stored in a separate file like this one.
+安装与配置分为三大类
+
+1. 环境要求，系统运行必须条件
+2. 如何使用安装swoft
+3. 如何启动swoft
+
+
+
