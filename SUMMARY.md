@@ -1,8 +1,6 @@
 # Summary
 
 * [介绍](README.md)
-  * [使用案例](an-li.md)
-  * [框架测试](kuang-jia-ce-shi.md)
 * [安装配置](chapter1.md)
 * [快速使用](kuai-su-shi-yong.md)
 * [应用结构](ying-yong-jie-gou.md)
