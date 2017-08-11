@@ -11,6 +11,7 @@
   * [请求上下文](rong-qi-zhu-ru/ying-yong-shang-xia-wen.md)
   * [请求对象](qing-qiu-dui-xiang.md)
   * [响应对象](xiang-ying-dui-xiang.md)
+  * [全局配置](quan-ju-pei-zhi.md)
   * [定时器](定时器.md)
 * [应用结构](ying-yong-jie-gou.md)
 * [路由器](lu-you.md)
