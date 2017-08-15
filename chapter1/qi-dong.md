@@ -5,14 +5,11 @@
 **常用命令**
 
 ```java
-php
-//启动服务
+//启动服务,是否是守护进程，根据swoft.ini配置
 php swoft.php start
 
-
-// 重启
-php swoft.php restart
-
+//守护进程启动，覆盖swoft.ini守护进程配置
+php swoft.php start -d
 
 // 重新加载
 php swoft.php reload
@@ -55,7 +52,7 @@ worker_num = 4
 max_request = 10000
 daemonize = 0;
 dispatch_mode = 2
-log_file = '../runtime/swoft/swoole.log';
+log_file = SWOOLE_LOG_PATH;
 ```
 
 
