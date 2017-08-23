@@ -70,7 +70,7 @@ return [
 class UserModel
 {
     /**
-     * 引用Bean(logger) 
+     * 注入logger
      *
      * @Inject("${logger}")
      * @var Logger
@@ -78,14 +78,16 @@ class UserModel
     private $property;
 
     /**
-     * 引用Bean(IndexLogic.class)
+     * 注入Bean(IndexLogic.class)
      *
      * @Inject()
      * @var IndexLogic
      */
-    private $data;
+    private $property2;
 
     /**
+     * 引用
+     * 
      * @Inject("${config.service.user.timeout}")
      * @var int
      */
