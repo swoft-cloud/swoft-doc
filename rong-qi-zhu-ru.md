@@ -70,12 +70,16 @@ return [
 class UserModel
 {
     /**
+     * 引用Bean(logger) 
+     *
      * @Inject("${logger}")
      * @var Logger
      */
-    private $d2;
+    private $property;
 
     /**
+     * 引用Bean(IndexLogic.class)
+     *
      * @Inject()
      * @var IndexLogic
      */
