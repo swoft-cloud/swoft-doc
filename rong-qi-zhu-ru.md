@@ -91,17 +91,23 @@ class UserModel
      * @Inject("${config.service.user.timeout}")
      * @var int
      */
-    private $data2;
+    private $property3;
 
     /**
+     * 注入properties.php值
+     *
      * @Inject(name="${config.user.stelin.steln}")
      * @var string
      */
-    private $data3;
+    private $property4;
 
-    private $data4;
+    /**
+     * 注入properties.php值
+     *
+     * @var string
+     */
+    private $property5;
 
-    private $data5;
 
 
     public function getData()
