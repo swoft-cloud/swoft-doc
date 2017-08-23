@@ -86,7 +86,7 @@ class UserModel
     private $property2;
 
     /**
-     * 引用
+     * 注入properties.php值
      * 
      * @Inject("${config.service.user.timeout}")
      * @var int
