@@ -128,5 +128,9 @@ class UserModel
 >
 > @Inject使用格式和@Bean基本一样，注意通过注解目前不支持构造函数参数注入。
 
+## 引用Bean
+
+
+
 
 
