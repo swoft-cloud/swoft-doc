@@ -78,7 +78,7 @@ class UserModel
     private $property;
 
     /**
-     * 注入Bean(IndexLogic.class)
+     * 注入IndexLogic.class
      *
      * @Inject()
      * @var IndexLogic
