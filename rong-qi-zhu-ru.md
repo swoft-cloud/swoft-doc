@@ -1,6 +1,19 @@
 # 全局容器
 
-每一个被swoft管理的PHP对象称之为Bean，swoft提供了一个IoC容器来初始化对象和获取对象，解决对象间的依赖管理。
+每一个被swoft管理的PHP对象称之为Bean，swoft提供了一个IoC容器来初始化对象和获取对象，解决对象间的依赖管理。properties.php可以配置容器相关参数。
+
+```php
+return [
+    ...
+    'autoInitBean' => true,// 是否自动初始化bean,如果false，使用bean时创建Bean，默认是false
+    'beanScan' => [ // 配置注解自动扫描的命令空间
+        'app\controllers',
+        'app\models',
+        'app\beans',
+    ],
+    ...
+];
+```
 
 ## 注入对象与引用
 
