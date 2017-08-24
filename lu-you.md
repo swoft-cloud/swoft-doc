@@ -1,6 +1,6 @@
 # 路由器
 
-路由解析有两种方式，注册路由和自动解析，所有路由都在routes.php中配置。路由配置参数\(base.php\):
+路由解析有两种方式，注册路由和自动解析，所有路由都在routes.php中配置。建议所有路由都提前注册，或者通过注解注册，不建议使用自动路由解析。路由配置参数\(base.php\):
 
 ```php
 return [
@@ -10,11 +10,6 @@ return [
         'ignoreLastSep'  => false, // 是否忽略最后一个斜杠，设置false后，/user/index和/user/index/是两个不同的路由
         'tmpCacheNumber' => 1000,// 缓存路由数，最近一1000条
         'matchAll'       => '', // 匹配所有，所有请求都会匹配到这个uri或闭包
-
-        // 自动路由配置
-        'autoRoute'      => true,// 是否开启自动匹配路由，默认是false
-        'controllerNamespace' => 'app\\controllers', // 命名空间
-        'controllerSuffix'    => 'Controller', // 控制器后缀
     ],
     // ...
 ];
