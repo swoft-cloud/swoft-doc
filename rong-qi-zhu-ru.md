@@ -143,6 +143,8 @@ class UserModel
 }
 ```
 
+> **@Bean注解**
+>
 > @Bean里面只能使用双引号
 >
 > @Bean\("userModel"\)或@Bean\(name="userModel"\)含义是一样。
@@ -151,7 +153,7 @@ class UserModel
 >
 > @Bean\(name="beanName",scope=Scope::SINGLETON\) 默认注入Bean都是单例，可以scope属性设置其类型
 >
->
+> **@Inject**
 >
 > @Inject使用格式和@Bean基本一样，注意通过注解目前不支持构造函数参数注入
 >
