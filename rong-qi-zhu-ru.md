@@ -143,9 +143,27 @@ class UserModel
 }
 ```
 
-> @Bean里面只能使用因为双引号，注入可以@Bean\("userModel"\)或@Bean\(name="userModel"\)含义是一样。@Bean\(\)但是这种格式含义是注入的bean名称是使用类名\(包含命名空间\)。
+> @Bean里面只能使用双引号
+>
+> @Bean\("userModel"\)或@Bean\(name="userModel"\)含义是一样。
+>
+> @Bean\(\)这种格式含义是注入的bean名称是使用类名\(包含命名空间\)。
+>
+> @Bean\(name="beanName",scope=Scope::SINGLETON\) 默认注入Bean都是单例，可以scope属性设置其类型
+>
+>
 >
 > @Inject使用格式和@Bean基本一样，注意通过注解目前不支持构造函数参数注入
+>
+> @Inject\("name="${logger}"\)或@Inject\("${logger}"\)注入名称为logger的Bean到属性
+>
+> @Inject\(name="${config.user.stelin.steln}"\)注入properties里面配置的值，可以层级和直接方式配置。
+>
+> @Inject\(\)默认注入该属性，对应的类型名\(包含命令空间\)Bean
+
+
+
+
 
 
 
