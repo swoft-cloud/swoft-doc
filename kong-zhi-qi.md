@@ -1,18 +1,18 @@
 # 控制器
 
-继承\swoft\web\Controller控制器定义controller，@Inject自动注入Logic依赖，Logic中也可以使用@Inject自动注入dao层或其它依赖，注入的依赖默认是单列的。
+继承\swoft\web\Controller控制器定义controller，@Inject自动注入Logic依赖，Logic中也可以使用@Inject自动注入dao层或其它依赖，注入的依赖默认是单例的。
 
 ```php
 class IndexController extends Controller
 {
-    
+
     /**
      * @Inject()
      * @var IndexLogic
      */
     private $logic;
-    
-    
+
+
     public function actionDemo()
     {
         // 获取所有GET参数
