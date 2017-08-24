@@ -1,5 +1,17 @@
 # 控制器
 
+一个继承\swoft\web\Controller的类既是控制器，
+
+
+
+
+
+
+
+
+
+
+
 继承\swoft\web\Controller控制器定义controller，@Inject自动注入Logic依赖，Logic中也可以使用@Inject自动注入dao层或其它依赖，注入的依赖默认是单例的。
 
 ```php
