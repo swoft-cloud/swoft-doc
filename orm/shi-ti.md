@@ -68,87 +68,26 @@ class User extends Model
     private $desc = "";
 
 
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return int
-     */
-    public function getAge(): int
-    {
-        return $this->age;
-    }
-
-    /**
-     * @param int $age
-     */
-    public function setAge(int $age)
-    {
-        $this->age = $age;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSex(): int
-    {
-        return $this->sex;
-    }
-
-    /**
-     * @param int $sex
-     */
-    public function setSex(int $sex)
-    {
-        $this->sex = $sex;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDesc(): string
-    {
-        return $this->desc;
-    }
-
-    /**
-     * @param string $desc
-     */
-    public function setDesc(string $desc)
-    {
-        $this->desc = $desc;
-    }
+    //getter and setter methods
+    // ...
 }
 ```
+
+## 注解解析
+
+### @Column
+
+此注解用于定义类属性和表字段的关系，如果没有使用，默认属性的名称对应表字段名称，定义的字段类型对应数据库字段类型。注解有三个参数可以使用
+
+1. name定义映射的数据库字段名称
+2. type定义映射的数据库字段类型
+3. length定义字符串最大长度
+
+### @Enum
+
+此注解是枚举类型注解，定义该字段只能是枚举数组里面的其中一个值，使用如上demo
+
+
 
 
 
