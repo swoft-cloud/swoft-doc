@@ -329,7 +329,8 @@
         theme: 'paper',
         codeTheme: 'github',
         defaultPage: 'README.md',
-        basePath: location.pathname
+        basePath: location.pathname,
+        makeTOC: true
     }
 
     const storage = {
@@ -375,6 +376,7 @@
     const request = getUrlRequest()
     const titleEl = $('head>title')
     const rawTitle = titleEl.text()
+    const width = $(window).width()
 
     const md = window.markdownit({
         highlight: function (str, lang) {
@@ -395,7 +397,8 @@
     /** window.onresize = checkScreenWidth */
     prepareCheck()
 
-    $(function () {
+
+    $(function () { // init logic
       getDocIndex()
       showPageContent(request.p ? request.p : config.defaultPage);
 
@@ -415,9 +418,8 @@
       let theme = storage.get('swoft-doc-theme')
       $('#bts-style-link').attr('src', theme ? theme : config.theme)
 
-      let w = $(window).width()
-
-      if (w < 769) {
+      if (width < 769) {
+        config.makeTOC = false
         $('body').removeClass('with-sidebar')
       }
     }
@@ -459,7 +461,10 @@
         let content = $('#content')
 
         content.attr('data-url', pageUrl).html(html)
-        createContentTOC(content)
+
+        if (config.makeTOC) {
+          createContentTOC(content)
+        }
 
         if (!title) {
           title = content.find('h1').first().text()
