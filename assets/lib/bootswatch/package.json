@@ -1,0 +1,63 @@
+{
+  "name": "bootswatch",
+  "description": "Bootswatch is a collection of themes for Bootstrap.",
+  "version": "3.3.6",
+  "author": {
+    "name": "Thomas Park"
+  },
+  "homepage": "http://bootswatch.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomaspark/bootswatch.git"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "bower": "~1.2.8",
+    "grunt": "~0.4.2",
+    "grunt-autoprefixer": "~1.0.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-connect": "~0.8.0",
+    "grunt-contrib-less": "~0.9.0",
+    "grunt-contrib-sass": "~0.7.4",
+    "grunt-contrib-watch": "~0.5.1"
+  },
+  "gitHead": "4db5bf22ea130613ed0080981814db45fa27997c",
+  "bugs": {
+    "url": "https://github.com/thomaspark/bootswatch/issues"
+  },
+  "_id": "bootswatch@3.3.6",
+  "scripts": {},
+  "_shasum": "70e22a1cf596e62c5c2dfad11819caa9d6bdf088",
+  "_from": "bootswatch@latest",
+  "_npmVersion": "2.11.2",
+  "_nodeVersion": "0.12.5",
+  "_npmUser": {
+    "name": "thomaspark",
+    "email": "hello@thomaspark.me"
+  },
+  "maintainers": [
+    {
+      "name": "robloach",
+      "email": "robloach@gmail.com"
+    },
+    {
+      "name": "thomaspark",
+      "email": "hello@thomaspark.me"
+    }
+  ],
+  "dist": {
+    "shasum": "70e22a1cf596e62c5c2dfad11819caa9d6bdf088",
+    "size": 1474078,
+    "noattachment": false,
+    "tarball": "http://registry.npm.taobao.org/bootswatch/download/bootswatch-3.3.6.tgz"
+  },
+  "directories": {},
+  "publish_time": 1448408424386,
+  "_cnpm_publish_time": 1448408424386,
+  "_resolved": "https://registry.npm.taobao.org/bootswatch/download/bootswatch-3.3.6.tgz",
+  "readme": "ERROR: No README data found!"
+}
