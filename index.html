@@ -356,7 +356,7 @@
                 $(this).parent('li').addClass('active')
 
                 window.history.pushState({name: title}, "", request.p)
-                window.history.replaceState({name: title}, "", '/?p=' + href)
+                window.history.replaceState({name: title}, "", '/swoft-doc/?p=' + href)
 
                 showPageContent(href, title)
             })
