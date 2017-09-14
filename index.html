@@ -21,6 +21,11 @@
         margin-bottom: 0;
     }
 
+    .book .navbar-text {
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
+
     #doc-title {
       font-size: 18px;
       color: #666;
@@ -29,10 +34,10 @@
     #sidebar-box {
         position: fixed;
         top: 70px;
-        left: 0;
+        left: -300px;
         z-index: 2;
         bottom: 0;
-        width: 320px;
+        width: 300px;
         overflow-y: auto;
         border-right: 1px solid #ddd;
         -webkit-transition: left 250ms ease;
@@ -42,16 +47,18 @@
     }
 
     #search-box {
-        padding: 5px 10px;
+        padding: 5px 10px 0;
         border-bottom: 1px solid #bbb;
-        /*box-shadow: 0 1px 2px #ddd;*/
     }
 
     .with-sidebar #sidebar-box{
         left: 0;
     }
     .with-sidebar #content-box{
-        left: 320px;
+        left: 300px;
+    }
+    .with-sidebar #sidebar-ctrl{
+        left: 300px;
     }
 
     #sidebar {
@@ -67,11 +74,29 @@
       list-style: none;
     }
     #sidebar li.active{
-      border-left: 5px solid #2196F3;
-      padding-left: 5px;
+      border-left: 3px solid #2196F3;
+      padding-left: 6px;
     }
     #sidebar>ul>li>a{
       font-weight: bold;
+    }
+    #sidebar-ctrl {
+      cursor: pointer;
+      position: fixed;
+      left: 0;
+      top: 40%;
+      height: 50px;
+      width: 18px;
+      padding-top: 14px;
+      background-color: rgba(221, 221, 221, 0.8);
+      border-radius: 0 5px 5px 0;
+      z-index: 10;
+      box-shadow: 1px 0 5px #ccc;
+      border: 1px solid #cdcdcd;
+      -webkit-transition: left 250ms ease;
+      -moz-transition: left 250ms ease;
+      -o-transition: left 250ms ease;
+      transition: left 250ms ease;
     }
     #content-toc-box {
       position: fixed;
@@ -155,72 +180,71 @@
     </nav>
     <aside id="sidebar-box">
         <div id="search-box">
-            <form class="form-inline">
-              <div class="form-group">
-                <div class="input-group">
-                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search ... ...">
-                  <span class="input-group-btn">
-                      <button class="btn btn-primary" type="button">Go!</button>
-                    </span>
-                </div>
-              </div>
-            </form>
+          <div class="form-group">
+            <input type="text" class="form-control" id="search-input" placeholder="Search ... ...">
+            <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+          </div>
         </div>
 
         <div id="sidebar"></div>
     </aside>
     <div id="content-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="tool-bar" style="height: 30px;">
-                      <div class="pull-right">
-                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                          <a id="edit-btn" href="https://github.com/swoft-cloud/swoft-doc" class="btn btn-primary">
-                            <i class="fa fa-edit" aria-hidden="true"></i> 编辑本页
-                          </a>
-                          <a href="https://github.com/swoft-cloud/swoft-doc/issues" class="btn btn-warning">
-                            <i class="fa fa-bug" aria-hidden="true"></i> 报告问题
-                          </a>
-                        </div>
+      <div id="sidebar-ctrl"> <i class="glyphicon glyphicon-indent-right"></i> </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-xs-12">
+                  <div class="tool-bar" style="height: 30px;">
+                    <div class="pull-right">
+                      <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                        <a id="edit-btn" href="https://github.com/swoft-cloud/swoft-doc" class="btn btn-primary">
+                          <i class="fa fa-edit" aria-hidden="true"></i> 编辑本页
+                        </a>
+                        <a id="refresh-btn" href="javascript:void(0);" class="btn btn-info">
+                          <i class="fa fa-refresh" aria-hidden="true"></i> 刷新本页
+                        </a>
+                        <a href="https://github.com/swoft-cloud/swoft-doc/issues" class="btn btn-warning">
+                          <i class="fa fa-bug" aria-hidden="true"></i> 报告问题
+                        </a>
                       </div>
                     </div>
-                    <div id="content-toc-box">
-                      <div class="title">内容结构</div>
-                      <div id="content-toc"></div>
-                    </div>
+                  </div>
+                  <div id="content-toc-box">
+                    <div class="title">内容结构</div>
+                    <div id="content-toc"></div>
+                  </div>
 
-                    <div id="content" class=""></div>
+                  <div id="content" class=""></div>
+              </div>
+          </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <ul class="nav nav-pills">
+                <li>
+                  <a href="https://github.com/swoft-cloud/swoft" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> 项目地址(Github)</a>
+                </li>
+                <li>
+                <a href="https://github.com/swoft-cloud/swoft-doc" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> 文档地址(Github)</a>
+                </li>
+                <li>
+                <a href="javascript:void(0);" target="_blank"><i class="fa fa-qq" aria-hidden="true"></i> QQ群: 548173319</a>
+                </li>
+              </ul>
+              <div class="info-box">
+                <div class="info-item">
+                  Project author <a href="https://github.com/stelin" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> stelin</a>
                 </div>
-            </div>
-        </div>
-        <div class="page-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col-xs-12">
-                <ul class="nav nav-pills">
-                  <li>
-                    <a href="https://github.com/swoft-cloud/swoft" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> 项目地址(Github)</a>
-                  </li>
-                  <li>
-                  <a href="https://github.com/swoft-cloud/swoft-doc" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> 文档地址(Github)</a>
-                  </li>
-                  <li>
-                  <a href="javascript:void(0);" target="_blank"><i class="fa fa-qq" aria-hidden="true"></i> QQ群: 548173319</a>
-                  </li>
-                </ul>
-                <div class="info-box">
-                  <div class="info-item">
-                    Project author <a href="https://github.com/stelin" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> stelin</a>
-                  </div>
-                  <div class="info-item">
-                    Document site create by <a href="https://github.com/inhere" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> inhere</a>
-                  </div>
+                <div class="info-item">
+                  Document site create by <a href="https://github.com/inhere" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> inhere</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
 </body>
 
@@ -240,15 +264,50 @@
         defaultPage: 'README.md',
     }
 
+    const storage = {
+      set: function (key, value) {
+        localStorage.setItem(key, value)
+      },
+      get: function (key) {
+        return localStorage.getItem(key)
+      },
+      sets: function (datas) {
+        datas.forEach(data => this.set(data.key, data.value))
+      },
+      gets: function (keys) {
+        return keys.map(key => this.get(key))
+      },
+      setJson: function (key, obj) {
+        localStorage.setItem(key, json_encode(obj))
+      },
+      getJson: function (key) {
+        return json_decode(this.get(key))
+      },
+      del: function (key) {
+        return localStorage.removeItem(key)
+      },
+      key: function (index) {
+        return localStorage.key(index)
+      },
+      has: function (key) {
+        return this.get(key) !== null
+      },
+      len: function () {
+        return localStorage.length
+      },
+      clear: function (keys) {
+        if (keys) {
+          keys.forEach(key => this.del(key))
+        } else {
+          localStorage.clear()
+        }
+      }
+    }
+
     const request = getUrlRequest()
     const titleEl = $('head>title')
     const rawTitle = titleEl.text()
 
-    // const converter = new showdown.Converter({
-    //     tables: true,
-    //     simplifiedAutoLink: true,
-    //     ghCompatibleHeaderId: true,
-    // })
     const md = window.markdownit({
         highlight: function (str, lang) {
           if (lang && hljs.getLanguage(lang)) {
@@ -261,65 +320,93 @@
         }
     })
 
+    window.onpopstate = function(event) {
+        console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    }
+
     $(function () {
         getDocIndex();
-        showPageContent(request.page ? request.page : config.defaultPage, '介绍');
+        showPageContent(request.p ? request.p : config.defaultPage);
+
+        $('#sidebar-ctrl').on('click', function () {
+          $('body').toggleClass('with-sidebar')
+        })
+
+        $('#refresh-btn').on('click', function() {
+          let pageUrl = $('#content').attr('data-url')
+
+          showPageContent(pageUrl, null, true)
+        })
     });
 
     function getDocIndex() {
         $.get('SUMMARY.md', function (res) {
             // console.log(res);
             let sidebar = $('#sidebar')
-            // let html = converter.makeHtml(res)
             let html = md.render(res)
-
-            let topTitle =
 
             sidebar.html(html)
             sidebar.find('a').on('click', function (e) {
                 e.preventDefault() // 默认事件
                 e.stopPropagation() // 事件冒泡
                 let href = $(this).attr('href')
+                let title = $(this).text()
 
                 sidebar.find('li').removeClass('active')
                 $(this).parent('li').addClass('active')
 
-                showPageContent(href, $(this).text())
+                window.history.pushState({name: title}, "", request.p)
+                window.history.replaceState({name: title}, "", '/?p=' + href)
+
+                showPageContent(href, title)
             })
         }, 'text');
     }
 
-    function showPageContent(pageUrl, title) {
+    function showPageContent(pageUrl, title, refresh) {
+      refresh = refresh === undefined ? false : refresh
+      $('#edit-btn').attr('href', config.editUrl + '/' + pageUrl)
+
+      let key = 'swoft-doc:' + pageUrl
+
+      let successHandler = function (res) {
+        // console.log(res);
+        let html = md.render(res)
+        let content = $('#content')
+
+        content.attr('data-url', pageUrl).html(html)
+        createContentTOC(content)
+
+        if (!title) {
+          title = content.find('h1').first().text()
+        }
+
         // show title
         $('#doc-title').text(title)
         titleEl.text(rawTitle + ' - ' + title)
 
-        $('#edit-btn').attr('href', config.editUrl + '/' + pageUrl)
+        // add cache
+        storage.set(key, res)
+      }
 
+      if (refresh || !storage.has(key)) {
         $.ajax({
             url: pageUrl,
             type: 'GET',
             dataType: 'text',
-            success: function (res, st) {
-                // console.log(res);
-                let content = $('#content')
-                // let html = converter.makeHtml(res)
-                let html = md.render(res)
-
-                content.html(html)
-                createContentTOC(content)
-                // content.find('pre code').each(function(i, block) {
-                //   hljs.highlightBlock(block);
-                // });
-            },
+            success: successHandler,
             error: function(xhr){
-                if (xhr.status === 404) {
-                    $('#content').html('<h2>文档 "<em>' + title + '</em> " 正在完善中... ...</h2>')
-                } else {
-                    alert("错误提示： " + xhr.status + " " + xhr.statusText);
-                }
+              if (xhr.status === 404) {
+                  $('#content').html('<h2>文档 "<em>' + title + '</em> " 正在完善中... ...</h2>')
+              } else {
+                alert("错误提示： " + xhr.status + " " + xhr.statusText);
+              }
             }
-        });
+        })
+      } else {
+        successHandler(storage.get(key))
+      }
+
     }
 
     function createContentTOC(contentBox) {
@@ -348,24 +435,24 @@
     }
 
     function getUrlRequest(){
-          let url = location.search //获取url中"?"符后的字串
-          let theRequest = new Object()
+      let url = location.search //获取url中"?"符后的字串
+      let theRequest = new Object()
 
-          if (url.indexOf("?") != -1) {
-              var str = url.substr(1);
-              if (str.indexOf("&") != -1) {
-                  strs = str.split("&");
-                  for (var i = 0; i < strs.length; i++) {
-                      theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
-                  }
-              } else {
-                  var key = str.substring(0,str.indexOf("="));
-                  var value = str.substr(str.indexOf("=")+1);
-                  theRequest[key] = decodeURI(value);
+      if (url.indexOf("?") != -1) {
+          var str = url.substr(1);
+          if (str.indexOf("&") != -1) {
+              strs = str.split("&");
+              for (var i = 0; i < strs.length; i++) {
+                  theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
               }
+          } else {
+              var key = str.substring(0,str.indexOf("="));
+              var value = str.substr(str.indexOf("=")+1);
+              theRequest[key] = decodeURI(value);
           }
+      }
 
-          return theRequest
-        }
+      return theRequest
+    }
 </script>
 </html>
