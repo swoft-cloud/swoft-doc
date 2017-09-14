@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Swoft Doc</title>
   <link type="text/css" rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css"/>
-  <link type="text/css" rel="stylesheet" href="assets/lib/bootswatch/paper/bootstrap.min.css"/>
+  <link type="text/css" id="bts-style-link" rel="stylesheet" href="assets/lib/bootswatch/paper/bootstrap.min.css"/>
   <link rel="stylesheet" href="assets/lib/highlight/styles/github.css">
   <style type="text/css">
     body {
@@ -13,6 +13,33 @@
         padding-top: 70px;
     }
 
+    ::-webkit-scrollbar-thumb {
+        background: rgba(152, 155, 156, 0.68);
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        -ms-border-radius: 6px;
+        -o-border-radius: 6px;
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        -webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
+        -moz-box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
+        -ms-box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
+        -o-box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
+        box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
+        background-color: rgba(108, 110, 111, 0.68);
+    }
+
+    ::-webkit-scrollbar {
+        height: 10px;
+        width: 7px;
+        background: #dde1e2;
+    }
+
+    ::-webkit-scrollbar:hover {
+        background: #d2d5d6;
+    }
     .book {
         width: 100%;
     }
@@ -52,30 +79,57 @@
     }
 
     .with-sidebar #sidebar-box{
-        left: 0;
+      left: 0;
     }
     .with-sidebar #content-box{
-        left: 300px;
+      left: 300px;
     }
     .with-sidebar #sidebar-ctrl{
-        left: 300px;
+      left: 300px;
+    }
+
+    @media (max-width: 1500px) {
+      .with-sidebar .container{
+        width: 990px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      #sidebar-box {
+        width: 260px;
+        left: -260px;
+      }
+      .with-sidebar #content-box{
+        left: 260px;
+      }
+      .with-sidebar #sidebar-ctrl{
+        left: 260px;
+      }
     }
 
     #sidebar {
-        padding: 5px 10px 15px;
+        padding: 5px 10px 10px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 30px;
     }
     #sidebar>h1 {
         font-size: 24px;
         margin: 10px 0;
     }
     #sidebar ul{
-      padding-left: 15px;
+      padding-left: 12px;
       margin-bottom: 0;
       list-style: none;
     }
-    #sidebar li.active{
+    #sidebar a {
+      display: block;
+      padding-left: 10px;
+      color: #666;
+    }
+    #sidebar a.active{
       border-left: 3px solid #2196F3;
-      padding-left: 6px;
+      background-color: #f5f5f5;
+      color: #2196F3;
     }
     #sidebar>ul>li>a{
       font-weight: bold;
@@ -126,6 +180,7 @@
         z-index: 2;
         bottom: 0;
         overflow-y: auto;
+        min-width: 500px;
         -webkit-transition: left 250ms ease;
         -moz-transition: left 250ms ease;
         -o-transition: left 250ms ease;
@@ -140,6 +195,12 @@
       border-top: 1px solid #dedede;
       padding: 25px;
       color: #aaa;
+    }
+    .page-footer .qq-group {
+      position: relative;
+      padding: 10px 15px;
+      color: #2196F3;
+      display: block;
     }
     .info-box {
       padding: 15px;
@@ -230,7 +291,7 @@
                 <a href="https://github.com/swoft-cloud/swoft-doc" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> 文档地址(Github)</a>
                 </li>
                 <li>
-                <a href="javascript:void(0);" target="_blank"><i class="fa fa-qq" aria-hidden="true"></i> QQ群: 548173319</a>
+                  <span class="qq-group"><i class="fa fa-qq" aria-hidden="true"></i> QQ群: 548173319</span>
                 </li>
               </ul>
               <div class="info-box">
@@ -262,6 +323,7 @@
         theme: 'paper',
         codeTheme: 'github',
         defaultPage: 'README.md',
+        basePath: location.pathname
     }
 
     const storage = {
@@ -324,43 +386,59 @@
         console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
     }
 
+    /** window.onresize = checkScreenWidth */
+    prepareCheck()
+
     $(function () {
-        getDocIndex();
-        showPageContent(request.p ? request.p : config.defaultPage);
+      getDocIndex()
+      showPageContent(request.p ? request.p : config.defaultPage);
 
-        $('#sidebar-ctrl').on('click', function () {
-          $('body').toggleClass('with-sidebar')
-        })
+      $('#sidebar-ctrl').on('click', function () {
+        $('body').toggleClass('with-sidebar')
+      })
 
-        $('#refresh-btn').on('click', function() {
-          let pageUrl = $('#content').attr('data-url')
+      $('#refresh-btn').on('click', function() {
+        let pageUrl = $('#content').attr('data-url')
 
-          showPageContent(pageUrl, null, true)
-        })
-    });
+        showPageContent(pageUrl, null, true)
+      })
+    })
+
+    function prepareCheck() {
+      // href="assets/lib/bootswatch/{theme:paper}/bootstrap.min.css"
+      let theme = storage.get('swoft-doc-theme')
+      $('#bts-style-link').attr('src', theme ? theme : config.theme)
+
+      let w = $(window).width()
+
+      if (w < 769) {
+        $('body').removeClass('with-sidebar')
+      }
+    }
 
     function getDocIndex() {
-        $.get('SUMMARY.md', function (res) {
-            // console.log(res);
-            let sidebar = $('#sidebar')
-            let html = md.render(res)
+      $.get('SUMMARY.md', function (res) {
+        // console.log(res);
+        let sidebar = $('#sidebar')
+        let html = md.render(res)
 
-            sidebar.html(html)
-            sidebar.find('a').on('click', function (e) {
-                e.preventDefault() // 默认事件
-                e.stopPropagation() // 事件冒泡
-                let href = $(this).attr('href')
-                let title = $(this).text()
+        sidebar.html(html)
+        sidebar.find('a').on('click', function (e) {
+          e.preventDefault() // 默认事件
+          e.stopPropagation() // 事件冒泡
+          let href = $(this).attr('href')
+          let title = $(this).text()
 
-                sidebar.find('li').removeClass('active')
-                $(this).parent('li').addClass('active')
+          sidebar.find('a').removeClass('active')
+          $(this).addClass('active')
 
-                window.history.pushState({name: title}, "", request.p)
-                window.history.replaceState({name: title}, "", '/swoft-doc/?p=' + href)
+          // 改变地址栏URL
+          window.history.pushState({name: title}, "", request.p)
+          window.history.replaceState({name: title}, "", config.basePath + '?p=' + href)
 
-                showPageContent(href, title)
-            })
-        }, 'text');
+          showPageContent(href, title)
+        })
+      }, 'text');
     }
 
     function showPageContent(pageUrl, title, refresh) {
@@ -391,22 +469,21 @@
 
       if (refresh || !storage.has(key)) {
         $.ajax({
-            url: pageUrl,
-            type: 'GET',
-            dataType: 'text',
-            success: successHandler,
-            error: function(xhr){
-              if (xhr.status === 404) {
-                  $('#content').html('<h2>文档 "<em>' + title + '</em> " 正在完善中... ...</h2>')
-              } else {
-                alert("错误提示： " + xhr.status + " " + xhr.statusText);
-              }
+          url: pageUrl,
+          type: 'GET',
+          dataType: 'text',
+          success: successHandler,
+          error: function(xhr){
+            if (xhr.status === 404) {
+                $('#content').html('<h2>文档 "<em>' + title + '</em> " 正在完善中... ...</h2>')
+            } else {
+              alert("错误提示： " + xhr.status + " " + xhr.statusText);
             }
+          }
         })
       } else {
         successHandler(storage.get(key))
       }
-
     }
 
     function createContentTOC(contentBox) {
