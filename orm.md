@@ -6,7 +6,25 @@ ORM用于实现面向对象编程语言里不同类型系统的数据之间的�
 
 ## 查询器
 
-查询器允许使用面向对象的方法组装SQL，无论是基础的还是高级的语法都是一样的。操作语法列表如下：
+查询器允许使用面向对象的方法组装SQL，无论是基础的还是高级的语法都是一样的。
+
+```php
+// ActiveRecord操作
+$query1 = User::query()->selects(['id', 'sex' => 'sex2'])->leftJoin(Count::class, 'count.uid=user.id')->andWhere('id', 419)
+            ->orderBy('user.id', QueryBuilder::ORDER_BY_DESC)->limit(2)->getDefer();
+$result1 = $query1->getResult();
+
+// 高级的操作方式
+$em = EntityManager::create();
+$query = $em->createQuery();
+$query->select("*")->from(User::class, 'u')->leftJoin(Count::class, ['u.id=c.uid'], 'c')->whereIn('u.id', [419, 420, 421])
+    ->orderBy('u.id', QueryBuilder::ORDER_BY_DESC)->limit(2);
+$result = $query->getDefer()->getResult();
+$sql = $query->getSql();
+$em->close();
+```
+
+操作语法列表：
 
 | 方法 | 功能 |
 | :--- | :--- |
