@@ -21,6 +21,7 @@
 * [过滤器](guo-lv-qi.md)
 * [缓存](缓存.md)
 * [ORM](orm.md)
+  * [配置](orm/lian-jie-chi-pei-zhi.md)
   * [定义实体](orm/shi-ti.md)
   * [基础查询](orm/ji-chu-cha-xun.md)
   * [高级查询](orm/gao-ji-cha-xun.md)
