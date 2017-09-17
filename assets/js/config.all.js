@@ -33,7 +33,8 @@ const config = {
   codeTheme: 'github',
   makeTOC: true,
   /* £ $ & β ξ ψ ℘ § */
-  anchorIcon: '℘'
+  anchorIcon: '℘',
+  tableClass: 'table table-bordered table-striped'
 }
 
 const themes = {

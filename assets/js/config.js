@@ -1,7 +1,7 @@
   // page title = baseTile + content title
 // config.baseTitle = 'Go Web 编程'
 // config.siteName = '《Go Web 编程》'
-// config.siteDes = 'Go Web 编程的描述信息'
+config.siteDes = 'swoft是基于swoole协程2.x的高性能PHP微服务框架'
 // config.siteKey = 'go-web-dev'
 // config.logoUrl = '/md-site-reader/'
 
@@ -24,4 +24,5 @@
 // config.catelogPage = 'SUMMARY.md'
 // config.defaultPage = 'README.md'
 // config.makeTOC = true
-// config.emptyData = 'No content to display!'
+config.emptyData = '文档正在编写中... ...!'
+config.anchorIcon =  '℘'
