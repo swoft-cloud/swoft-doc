@@ -23,11 +23,27 @@ ORM用于实现面向对象编程语言里不同类型系统的数据之间的�
 | andWhere | where and 条件语句 |
 | openWhere | where 里面左括号 |
 | closeWhere | where 里面右括号 |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+| orWhere | where or 条件语句 |
+| whereIn | where in语句 |
+| whereNotIn | where not in 语句 |
+| whereBetween | where between and 语句 |
+| whereNotBetween | where not between and语句 |
+| having | having语句 |
+| andHaving | having and语句 |
+| orHaving | having or语句 |
+| havingIn | having in语句 |
+| havingNotIn | having not in语句 |
+| havingBetween | having between and语句 |
+| havingNotBetween | havin not between and 语句 |
+| openHaving | having括号开始语句 |
+| closeHaving | having括号结束语句 |
+| groupBy | group by语句 |
+| orderBy | order by语句 |
+| limit | limit语句 |
+| set | 设置更新值 |
+| setParameter | 设置参数 |
+| setParameters | 设置多个参数 |
+| getSql | 获取执行语句 |
 
 
 
