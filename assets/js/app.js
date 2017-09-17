@@ -248,6 +248,12 @@ function showPageContent(pageUrl, title, refresh) {
       title = content.find('h1').first().text()
     }
 
+    let tableClass = config.tableClass
+
+    if (tableClass) {
+      content.find('table').addClass(tableClass)
+    }
+
     content.find('a').each(function() {
       let href = $(this).attr('href')
 

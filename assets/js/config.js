@@ -25,4 +25,4 @@ config.siteDes = 'swoft是基于swoole协程2.x的高性能PHP微服务框架'
 // config.defaultPage = 'README.md'
 // config.makeTOC = true
 config.emptyData = '文档正在编写中... ...!'
-config.anchorIcon =  '℘'
+config.anchorIcon =  '§'
