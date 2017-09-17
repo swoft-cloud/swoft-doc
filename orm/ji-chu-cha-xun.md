@@ -57,7 +57,7 @@ $deferResult = User::deleteByIds([288, 289], true);
 $result = $deferResult->getResult();
 ```
 
-## 修改
+## 更新
 
 ```php
 $query = User::findById(285);
@@ -145,7 +145,7 @@ $result = $query->getResult();
 //$query = User::query()->selects(['id', 'sex' => 'sex2'])->andWhere('sex', 1)->orderBy('id',QueryBuilder::ORDER_BY_DESC)->limit(3);
 $query = User::query()->selects(['id', 'sex' => 'sex2'])->leftJoin(Count::class, 'count.uid=user.id')->andWhere('id', 416)
     ->orderBy('user.id', QueryBuilder::ORDER_BY_DESC)->limit(2);
-    
+
 // 延迟操作处理    
 // $result = $query->getResult();
 

@@ -54,7 +54,15 @@ $result = $em->deleteByIds(Count::class, [411, 412], true);
 $em->close();
 ```
 
-## 修改
+## 更新
+
+```php
+// 更是操作略有不同
+$em = EntityManager::create();
+$query = $em->createQuery()->update(User::class)->set('name', 'new name')->set('age', 12)->where('id', 12);
+$result = $query->getResult();
+$em->close();
+```
 
 ## 查询
 
@@ -170,8 +178,6 @@ if ($result === false) {
 }
 $em->close();
 ```
-
-
 
 
 
