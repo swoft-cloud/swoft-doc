@@ -3,327 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Swoft Doc</title>
+  <title>{reander by config.baseTitle + content tile}</title>
   <link async type="text/css" rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css"/>
   <link type="text/css" id="bts-style-link" rel="stylesheet" data-href="assets/lib/bootswatch/paper/bootstrap.min.css"/>
-  <link rel="stylesheet" href="assets/lib/highlight/styles/github.css">
-  <style type="text/css">
-    body {
-        position: relative;
-        /*padding-top: 70px;*/
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: rgba(152, 155, 156, 0.68);
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        -ms-border-radius: 6px;
-        -o-border-radius: 6px;
-        border-radius: 6px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        -webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
-        -moz-box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
-        -ms-box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
-        -o-box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
-        box-shadow: inset 1px 1px 1px rgba(0,0,0,.25);
-        background-color: rgba(108, 110, 111, 0.68);
-    }
-
-    ::-webkit-scrollbar {
-        height: 10px;
-        width: 7px;
-        background: #dde1e2;
-    }
-
-    ::-webkit-scrollbar:hover {
-        background: #d2d5d6;
-    }
-    .book {
-        width: 100%;
-    }
-
-    .book .navbar {
-        margin-bottom: 0;
-    }
-
-    #doc-url {
-      /*font-size: 18px;*/
-      /*color: #666;*/
-    }
-
-    #sidebar-box {
-      position: fixed;
-      top: 70px;
-      left: -300px;
-      z-index: 2;
-      bottom: 0;
-      width: 300px;
-      overflow-y: auto;
-      background-color: #f1f1f1;
-      border-right: 1px solid #ccc;
-      -webkit-transition: left 250ms ease;
-      -moz-transition: left 250ms ease;
-      -o-transition: left 250ms ease;
-      transition: left 250ms ease;
-    }
-
-    #search-box {
-      padding: 15px 15px 0;
-      border-bottom: 1px solid #bbb;
-    }
-
-    .with-sidebar #sidebar-box{
-      left: 0;
-    }
-    .with-sidebar #content-box{
-      left: 300px;
-    }
-    .with-sidebar #sidebar-ctrl{
-      left: 300px;
-    }
-
-    @media (max-width: 1500px) {
-      .with-sidebar .container{
-        width: 990px;
-      }
-    }
-
-    @media (max-width: 992px) {
-      #sidebar-box {
-        width: 260px;
-        left: -260px;
-      }
-      .with-sidebar #content-box{
-        left: 260px;
-      }
-      .with-sidebar #sidebar-ctrl{
-        left: 260px;
-      }
-    }
-
-    @media (max-width: 769px) {
-      #content-toc-box {
-        display: none;
-      }
-    }
-
-    #sidebar {
-        padding: 5px 10px 10px;
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 40px;
-        background-color: #fdfdfd;
-    }
-    #sidebar>h1 {
-        font-size: 24px;
-        margin: 10px 0;
-    }
-    #sidebar ul{
-      padding-left: 12px;
-      margin-bottom: 0;
-      list-style: none;
-    }
-    #sidebar a {
-      display: block;
-      padding-left: 10px;
-      color: #666;
-    }
-    #sidebar a.active{
-      border-left: 3px solid #2196F3;
-      background-color: #f5f5f5;
-      color: #2196F3;
-    }
-    #sidebar>ul>li>a{
-      font-weight: bold;
-    }
-    #sidebar-ctrl {
-      cursor: pointer;
-      position: fixed;
-      left: 0;
-      top: 40%;
-      height: 50px;
-      width: 18px;
-      padding-top: 14px;
-      background-color: rgba(221, 221, 221, 0.8);
-      border-radius: 0 5px 5px 0;
-      z-index: 10;
-      box-shadow: 1px 0 5px #ccc;
-      border: 1px solid #cdcdcd;
-      -webkit-transition: left 250ms ease;
-      -moz-transition: left 250ms ease;
-      -o-transition: left 250ms ease;
-      transition: left 250ms ease;
-    }
-    #content-toc-box {
-      position: fixed;
-      top: 150px;
-      right: 10px;
-      min-width: 120px;
-      max-width: 200px;
-      max-height: 400px;
-      background-color: #fff;
-
-      padding: 5px;
-      border: 1px solid #ddd;
-      box-shadow: 0 0 3px #dedede;
-    }
-
-    #content-toc-box .title{
-      font-weight: bold;
-    }
-    #content-toc {
-      padding: 6px;
-    }
-    #content-box {
-      position: fixed;
-      top: 70px;
-      right: 0;
-      left: 0;
-      z-index: 2;
-      bottom: 0;
-      overflow-y: auto;
-      padding-top: 15px;
-      -webkit-transition: left 250ms ease;
-      -moz-transition: left 250ms ease;
-      -o-transition: left 250ms ease;
-      transition: left 250ms ease;
-    }
-
-    .content-wrapper {
-      margin-right: auto;
-      margin-left: auto;
-      padding-left: 15px;
-      padding-right: 15px;
-      width: 80%;
-      max-width: 1200px;
-      min-width: 350px; */
-    }
-    #content {
-      padding-bottom: 15px;
-    }
-
-    .page-footer {
-      border-top: 1px solid #dedede;
-      padding: 25px;
-      color: #aaa;
-    }
-    .page-footer .qq-group {
-      position: relative;
-      padding: 10px 15px;
-      display: block;
-    }
-    .info-box {
-      padding: 15px;
-    }
-    .info-box .info-item {
-      display: inline-block;
-      margin-right: 10px;
-    }
-  </style>
-  <script src="assets/lib/jquery.min.js"></script>
-  <script type="text/javascript">
-    const storage = {
-      set: function (key, value) {
-        localStorage.setItem(key, value)
-      },
-      get: function (key) {
-        return localStorage.getItem(key)
-      },
-      sets: function (datas) {
-        datas.forEach(data => this.set(data.key, data.value))
-      },
-      gets: function (keys) {
-        return keys.map(key => this.get(key))
-      },
-      setJson: function (key, obj) {
-        localStorage.setItem(key, json_encode(obj))
-      },
-      getJson: function (key) {
-        return json_decode(this.get(key))
-      },
-      del: function (key) {
-        return localStorage.removeItem(key)
-      },
-      key: function (index) {
-        return localStorage.key(index)
-      },
-      has: function (key) {
-        return this.get(key) !== null
-      },
-      len: function () {
-        return localStorage.length
-      },
-      clear: function (keys) {
-        if (keys) {
-          keys.forEach(key => this.del(key))
-        } else {
-          localStorage.clear()
-        }
-      }
-    }
-    const config = {
-        docUrl: 'https://github.com/swoft-cloud/swoft-doc',
-        // https://github.com/swoft-cloud/swoft-doc/edit/master/http.md
-        editUrl: 'https://github.com/swoft-cloud/swoft-doc/edit/master',
-        project: 'https://github.com/swoft-cloud/swoft',
-        theme: 'paper', // 'paper'
-        codeTheme: 'github',
-        defaultPage: 'README.md',
-        basePath: location.pathname,
-        makeTOC: true
-    }
-    const themes = {
-      cerulean: 51,
-      cyborg: 51,
-      flatly: 61,
-      journal: 61,
-      readable: 66,
-      simplex: 41,
-      spacelab: 51,
-      united: 51,
-      cosmo: 51,
-      // darkly: 61,
-      lumen: 51,
-      paper: 66,
-      sandstone: 63,
-      slate: 52,
-      superhero: 40,
-      yeti: 45
-    }
-    const width = $(window).width()
-
-    prepareCheck()
-
-    function prepareCheck() {
-      if (width < 769) {
-        config.makeTOC = false
-        $('body').removeClass('with-sidebar')
-      }
-
-      // href="assets/lib/bootswatch/{theme:paper}/bootstrap.min.css"
-      let theme = storage.get('swoft-doc-theme')
-      theme = theme ? theme : config.theme
-
-      if (themes[theme]) {
-        config.navHeight = themes[theme]
-      } else {
-        // reset to default
-        theme = 'paper'
-        config.navHeight = themes.paper
-      }
-
-      config.theme = theme
-
-      // load theme css
-      $('#bts-style-link').attr('date-theme', theme).attr('href', 'assets/lib/bootswatch/' + theme + '/bootstrap.min.css')
-    }
-  </script>
+  <link rel="stylesheet" id="code-style-link" href="assets/lib/highlight/styles/github.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <script src="assets/js/config.all.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/lib/jquery-2.2.4.min.js"></script>
 </head>
 
-<body class="book with-sidebar">
+<body>
+  <div class="book with-sidebar">
     <nav id="top-menu" class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
+      <div class="content-wrapper">
         <!-- Brand and toggle get grouped for better mobile display -->
        <div class="navbar-header">
          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -332,17 +25,19 @@
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="#">Swoft</a>
+         <a class="navbar-brand" id="top-logo" href="">{render by config.siteName}</a>
        </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <p class="navbar-text site-des"></p>
+
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="https://github.com/swoft-cloud/swoft" target="_blank"><i class="fa fa-code-fork" aria-hidden="true"></i> Fork</a>
+              <a class="project-url" href="" target="_blank"><i class="fa fa-code-fork" aria-hidden="true"></i> Fork It</a>
             </li>
             <li>
-              <a href="https://github.com/swoft-cloud/swoft" target="_blank"><i class="fa fa-star" aria-hidden="true"></i> Star</a>
+              <a class="project-url" href="" target="_blank"><i class="fa fa-star" aria-hidden="true"></i> Star It</a>
             </li>
           </ul>
         </div>
@@ -351,39 +46,44 @@
     <aside id="sidebar-box">
         <div id="search-box">
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" id="search-input" placeholder="Search ... ...">
-            <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+            <input type="text" class="form-control" id="search-input" placeholder="Search catelog ... ...">
+            <span id="clear-search-input" class="fa fa-remove form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
 
-        <div id="sidebar"></div>
+        <div id="sidebar">
+          <span id="sidebar-refresh-btn" class="fa fa-refresh"></span>
+          <div class="catelog">
+            <!-- catelog list will render at there -->
+          </div>
+        </div>
     </aside>
     <!-- #content-box -->
     <div id="content-box">
-      <div id="sidebar-ctrl"> <i class="glyphicon glyphicon-indent-right"></i> </div>
+      <div id="sidebar-ctrl"> <i class="fa fa-exchange"></i> </div>
 
       <div class="content-wrapper">
         <div class="row">
           <div class="col-xs-12">
-              <div class="tool-bar" style="height: 30px;">
-                <p class="pull-left text-muted">当前页面：<i class="fa fa-file-text-o" aria-hidden="true"></i> <span id="doc-url"></span></p>
+              <div class="content-bar clearfix">
+                <p class="pull-left text-muted">当前页面：<span class="site-name"></span> &bull;&nbsp; <i class="fa fa-file-text-o" aria-hidden="true"></i> <span id="doc-url"></span></p>
 
                 <div class="pull-right">
                   <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                    <a id="edit-btn" href="https://github.com/swoft-cloud/swoft-doc" class="btn btn-primary">
+                    <a id="edit-btn" href="" class="btn btn-primary">
                       <i class="fa fa-edit" aria-hidden="true"></i> 编辑本页
                     </a>
                     <a id="refresh-btn" href="javascript:void(0);" class="btn btn-info">
                       <i class="fa fa-refresh" aria-hidden="true"></i> 刷新本页
                     </a>
-                    <a href="https://github.com/swoft-cloud/swoft-doc/issues" class="btn btn-warning">
+                    <a class="issue-url btn btn-warning">
                       <i class="fa fa-bug" aria-hidden="true"></i> 报告问题
                     </a>
                   </div>
                 </div>
               </div>
               <div id="content-toc-box">
-                <div class="title">内容结构</div>
+                <div class="title"><i class="fa fa-list"></i> 内容结构</div>
                 <div id="content-toc"></div>
               </div>
 
@@ -391,6 +91,7 @@
           </div>
         </div>
       </div>
+      <!-- end.content-wrapper -->
 
       <div class="page-footer">
         <div class="content-wrapper">
@@ -398,221 +99,50 @@
             <div class="col-xs-12">
               <ul class="nav nav-pills">
                 <li>
-                  <a href="https://github.com/swoft-cloud/swoft" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> 项目地址(Github)</a>
+                  <a class="project-url" href="" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> 项目地址(Github)</a>
                 </li>
                 <li>
-                <a href="https://github.com/swoft-cloud/swoft-doc" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> 文档地址(Github)</a>
+                <a class="doc-url" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> 文档地址(Github)</a>
                 </li>
                 <li>
-                  <span class="qq-group text-primary"><i class="fa fa-qq" aria-hidden="true"></i> QQ群: 548173319</span>
-                </li>
-                <li>
-                  <!-- <label for="theme-list">Theme: </label> -->
-                  <select id="theme-list" class="form-control">
+                  <select id="theme-list" class="form-control pull-right">
                     <option>1</option>
                   </select>
                 </li>
               </ul>
               <div class="info-box">
                 <div class="info-item">
-                  Project author <a href="https://github.com/stelin" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> stelin</a>
+                  Project author <a class="author-page" href="" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> <span class="author-name"></span></a>
                 </div>
                 <div class="info-item">
-                  Document site create by <a href="https://github.com/inhere" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> inhere</a>
+                  Document site powered by <a href="https://github.com/inhere/md-site-reader" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> inhere/md-site-reader</a>
+                </div>
+                <div class="info-item">
+                  <i class="fa fa-qq" aria-hidden="true"></i> QQ群: 548173319
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- end.page-footer -->
+
+      <a id="back-to-top" href="javascript:void(0);"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></a>
     </div>
+    <!-- end#content-box -->
+  </div>
+  <!-- end.book -->
+  <div id="loading-layer">
+    <div class="loading text-primary">
+      <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+      <div>Loading</div>
+    </div>
+  </div>
 </body>
 
-<script src="assets/lib/bootstrap.min.js"></script>
-<script src="assets/lib/markdown-it/markdown-it.min.js"></script>
-<script src="assets/lib/highlight/highlight.pack.js"></script>
-
-<script type="text/javascript">
-  const request = getUrlRequest()
-  const titleEl = $('head>title')
-  const rawTitle = titleEl.text()
-
-  const md = window.markdownit({
-      highlight: function (str, lang) {
-        if (lang && hljs.getLanguage(lang)) {
-          try {
-            return hljs.highlight(lang, str).value;
-          } catch (__) {}
-        }
-
-        return ''; // use external default escaping
-      }
-  })
-
-  const sidebar = $('#sidebar')
-
-  window.onpopstate = function(event) {
-      console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-  }
-
-  /** window.onresize = checkScreenWidth */
-
-  $(function () { // init logic
-    someUICheck()
-    getDocIndex()
-    showPageContent(request.p ? request.p : config.defaultPage);
-  })
-
-  function someUICheck() {
-    $('#sidebar-box').css({'top': config.navHeight + 'px'})
-    $('#content-box').css({'top': config.navHeight + 'px'})
-
-    // render theme list
-    let list = ''
-    Object.keys(themes).forEach(function (name) {
-      if (config.theme === name) {
-        list += `<option value="${name}" selected>${name}</option>`
-      } else {
-        list += `<option value="${name}">${name}</option>`
-      }
-    })
-    $('#theme-list').html(list)
-
-    // bind some events
-    $('#theme-list').on('change', function () {
-      let newTheme = $(this).val()
-      storage.set('swoft-doc-theme', newTheme)
-      window.location.reload()
-    })
-
-    $('#sidebar-ctrl').on('click', function () {
-      $('body').toggleClass('with-sidebar')
-    })
-
-    $('#refresh-btn').on('click', function() {
-      let pageUrl = $('#content').attr('data-url')
-
-      showPageContent(pageUrl, null, true)
-    })
-  }
-
-  function getDocIndex() {
-    $.get('SUMMARY.md', function (res) {
-      // console.log(res);
-      // let sidebar = $('#sidebar')
-      let html = md.render(res)
-
-      sidebar.html(html)
-      sidebar.find('a').on('click', function (e) {
-        e.preventDefault() // 默认事件
-        e.stopPropagation() // 事件冒泡
-        let href = $(this).attr('href')
-        let title = $(this).text()
-
-        sidebar.find('a').removeClass('active')
-        $(this).addClass('active')
-
-        // 改变地址栏URL
-        window.history.pushState({name: title}, "", request.p)
-        window.history.replaceState({name: title}, "", config.basePath + '?p=' + href)
-
-        showPageContent(href, title)
-      })
-    }, 'text');
-  }
-
-  function showPageContent(pageUrl, title, refresh) {
-    refresh = refresh === undefined ? false : refresh
-    $('#edit-btn').attr('href', config.editUrl + '/' + pageUrl)
-
-    let key = 'swoft-doc:' + pageUrl
-
-    let successHandler = function (res) {
-      // console.log(res);
-      let html = md.render(res)
-      let content = $('#content')
-
-      content.attr('data-url', pageUrl).html(html)
-
-      if (config.makeTOC) {
-        createContentTOC(content)
-      }
-
-      if (!title) {
-        title = content.find('h1').first().text()
-      }
-
-      $('#doc-url').text(pageUrl)
-      // show title
-      titleEl.text(rawTitle + ' - ' + title)
-
-      // add cache
-      storage.set(key, res)
-    }
-
-    if (refresh || !storage.has(key)) {
-      $.ajax({
-        url: pageUrl,
-        type: 'GET',
-        dataType: 'text',
-        success: successHandler,
-        error: function(xhr){
-          if (xhr.status === 404) {
-              $('#content').html('<h2>文档 "<em>' + title + '</em> " 正在完善中... ...</h2>')
-          } else {
-            alert("错误提示： " + xhr.status + " " + xhr.statusText);
-          }
-        }
-      })
-    } else {
-      successHandler(storage.get(key))
-    }
-  }
-
-  function createContentTOC(contentBox) {
-    let tocList = $("#content-toc"),
-        tocBox = $('#content-toc-box'),
-        hList = contentBox.find("h2,h3,h4,h5,h6")
-
-    if (!hList[0]) {
-      tocBox.hide()
-      return
-    }
-    tocList.html('')
-    hList.each(function(i,item){
-      var tag = $(item).get(0).localName;
-
-      $(item).attr("id","wow_"+i);
-      tocList.append('<a class="toc-'+tag+'" href="#wow_'+i+'">'+$(this).text()+'</a></br>');
-      tocList.find(".toc-h2").css("margin-left",0);
-      tocList.find(".toc-h3").css("margin-left",15);
-      tocList.find(".toc-h4").css("margin-left",30);
-      tocList.find(".toc-h5").css("margin-left",45);
-      tocList.find(".toc-h6").css("margin-left",60);
-    });
-
-    tocBox.show()
-  }
-
-  function getUrlRequest(){
-    let url = location.search //获取url中"?"符后的字串
-    let theRequest = new Object()
-
-    if (url.indexOf("?") != -1) {
-        var str = url.substr(1);
-        if (str.indexOf("&") != -1) {
-            strs = str.split("&");
-            for (var i = 0; i < strs.length; i++) {
-                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
-            }
-        } else {
-            var key = str.substring(0,str.indexOf("="));
-            var value = str.substr(str.indexOf("=")+1);
-            theRequest[key] = decodeURI(value);
-        }
-    }
-
-    return theRequest
-  }
-</script>
+<script defer src="assets/lib/bootstrap.min.js"></script>
+<script defer src="assets/lib/markdown-it/markdown-it.min.js"></script>
+<script defer src="assets/lib/highlight/highlight.pack.js"></script>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/custom.js"></script>
 </html>
