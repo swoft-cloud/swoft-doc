@@ -29,6 +29,7 @@
 * [RPC服务](rpc服务.md)
 * [国际化](lu-you/guo-ji-hua.md)
 * [HTTP服务](http.md)
+* [任务](ren-wu.md)
 * [日志](ri-zhi.md)
 * [异常处理](yi-chang-chu-li.md)
 * [服务治理](缓存.md)
