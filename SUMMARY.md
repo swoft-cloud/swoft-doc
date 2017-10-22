@@ -13,6 +13,7 @@
   * [响应对象](xiang-ying-dui-xiang.md)
   * [全局配置](quan-ju-pei-zhi.md)
   * [定时器](定时器.md)
+  * [协程对象](xie-cheng-dui-xiang.md)
 * [应用结构](ying-yong-jie-gou.md)
 * [别名机制](lu-you/guo-ji-hua/bie-ming-ji-zhi.md)
 * [事件机制](lu-you/guo-ji-hua/shi-jian-ji-zhi.md)
