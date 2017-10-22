@@ -8,7 +8,13 @@
 >
 > 类里面的每一个方法就是一个任务
 >
-> 每隔方法里面都可以使用日志、rpc、http、mysql、redis底层无缝自动切换成同步IO操作
+> 每个任务方法里面都可以使用日志、rpc、http、mysql、redis底层无缝自动切换成同步IO操作
+>
+> 任务里面可以直接使用model逻辑层
+>
+> @Scheduled注解可以实现crontab定义任务，目前开发中...
+>
+> 协程任务可以实现没有协程的客户端，比如mongodb....
 
 ```php
 <?php
@@ -17,8 +23,10 @@ namespace App\Tasks;
 
 use App\Models\Entity\Count;
 use App\Models\Entity\User;
+use App\Models\Logic\IndexLogic;
 use Swoft\App;
 use Swoft\Base\ApplicationContext;
+use Swoft\Bean\Annotation\Inject;
 use Swoft\Bean\Annotation\Scheduled;
 use Swoft\Bean\Annotation\Task;
 use Swoft\Db\EntityManager;
@@ -38,6 +46,14 @@ use Swoft\Service\Service;
  */
 class TestTask
 {
+    /**
+     * 逻辑层
+     *
+     * @Inject()
+     * @var IndexLogic
+     */
+    private $logic;
+
     /**
      * 任务中,使用redis自动切换成同步redis
      *
@@ -138,6 +154,8 @@ class TestTask
     }
 
     /**
+     * crontab定时任务，目前开发中...
+     *
      * @Scheduled(cron="0 0/1 8-20 * * ?")
      */
     public function cronTask()
@@ -146,6 +164,18 @@ class TestTask
         return 'cron';
     }
 }
+```
+
+## 投递任务
+
+任务定义成功，可以调用Swoft\Task\Task类里面deliver方法投递任务，只需自定任务名称、方法、参数、任务类型\(协程或异步\)
+
+```php
+$result = Task::deliver('test', 'corTask', ['params1', 'params2'], Task::TYPE_COR);
+$mysql = Task::deliver('test', 'testMysql', [], Task::TYPE_COR);
+$http = Task::deliver('test', 'testHttp', [], Task::TYPE_COR, 20);
+$rpc = Task::deliver('test', 'testRpc', [], Task::TYPE_COR, 5);
+$result1 = Task::deliver('test', 'asyncTask', [], Task::TYPE_ASYNC);
 ```
 
 

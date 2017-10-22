@@ -1,6 +1,6 @@
 # 异常处理
 
-swoft通过定义ErrorHandler来处理全局异常，ErrorHandler只需要注入一个参数errorAction，错误统一处理action。
+swoft通过application里面的errorAction，定义错误统一处理action。
 
 ## 配置
 
@@ -10,10 +10,12 @@ base.php里面配置一个bean,如下：
 return [
         //...
 
-        'errorHanlder' => [
-                'class' => \swoft\web\ErrorHandler::class,
-                'errorAction' => '/error/index', //错处理action
-            ],
+    'application'  => [
+        'id'          => SYSTEM_NAME,
+        'name'        => SYSTEM_NAME,
+        'errorAction' => '/error/index', // 统一错误处理控制器
+        'useProvider' => false,
+    ],
 
         // ...
 ];
