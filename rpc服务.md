@@ -3,15 +3,19 @@
 RPC及内部服务通过监听TCP端口实现，通过swoft.ini日志配置TCP监听端口信息。
 
 ```python
+[server]
+pfile = '/tmp/swoft.pid';
+pname = "php-swoft";
+;是否开启RPC
+tcpable = 1;
+
 [tcp]
-#是否开启TCP端口监听
-enable = 1
-#监听host
 host = "0.0.0.0"
-#监听端口
 port = 8099
-#TCP类型
+model = SWOOLE_PROCESS
 type = SWOOLE_SOCK_TCP
+package_max_length = 2048
+open_eof_check = 0
 ```
 
 ## RPC服务组成
@@ -68,44 +72,71 @@ return [
 
 RPC使用很久简单，第一步定义RPC服务函数，第二步调用使用
 
-定义RPC函数,注意定义的服务名称XXXService且继承至InnerService，服务函数和正常定义函数一样的。RPC定义服务一般放在controllers/services/目录下面
+> @Service注解定义服务名称，可以给服务区一个别名
+>
+> @Mapping注解，方法名映射。
+>
+> 服务类需要继承InnerService
+
+
 
 ```php
-namespace app\controllers\services;
+<?php
 
-use swoft\web\InnerService;
+namespace App\Services;
+
+use App\Models\Logic\UserLogic;
+use Swoft\Bean\Annotation\Inject;
+use Swoft\Bean\Annotation\Mapping;
+use Swoft\Bean\Annotation\Service;
+use Swoft\Web\InnerService;
 
 /**
- * RPC服务函数
+ * 用户service
  *
+ * @Service()
  * @uses      UserService
- * @version   2017年07月14日
+ * @version   2017年10月15日
  * @author    stelin <phpcrazy@126.com>
  * @copyright Copyright 2010-2016 swoft software
  * @license   PHP Version 7.x {@link http://www.php.net/license/3_0.txt}
  */
 class UserService extends InnerService
 {
+    /**
+     * 逻辑层
+     *
+     * @Inject()
+     * @var UserLogic
+     */
+    private $userLogic;
+
+    /**
+     * 用户信息
+     *
+     * @Mapping("getUserInfo")
+     * @param array ...$uids
+     *
+     * @return array
+     */
     public function getUserInfo(...$uids)
     {
-        $user = [
-            'name' => 'boby',
-            'desc' => 'this is boby'
-        ];
+        return $this->userLogic->getUserInfo($uids);
+    }
 
-        $data = [];
-        foreach ($uids as $uid){
-
-            $user['uid'] = $uid;
-            $data[] = $user;
-        }
-
-        return $data;
+    /**
+     * 未使用注解，默认方法名
+     *
+     * @return array
+     */
+    public function getUserList()
+    {
+        return ['uid1', 'uid2'];
     }
 }
 ```
 
-使用demo
+使用demo，调用格式"service::method"
 
 ```php
 // 直接调用
