@@ -27,11 +27,43 @@ Options:
   -h,--help     show help
 ```
 
-HTTP启动
+**HTTP启动**
 
+```
+// 启动
+php swoft.php start
 
+// 守护进程启动
+php swoft.php start -d
 
-RPC启动
+// 停止
+php swoft.php stop
+
+// 重载
+php swoft.php reload
+
+// 重启
+php swoft.php restart
+```
+
+**RPC启动**
+
+```py
+// 启动
+php swoft.php rpc:start
+
+// 守护进程启动
+php swoft.php rpc:start -d
+
+// 停止
+php swoft.php rpc:stop
+
+// 重载
+php swoft.php rpc:reload
+
+// 重启
+php swoft.php rpc:restart
+```
 
 **Swoft.ini**
 
