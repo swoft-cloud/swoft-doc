@@ -1,44 +1,53 @@
 # 启动
 
-启动服务支持HTTP和TCP同时启动，swoft.ini中配置。
+启动服务支持HTTP和TCP单独启动，但是HTTP启动，可以配置是否启动TCP，swoft.ini中配置。
 
-**常用命令**
+### 常用命令
 
-```java
-//启动服务,是否是守护进程，根据swoft.ini配置
-php swoft.php start
+**帮助命令**
 
-//守护进程启动，覆盖swoft.ini守护进程配置
-php swoft.php start -d
+```py
+[root@0dd3950e175b bin]# php swoft.php -h
+ ____                __ _
+/ ___|_      _____  / _| |_
+\___ \ \ /\ / / _ \| |_| __|
+ ___) \ V  V / (_) |  _| |_
+|____/ \_/\_/ \___/|_|  \__|
 
-// 重新加载
-php swoft.php reload
+Usage:
+  php swoft.php -h
 
+Commands:
+  entity  the group command list of database entity
+  rpc     the group command list of rpc server
+  server  the group command list of http-server
 
-// 关闭服务
-php swoft.php stop
+Options:
+  -v,--version  show version
+  -h,--help     show help
 ```
+
+HTTP启动
+
+
+
+RPC启动
 
 **Swoft.ini**
 
 ```py
-[swoft]
-;;;;;;;;;;;;;;;;;;;
-; About swoft.ini  ;
-;;;;;;;;;;;;;;;;;;;
-
-
 [server]
 pfile = '/tmp/swoft.pid';
-pname = "php-swf";
-
+pname = "php-swoft";
+tcpable = 1;
 
 [tcp]
-enable = 1;
 host = "0.0.0.0"
 port = 8099
+model = SWOOLE_PROCESS
 type = SWOOLE_SOCK_TCP
-
+package_max_length = 2048
+open_eof_check = 0
 
 [http]
 host = "0.0.0.0"
@@ -46,13 +55,17 @@ port = 80
 model = SWOOLE_PROCESS
 type = SWOOLE_SOCK_TCP
 
+[process]
+reload = 'Swoft\Process\ReloadProcess'
+;myProcess = 'App\Process\MyProcess'
 
 [setting]
-worker_num = 4
+worker_num = 3
 max_request = 10000
 daemonize = 0;
 dispatch_mode = 2
-log_file = SWOOLE_LOG_PATH;
+log_file = "@runtime/swoole.log"
+task_worker_num = 1
 ```
 
 
