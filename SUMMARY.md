@@ -19,6 +19,7 @@
 * [事件机制](lu-you/guo-ji-hua/shi-jian-ji-zhi.md)
 * [路由器](lu-you.md)
 * [控制器](kong-zhi-qi.md)
+* [视图渲染](view-render.md)
 * [过滤器](guo-lv-qi.md)
 * [缓存](缓存.md)
 * [ORM](orm.md)
