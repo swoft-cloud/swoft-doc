@@ -9,9 +9,9 @@ pname = "php-swoft";
 tcpable = 1;
 cronable = 0;
 ```
-- crontab = 0 ；关闭
+- cronable = 0 ；关闭
 
-- crontab = 1 ；开启
+- cronable = 1 ；开启
 
 在server的section里面，可以看到一个选项叫`cronable`，这个是开启crontab任务的开关。默认值为:**0**
 
