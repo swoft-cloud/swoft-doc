@@ -13,4 +13,4 @@ cronExec = 'Swoft\Process\CronExecProcess'
 
 - cronExec : 执行进程
 
-进程的名字命(cronTimer/cronExec)名**允许**修改，但是指定的类**不允许**修改。
+进程的名字(cronTimer/cronExec)命名**允许**修改，但是指定的类**不允许**修改。
