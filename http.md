@@ -5,9 +5,9 @@
 ```php
 // 直接调用
 $requestData = [
-            'name' => 'boy',
-            'desc' => 'php'
-        ];
+    'name' => 'boy',
+    'desc' => 'php'
+];
         
 $result = HttpClient::call("http://127.0.0.1/index/post?a=b", HttpClient::GET, $requestData);
 $result = $result;

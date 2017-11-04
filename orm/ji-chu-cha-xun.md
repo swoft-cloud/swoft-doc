@@ -12,7 +12,7 @@ $user->setDesc("this my desc");
 $user->setAge(mt_rand(1, 100));
 
 // 直接返回结果
-//$result = $user->save();
+// $result = $user->save();
 
 // 延迟操作
 $dataResult = $user->save(true);

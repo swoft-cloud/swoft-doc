@@ -16,7 +16,7 @@ $user->setDesc("this my desc");
 $user->setAge(mt_rand(1, 100));
 
 $em = EntityManager::create(true);
-//        $result = $em->save($user);
+// $result = $em->save($user);
 $defer = $em->save($user, true);
 $result = $defer->getResult();
 $em->close();
@@ -31,7 +31,7 @@ $user = new User();
 $user->setId(418);
 
 $em = EntityManager::create(true);
-//        $result = $em->delete($user);
+// $result = $em->delete($user);
 $result = $em->delete($user, true);
 $em->close();
 ```
@@ -40,7 +40,7 @@ $em->close();
 
 ```php
 $em = EntityManager::create(true);
-//        $result = $em->deleteById(Count::class, 396);
+// $result = $em->deleteById(Count::class, 396);
 $result = $em->deleteById(Count::class, 406, true);
 $em->close();
 ```
@@ -49,7 +49,7 @@ $em->close();
 
 ```php
 $em = EntityManager::create(true);
-//        $result = $em->deleteByIds(Count::class, [409, 410]);
+// $result = $em->deleteByIds(Count::class, [409, 410]);
 $result = $em->deleteByIds(Count::class, [411, 412], true);
 $em->close();
 ```
@@ -73,9 +73,9 @@ $user = new User();
 $user->setSex(1);
 $em = EntityManager::create();
 $query = $em->find($user);
-//        $result = $query->getResult();
-//        $result = $query->getResult(User::class);
-//        $result = $query->getDefer()->getResult();
+// $result = $query->getResult();
+// $result = $query->getResult(User::class);
+// $result = $query->getDefer()->getResult();
 $result = $query->getDefer()->getResult(User::class);
 $sql = $query->getSql();
 $em->close();
@@ -86,8 +86,8 @@ $em->close();
 ```php
 $em = EntityManager::create();
 $query = $em->findById(User::class, 396);
-//        $result = $query->getResult();
-//        $result = $query->getResult(User::class);
+// $result = $query->getResult();
+// $result = $query->getResult(User::class);
 $result = $query->getDefer()->getResult();
 $sql = $query->getSql();
 $em->close();
@@ -100,8 +100,8 @@ $query = User::findByIds([416, 417]);
 
 $sql = $query->getSql();
 
-//        $defer = $query->getDefer();
-//        $result = $defer->getResult(User::class);
+// $defer = $query->getDefer();
+// $result = $defer->getResult(User::class);
 
 $result = $query->getResult();
 ```
@@ -114,7 +114,7 @@ $em = EntityManager::create();
 $query = $em->createQuery();
 $query->select("*")->from(User::class, 'u')->leftJoin(Count::class, ['u.id=c.uid'], 'c')->whereIn('u.id', [419, 420, 421])
     ->orderBy('u.id', QueryBuilder::ORDER_BY_DESC)->limit(2);
-//        $result = $query->getResult();
+// $result = $query->getResult();
 $result = $query->getDefer()->getResult();
 $sql = $query->getSql();
 $em->close();

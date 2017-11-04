@@ -1,6 +1,6 @@
 # 视图渲染
 
-swoft 提供了简单方便的视图渲染支持。
+Swoft 提供了简单方便的视图渲染支持。
 
 ## 配置视图渲染组件
 
@@ -11,7 +11,7 @@ swoft 提供了简单方便的视图渲染支持。
 ],
 ```
 
-now, 在任何地方都可以用 `\Swoft\App::getBean('renderer')` 来获取组件实例。
+现在在任何地方都可以通过 `\Swoft\App::getBean('renderer')` 来获取组件实例。
 
 所有的可配置项：
 
@@ -21,7 +21,7 @@ now, 在任何地方都可以用 `\Swoft\App::getBean('renderer')` 来获取组�
 - `suffixes` 允许的视图后缀列表。 用于判断是否需要添加默认后缀
 - `placeholder` 在布局文件里使用的内容占位符。 默认 `{_CONTENT_}`
 
-类文件： `Swoft\Web\ViewRenderer`
+类文件： `\Swoft\Web\ViewRenderer`
 
 ## 使用
 

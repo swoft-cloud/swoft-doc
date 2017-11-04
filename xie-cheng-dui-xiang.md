@@ -1,6 +1,6 @@
 # 协程对象
 
-协程对象主要用于获取协程ID，创建子协程，其实是对swoole底层的一个封装。类名\Swoft\Base\Coroutine
+协程对象主要用于获取协程 ID，创建子协程，其实是对 Swoole 协程的一个封装。类名 `\Swoft\Base\Coroutine`
 
 ```php
 // 创建子协程

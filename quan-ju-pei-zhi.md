@@ -1,9 +1,9 @@
 # 全局配置
 
-properties.php用于配置系统运行参数，这里面配置的参数，可以被base.php里面的bean引用，也可以在系统任何逻辑中使用。
+config/properties/\*.php 用于配置系统运行参数，这里面所有的 .php 文件配置的参数，可以被 config/beans/\*.php 里面的 bean 引用，也可以在系统任何逻辑中使用。
 
 ```php
-//properties.php
+// config/properties/app.php
 <?php
 return [
     "version" => '1.0',
@@ -22,7 +22,7 @@ return [
 引用有两种配置，直接配置和层级配置。
 
 ```php
-// base.php
+// config/beans/base.php
 return [
 
     // ....

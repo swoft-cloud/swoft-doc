@@ -1,6 +1,6 @@
 # 全局容器
 
-每一个被swoft管理的PHP对象称之为Bean，swoft提供了一个IoC容器来初始化对象和获取对象，解决对象间的依赖管理。properties.php可以配置容器相关参数。
+每一个被 Swoft 管理的 PHP对象 称之为 Bean，Swoft 提供了一个 IoC容器 来初始化对象和获取对象，解决对象间的依赖管理。 config/properties/app.php 可以配置容器相关参数。
 
 ```php
 return [
@@ -17,25 +17,25 @@ return [
 
 ## 注入对象与引用
 
-目前支持两种方式注入对象，数组配置和@Bean注解。建议使用注解，减少配置。
+目前支持两种方式注入对象，数组配置和 `@Bean()`注解。建议使用注解，减少配置。
 
 配置规则
 
-* 必须定义一个数组KEY且为字符串，KEY及是Bean名称，可以通过名称使用
-* 数组值里面必须有KEY为class,class指定需要注入的类名称
-* 其余数组配置项，若KEY=0且值为自然数组\(数组个数对应构造函数参数\)，则是类构造函数配置，反之是类属性配置，KEY及是类成员名称，属性配置只要不是静态属性都可以。
-* base.php配置顺序没有强力要求，建议按使用顺序配置，方便阅读
+* 必须定义一个数组 KEY 且为字符串，KEY 及是 Bean 名称，可以通过名称使用
+* 数组值里面必须有 KEY 为 class, class 指定需要注入的类名称
+* 其余数组配置项，若 KEY=0 且值为自然数组\(数组个数对应构造函数参数\)，则是类构造函数配置，反之是类属性配置，KEY 及是类成员名称，属性配置只要不是静态属性都可以。
+* config/beans 配置顺序没有强力要求，建议按使用顺序配置，方便阅读
 
 引用规则
 
-* 引用properties.php分递归引用和直接引用两种方式
-* ${beanName}这种方式引用Bean对象
+* 引用 config/properties/\*.php 分递归引用和直接引用两种方式
+* `${beanName}` 这种方式引用Bean对象
 * 构造函数参数和成员属性都可以使用以上引用规则
 
 #### 数组配置
 
 ```php
-// properties.php
+// config/properties/app.php
 return [
     'config.service.user.maxActive' => 10,
     'service' =>[
@@ -45,7 +45,7 @@ return [
     ]
 ];
 
-// base.php
+// config/beans/base.php
 return [
     'config'         => [
         'properties' => require_once __DIR__ . '/' . APP_ENV . '/properties.php',
@@ -76,7 +76,7 @@ return [
 
 #### 注解配置
 
-注解配置更加简洁，通过在类和属性上使用@Bean和@Inject注解。
+注解配置更加简洁，通过在类和属性上使用 `@Bean()` 和 `@Inject()` 注解。
 
 ```php
 /**
@@ -84,7 +84,6 @@ return [
  * 注解注入demo，如下注入一个名为userModel的bean
  *
  * @Bean("userModel")
- * ...
  */
 class UserModel
 {
@@ -143,9 +142,9 @@ class UserModel
 }
 ```
 
-> **@Bean注解**
+> **@Bean()注解**
 >
-> @Bean里面只能使用双引号
+> @Bean() 里面只能使用双引号
 >
 > @Bean\("userModel"\)或@Bean\(name="userModel"\)含义是一样。
 >
@@ -153,13 +152,13 @@ class UserModel
 >
 > @Bean\(name="beanName",scope=Scope::SINGLETON\) 默认注入Bean都是单例，可以scope属性设置其类型
 >
-> **@Inject**
+> **@Inject()**
 >
-> @Inject使用格式和@Bean基本一样，注意通过注解目前不支持构造函数参数注入
+> @Inject() 使用格式和 @Bean() 基本一样，注意通过注解目前不支持构造函数参数注入
 >
-> @Inject\("name="${logger}"\)或@Inject\("${logger}"\)注入名称为logger的Bean到属性
+> @Inject\("name="${logger}"\) 或 @Inject\("${logger}"\) 注入名称为 logger 的 Bean 到属性
 >
-> @Inject\(name="${config.user.stelin.steln}"\)注入properties里面配置的值，可以层级和直接方式配置。
+> @Inject\(name="${config.user.stelin.steln}"\)注入properties 里面配置的值，可以层级和直接方式配置。
 >
 > @Inject\(\)默认注入该属性，对应的类型名\(包含命令空间\)Bean
 

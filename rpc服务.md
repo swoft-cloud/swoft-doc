@@ -2,25 +2,25 @@
 
 RPC及内部服务通过监听TCP端口实现，通过swoft.ini日志配置TCP监听端口信息。
 
-```python
-[server]
-pfile = '/tmp/swoft.pid';
-pname = "php-swoft";
-;是否开启RPC
-tcpable = 1;
+```dotenv
+# Server
+PFILE=/tmp/swoft.pid
+PNAME=php-swoft
+# 是否开启RPC
+TCPABLE=true
 
-[tcp]
-host = "0.0.0.0"
-port = 8099
-model = SWOOLE_PROCESS
-type = SWOOLE_SOCK_TCP
-package_max_length = 2048
-open_eof_check = 0
+# TCP
+TCP_HOST=0.0.0.0
+TCP_PORT=8099
+TCP_MODEL=SWOOLE_PROCESS
+TCP_TYPE=SWOOLE_SOCK_TCP
+TCP_PACKAGE_MAX_LENGTH=2048
+TCP_OPEN_EOF_CHECK=false
 ```
 
-## RPC服务组成
+## RPC 服务组成
 
-RPC服务由三大部分组成
+RPC 服务由三大部分组成
 
 1. 连接池
 2. 熔断器
@@ -72,11 +72,11 @@ return [
 
 RPC使用很久简单，第一步定义RPC服务函数，第二步调用使用
 
-> @Service注解定义服务名称，可以给服务区一个别名
+> @Service() 注解定义服务名称，可以给服务区一个别名
 >
-> @Mapping注解，方法名映射。
+> @Mapping() 注解，方法名映射。
 >
-> 服务类需要继承InnerService
+> 服务类需要继承 \Swoft\Web\InnerService
 
 
 
@@ -95,11 +95,6 @@ use Swoft\Web\InnerService;
  * 用户service
  *
  * @Service()
- * @uses      UserService
- * @version   2017年10月15日
- * @author    stelin <phpcrazy@126.com>
- * @copyright Copyright 2010-2016 swoft software
- * @license   PHP Version 7.x {@link http://www.php.net/license/3_0.txt}
  */
 class UserService extends InnerService
 {

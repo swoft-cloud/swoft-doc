@@ -10,15 +10,19 @@ App::setAlias('@root', BASE_PATH);
 
 // 如下其它别名也可以根据一个别名来定义
 App::setAlias('@app', '@root/app');
-App::setAlias('@runtime', '@root/runtime/'.SYSTEM_NAME);
-App::setAlias('@settings', '@root/bin/Swoft.ini');
+App::setAlias('@res', '@root/resources');
+App::setAlias('@runtime', '@root/runtime/' . APP_NAME);
+App::setAlias('@configs', '@root/config');
+App::setAlias('@resources', '@root/resources');
+App::setAlias('@beans', '@configs/beans');
+App::setAlias('@properties', '@configs/properties');
 ```
 
 ## 使用别名
 
 ```php
 // 获取别名真实路径
-$settingsPath = App::getAlias('@settings');
+$configsPath = App::getAlias('@configs');
 ```
 
 

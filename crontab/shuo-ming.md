@@ -2,7 +2,7 @@
 
 ## 简介
 
-传统的crontab是外部调命令执行一个独立进程，swoft提供的crontab相当于一个代码任务定时器，定时规则和linux系统下的crontab规则一致，兼容所有语法。区别在于linux系统下的crontab的最小单位为**分**级，swoft的crontab的规则支持到最小单位为**秒**级。
+传统的 Crontab 是外部调命令执行一个独立进程，Swoft 提供的 Crontab 相当于一个代码任务定时器，定时规则和 Linux 系统下的 Crontab 规则一致，兼容所有语法。区别在于 Linux 系统下的Crontab 的最小单位为**分**级，Swoft 的 Crontab 的规则支持到最小单位为**秒**级。
 
 ## swoft-crontab规则
 

@@ -4,15 +4,13 @@
 
 ## 配置
 
-properties.php里面配置国际化源语言路径。
+config/properties/app.php 里面配置国际化源语言路径。
 
 ```php
-return[
-  // ...
-  'I18n' =>[
-        'sourceLanguage' => '@root/messages/',
+return [
+    'I18n' =>[
+        'sourceLanguage' => '@root/resources/messages/',
     ],
-  // ...  
 ];
 ```
 
