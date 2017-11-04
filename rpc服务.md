@@ -1,6 +1,6 @@
 # RPC服务
 
-RPC及内部服务通过监听TCP端口实现，通过swoft.ini日志配置TCP监听端口信息。
+RPC 及内部服务通过监听TCP端口实现，通过 `.env` 日志配置 TCP 监听端口信息。
 
 ```dotenv
 # Server
@@ -26,9 +26,9 @@ RPC 服务由三大部分组成
 2. 熔断器
 3. 数据包传输格式
 
-## RPC服务配置
+## RPC 服务配置
 
-如下配置一个用user\(用户\)服务
+如下配置一个用 User\(用户\)服务
 
 ```php
 return [
@@ -68,9 +68,9 @@ return [
 ];
 ```
 
-## RPC使用
+## RPC 使用
 
-RPC使用很久简单，第一步定义RPC服务函数，第二步调用使用
+RPC 使用很久简单，第一步定义 RPC 服务函数，第二步调用使用
 
 > @Service() 注解定义服务名称，可以给服务区一个别名
 >
@@ -131,7 +131,7 @@ class UserService extends InnerService
 }
 ```
 
-使用demo，调用格式"service::method"
+使用 Demo，调用格式 `service::method`
 
 ```php
 // 直接调用
