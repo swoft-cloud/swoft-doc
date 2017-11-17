@@ -55,7 +55,7 @@ oo :) , 简单点 这里就没有写出完整的 html 结构了
 
 我们更多的时候都是在控制器里使用的。
 
-> 这里使用注解的方式添加路由
+> 这里使用注解的方式添加路由和配置视图
 
 ```php
 /**
@@ -68,6 +68,7 @@ class DemoController extends Controller
     /**
      * 视图渲染demo - 没有使用布局文件(请访问 /demo2/view)
      * @RequestMapping()
+     * @View(template="index/index")
      */
     public function actionView()
     {
@@ -78,17 +79,16 @@ class DemoController extends Controller
             'doc1' => 'https://swoft-cloud.github.io/swoft-doc/',
             'method' => __METHOD__,
         ];
-
-        // 可以
-        // $this->renderPartial('demo/view.php', $data);
-        // 也可以 - 会自动添加默认的后缀(是可配置的)
-        $this->renderPartial('demo/view', $data);
+        // 根据请求适应返回类型，如请求视图，则会根据 @View() 注解来返回视图
+        // 这里return的值将会传递给视图
+        return $data;
     }
 
 
     /**
      * 视图渲染demo - 使用布局文件(请访问 /demo2/layout)
      * @RequestMapping()
+     * @View(template="demo/content", layout="layouts/default.php")
      */
     public function actionLayout()
     {
@@ -99,11 +99,9 @@ class DemoController extends Controller
             'doc' => 'https://doc.swoft.org/',
             'doc1' => 'https://swoft-cloud.github.io/swoft-doc/',
             'method' => __METHOD__,
-            'layoutFile' => $this->getRenderer()->getViewFile($layout)
+            'layoutFile' => $layout
         ];
-
-
-        $this->render('demo/content', $data, $layout);
+        return $data;
     }
 }
 ```
@@ -115,12 +113,10 @@ class DemoController extends Controller
 - 若你不添加后缀，会自动追加配置的默认后缀
 - 使用相对路径时，将会在我们配置的视图目录里找到对应的view文件
 - 使用绝对路径时，将直接使用它来渲染。(支持使用路径别名 `@res/views/my-view.php`)
-- `renderPartial()` 直接渲染一个视图文件，不会渲染layout
-- `render()` 会使用layout渲染一个视图文件。除非你没有配置默认的 layout 并且这里也没有手动传入。
 
 使用布局文件， 方式有两种：
 
-1. 在配置中 配置默认的布局文件，那使用 `render()` 时即使不设置 `$layout`， 也会使用默认的
+1. 在配置中 配置默认的布局文件，那么即使不设置 `layout`， 也会使用默认的
 2. 如这里一样，手动设置一个布局文件。它的优先级更高（即使有默认的布局文件，也会使用当前传入的替代。）
 
 ### 在视图文件里包含其他视图文件
@@ -132,7 +128,7 @@ class DemoController extends Controller
 
 > 两个方法效果一样。 只是 `fetch()` 需要你手动 echo `<?= $this->fetch('layouts/default/header') ?>`
 
-> 注意： 变量数据有作用域限制。 即是传入 `render()` 的变量，无法在包含的视图里直接使用，需要手动通过 `$data` 传入。
+> 注意： 变量数据有作用域限制。 即是传入视图的变量，无法在包含的视图里直接使用，需要手动通过 `$data` 传入。
 
 ```php
 <body>

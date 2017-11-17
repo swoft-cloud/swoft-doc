@@ -18,6 +18,22 @@ App::setAlias('@beans', '@configs/beans');
 App::setAlias('@properties', '@configs/properties');
 ```
 
+```php
+// 批量定义别名
+$aliases = [
+    '@root'       => BASE_PATH,
+    '@app'        => '@root/app',
+    '@res'        => '@root/resources',
+    '@runtime'    => '@root/runtime',
+    '@configs'    => '@root/config',
+    '@resources'  => '@root/resources',
+    '@beans'      => '@configs/beans',
+    '@properties' => '@configs/properties',
+    '@commands'   => '@app/Commands'
+];
+App::setAliases($aliases);
+```
+
 ## 使用别名
 
 ```php

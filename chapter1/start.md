@@ -6,7 +6,7 @@
 
 **帮助命令**
 
-```py
+```
 [root@0dd3950e175b bin]# php swoft -h
  ____                __ _
 / ___|_      _____  / _| |_
@@ -78,10 +78,14 @@ AUTO_RELOAD=true
 # HTTP
 HTTP_HOST=0.0.0.0
 HTTP_PORT=80
+HTTP_MODEL=SWOOLE_PROCESS
+HTTP_TYPE=SWOOLE_SOCK_TCP
 
 # TCP
 TCP_HOST=0.0.0.0
 TCP_PORT=8099
+TCP_MODEL=SWOOLE_PROCESS
+TCP_TYPE=SWOOLE_SOCK_TCP
 TCP_PACKAGE_MAX_LENGTH=2048
 TCP_OPEN_EOF_CHECK=false
 
