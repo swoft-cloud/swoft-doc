@@ -17,7 +17,7 @@
 * [应用结构](structure.md)
 * [别名机制](router/international/alias.md)
 * [事件机制](router/international/event.md)
-* [路由器](router.md)
+* [路由器](router/http/intro-and-usage.md)
 * [控制器](controller.md)
 * [视图渲染](view-render.md)
 * [过滤器](filter.md)
