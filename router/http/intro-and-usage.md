@@ -65,7 +65,7 @@ $router->get('/', function () {
 $router->get('/test/{name}', function ($arg) {
     echo $arg; // 'john'
 }, [
-    'tokens' => [
+    'params' => [
         'name' => '\w+', // 添加参数匹配限制。若不添加对应的限制，将会自动设置为匹配除了'/'外的任何字符
     ]
 ]);
@@ -74,7 +74,7 @@ $router->get('/test/{name}', function ($arg) {
 $router->get('/hello[/{name}]', function ($name = 'No') {
     echo $name; // 'john'
 }, [
-    'tokens' => [
+    'params' => [
         'name' => '\w+', // 添加参数匹配限制
     ]
 ]);
