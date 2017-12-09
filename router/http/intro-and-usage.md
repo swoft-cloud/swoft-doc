@@ -1,19 +1,37 @@
 # 路由器
 
+## HTTP路由
 路由解析有两种方式，注册路由和自动解析，所有路由都在 `app/routes.php` 中配置。
 建议所有路由都提前注册，或者通过注解注册，不建议使用自动路由解析。路由配置参数\(config/beans/base.php\):
 
 ```php
 return [
     // ...
-    'router'      => [
-        'class'  => \Swoft\Web\Router::class,
+    'httpRouter'      => [
+        'class'          => \Swoft\Router\Http\HandlerMapping::class,
         'ignoreLastSep'  => false, // 是否忽略最后一个斜杠，设置false后，/user/index和/user/index/是两个不同的路由
         'tmpCacheNumber' => 1000,// 缓存路由数，最近一1000条(缓存到路由对象的，重启后失效，只会缓存动态路由)
         'matchAll'       => '', // 匹配所有，所有请求都会匹配到这个uri或闭包
     ],
     // ...
 ];
+
+
+```
+
+## RPC路由
+路由配置参数\(config/beans/service.php\):
+
+```php
+return [
+    // ...
+    'serviceRouter' => [
+        'class' => \Swoft\Router\Service\HandlerMapping::class,
+        'suffix' => 'Service', // service文件后缀
+    ],
+    // ...
+];
+
 ```
 
 ## 配置项说明
