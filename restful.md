@@ -1,6 +1,6 @@
 # RESTful
 
-RESTful支持很简单，使用RESTful前，需要定义body内存解析器，默认值支持JSON解析。
+RESTful操作很简单，使用RESTful前，需要定义内容解析器，默认值支持JSON解析。
 
 ## 自定义解析器
 
