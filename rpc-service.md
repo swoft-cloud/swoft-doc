@@ -34,10 +34,10 @@ RPC 服务由三大部分组成
 return [
 
     // ...
-
     // RCP打包、解包
-    "packer"          => [
-        'class' => JsonPacker::class
+    'servicePacker'     => [
+            'class' => \Swoft\Service\ServicePacker::class,
+            'type'  => 'json',
     ],
     // 服务发现bean, 目前系统支持consul,只行实现
     'consulProvider'       => [
@@ -70,33 +70,32 @@ return [
 
 ## RPC 使用
 
-RPC 使用很久简单，第一步定义 RPC 服务函数，第二步调用使用
+RPC 使用很简单，只需使用@Service注解即可定义一个服务。第一步定义 RPC 服务函数，第二步调用
 
-> @Service() 注解定义服务名称，可以给服务区一个别名
->
-> @Mapping() 注解，方法名映射。
->
-> 服务类需要继承 \Swoft\Web\InnerService
+### @Service
 
+- @Service() 定义服务名称，可以给服务取一个别名
+- @Service() 如果未定义别名，自动解析类名前缀。
 
+### @Mapping
+
+- @Mapping() 给函数方法名，取一个别名(映射名称)。
+- @Mapping() 如果未定义别名，自动解析函数名称
+
+### 使用实例
 
 ```php
-<?php
-
-namespace App\Services;
-
-use App\Models\Logic\UserLogic;
-use Swoft\Bean\Annotation\Inject;
-use Swoft\Bean\Annotation\Mapping;
-use Swoft\Bean\Annotation\Service;
-use Swoft\Web\InnerService;
-
 /**
  * 用户service
  *
  * @Service()
+ * @uses      UserService
+ * @version   2017年10月15日
+ * @author    stelin <phpcrazy@126.com>
+ * @copyright Copyright 2010-2016 swoft software
+ * @license   PHP Version 7.x {@link http://www.php.net/license/3_0.txt}
  */
-class UserService extends InnerService
+class UserService
 {
     /**
      * 逻辑层
@@ -117,6 +116,25 @@ class UserService extends InnerService
     public function getUserInfo(...$uids)
     {
         return $this->userLogic->getUserInfo($uids);
+    }
+
+    /**
+     * @Mapping("getUser")
+     * @Enum(name="type", values={1,2,3})
+     * @Number(name="uid", min=1, max=10)
+     * @Strings(name="name", min=2, max=5)
+     * @Floats(name="price", min=1.2, max=1.9)
+     *
+     * @param int    $type
+     * @param int    $uid
+     * @param string $name
+     * @param float  $price
+     * @param string $desc  default value
+     * @return array
+     */
+    public function getUserByCond(int $type, int $uid, string $name, float $price, string $desc = "desc")
+    {
+        return [$type, $uid, $name, $price, $desc];
     }
 
     /**

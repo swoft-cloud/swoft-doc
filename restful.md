@@ -4,6 +4,61 @@ RESTful操作很简单，使用RESTful前，需要定义内容解析器，默认
 
 ## 自定义解析器
 
+### 定义解析器
+
+实现RequestParserInterface接口，并实现parser方法
+
+```php
+/**
+ * the json parser of request
+ *
+ * @Bean()
+ * @uses      RequestJsonParser
+ * @version   2017年12月02日
+ * @author    stelin <phpcrazy@126.com>
+ * @copyright Copyright 2010-2016 swoft software
+ * @license   PHP Version 7.x {@link http://www.php.net/license/3_0.txt}
+ */
+class RequestJsonParser implements RequestParserInterface
+{
+    /**
+     * do parser
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     *
+     * @return \Psr\Http\Message\ServerRequestInterface
+     */
+    public function parser(ServerRequestInterface $request): ServerRequestInterface
+    {
+        if ($request instanceof Request) {
+            $bodyStream  = $request->getBody();
+            $bodyContent = $bodyStream->getContents();
+            $bodyParams  = JsonHelper::decode($bodyContent, true);
+            return $request->withBodyParams($bodyParams);
+        }
+
+        return $request;
+    }
+}
+```
+
+### 配置解析器
+
+修改配置文件 app\config\beans\base.php，可以配置多个解析，Swoft 会自动根据请求 Content-Type 值使用对应的内容解析器
+
+```php
+    return [
+        // ...
+        'requestParser' =>[
+                    'class' => \Swoft\Web\RequestParser::class,
+                    'parsers' => [
+                        'application/json' => \Swoft\Web\RequestJsonParser::class
+                    ]
+                ],
+        // ...
+    ];
+    
+```
 
 
 ## 使用实例

@@ -19,6 +19,7 @@
 * [事件机制](router/international/event.md)
 * [验证器](validator/http.md)
   * [HTTP验证器](validator/http.md)
+  * [Service验证器](validator/service.md)
 * [中间件](middleware/middleware.md)
   * [HTTP中间件](middleware/http.md)
 * [路由器](router/http/intro-and-usage.md)
