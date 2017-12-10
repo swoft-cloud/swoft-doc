@@ -22,6 +22,7 @@
   * [Service验证器](validator/service.md)
 * [中间件](middleware/middleware.md)
   * [HTTP中间件](middleware/http.md)
+  * [Service中间件](middleware/service.md)
 * [路由器](router/http/intro-and-usage.md)
 * [控制器](controller.md)
 * [视图渲染](view-render.md)
