@@ -46,13 +46,13 @@ class FaviconIcoMiddleware implements MiddlewareInterface
  * 请求之后
  * 
  * @Bean()
- * @uses      ControlerSubMiddleware
+ * @uses      ControllerSubMiddleware
  * @version   2017年11月29日
  * @author    stelin <phpcrazy@126.com>
  * @copyright Copyright 2010-2016 swoft software
  * @license   PHP Version 7.x {@link http://www.php.net/license/3_0.txt}
  */
-class ControlerSubMiddleware implements MiddlewareInterface
+class ControllerSubMiddleware implements MiddlewareInterface
 {
     /**
      * @param \Psr\Http\Message\ServerRequestInterface     $request
