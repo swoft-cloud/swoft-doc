@@ -4,11 +4,11 @@
 
 ```php
 // 类名创建
-ApplicationContext::createBean("myBean", MyBean.class);
+ApplicationContext::createBean("myBean", MyBean::class);
 
 // 配置创建
 $beanConfig = [
-    'class' => MyBean.class,
+    'class' => MyBean::class,
     'pro1' => 'v1',
     'pro2' => 'v2',
 ];
