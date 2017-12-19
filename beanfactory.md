@@ -21,11 +21,11 @@ BeanFactory负责初始化\(base.php\)、创建、查询beans。bean其实就是
 
 ```php
 // 类名创建
-BeanFactory::createBean("myBean", MyBean.class);
+BeanFactory::createBean("myBean", MyBean::class);
 
 // 配置创建
 $beanConfig = [
-    'class' => MyBean.class,
+    'class' => MyBean::class,
     'pro1' => 'v1',
     'pro2' => 'v2',
     [ // 构造函数参数
