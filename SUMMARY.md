@@ -5,6 +5,7 @@
   * [环境要求](chapter1/requirements.md)
   * [安装](chapter1/install.md)
   * [启动](chapter1/start.md)
+  * [开发指南](chapter1/dev.md)
 * [全局容器](container.md)
   * [BeanFactory](beanfactory.md)
   * [应用上下文](container/request-context.md)
