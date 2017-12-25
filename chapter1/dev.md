@@ -38,8 +38,8 @@ services:
 
 * 启动成功后执行 `docker ps` 查看容器信息，下为示例
 ```
-CONTAINER ID        IMAGE                COMMAND                  CREATED              STATUS              PORTS                NAMES
-f22173763374        swoft/swoft:latest   "docker-php-entrypoin"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   env_swoft-dev_1
+CONTAINER ID  IMAGE               COMMAND                 CREATED             STATUS             PORTS               NAMES
+f22173763374  swoft/swoft:latest  "docker-php-entrypoin"  About a minute ago  Up About a minute  0.0.0.0:80->80/tcp  env_swoft-dev_1
 ```
 * 得知容器ID为 `f22173763374` ，容器名称为 `env_swoft-dev_1`
 
