@@ -30,7 +30,7 @@ services:
 
 下面给出一个实际使用的参考流程
 
-* 安装 Docker 环境及 Docker-compose ，并启动 Docker 服务
+* 安装 Docker 环境及 docker-compose ，并启动 Docker 服务
 
 * 编写 `docker-compose.yml` 文件
 
