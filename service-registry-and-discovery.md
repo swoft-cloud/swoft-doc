@@ -32,7 +32,7 @@ config/beans/service.php 配置
         "balancer"        => '${randomBalancer}',
         "serviceName"     => 'user',
         "useProvider"     => false,
-        'serviceprovider' => '${consulProvider}' // 引用服务注册与发现器
+        'serviceProvider' => '${consulProvider}' // 引用服务注册与发现器
     ],
 ```
 
