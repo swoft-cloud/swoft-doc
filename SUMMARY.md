@@ -18,6 +18,7 @@
 * [应用结构](structure.md)
 * [别名机制](router/international/alias.md)
 * [事件管理](event-manager/intro.md)
+  * [进阶了解与使用](event-manager/advanced.md)
 * [验证器](validator/http.md)
   * [HTTP验证器](validator/http.md)
   * [Service验证器](validator/service.md)
