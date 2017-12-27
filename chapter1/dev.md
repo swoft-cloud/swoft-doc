@@ -45,6 +45,8 @@ f22173763374  swoft/swoft:latest  "docker-php-entrypoin"  About a minute ago  Up
 
 * 执行 `docker exec -it f22173763374 bash` 或 `docker exec -it env_swoft-dev_1 bash` 进入容器
 
+* 由于 command 已经更换为 bash, 所以其实此时 Swoft 并未启动，`cd /var/www/swoft` CD 到项目目录，执行 `php bin/swoft start` 启动 Swoft，需要重启 Swoft 直接 `CRTL + C` 终止并重新启动即可
+
 ## PHPStorm 安装 `PHP Annotations` 插件优化注解使用
 通过文本编辑器的环境进行 Swoft 开发，在使用 Swoft 便捷的注解时，仍需要 use 注解相对应的命名空间， 这显然不是一个高效的做法。
 
