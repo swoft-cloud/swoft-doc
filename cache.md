@@ -4,30 +4,46 @@
 
 ## Redis 配置
 
-在 `config/beans/redis.php` 配置 Redis 信息。
+缓存连接池支持两种方式配置，config/properties/cache.php或.env环境文件中配置。如果两者都有，.env配置会覆盖config/properties/cache.php里面配置
+
+### properties配置
+
+配置文件路径config/properties/cache.php
 
 ```php
 return [
-
-    // ...
-    
-    // redis连接池配置
-    "redisPool" => [
-        'class'           => \Swoft\Pool\RedisPool::class,
-        "uri"             => '127.0.0.1:6379,127.0.0.1:6379',// useProvider为false时，从这里识别配置
-        "maxIdel"         => 6,// 最大空闲连接数
-        "maxActive"       => 10,// 最大活跃连接数
-        "maxWait"         => 20,// 最大的等待连接数
-        "timeout"         => 200,// 引用properties.php配置值
-        "balancer"        => '${randomBalancer}',// 连接创建负载
-        "serviceName"     => 'user',// 服务名称，对应连接池的名称格式必须为xxxPool/xxxBreaker
-        "useProvider"     => false,
-        'serviceprovider' => '${consulProvider}' // useProvider为true使用，用于发现服务
+    'redis' => [
+        'name' => 'redis',
+        "uri"         => [
+            '127.0.0.1:6379',
+            '127.0.0.1:6379',
+        ],
+        "maxIdel"     => 8,
+        "maxActive"   => 8,
+        "maxWait"     => 8,
+        "timeout"     => 8,
+        "balancer"    => 'random',
+        "useProvider" => false,
+        'provider'    => 'consul',
     ],
-
-    // ...
-
 ];
+```
+
+### .env配置
+
+.env格式，可以从.env.example里面复制，再修改成配置信息。
+
+```
+# the pool of redis
+REDIS_NAME=redis
+REDIS_URI=127.0.0.1:6379,127.0.0.1:6379
+REDIS_MAX_IDEL=6
+REDIS_MAX_ACTIVE=10
+REDIS_MAX_WAIT=20
+REDIS_TIMEOUT=200
+REDIS_USE_PROVIDER=false
+REDIS_BALANCER=random
+REDIS_PROVIDER=consul
 ```
 
 ## Redis 使用
