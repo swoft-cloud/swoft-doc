@@ -1,29 +1,26 @@
-# service中间件
+# Service 中间件
 
-用户可以自定义一些中间，满足不同的业务场景。service中可以通过注解和配置两种方式使用已经定义好的中间。
+用户可以自定义一些中间件，满足不同的业务场景。Service 中可以通过注解方式使用已经定义好的中间件，全局中间件需在配置中定义。
 
 ## 注解使用
 
 ### @Middleware
 
-- @Middleware，可以指定一个中间件名称
-- 多个@Middleware中间件，按照配置顺序执行
-- 如果定义在service类上，作用于整个类的所有方法函数
+- `@Middleware`，可以指定一个中间件名称
+- 如果定义在 Service 类上，作用于整个类的所有方法函数
 - 如果定义在一个函数上面，仅仅作用于当前方法函数
 
 ### @Middlewares
 
-- @Middlewares，通过一个@Middleware数组，定义一个组中间件
-- @Middlewares，里面多个@Middleware中间件，按照配置顺序执行
-- 如果定义在service类上，作用于整个类的所有方法函数
+- `@Middlewares`，通过一个`@Middleware`数组，定义一个组中间件
+- `@Middlewares`，里面多个`@Middleware`中间件，按照配置顺序执行
+- 如果定义在 Service 类上，作用于整个类的所有方法函数
 - 如果定义在一个函数上面，仅仅作用于当前方法函数
 
 ### 使用实例
 
 ```php
 /**
- * the middleware of service
- *
  * @Service("Md")
  * @Middlewares({
  *     @Middleware(ServiceSubMiddleware::class)
@@ -59,20 +56,20 @@ class MiddlewareService
 }
 ```
 
-### 配置使用
+### 全局中间件配置
 
-用户也可以通过配置(app/config/beans/base.php)使用注解，执行顺序按照配置数组顺序。
+通过配置 `app/config/beans/base.php` 注册全局中间件，执行顺序按照配置的数组顺序，全局中间件将会在每一次 RPC 调用中被执行。
 
 ```php
     return [
         // ...
         'dispatcherService' => [
-                'class' => \Swoft\Service\DispatcherService::class,
-                'middlewares' => [
-                    \App\Middlewares\SubMiddleware::class,
-                    \App\Middlewares\GroupTestMiddleware::class
-                ]
-            ],
+            'class' => \Swoft\Service\DispatcherService::class,
+            'middlewares' => [
+                \App\Middlewares\SubMiddleware::class,
+                \App\Middlewares\GroupTestMiddleware::class
+            ]
+        ],
         // ...    
     ];
 ```

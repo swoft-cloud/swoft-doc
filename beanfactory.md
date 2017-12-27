@@ -1,6 +1,6 @@
 # Bean使用
 
-有多种方式可以使用已经配置并注入的类\(Bean\),得到的结果和一个类的实例是完全一样使用，并且默认注入的类是单列的。常用有两种方式
+有多种方式可以使用已经配置并注入的类\(Bean\),得到的结果和一个类的实例是完全一样使用，并且默认注入的类是单例的。常用有两种方式
 
 * 通过名称从应用上下文获取
 * 应用简写App中获取
@@ -21,11 +21,11 @@ BeanFactory负责初始化\(base.php\)、创建、查询beans。bean其实就是
 
 ```php
 // 类名创建
-BeanFactory::createBean("myBean", MyBean.class);
+BeanFactory::createBean("myBean", MyBean::class);
 
 // 配置创建
 $beanConfig = [
-    'class' => MyBean.class,
+    'class' => MyBean::class,
     'pro1' => 'v1',
     'pro2' => 'v2',
     [ // 构造函数参数

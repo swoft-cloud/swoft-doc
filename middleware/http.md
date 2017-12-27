@@ -1,22 +1,21 @@
-# HTTP中间件
+# HTTP 中间件
 
-用户可以自定义一些中间，满足不同的业务场景。HTTP中可以通过注解和配置两种方式使用已经定义好的中间。
+用户可以自定义一些中间件，满足不同的业务场景。HTTP 中可以通过注解方式使用已经定义好的中间件，全局中间件需在配置中定义。
 
 ## 注解使用
 
 ### @Middleware
 
-- @Middleware，可以指定一个中间件名称
-- 多个@Middleware中间件，按照配置顺序执行
-- 如果定义在控制器，整个作用于整个控制器里面action
-- 如果定义在action，仅仅作用于当前action
+- `@Middleware`，可以指定一个中间件名称
+- 如果定义在控制器，整个作用于整个控制器里面 Action
+- 如果定义在 Action，仅仅作用于当前 Action
 
 ### @Middlewares
 
-- @Middlewares，通过一个@Middleware数组，定义一个组中间件
-- @Middlewares，里面多个@Middleware中间件，按照配置顺序执行
-- 如果定义在控制器，整个作用于整个控制器里面action
-- 如果定义在action，仅仅作用于当前action
+- `@Middlewares`，通过一个`@Middleware`数组，定义一个组中间件
+- `@Middlewares`，里面多个`@Middleware`中间件，按照配置顺序执行
+- 如果定义在控制器，整个作用于整个控制器里面的所有 Action
+- 如果定义在 Action，仅仅作用于当前 Action
 
 ### 使用实例
 
@@ -67,20 +66,20 @@ class MiddlewareController
 }
 ```
 
-### 配置使用
+### 全局中间件配置
 
-用户也可以通过配置(app/config/beans/base.php)使用注解，执行顺序按照配置数组顺序。
+通过配置 `app/config/beans/base.php` 注册全局中间件，执行顺序按照配置的数组顺序，全局中间件将会在每一次 HTTP 请求中被执行。
 
 ```php
     return [
         // ...
         'dispatcherServer' => [
-                    'class' => \Swoft\Web\DispatcherServer::class,
-                    'middlewares' => [
-                        \App\Middlewares\ControlerTestMiddleware::class,
-                        \App\Middlewares\SubMiddleware::class
-                    ]
-                ],
+            'class' => \Swoft\Web\DispatcherServer::class,
+            'middlewares' => [
+                \App\Middlewares\ControlerTestMiddleware::class,
+                \App\Middlewares\SubMiddleware::class
+            ]
+        ],
         // ...    
     ];
 ```
