@@ -73,10 +73,8 @@ return [
 
 ```php
 //匹配 GET 请求. 处理器是个闭包 Closure
-$router->get('/', function () {
-    $resposne = App::getResponse();
-    $resposne->setResponseContent("hello");
-    $resposne->send();
+$router->get('/', function (\Swoft\Web\Response $response) {
+    return $response;
 });
 
 // 匹配参数 'test/john'
@@ -98,40 +96,30 @@ $router->get('/hello[/{name}]', function ($name = 'No') {
 ]);
 
 // 匹配 POST 请求
-$router->post('/user/login', function () {
-    $request = App::getRequest();
-    var_dump($request->getGetParameters(), $request->getPostParameters());
+$router->post('/user/login', function (\Swoft\Web\Request $request) {
+    var_dump($request->input());
 });
 
 // 匹配 GET 或者 POST
-$router->map(['get', 'post'], '/user/login', function () {
-    $request = App::getRequest();
-    var_dump($request->getGetParameters(), $request->getPostParameters());
+$router->map(['get', 'post'], '/user/login', function (\Swoft\Web\Request $request) {
+    var_dump($request->input());
 });
 
 // 允许任何请求方法
-$router->any('/home', function () {
-    $resposne = RequestContext::getResponse();
-    $resposne->setResponseContent("hello, you request page is /home");
-    $resposne->send();
+$router->any('/home', function (\Swoft\Web\Response $response) {
+    return $resposne->withContent("hello, you request page is /home");
 });
-$router->any('/404', function () {
-    $resposne = App::getResponse();
-    $resposne->setResponseContent("Sorry,This page not found.");
-    $resposne->send();
+$router->any('/404', function (\Swoft\Web\Response $response) {
+    return $resposne->withContent("Sorry,This page not found.");
 });
 
 // 路由组
 $router->group('/user', function ($router) {
-    $router->get('/', function () {
-        $resposne = App::getResponse();
-        $resposne->setResponseContent("hello. you access: /user/");
-        $resposne->send();
+    $router->get('/', function (\Swoft\Web\Response $response) {
+        return $resposne->withContent("hello. you access: /user/");
     });
-    $router->get('/index', function () {
-        $resposne = App::getResponse();
-        $resposne->setResponseContent("hello. you access: /user/index");
-        $resposne->send();
+    $router->get('/index', function (\Swoft\Web\Response $response) {
+        return $resposne->withContent("hello. you access: /user/index");
     });
 });
 
@@ -151,10 +139,8 @@ $router->any('/home[/{name}]', app\controllers\Home::class);
 'matchAll' => '/about',
 
 //回调
-'matchAll' => function () {
-    $resposne = App::getResponse();
-    $resposne->setResponseContent("System Maintaining ... ...");
-    $resposne->send();
+'matchAll' => function (\Swoft\Web\Response $response) {
+    return $response;
 },
 ```
 
