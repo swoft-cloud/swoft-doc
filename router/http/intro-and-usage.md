@@ -124,15 +124,15 @@ $router->group('/user', function ($router) {
 });
 
 // 通过@符号连接控制器类和方法名可以指定执行方法
-$router->get('/', app\controllers\Home::class);
-$router->get('/index', 'app\controllers\Home@index');
-$router->get('/about', 'app\controllers\Home@about');
+$router->get('/', App\Controllers\Home::class);
+$router->get('/index', 'App\Controllers\Home@index');
+$router->get('/about', 'App\Controllers\Home@about');
 
-// 访问 '/home/test' 将会执行 'app\controllers\Home::test()'
-$router->any('/home/{any}', app\controllers\Home::class);
+// 访问 '/home/test' 将会执行 'App\Controllers\Home::test()'
+$router->any('/home/{any}', App\Controllers\Home::class);
 
 // 可匹配 '/home', '/home/test' 等
-$router->any('/home[/{name}]', app\controllers\Home::class);
+$router->any('/home[/{name}]', App\Controllers\Home::class);
 
 // 配置 matchAll 可用于拦截所有请求，目前有如下两种方式。
 //路由path
