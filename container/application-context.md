@@ -1,6 +1,6 @@
-# ApplicationContext
+# 应用上下文
 
-应用请求上下文，目前只提供BeanFactory的功能，后续会有新功能提供。
+目前只提供BeanFactory的功能，后续会有新功能提供。
 
 ```php
 // 类名创建
