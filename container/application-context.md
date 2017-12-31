@@ -1,22 +1,29 @@
-# 请求上下文
+# ApplicationContext
 
-RequestContext 一般用户获取当前请求对应的 Request 和 Response 及数据。这些都是当前请求有效，请求执行完成后，自动销毁。
+应用请求上下文，目前只提供BeanFactory的功能，后续会有新功能提供。
 
 ```php
-// 获取Request对象
-RequestContext::getRequest();
+// 类名创建
+ApplicationContext::createBean("myBean", MyBean::class);
 
-// 获取Respone对象
-RequestContext::getResponse();
+// 配置创建
+$beanConfig = [
+    'class' => MyBean::class,
+    'pro1' => 'v1',
+    'pro2' => 'v2',
+];
+$constructorArgs = [
+    'arg1',
+    '${beanName}'
+];
+ApplicationContext::createBean('myBean', $beanConfig, $constructorArgs);
 
-// 获取当前请求所有data
-RequestContext::getContextData();
 
-// 设置当前请求data某一个KEY值
-RequestContext::setContextDataByKey("key", 'val');
+// 获取一个Bean,没有初始化，从配置中创建
+ApplicationContext::getBean("name");
 
-// 获取当前请求data某一个KEY值
-RequestContext::getContextDataByKey("key", 'default');
+// 某个Bean是否已创建
+ApplicationContext::containsBean("name");
 ```
 
 
