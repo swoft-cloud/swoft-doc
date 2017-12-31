@@ -28,7 +28,6 @@
 * [路由器](router/http/intro-and-usage.md)
 * [控制器](controller.md)
 * [视图渲染](view-render.md)
-* [过滤器](filter.md)
 * [缓存](cache.md)
 * [ORM](orm.md)
   * [配置](orm/config.md)
