@@ -1,6 +1,6 @@
 # Swoft
 
-基于 Swoole 原生协程，新时代PHP高性能协程框架，内置 HTTP 服务器，框架全协程实现，性能大大优于传统的 PHP-FPM 模式。
+首个基于 Swoole 原生协程，新时代PHP高性能协程框架，内置 HTTP 服务器，常驻内存，不依赖传统的 PHP-FPM，没有复杂的异步回调、没有繁琐的yield, 有类似 Go 语言的协程、灵活的注解、强大的全局容器、完善的服务治理等等。
 
 - 基于 Swoole 扩展
 - 内置 HTTP 协程服务器
@@ -20,8 +20,9 @@
 - 协程、异步任务投递
 - 自定义用户进程
 - RPC、Redis、HTTP、Mysql 协程和同步阻塞客户端无缝切换
-- Inotify 自动 Reload
+- 跨平台的文件变动自动 Reload
 - 强大的日志系统
+- 强大而完善的注解功能
 
 项目地址: [https://github.com/swoft-cloud/swoft](https://github.com/swoft-cloud/swoft)
 
