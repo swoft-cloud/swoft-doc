@@ -11,7 +11,7 @@ ApplicationContext::getBean('name');
 BeanFactory::getBean('name');
 ```
 
-# BeanFactory
+## BeanFactory
 
 BeanFactory负责初始化\(base.php\)、创建、查询beans。bean其实就是类的对象，通常通过base.php，配置一个bean，bean之间可以相互注入，也可以引用properties.php属性配置。常用方法如下
 
@@ -42,5 +42,54 @@ BeanFactory::getBean("name");
 BeanFactory::hasBean("name");
 ```
 
+### 通过注解创建bean
 
+将会自动的扫描解析并注册通过注解配置的bean。
 
+- 示例： 通过注解注册一个事件监听器
+
+```php
+<?php
+namespace App\Listeners;
+
+use Swoft\Bean\Annotation\Listener;
+use Swoft\Event\EventHandlerInterface;
+use Swoft\Event\EventInterface;
+
+/**
+ * Class TestListener
+ * @Listener("test.event")
+ * @package App\Listeners
+ */
+class TestListener implements EventHandlerInterface
+{
+    /**
+     * @param EventInterface $event
+     * @return mixed
+     */
+    public function handle(EventInterface $event)
+    {
+        var_dump('handle event: ' . $event->getName());
+    }
+}
+
+```
+
+## 注解扫描配置
+
+配置文件在： `config/properties/app.php`
+
+```php
+    'beanScan'          => [
+        'App\Controllers',
+        'App\Models',
+        'App\Middlewares',
+        'App\Tasks',
+        'App\Services',
+        'App\Process',
+        'App\Breaker',
+        'App\Pool',
+    ],
+```
+
+> 若你新建了自定义的目录，且需要框架扫描里面的注解信息。请在这里面配置对应的命名空间。
