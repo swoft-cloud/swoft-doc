@@ -37,7 +37,7 @@
   * [高级查询](orm/advanced-action.md)
 * [RPC服务](rpc-service.md)
 * [国际化](router/international.md)
-* [HTTP服务](http.md)
+* [HTTP客户端](http.md)
 * [RESTful](restful.md)
 * [任务](task.md)
 * [AOP](aop/dynamicProxy.md)
