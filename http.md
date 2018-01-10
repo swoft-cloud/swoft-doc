@@ -55,10 +55,10 @@ $response3 = $request3->getResponse();
 ```
 
 ## HttpResult 对象
-`HttpResult` 为请求后的返回结果，该结果不是请求返回的内容，注意调用后需统一调用 `getResponse()` 或 `getResult()` 方法获取`Response`对象，框架将默认定义为延迟收包，调用这一方法才进行收包处理，当在协程驱动下，可实现 defer 特性和并发调用具体可参考 Swoole 关于并发操作的说明 https://wiki.swoole.com/wiki/page/p-coroutine_multi_call.html
+`\Swoft\Http\HttpResult` 为请求后的返回结果，该结果不是请求返回的内容，注意调用后需统一调用 `getResponse()` 或 `getResult()` 方法获取`Response`对象，框架将默认定义为延迟收包，调用这一方法才进行收包处理，当在协程驱动下，可实现 defer 特性和并发调用具体可参考 Swoole 关于并发操作的说明 https://wiki.swoole.com/wiki/page/p-coroutine_multi_call.html
 
 ## Response 对象
-`Response` 基于 `PSR-7` 实现，继承于 `Psr\Http\Message\ResponseInterface`，使用方法在此不做过多的阐述，可直接参考相关规范
+`\Swoft\Core\Response` 基于 `PSR-7` 实现，继承于 `Psr\Http\Message\ResponseInterface`，使用方法在此不做过多的阐述，可直接参考相关规范
 
 ## Raw 请求
 通过对 `Options` 设置 `body` 参数设置发送请求的 Body，此参数仅允许字符串格式
