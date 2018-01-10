@@ -163,59 +163,6 @@ class RouteController
 }
 ```
 
-## 手动注册
-
-手动注册常用@Bean()、@Inject()注解，手动注册还要多一步就是在`app/routes.php`里面注册自己的路由规则。
-
-> 手动注册@Bean\(\)只能这样缺省方式。并且不能使用@AutoController注解
-
-```php
-/**
- * 控制器demo
- *
- * @Bean()
- */
-class DemoController extends Controller
-{
-    /**
-     * 注入逻辑层
-     *
-     * @Inject()
-     * @var IndexLogic
-     */
-    private $logic;
-
-    /**
-     * uri=/demo2/index
-     */
-    public function actionIndex()
-    {
-        // 获取所有GET参数
-        $get = $this->request()->query();
-        // 获取name参数默认值defaultName
-        $getName = $this->request()->query('name', 'defaultName');
-        // 获取所有POST参数
-        $post = $this->request()->post();
-        // 获取name参数默认值defaultName
-        $postName = $this->request()->post('name', 'defaultName');
-        // 获取所有参，包括GET或POST
-        $inputs = $this->request()->input();
-        // 获取name参数默认值defaultName
-        $inputName = $this->request()->input('name', 'defaultName');
-        // 返回一个数组，由请求发起端通过 Header[Accpet] 决定返回的数据格式
-        return compact('get', 'getName', 'post', 'postName', 'inputs', 'inputName');
-    }
-}
-```
-
-routes.php手动注册路由
-
-```php
-$router->map(['get', 'post'], '/demo2/index', 'app\controllers\DemoController@index');
-$router->get('/index2', 'app\controllers\DemoController@index2');
-$router->get('/demo2/index3', 'app\controllers\DemoController@index3');
-```
-
 ## Controller 返回的数据类型
 
 我们不建议 Action 指定返回的格式类型，而是根据客户端请求时的 Header 里面的 Accept 决定，比如 Accept 为 `application/json`，我们则应该返回 Json 格式，为 `text/html` 则应该返回 View 视图，为 `text/plain` 则应该返回一个 raw body 。不用担心这部分，我们已经为您实现了，您只需要在 Action 内返回以下类型即可。
