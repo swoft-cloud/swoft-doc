@@ -59,11 +59,11 @@ Response 基于 PSR-7 实现，继承于 `Psr\Http\Message\ResponseInterface`，
 
 注意调用后需统一调用 `getResponse()` 或 `getResult()` 方法获取结果，框架将默认定义为延迟收包，调用这一方法才进行收包处理，当在协程驱动下，可实现 defer 特性和并发调用具体可参考 Swoole 关于并发操作的说明 https://wiki.swoole.com/wiki/page/p-coroutine_multi_call.html
 
-## Raw Post 请求
+## Raw 请求
 通过对 Options 设置 `body` 参数设置发送请求的 Body，此参数仅允许字符串格式
 ```php
 /** @var Response $response */
-$response = $client->get('/', [
+$response = $client->post('/', [
     'base_uri' => 'http://www.swoft.org',
     'body' => 'value',
 ])->getResponse();
@@ -74,7 +74,7 @@ $response = $client->get('/', [
 
 ```php
 /** @var Response $response */
-$response = $client->get('/', [
+$response = $client->post('/', [
     'base_uri' => 'http://www.swoft.org',
     'form_parasm' => [
         'key' => 'value',
@@ -87,7 +87,7 @@ $response = $client->get('/', [
 
 ```php
 /** @var Response $response */
-$response = $client->get('/', [
+$response = $client->post('/', [
     'base_uri' => 'http://www.swoft.org',
     'json' => [
         'key' => 'value',
