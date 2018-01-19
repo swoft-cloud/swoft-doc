@@ -1,29 +1,30 @@
 # 控制器
 
-控制器提供注解和手动注入两种方式，建议更多使用注解，无需手动维护路由表；注解注册控制器很简单，仅仅使用@Controller注解，就可以定义一个最简单的控制器，无需任何父类继承、路由注册。
+控制器提供注解和手动注入两种方式，建议更多使用注解，无需手动维护路由表；注解注册控制器很简单，仅仅使用 `@Controller` 注解，就可以定义一个最简单的控制器，无需任何父类继承、路由注册。
 
 ## 控制器常用注解
 
 ### @Controller
 
-- @Controller注解，其中一部分功能和@Bean完全一样
-- @Controller，不能再使用@Bean注解。
-- @Controller注解不需要指定bean名称，统一类为bean名称
-- @Controller\(\)默认自动解析controller前缀，并且使用驼峰格式。
-- @Controller\(prefix="/route"\)或@Controller\("/route"\)都是定义route控制器。
+- `@Controller`注解，其中一部分功能和 `@Bean` 完全一样
+- 使用了 `@Controller`后不能再使用 `@Bean` 注解。
+- `@Controller` 注解不需要指定bean名称，统一类为bean名称
+- `@Controller()` 默认自动解析controller前缀，并且使用驼峰格式。
+- `@Controller(prefix="/route")`或 `@Controller("/route")` 都是定义控制器, 并且指定了路由path前缀。
 
 ### @Inject
 
 - @Inject注入一个Bean对象
 - @Inject不仅可以注入配置Bean，还可以注入@Bean的对象
 - @Inject默认注入按照类名称Bean
-- @Inject\(name="MyBean"\)或@Inject\("MyBean"\)，注入名称为MyBean的Bean
+- `@Inject(name="MyBean")` 或 `@Inject("MyBean")`，注入名称为`MyBean`的Bean
 
 ### @RequestMapping
 
-- @RequestMapping\(route="index"\)或@RequestMapping\("index"\)映射的action都是index
-- @RequestMapping\(route="index", method=RequestMethod::GET\)路由支持的HTTP方法，默认是支持GET和POST
-- 不使用@RequestMapping注解，默认解析方法名称为action
+- `@RequestMapping(route="index")`或 `@RequestMapping("index")` 含义是一样的，都是添加路由后缀 `index`。 
+    - 结合之前在controller类上加的路由前缀，完整的路由即是 `/route/index`
+- `@RequestMapping(route="index", method=RequestMethod::GET)` 指定路由支持的HTTP方法，默认是支持`GET`和`POST`
+- 不使用`@RequestMapping`注解，默认解析方法名称为action
 
 
 ```php
@@ -173,7 +174,7 @@ class RouteController
 - 数字 int, float ...
 - 实现 `\Swoft\Contract\Arrayable` 的对象
 
-目前我们仅支持了 View, Json, Raw 三种格式，后续我们会增加更多的格式。
+目前我们仅支持了 `View`, `Json`, `Raw` 三种格式，后续我们会增加更多的格式。
 
 在 Controller 内抛出异常将由 ExceptionHandler 捕获并进行处理，包括我们建议返回给客户端一个 4xx, 5xx 的状态码时，也是抛出一个相对应的异常，然后由 ExceptionHandler 捕获并统一进行处理
 
