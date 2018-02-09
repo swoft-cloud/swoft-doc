@@ -2,12 +2,14 @@
 
 启动服务支持HTTP和TCP单独启动，但是HTTP启动，可以配置是否启动TCP，`.env`中配置。
 
-### 常用命令
+## 常用命令
 
 **帮助命令**
 
+在项目目录下：
+
 ```
-[root@0dd3950e175b bin]# php swoft -h
+$ php bin/swoft -h
  ____                __ _
 / ___|_      _____  / _| |_
 \___ \ \ /\ / / _ \| |_| __|
@@ -15,7 +17,7 @@
 |____/ \_/\_/ \___/|_|  \__|
 
 Usage:
-  php swoft -h
+  php bin/swoft -h
 
 Commands:
   entity  the group command list of database entity
@@ -31,43 +33,43 @@ Options:
 
 ```
 // 启动
-php swoft start
+php bin/swoft start
 
 // 守护进程启动
-php swoft start -d
+php bin/swoft start -d
 
 // 停止
-php swoft stop
+php bin/swoft stop
 
 // 重载
-php swoft reload
+php bin/swoft reload
 
 // 重启
-php swoft restart
+php bin/swoft restart
 ```
 
 **RPC启动**
 
 ```
 // 启动
-php swoft rpc:start
+php bin/swoft rpc:start
 
 // 守护进程启动
-php swoft rpc:start -d
+php bin/swoft rpc:start -d
 
 // 停止
-php swoft rpc:stop
+php bin/swoft rpc:stop
 
 // 重载
-php swoft rpc:reload
+php bin/swoft rpc:reload
 
 // 重启
-php swoft rpc:restart
+php bin/swoft rpc:restart
 ```
 
 **.env**
 
-```dotenv
+```ini
 # Server
 PFILE=/tmp/swoft.pid
 PNAME=php-swoft
