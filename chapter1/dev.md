@@ -1,5 +1,4 @@
 # 开发指南
-
 ## 如何在 Windows 下开发
 
 ### Windows 10
@@ -52,5 +51,26 @@ f22173763374  swoft/swoft:latest  "docker-php-entrypoin"  About a minute ago  Up
 
 我们推荐在 `PHPStorm` 环境下，并安装 Jetbrain 自带的 `PHP Annotations` 插件，可提供注解命名空间自动补全，注解属性代码提醒，注解类跳转等非常有助于提升开发效率的功能。
 
+## 如何搭建mac 开发环境
+mac 除了可以使用 docker 镜像进行快速的部署开发,当然也可以直接在本地进行配置,下面进行本地配置的一些步骤
+1. 安装[homebrew](https://brew.sh/index_zh-tw.html),并使用[国内镜像](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/),已有请略过
+2. 安装php 7.1,autoconf,openssl,redis
+    ```
+    brew install php71  
+    brew install autoconf
+    brew install openssl
+    brew install redis
+    ``` 
+3. 下载[hiredis](https://github.com/redis/hiredis/releases),解压后进入相应目录
+   ```
+   make && make install 
+   ```
 
+4. 下载 [swoole](https://github.com/swoole/swoole-src/releases),解压后进入相应目录
+    ```
+    phpize && ./configure --enable-async-redis --enable-mysqlnd --enable-coroutine --enable-openssl --with-openssl-dir=/usr/local/opt/openssl
+    make && make install    
+    echo extension="/usr/local/Cellar/php71/7.1.13_24/lib/php/extensions/no-debug-non-zts-20160303/swoole.so">/usr/local/etc/php/7.1/conf.d/ext-swoole.ini
+    ```
+5. php --ri swoole 查看信息
 
