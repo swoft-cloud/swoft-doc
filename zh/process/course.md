@@ -5,7 +5,7 @@
 
 **@Process**   
  
- - name 进程名称，默认类名
+ - name 进程唯一标识，默认类名
  - boot 是否为Server前置进程，默认false
  - inout 参数，参考 swoole [$redirect_stdin_stdout](https://wiki.swoole.com/wiki/page/214.html)，默认false
  - pipe 参数，参考 swoole [$create_pipe](https://wiki.swoole.com/wiki/page/214.html)，默认true
@@ -81,10 +81,10 @@
   
 ## 运行进程
 
-运行进程很简单，是通过进程名称标识进程唯一性。
+运行进程很简单，是通过进程唯一标识名称运行。
 
 ```php
-    ProcessBuilder::create('customProcess')->start();
+ProcessBuilder::create('customProcess')->start();
 ```
 ## 投递任务
 
