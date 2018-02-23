@@ -16,7 +16,7 @@ $result  = Task::deliver('demo', 'deliverAsync', ['p', 'p2'], Task::TYPE_ASYNC);
 
 ## 异步任务监听器
 
-时间监听器必须监听，TaskEvent::FINISH_TASK事件。
+事件监听器必须监听，TaskEvent::FINISH_TASK事件。
 
 ```php
 /**
