@@ -40,6 +40,7 @@
 * [数据库](db/index.md)
   * [数据库配置](db/config.md)
   * [实体定义](db/entity.md)
+  * [查询器](db/query-builder.md)
   * [基础模式](db/active-record.md)
   * [高级模式](db/data-mapper.md)
 * [视图](view/index.md)
