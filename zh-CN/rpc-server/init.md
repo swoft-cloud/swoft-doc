@@ -39,7 +39,23 @@ return [
     // ......
 ];
 ```
+## 服务启动
+此服务启动指的是单独的RPC服务启动，因为HTTP Server启动伴随着RPC服务启动方式，是不需要手动启动。
 
+```
+[root@0dd3950e175b swoft]# php bin/swoft rpc:start
+                    Information Panel                     
+**********************************************************
+* tcp | Host: 0.0.0.0, port: 8099, Model: 3, type: 1
+**********************************************************
+
+```
+
+- php bin/swoft rpc:start , 启动服务，根据 .env 配置决定是否是守护进程
+- php bin/swoft rpc:start -d , 守护进程启动，覆盖 .env 守护进程(DAEMONIZE)的配置
+- php bin/swoft rpc:restart , 重启
+- php bin/swoft rpc:reload , 重新加载
+- php bin/swoft rpc:stop , 关闭服务
 
 
 
