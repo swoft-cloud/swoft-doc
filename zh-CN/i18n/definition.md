@@ -28,5 +28,5 @@ return [
 ];
 ```
 
-- value 替换规则是按照sprintf()函数格式替换
+- value 替换规则是按照`sprintf()`函数格式替换
 

@@ -2,10 +2,10 @@
 
 ```php
 
-$data[] = translate("title", [], 'zh');
-$data[] = translate("title", [], 'en');
-$data[] = translate("msg.body", ["stelin", 999], 'en');
-$data[] = translate("msg.body", ["stelin", 666], 'en');
+$data[] = translate('title', [], 'zh');
+$data[] = translate('title', [], 'en');
+$data[] = translate('msg.body', ['Swoft', 1], 'zh');
+$data[] = translate('msg.body', ['Swoft', 2], 'en');
 
 ```
 
