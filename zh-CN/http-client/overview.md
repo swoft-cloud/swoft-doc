@@ -14,11 +14,11 @@
 
 ## 贡献组件代码
 
-HttpClient 使用 PSR-1, PSR-2, PSR-4 和 PSR-7 标准;  
-HttpClient 应该是精简和快速的，并且尽可能的减少依赖，这意味着并不是每个 Pull Request 都会被接受;  
-HttpClient 有 PHP 7.0 的最低版本限制，除非有条件地使用该特性，否则 Pull Request 不允许有比 PHP 7.0 更大的PHP版本的语言特性;  
-HttpClient 将以协程客户端为主，仅在非协程环境下才去使用其它驱动，若存在协程客户端暂时无法实现的特性，必须存在条件让用户来启用;  
-所有的 Pull Request 都必须包含相对于的单元测试，以确保更改能够正常工作。  
+1. HttpClient 使用 PSR-1, PSR-2, PSR-4 和 PSR-7 标准;  
+2. HttpClient 应该是精简和快速的，并且尽可能的减少依赖，这意味着并不是每个 Pull Request 都会被接受;  
+3. HttpClient 有 PHP 7.0 的最低版本限制，除非有条件地使用该特性，否则 Pull Request 不允许有比 PHP 7.0 更大的PHP版本的语言特性;  
+4. HttpClient 将以协程客户端为主，仅在非协程环境下才去使用其它驱动，若存在协程客户端暂时无法实现的特性，必须存在条件让用户来启用;  
+5. 所有的 Pull Request 都必须包含相对于的单元测试，以确保更改能够正常工作。  
 
 ## 运行测试
 
