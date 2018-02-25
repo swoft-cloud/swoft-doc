@@ -52,6 +52,7 @@ return [
 - maxActive 最大活跃连接
 - maxWait 最大等待连接
 - timeout 超时时间，单位秒
+- serialize 是否序列化
 - db 缓存数据库index
 
 ### env
@@ -74,5 +75,6 @@ REDIS_SERIALIZE=1
 - REDIS_MAX_ACTIVE 最大活跃连接
 - REDIS_MAX_WAIT 最大等待连接
 - REDIS_TIMEOUT 超时时间，单位秒
+- REDIS_SERIALIZE 是否序列化
 - REDIS_DB 缓存数据库index
 
