@@ -56,7 +56,8 @@ $response3 = $request3->getResponse();
 ```
 
 ## HttpResult 对象
-`\Swoft\Http\HttpResult` 为请求后的返回结果，该结果不是请求返回的内容，注意调用后需统一调用 `getResponse()` 或 `getResult()` 方法获取`Response`对象，框架将默认定义为延迟收包，调用这一方法才进行收包处理，当在协程驱动下，可实现 defer 特性和并发调用具体可参考 Swoole 关于并发操作的说明 https://wiki.swoole.com/wiki/page/p-coroutine_multi_call.html
+`\Swoft\Http\HttpResult` 为请求后的返回结果，该结果不是请求返回的内容，注意调用后需统一调用 `getResponse()` 或 `getResult()` 方法获取`Response` 对象，框架将默认定义为延迟收包，调用这一方法才进行收包处理，当在协程驱动下，可实现 defer 特性和并发调用具体可参考 Swoole 关于并发操作的说明 https://wiki.swoole.com/wiki/page/p-coroutine_multi_call.html  
+这里需要注意的是 `getResponse()` 或 `getResult()` 的返回值是不一样的，`getResponse()` 返回的是一个`Response` 对象，而 `getResult()` 返回的则是 `Response` 对象的 `Content` 属性，是一个字符串类型
 
 ## Response 对象
 `\Swoft\Core\Response` 基于 `PSR-7` 实现，继承于 `Psr\Http\Message\ResponseInterface`，使用方法在此不做过多的阐述，可直接参考相关规范

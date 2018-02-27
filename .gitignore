@@ -15,4 +15,5 @@ _book
 *.mobi
 *.pdf
 .idea/
+.DS_Store
 
