@@ -4,7 +4,7 @@
 
 - 为何会自动注册 
 
-:) 请参考： `swoft-view/src/Bootstrap/CoreBean.php`，以及前面的 **组件原理**
+:) 请参考： `swoft-view/src/Bootstrap/CoreBean.php`，以及前面的 **组件**
 
 - 视图组件注册到容器里的名称为： `renderer`
 - 基本配置
