@@ -22,6 +22,7 @@ composer require swoft/view dev-master
     "swoft/view": "dev-master"
 ```
 
-## 基本结构
+## 基本信息
 
-视图类文件： `\Swoft\View\Base\View`
+视图核心类文件： `\Swoft\View\Base\View`
+注解tag类： `Swoft\View\Bean\Annotation\View`
