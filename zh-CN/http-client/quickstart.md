@@ -2,7 +2,7 @@
 
 ## 创建一个请求
 ```php
-use Swoft\Http\Client;
+use Swoft\HttpClient\Client;
 
 $client = new Client([
     // 基础的 URI，将用于此对象后续发起的请求
