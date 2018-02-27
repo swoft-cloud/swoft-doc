@@ -87,6 +87,14 @@ $result = User::deleteByIds([288, 289])->getResult();
 - $poolId 默认master配置，可以指定使用主还是从，也可以指定其它实例
 
 ```php
+$query = User::findById(285);
+
+/* @var User $user */
+$user = $query->getResult(User::class);
+$user->setName('upateNameUser2');
+$user->setSex(0);
+
+$result = $user->update()->getResult();
 ```
 
 
@@ -99,14 +107,12 @@ $result = User::deleteByIds([288, 289])->getResult();
 - $poolId 默认slave配置，可以指定使用主还是从，也可以指定其它实例
 
 ```php
-$query = User::findById(285);
+$user = new User();
+$user->setSex(1);
+$user->setAge(93);
+$query = $user->find();
 
-/* @var User $user */
-$user = $query->getResult(User::class);
-$user->setName('upateNameUser2');
-$user->setSex(0);
-
-$result = $user->update()->getResult();
+$result = $query->getResult(User::class);
 ```
 
 
@@ -120,6 +126,12 @@ $result = $user->update()->getResult();
 - $poolId 默认slave配置，可以指定使用主还是从，也可以指定其它实例
 
 ```php
+$result = User::findById(425)->getResult();
+
+$query = User::findById(426);
+/* @var User $user */
+$user = $query->getResult(User::class);
+$name = $user->getName();
 ```
 
 
@@ -133,12 +145,8 @@ $result = $user->update()->getResult();
 - $poolId 默认slave配置，可以指定使用主还是从，也可以指定其它实例
 
 ```php
-$result = User::findById(425)->getResult();
-
-$query = User::findById(426);
-/* @var User $user */
-$user = $query->getResult(User::class);
-$name = $user->getName();
+$query = User::findByIds([416, 417]);
+$result = $query->getResult();
 ```
 
 
@@ -151,7 +159,6 @@ $name = $user->getName();
 - $poolId 默认slave配置，可以指定使用主还是从，也可以指定其它实例
 
 ```php
-$query = User::query()->selects(['id', 'sex' => 'sex2'])->leftJoin(Count::class, 'count.uid=user.id')->andWhere('id', 429)
-            ->orderBy('user.id', QueryBuilder::ORDER_BY_DESC)->limit(2)->execute();
+$query = User::query()->selects(['id', 'sex' => 'sex2'])->leftJoin(Count::class, 'count.uid=user.id')->andWhere('id', 429)->orderBy('user.id', QueryBuilder::ORDER_BY_DESC)->limit(2)->execute();
 $result = $query->getResult();
 ```
