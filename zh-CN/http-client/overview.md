@@ -4,12 +4,12 @@
 框架提供统一抽象的 HttpClient 来实现 HTTP 调用，客户端会自动根据当前环境在*协程异步客户端驱动*和*同步阻塞客户端驱动*中作出选择
 
 ## 安装
-通过 Composer 安装 `swoft/http-client` 组件即可，  
-在项目根目录执行 `composer require swoft/http-client`
+通过 Composer 安装 `swoft/http-client` 组件  
+在项目 `composer.json` 所在目录执行 `composer require swoft/http-client` 即可
 
 ## 依赖
 1. PHP 7.0 + 
-2. Swoft Framework beta +
+2. Swoft Framework 1.0 beta +
 3. Swoole 2.0.11 +
 4. cURL 扩展 (用于同步阻塞的请求，在非协程环境下会自动退化为 cURL 驱动)
 
