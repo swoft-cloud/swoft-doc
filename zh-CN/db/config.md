@@ -15,10 +15,12 @@ return [
             '127.0.0.1:3306/test?user=root&password=123456&charset=utf8',
             '127.0.0.1:3306/test?user=root&password=123456&charset=utf8',
         ],
-        'maxIdel'     => 8,
+        'minActive'   => 8,
         'maxActive'   => 8,
         'maxWait'     => 8,
         'timeout'     => 8,
+        'maxIdleTime' => 60,
+        'maxWaitTime' => 3,
     ],
     'slave' => [
         'name'        => 'slave',
@@ -26,18 +28,22 @@ return [
             '127.0.0.1:3306/test?user=root&password=123456&charset=utf8',
             '127.0.0.1:3306/test?user=root&password=123456&charset=utf8',
         ],
-        'maxIdel'     => 8,
+        'minActive'   => 8,
         'maxActive'   => 8,
         'maxWait'     => 8,
         'timeout'     => 8,
+        'maxIdleTime' => 60,
+        'maxWaitTime' => 3,
     ],
 ];
 ```
 - master/slave 主从配置
 - name 连接池节点名称，用于服务发现
 - uri 连接地址信息
-- maxIdel 最大空闲连接
-- maxActive 最大活跃连接
+- minActive 最小活跃链接数
+- maxActive 最大活跃连接数
+- maxIdleTime 连接最大空闲时间，单位秒
+- maxWaitTime 连接最大等待时间，单位秒
 - maxWait 最大等待连接
 - timeout 超时时间，单位秒
 
@@ -49,24 +55,30 @@ return [
 # the pool of master nodes pool
 DB_NAME=dbMaster
 DB_URI=127.0.0.1:3306/test?user=root&password=123456&charset=utf8,127.0.0.1:3306/test?user=root&password=123456&charset=utf8
-DB_MAX_IDEL=6
+DB_MIN_ACTIVE=6
 DB_MAX_ACTIVE=10
 DB_MAX_WAIT=20
+DB_MAX_IDLE_TIME=60
+DB_MAX_WAIT_TIME=3
 DB_TIMEOUT=200
 
 # the pool of slave nodes pool
 DB_SLAVE_NAME=dbSlave
 DB_SLAVE_URI=127.0.0.1:3306/test?user=root&password=123456&charset=utf8,127.0.0.1:3306/test?user=root&password=123456&charset=utf8
-DB_SLAVE_MAX_IDEL=6
+DB_SLAVE_MIN_ACTIVE=5
 DB_SLAVE_MAX_ACTIVE=10
 DB_SLAVE_MAX_WAIT=20
+DB_SLAVE_MAX_WAIT_TIME=3
+DB_SLAVE_MAX_IDLE_TIME=60
 DB_SLAVE_TIMEOUT=200
 ```
 
 - DB/DB_SLAVE_NAME 连接池节点名称，用于服务发现
 - DB/DB_SLAVE_URI 连接地址信息
-- DB/DB_SLAVE_MAX_IDEL 最大空闲连接
-- DB/DB_SLAVE_MAX_ACTIVE 最大活跃连接
+- DB/DB_SLAVE_MIN_ACTIVE 最小活跃链接数
+- DB/DB_SLAVE_MAX_ACTIVE 最大活跃连接数
+- DB/DB_SLAVE_MAX_IDLE_TIME 连接最大空闲时间，单位秒
+- DB/DB_SLAVE_MAX_WAIT_TIME 连接最大等待时间，单位秒
 - DB/DB_SLAVE_MAX_WAIT 最大等待连接
 - DB/DB_SLAVE_TIMEOUT 超时时间，单位秒
 
