@@ -1,5 +1,7 @@
 # Summary
 
+## 基础信息
+
 * [介绍](README.md)
   * [使用案例]()
   * [性能测试]()
@@ -8,20 +10,26 @@
   * [环境搭建](quickstart/enviroment.md)
   * [框架安装](quickstart/install.md)
   * [开发准备](quickstart/development.md)
-* [框架核心](core/overview.md)
-  * [整体架构](core/framework/overview.md)
-    * [应用组件](core/framework/components.md)
-    * [生命周期](core/framework/lifecycle.md)
-  * [运行流程](core/process.md)
-  * [配置](core/configuration.md)
-  * [容器](core/container.md)
-  * [组件](core/component.md)
-  * [事件管理](core/event-manager.md)
-  * [连接池](core/connection-pool.md)
-  * [AOP面向切面编程](core/aop/overview.md)
-    * [实现原理](core/aop/principle.md)
-    * [快速使用](core/aop/quickstart.md)
-  * [异常处理](core/exception.md)
+
+## 框架核心
+
+* [核心概览](core/overview.md)
+* [整体架构](core/framework/overview.md)
+  * [应用组件](core/framework/components.md)
+  * [生命周期](core/framework/lifecycle.md)
+* [运行流程](core/process.md)
+* [配置](core/configuration.md)
+* [容器](core/container.md)
+* [组件](core/component.md)
+* [事件管理](core/event-manager.md)
+* [连接池](core/connection-pool.md)
+* [AOP面向切面编程](core/aop/overview.md)
+  * [实现原理](core/aop/principle.md)
+  * [快速使用](core/aop/quickstart.md)
+* [异常处理](core/exception.md)
+
+## 组件列表
+
 * [命令行](console/index.md)
   * [命令行配置](console/config.md)
   * [定义命令](console/definition.md)
@@ -85,10 +93,13 @@
   * [表结构生成实体类](db/create-entity.md)
   * [控制器生成]()
   * [事件监听器生成]()
+
+## 其他
+
 * [常见问题](question/index.md)
   * [安装问题]()
-  * [如何贡献]()
-  * [问题反馈]()
-  * [Swoft 组件扩展]()
-  * [加入 Swoft]()
+* [如何贡献]()
+* [问题反馈]()
+* [Swoft 组件扩展]()
+* [加入 Swoft]()
 
