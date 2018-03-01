@@ -14,11 +14,10 @@
 ### 框架核心
 
 * [核心概览](core/overview.md)
-* [整体架构](core/framework.md)
-* [运行流程](core/process.md)
+* [生命周期](core/framework.md)
 * [配置](core/configuration.md)
-* [容器](core/container.md)
-* [组件](core/component.md)
+* [Bean容器](core/container.md)
+* [应用组件](core/component.md)
 * [事件管理](core/event-manager.md)
 * [连接池](core/connection-pool.md)
 * [AOP面向切面编程](core/aop/overview.md)
