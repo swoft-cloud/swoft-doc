@@ -37,9 +37,11 @@ return [
             '127.0.0.1:6379',
             '127.0.0.1:6379',
         ],
-        'maxIdel'     => 8,
+        'minActive'   => 8,
         'maxActive'   => 8,
         'maxWait'     => 8,
+        'maxWaitTime' => 3,
+        'maxIdleTime' => 60,
         'timeout'     => 8,
         'db'          => 1,
         'serialize'   => 0,
@@ -48,10 +50,13 @@ return [
 ```
 - name 连接池节点名称，用于服务发现
 - uri 连接地址信息
-- maxIdel 最大空闲连接
 - maxActive 最大活跃连接
 - maxWait 最大等待连接
+- minActive 最小活跃链接数
+- maxIdleTime 连接最大空闲时间，单位秒
+- maxWaitTime 连接最大等待时间，单位秒
 - timeout 超时时间，单位秒
+- serialize 是否序列化
 - db 缓存数据库index
 
 ### env
@@ -61,18 +66,23 @@ return [
 REDIS_NAME=redis
 REDIS_DB=2
 REDIS_URI=127.0.0.1:6379,127.0.0.1:6379
-REDIS_MAX_IDEL=6
+REDIS_MIN_ACTIVE=5
 REDIS_MAX_ACTIVE=10
 REDIS_MAX_WAIT=20
-REDIS_TIMEOUT=200
+REDIS_MAX_WAIT_TIME=3
+REDIS_MAX_IDLE_TIME=60
+REDIS_TIMEOUT=3
 REDIS_SERIALIZE=1
 ```
 
 - REDIS_NAME 连接池节点名称，用于服务发现
 - REDIS_URI 连接地址信息
-- REDIS_MAX_IDEL 最大空闲连接
-- REDIS_MAX_ACTIVE 最大活跃连接
+- REDIS_MIN_ACTIVE 最小活跃链接数
+- REDIS_MAX_ACTIVE 最大活跃连接数
 - REDIS_MAX_WAIT 最大等待连接
+- REDIS_MAX_WAIT_TIME 连接最大等待时间，单位秒
+- REDIS_MAX_IDLE_TIME 连接最大空闲时间，单位秒
 - REDIS_TIMEOUT 超时时间，单位秒
+- REDIS_SERIALIZE 是否序列化
 - REDIS_DB 缓存数据库index
 
