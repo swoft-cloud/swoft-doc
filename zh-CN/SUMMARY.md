@@ -20,7 +20,6 @@
 * [连接池](core/connection-pool.md)
 * [AOP面向切面编程](core/aop/overview.md)
   * [实现原理](core/aop/principle.md)
-  * [快速使用](core/aop/quickstart.md)
 * [异常处理](core/exception.md)
 
 ### 组件列表
