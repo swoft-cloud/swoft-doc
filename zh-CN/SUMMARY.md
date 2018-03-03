@@ -88,8 +88,6 @@
 
 * [常见问题](question/index.md)
   * [安装问题](question/install.md)
-  * [如何贡献]()
-  * [问题反馈]()
-  * [Swoft 组件扩展]()
-  * [加入 Swoft]()
+  * [如何贡献](question/contributing.md)
+  * [加入 Swoft](question/join.md)
 
