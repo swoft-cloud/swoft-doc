@@ -159,4 +159,4 @@ array
 
 Controller 中也可以使用 Bean 相关的方法, 但是 **注意**: `@Controller` 注解已经实现了 `@Bean` 的功能, 不能和 `@Bean` 注解同时使用
 
-其他注解方法, 比如 `@Inject`, 参考 [Bean容器](/zh-CN/core/container.html)
+其他注解方法, 比如 `@Inject`, 参考 [Bean容器](/zh-CN/http-server/controller.html)
