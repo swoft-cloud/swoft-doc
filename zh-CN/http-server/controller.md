@@ -9,13 +9,17 @@
 - `@Controller`: 设置在 Controller 类上
 
 隐式指定路由前缀: `@Controller()` 默认自动解析 controller 前缀, 并且使用驼峰格式. 比如 `HttpClientController` -> `httpClient`
+
 显示指定路由前缀: `@Controller(prefix="/route")`或 `@Controller("/route")`
 
 - `@RequestMapping`: 设置在 Action 方法上
 
 隐式指定路由后缀: 不使用 `@RequestMapping` 或者使用 `@RequestMapping()`, 默认解析方法名为后缀
+
 显示指定路由后缀: `@RequestMapping(route="index")`或 `@RequestMapping("index")`
+
 限定HTTP方法: `@RequestMapping(route="index", method=RequestMethod::GET)` 指定路由支持的HTTP方法, 默认是支持`GET`和`POST`, 比如 `@RequestMapping(route="/user", method={RequestMethod::POST,RequestMethod::PUT})` 设置路由支持 `POST` 和 `PUT`
+
 指定路由参数: `@RequestMapping(route="anyName/{name}")`, Action 方法中可以直接使用 `$name` 作为方法参数
 
 常用方法可以参考 `app/Controllers/RouteController.php`:
@@ -135,8 +139,11 @@ public function index(): array
 - 支持返回的数据类型
 
 基本数据类型: bool int float(double) string
+
 array
+
 `\Swoft\Contract\Arrayable` 对象
+
 `XxxException`: 在 Controller 内抛出异常将由 ExceptionHandler 捕获并进行处理, 4xx/5xx 的状态码也是通过抛异常, 然后由 ExceptionHandler 捕获并统一进行处理
 
 - 使用视图
@@ -151,4 +158,5 @@ array
 ## 其他
 
 Controller 中也可以使用 Bean 相关的方法, 但是 **注意**: `@Controller` 注解已经实现了 `@Bean` 的功能, 不能和 `@Bean` 注解同时使用
+
 其他注解方法, 比如 `@Inject`, 参考 [Bean容器](/zh-CN/core/container.html)
