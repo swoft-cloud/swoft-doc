@@ -1,81 +1,23 @@
-todo: 迁移到 beta 版
-
 # RESTful
 
-RESTful操作很简单，使用RESTful前，需要定义内容解析器，默认值支持JSON解析。
+通过 [HTTP服务 - Controller]() 中路由功能, 可以很轻松的实现一个 RESTful 风格的 HTTP服务.
 
-## 自定义解析器
-
-### 定义解析器
-
-实现RequestParserInterface接口，并实现parser方法
+代码参考 `app/Controllers/RestController`:
 
 ```php
+<?php
+
+namespace App\Controllers;
+
+use Swoft\Http\Server\Bean\Annotation\Controller;
+use Swoft\Http\Server\Bean\Annotation\RequestMapping;
+use Swoft\Http\Server\Bean\Annotation\RequestMethod;
+use Swoft\Http\Message\Server\Request;
+
 /**
- * the json parser of request
- *
- * @Bean()
- * @uses      RequestJsonParser
- * @version   2017年12月02日
- * @author    stelin <phpcrazy@126.com>
- * @copyright Copyright 2010-2016 swoft software
- * @license   PHP Version 7.x {@link http://www.php.net/license/3_0.txt}
- */
-class RequestJsonParser implements RequestParserInterface
-{
-    /**
-     * do parser
-     *
-     * @param \Psr\Http\Message\ServerRequestInterface $request
-     *
-     * @return \Psr\Http\Message\ServerRequestInterface
-     */
-    public function parser(ServerRequestInterface $request): ServerRequestInterface
-    {
-        if ($request instanceof Request) {
-            $bodyStream  = $request->getBody();
-            $bodyContent = $bodyStream->getContents();
-            $bodyParams  = JsonHelper::decode($bodyContent, true);
-            return $request->withBodyParams($bodyParams);
-        }
-
-        return $request;
-    }
-}
-```
-
-### 配置解析器
-
-修改配置文件 app\config\beans\base.php，可以配置多个解析，Swoft 会自动根据请求 Content-Type 值使用对应的内容解析器
-
-```php
-    return [
-        // ...
-        'requestParser' =>[
-                    'class' => \Swoft\Web\RequestParser::class,
-                    'parsers' => [
-                        'application/json' => \Swoft\Web\RequestJsonParser::class
-                    ]
-                ],
-        // ...
-    ];
-
-```
-
-
-## 使用实例
-
-```php
-/**
- * restful和参数验证测试demo
+ * RESTful和参数验证测试demo
  *
  * @Controller(prefix="/user")
- *
- * @uses      RestController
- * @version   2017年11月13日
- * @author    stelin <phpcrazy@126.com>
- * @copyright Copyright 2010-2016 swoft software
- * @license   PHP Version 7.x {@link http://www.php.net/license/3_0.txt}
  */
 class RestController
 {
@@ -85,7 +27,7 @@ class RestController
      *
      * @RequestMapping(route="/user", method={RequestMethod::GET})
      */
-    public function actionList()
+    public function list()
     {
         return ['list'];
     }
@@ -97,11 +39,11 @@ class RestController
      *
      * @RequestMapping(route="/user", method={RequestMethod::POST,RequestMethod::PUT})
      *
-     * @param \Swoft\Web\Request $request
+     * @param Request $request
      *
      * @return array
      */
-    public function actionCreate(Request $request)
+    public function create(Request $request)
     {
         $name = $request->input('name');
 
@@ -121,7 +63,7 @@ class RestController
      *
      * @return array
      */
-    public function actionGetUser(int $uid)
+    public function getUser(int $uid)
     {
         return ['getUser', $uid];
     }
@@ -137,7 +79,7 @@ class RestController
      *
      * @return array
      */
-    public function actionGetBookFromUser(int $userId, string $bookId)
+    public function getBookFromUser(int $userId, string $bookId)
     {
         return ['bookFromUser', $userId, $bookId];
     }
@@ -152,7 +94,7 @@ class RestController
      *
      * @return array
      */
-    public function actionDeleteUser(int $uid)
+    public function deleteUser(int $uid)
     {
         return ['delete', $uid];
     }
@@ -167,7 +109,7 @@ class RestController
      * @param Request $request
      * @return array
      */
-    public function actionUpdateUser(Request $request, int $uid)
+    public function updateUser(Request $request, int $uid)
     {
         $body = $request->getBodyParams();
         $body['update'] = 'update';
@@ -175,4 +117,5 @@ class RestController
 
         return $body;
     }
+}
 ```
