@@ -1,6 +1,6 @@
 # RESTful
 
-通过 [HTTP服务 - Controller](http-server/controller.md) 中路由功能, 可以很轻松的实现一个 RESTful 风格的 HTTP服务.
+通过 [HTTP服务 - Controller](controller.md) 中路由功能, 可以很轻松的实现一个 RESTful 风格的 HTTP服务.
 
 代码参考 `app/Controllers/RestController`:
 
