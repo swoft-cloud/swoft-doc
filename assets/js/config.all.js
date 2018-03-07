@@ -11,10 +11,10 @@ const config = {
 
   docProject: 'swoft-cloud/swoft-doc',
   // e.g https://raw.githubusercontent.com/{swoft-cloud/swoft-doc}/master/{beanfactory.md}
-  dataUrl: 'https://raw.githubusercontent.com/swoft-cloud/swoft-doc/beta/',
+  dataUrl: 'https://raw.githubusercontent.com/swoft-cloud/swoft-doc/beta/zh-CN/',
   docUrl: 'https://github.com/swoft-cloud/swoft-doc',
   // e.g https://github.com/swoft-cloud/swoft-doc/edit/master/http.md
-  editUrl: 'https://github.com/swoft-cloud/swoft-doc/edit/beta',
+  editUrl: 'https://github.com/swoft-cloud/swoft-doc/edit/beta/zh-CN',
 
   project: 'swoft-cloud/swoft',
   projectUrl: 'https://github.com/swoft-cloud/swoft',
