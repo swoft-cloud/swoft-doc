@@ -7,7 +7,7 @@
 :) 请参考： `swoft-view/src/Bootstrap/CoreBean.php`，以及前面的 **组件**
 
 - 视图组件注册到容器里的名称为： `view`
-- 基本配置
+- 基本配置(file: `config/beans/base.php`)
 
 ```php
 'view' => [
