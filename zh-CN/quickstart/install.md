@@ -1,7 +1,7 @@
 # 快速安装
 
 ## composer安装
-- composer create-project swoft/swoft swoft dev-master
+- composer create-project swoft/swoft swoft
 
 ## 手动安装
 
