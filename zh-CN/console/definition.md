@@ -1,5 +1,5 @@
 # 定义命令
-命令的定义主要通过@Comamnd和@Mapping两个注解，@Command 定义命令组名称，@Mapping 定义操作命令的映射关系。
+命令的定义主要通过@Command和@Mapping两个注解，@Command 定义命令组名称，@Mapping 定义操作命令的映射关系。
 
 ## 注解
 
@@ -10,7 +10,7 @@
 - name 参数，定义命令组名称，如果缺省，根据配置后缀自动解析
 - coroutine 参数，定义命令是否为协程，默认 false,如果为true，框架会启动一个协程运行改命令
 
-**@Mapping**    
+**@Mapping**
 
 定义操作命令映射关系
 
@@ -93,7 +93,7 @@ class TestCommand
         $name   = input()->getArg('arg', 'swoft');
 
         App::trace('this is command log');
-        Log::info('this is comamnd info log');
+        Log::info('this is command info log');
         /* @var UserLogic $logic */
         $logic = App::getBean(UserLogic::class);
         $data  = $logic->getUserInfo(['uid1']);
