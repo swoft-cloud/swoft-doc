@@ -6,18 +6,18 @@
 
 :) 请参考： `swoft-view/src/Bootstrap/CoreBean.php`，以及前面的 **组件**
 
-- 视图组件注册到容器里的名称为： `renderer`
+- 视图组件注册到容器里的名称为： `view`
 - 基本配置
 
 ```php
-'renderer' => [
+'view' => [
     // class 配置是可以省略的, 因为 view 组件里已经配置了它
     // 'class' => \Swoft\View\Base\View::class,
     'viewsPath' => dirname(__DIR__) . '/resources/views/',
 ],
 ```
 
-现在在任何地方都可以通过 `view()` OR `\Swoft::getBean('renderer')` 来获取组件实例。
+现在在任何地方都可以通过 `view()` OR `\Swoft::getBean('view')` 来获取组件实例。
 
 ## 配置项说明
 
