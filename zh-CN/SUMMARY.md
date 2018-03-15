@@ -7,7 +7,7 @@
 * [快速起步](quickstart/overview.md)
   * [环境搭建](quickstart/enviroment.md)
   * [框架安装](quickstart/install.md)
-  * [使用Docker](quickstart/docker-installation.md)
+  * [使用Docker](quickstart/docker-installation.md)
   * [开发准备](quickstart/development.md)
 
 ### 框架核心
