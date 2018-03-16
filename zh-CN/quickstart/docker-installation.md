@@ -44,7 +44,7 @@ Swoft 开发者们已经为我们准备好了 swoft 的 Docker 镜像，以及�
 如果官方镜像已经满足了你的开发需求，直接使用官方镜像是个不错的选择。
 
 ``` bash
-docker run -d -p 80:80 -name swoft swoft/swoft
+docker run -d -p 80:80 --name swoft swoft/swoft
 ```
 
 #### 自定义镜像
