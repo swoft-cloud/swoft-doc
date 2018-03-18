@@ -97,3 +97,101 @@ class RedisController
 ```
 
 - 暂时只能提供一个统一的函数deferCall，实现延迟收包操作，接下来会新增deferXxx函数，实现对应延迟收包操作函数。
+
+## 多实例Redis
+
+配置一个Redis实例，需要新增一个实例连接池和连接池配置，然后通过bean，配置新增的redis实例
+
+### 新增连接池和配置
+
+**连接池配置**    
+
+继承默认RedisPoolConfig，可以配置部分或全部信息，重新父类配置信息属性。
+
+``` php
+/**
+ * DemoRedisPoolConfig
+ *
+ * @Bean()
+ */
+class DemoRedisPoolConfig extends RedisPoolConfig
+{
+    /**
+     * @Value(name="${config.cache.demoRedis.db}", env="${REDIS_DEMO_REDIS_DB}")
+     * @var int
+     */
+    protected $db = 0;
+
+    /**
+     * @Value(name="${config.cache.demoRedis.prefix}", env="${REDIS_DEMO_REDIS_PREFIX}")
+     * @var string
+     */
+    protected $prefix = '';
+}
+```
+
+**连接池**    
+
+继承RedisPool，重新注入配置信息
+
+``` php
+/**
+ * DemoRedisPool
+ *
+ * @Pool("demoRedis")
+ */
+class DemoRedisPool extends RedisPool
+{
+    /**
+     * @Inject()
+     * @var DemoRedisPoolConfig
+     */
+    public $poolConfig;
+}
+``` 
+
+### 配置Bean
+
+bean文件里面新增一个redis实例bean名称，app/config/beans/base.php
+
+```php
+return [
+    // ......
+    'demoRedis' => [
+        'class' => \Swoft\Redis\Redis::class,
+        'poolName' => 'demoRedis'
+    ]
+    // ......
+];
+
+```
+
+### 使用新实例
+
+使用@Inject，注入配置的redis实例，使用没有任何区别，只是配置信息发生了变化
+
+```php
+
+class Demo
+{
+    /**
+     * @Inject("demoRedis")
+     * @var \Swoft\Redis\Redis
+     */
+    private $demoRedis;
+
+    public function testDemoRedis()
+    {
+        $result = $this->demoRedis->set('name', 'swoft');
+        $name   = $this->demoRedis->get('name');
+
+        $this->demoRedis->incr('count');
+        $this->demoRedis->incrBy('count2', 2);
+
+        return [$result, $name, $this->demoRedis->get('count'), $this->demoRedis->get('count2'), '3'];
+    }
+}
+```
+
+
+
