@@ -34,7 +34,7 @@ return [
     'redis' => [
         'name'        => 'redis',
         'uri'         => [
-            '127.0.0.1:6379',
+            '127.0.0.1:6379?auth=password',
             '127.0.0.1:6379',
         ],
         'minActive'   => 8,
