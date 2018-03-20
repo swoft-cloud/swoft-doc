@@ -1,6 +1,6 @@
 ## HTTP路由 HttpRouter
 
-HTTP路由在 `\Swoft\Router\Http\HandlerMapping` 中实现, 配置文件在 `config/beans/base.php`:
+HTTP路由在 `\Swoft\Http\Server\Router\HandlerMapping` 中实现, 配置文件在 `config/beans/base.php`:
 
 ```php
 'httpRouter'       => [
