@@ -77,7 +77,7 @@ class RpcController
 ```
 > @Reference 注解可以任何Bean实例的类中使用，不仅仅是controller，这里只是测试。如果要使用延迟收包或并发，必须使用deferXxx方法。
 
-## 非 Swoft 框架 RPC 客户端实例
+## 非 Swoft 框架
 
 ```php
 $result = call('App\Lib\DemoInterface', '1.0.1', 'getUsers', [['1','2']]);
