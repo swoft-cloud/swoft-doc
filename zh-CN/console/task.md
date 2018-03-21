@@ -1,12 +1,12 @@
 # 任务投递
 
-console命令行里面，如果有需要可以通过 Http 和内置队列模式投递任务，队列模式只支持本机。队列模式投递任务，swoft-task 组件版本必须不小v1.0.2-beta.
+console命令行里面，如果有需要可以通过 Http 和内置队列模式投递任务，队列模式只支持本机。队列模式投递任务，swoft-task 组件版本必须不小 `v1.0.2-beta`.
 
 ## 升级指南
 
 ### 更新组件
 
-```
+```bash
 composer update
 ```
 
@@ -14,7 +14,7 @@ composer update
 
 app/config/server.php新增队列配置    
 
-```
+```php
 return [
     // ....
     'setting' => [
@@ -27,7 +27,7 @@ return [
 
 .env 新增配置信息    
 
-```
+```ini
 TASK_IPC_MODE=3
 MESSAGE_QUEUE_KEY=1879052289
 TASK_TMPDIR=/tmp/
@@ -50,16 +50,16 @@ class TestCommand
      * this task command
      *
      * @Usage
-     * test:{command} [arguments] [options]
+     *   {fullCommand} [arguments] [options]
      *
      * @Options
-     * -o,--o this is command option
+     *   -o,--opt  This is command option
      *
      * @Arguments
-     * arg this is argument
+     *   arg    This is argument
      *
      * @Example
-     * php swoft test:task
+     *   {fullCommand}
      *
      * @Mapping()
      */
