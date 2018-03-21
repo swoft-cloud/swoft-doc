@@ -76,3 +76,35 @@ class RpcController
 }
 ```
 > @Reference 注解可以任何Bean实例的类中使用，不仅仅是controller，这里只是测试。如果要使用延迟收包或并发，必须使用deferXxx方法。
+
+## 非 Swoft 框架 RPC 客户端实例
+
+```php
+$result = call('App\Lib\DemoInterface', '1.0.1', 'getUsers', [['1','2']]);
+var_dump($result);
+
+function call(string $interface, string $version, string $method, array $params = [])
+{
+    $fp = stream_socket_client('tcp://127.0.0.1:8099', $errno, $errstr);
+    if (!$fp) {
+        throw new Exception("stream_socket_client fail errno={$errno} errstr={$errstr}");
+    }
+
+    $data = [
+        'interface' => $interface,
+        'version'   => $version,
+        'method'    => $method,
+        'params'    => $params,
+        'logid'     => uniqid(),
+        'spanid'    => 0,
+    ];
+
+    $data = json_encode($data, JSON_UNESCAPED_UNICODE);
+    fwrite($fp, $data);
+    $result = fread($fp, 1024);
+    fclose($fp);
+    return $result;
+}
+```
+
+> 如果服务端采用 JSON 协议，非 Swoft 框架可以按照这个 demo 格式封装调用

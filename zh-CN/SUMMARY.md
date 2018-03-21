@@ -30,6 +30,7 @@
   * [定义命令](console/definition.md)
   * [输入输出](console/inout.md)
   * [运行命令](console/run.md)
+  * [任务投递](console/task.md)
 * [HTTP 服务](http-server/index.md)
   * [控制器](http-server/controller.md)
   * [路由](http-server/route.md)
