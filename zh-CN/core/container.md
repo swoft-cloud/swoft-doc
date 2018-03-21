@@ -134,7 +134,7 @@ class UserLogic
 
  ```php
  /**
-  * @\Swoft\Bean\Annotation\Bean("boy")
+  * @\Swoft\Bean\Annotation\Bean(ref="boy")
   */
  interface UserInterface
  {
