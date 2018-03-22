@@ -3,21 +3,6 @@
 ## 简介
 Session 组件提供 HTTP 服务下的 Session 会话支持，目前仅实现了 Redis 驱动下的 Session 储存支持，由于 Swoft 的设计理念更倾向于分布式和集群，所以我们并不建议使用文件的方式来进行会话储存
 
-## 安装
-通过 Composer 安装 `swoft/session` 组件  
-1. 在项目 `composer.json` 所在目录执行 `composer require swoft/session`
-2. 将 `Swoft\Session\Middleware\SessionMiddleware::class` 中间件加入到全局中间件的配置文件 `config/beans/base.php` 里
-
-```php
-'serverDispatcher' => [
-    'middlewares' => [
-        \Swoft\Session\Middleware\SessionMiddleware::class,
-    ]
-],
-``` 
-
-3. 配置好 `swoft/redis` 组件的连接池配置，此步骤具体可查阅 `swoft/redis` 组件的文档说明
-
 ## 依赖
 1. PHP 7.0 + 
 2. Swoft Framework 1.0 beta +
