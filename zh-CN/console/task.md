@@ -36,7 +36,7 @@ TASK_TMPDIR=/tmp/
 
 ## 实例
 
-任务投递和普通操作没有区别
+任务投递和普通操作没有区别，且投递的是异步任务，可以监听onFinish(TaskEvent::FINISH_TASK)事件。详细见Task章节
 
 ```
 /**
