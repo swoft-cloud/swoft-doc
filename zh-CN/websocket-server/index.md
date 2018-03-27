@@ -2,6 +2,12 @@
 
 WebSocket 服务基于现有http server上的简单实现。即开启websocket服务的同时可以处理http请求(_是允许配置禁用的_)。
 
+## 安装
+
+```bash
+composer require swoft/websocket-server
+```
+
 ## 生命周期
 
 ### 连接
@@ -23,4 +29,3 @@ request -> handeshake -> [...Communication...] -> close
 ```text
 received -> handle [ -> send]
 ```
-
