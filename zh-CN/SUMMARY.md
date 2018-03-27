@@ -38,6 +38,7 @@
   * [验证器](http-server/validator.md)
   * [RESTful](http-server/restful.md)
 * [WebSocket 服务](websocket-server/index.md)
+  * [相关配置](websocket-server/config.md)
   * [启动与管理](websocket-server/basic.md)
   * [控制器](websocket-server/controller.md)
 * [RPC 服务](rpc-server/index.md)
