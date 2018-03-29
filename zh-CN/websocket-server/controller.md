@@ -76,12 +76,13 @@ class EchoController implements HandlerInterface
     }
 
     /**
+     * on connection closed
      * @param Server $server
      * @param int $fd
      */
     public function onClose(Server $server, int $fd)
     {
-        $server->push($fd, 'oo, goodbye! :)');
+        // you can do something. eg. record log
     }
 }
 ```
