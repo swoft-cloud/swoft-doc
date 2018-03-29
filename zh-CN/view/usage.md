@@ -10,9 +10,9 @@
 /**
  * 控制器demo
  *
- * @AutoController(prefix="/demo")
+ * @Controller(prefix="/demo")
  */
-class DemoController extends Controller
+class DemoController
 {
     /**
      * 视图渲染demo - 没有使用布局文件(请访问 /demo/view)
