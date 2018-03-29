@@ -89,6 +89,7 @@
   * [服务注册与发现](service-governance/register-discovery.md)
 * [开发者工具](devtool/index.md)
   * [表结构生成实体类](db/create-entity.md)
+  * [文件生成命令](devtool/gen-commands.md)
 
 ### 其他
 
