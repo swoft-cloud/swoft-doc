@@ -34,12 +34,58 @@ Options:
 - 使用示例
 
 ```bash
-php bin/swoft gen:controller demo --prefix /demo -y          Gen DemoController class to `@app/Controllers`
-php bin/swoft gen:controller user --prefix /users --rest     Gen UserController class to `@app/Controllers`(RESTFul type)
+php bin/swoft gen:controller demo --prefix /demo -y          // Gen DemoController class to `@app/Controllers`
+php bin/swoft gen:controller user --prefix /users --rest     // Gen UserController class to `@app/Controllers`(RESTFul type)
 ```
+
+> 更多选项信息请使用 `php bin/swoft gen:controller -h` 查看
+
+## 生成http middleware
+
+使用命令 `php bin/swoft gen:middleware`
+
+- 使用示例
+
+```bash
+php bin/swoft gen:middleware demo    // Gen DemoMiddleware class to `@app/Middlewares`
+```
+
+> 更多选项信息请使用 `php bin/swoft gen:middleware -h` 查看
 
 ## 生成cli command
 
 使用命令 `php bin/swoft gen:command`
 
 - 使用示例
+
+```bash
+php bin/swoft gen:command demo     // Gen DemoCommand class to `@app/Commands`
+```
+
+> 更多选项信息请使用 `php bin/swoft gen:command -h` 查看
+
+## 生成ws controller
+
+使用命令 `php bin/swoft gen:websocket`
+
+- 使用示例
+
+```bash
+php bin/swoft gen:websocket echo  // Gen EchoController class to `@app/WebSocket`
+```
+
+> 更多选项信息请使用 `php bin/swoft gen:websocket -h` 查看
+
+## 生成事件监听器
+
+使用命令 `php bin/swoft gen:listener`
+
+- 使用示例
+
+```bash
+php bin/swoft gen:listener demo    // Gen DemoListener class to `@app/Listener`
+```
+
+> 更多选项信息请使用 `php bin/swoft gen:listener -h` 查看
+
+
