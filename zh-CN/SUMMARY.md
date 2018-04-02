@@ -32,9 +32,10 @@
   * [运行命令](console/run.md)
   * [任务投递](console/task.md)
 * [HTTP 服务](http-server/index.md)
-  * [控制器](http-server/controller.md)
-  * [路由](http-server/route.md)
+  * [请求与响应](http-server/request-response.md)
   * [中间件](http-server/middleware.md)
+  * [路由](http-server/route.md)
+  * [控制器](http-server/controller.md)
   * [验证器](http-server/validator.md)
   * [RESTful](http-server/restful.md)
 * [WebSocket 服务](websocket-server/index.md)
@@ -95,6 +96,8 @@
 
 * [常见问题](question/index.md)
   * [安装问题](question/install.md)
-  * [如何贡献](question/contributing.md)
+  * [运行问题](question/runtime.md)
+  * [一些说明](question/other.md)
+* [参与贡献](#)
   * [加入 Swoft](question/join.md)
-
+  * [如何贡献](question/contributing.md)
