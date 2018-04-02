@@ -140,7 +140,8 @@ public function process(ServerRequestInterface $request, RequestHandlerInterface
 {
     $auth = false;
     // 如果验证不通过
-    if ($auth) {
+    if (!$auth) {
+        // response() 函数可以快速从 RequestContext 获得 Response 对象
         return response()->withStatus(401);
     }
     // 委托给下一个中间件处理
