@@ -79,7 +79,7 @@ $response = $client->post('/', [
 /** @var Response $response */
 $response = $client->post('/', [
     'base_uri' => 'http://www.swoft.org',
-    'form_parasm' => [
+    'form_params' => [
         'key' => 'value',
     ],
 ])->getResponse();
