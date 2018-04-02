@@ -125,6 +125,8 @@ class MiddlewareController
     {
         return ['middleware3'];
     }
+}
+```
 
 }
 ```
@@ -154,4 +156,83 @@ public function process(ServerRequestInterface $request, RequestHandlerInterface
 
 只要在请求生命周期内抛出的异常会被 `ErrorHandler` 捕获并处理，中间件内抛出也是如此，这部分不属于中间件的内容，顾在此不多做阐述。
 
+### 示例：提前拦截请求
 
+> 注意： 拦截要在 `$handler->handle($request)` 之前
+
+```php
+<?php
+
+namespace App\Middlewares;
+
+use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Swoft\Bean\Annotation\Bean;
+use Swoft\Http\Message\Middleware\MiddlewareInterface;
+
+/**
+ * @Bean()
+ */
+class CorsMiddleware implements MiddlewareInterface
+{
+
+    /**
+     * Process an incoming server request and return a response, optionally delegating
+     * response creation to a handler.
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Server\RequestHandlerInterface $handler
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \InvalidArgumentException
+     */
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        $path = $request->getUri()->getPath();
+ 
+        if ($path === '/favicon.ico') {
+            return \response()->withStatus(404);
+        }
+    
+        return $handler->handle($request);
+    }
+```
+
+### 示例：允许跨域
+
+```php
+<?php
+
+namespace App\Middlewares;
+
+use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Swoft\Bean\Annotation\Bean;
+use Swoft\Http\Message\Middleware\MiddlewareInterface;
+
+/**
+ * @Bean()
+ */
+class CorsMiddleware implements MiddlewareInterface
+{
+    /**
+     * Process an incoming server request and return a response, optionally delegating
+     * response creation to a handler.
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Server\RequestHandlerInterface $handler
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \InvalidArgumentException
+     */
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        $response = $handler->handle($request);
+    
+        return $response
+            ->withHeader('Access-Control-Allow-Origin', 'http://mysite')
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    }
+}
+```
