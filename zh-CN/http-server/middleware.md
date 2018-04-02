@@ -62,7 +62,7 @@ return [
 ];
 ```
 
-### 通过注解配置 Controller 作用域内的中间件 
+### 通过注解使用
 
 通过 `@Middleware` 和 `@Middlewares`, 可以很方便的配置中间件到当前的 `Controller` 和 `Action` 内
 
@@ -175,7 +175,7 @@ use Swoft\Http\Message\Middleware\MiddlewareInterface;
 /**
  * @Bean()
  */
-class CorsMiddleware implements MiddlewareInterface
+class SomeMiddleware implements MiddlewareInterface
 {
 
     /**
