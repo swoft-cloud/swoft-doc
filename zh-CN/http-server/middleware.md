@@ -131,18 +131,13 @@ class MiddlewareController
 }
 ```
 
-### 示例：允许跨域
+
+### 示例：提前拦截请求
+
+> 注意： 拦截要在 `$handler->handle($request)` 之前
 
 ```php
 <?php
-/**
- * This file is part of Swoft.
- *
- * @link https://swoft.org
- * @document https://doc.swoft.org
- * @contact group@swoft.org
- * @license https://github.com/swoft-cloud/swoft/blob/master/LICENSE
- */
 
 namespace App\Middlewares;
 
@@ -150,11 +145,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Swoft\Bean\Annotation\Bean;
-use Swoft\Core\RequestContext;
 use Swoft\Http\Message\Middleware\MiddlewareInterface;
-use Swoft\Http\Message\Server\Response;
-use Swoft\Http\Message\Stream\SwooleStream;
-
 
 /**
  * @Bean()
@@ -162,6 +153,45 @@ use Swoft\Http\Message\Stream\SwooleStream;
 class CorsMiddleware implements MiddlewareInterface
 {
 
+    /**
+     * Process an incoming server request and return a response, optionally delegating
+     * response creation to a handler.
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Server\RequestHandlerInterface $handler
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \InvalidArgumentException
+     */
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        $path = $request->getUri()->getPath();
+ 
+        if ($path === '/favicon.ico') {
+            return \response()->withStatus(404);
+        }
+    
+        return $handler->handle($request);
+    }
+```
+
+### 示例：允许跨域
+
+```php
+<?php
+
+namespace App\Middlewares;
+
+use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Swoft\Bean\Annotation\Bean;
+use Swoft\Http\Message\Middleware\MiddlewareInterface;
+
+/**
+ * @Bean()
+ */
+class CorsMiddleware implements MiddlewareInterface
+{
     /**
      * Process an incoming server request and return a response, optionally delegating
      * response creation to a handler.
