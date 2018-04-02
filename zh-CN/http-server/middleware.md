@@ -64,8 +64,12 @@ return [
 
 ### 通过注解配置 Controller 作用域内的中间件 
 
-通过 `@Middleware` 和 `@Middlewares`, 可以很方便的配置中间件到当前的 `Controller` 和 `Action` 内，当将此注解应用于 `Controller` 上，则作用域为整个 `Controller`， 将此注解应用于 `Action` 上，则作用域仅为当前的 `Action`  
-`@Middleware` 用于配置单个中间件， `@Middlewares` 显而易见的是用于配置一组 `@Middleware`，按照定义顺序依次执行, 使用参考 `app/Controllers/MiddlewareController.php`
+通过 `@Middleware` 和 `@Middlewares`, 可以很方便的配置中间件到当前的 `Controller` 和 `Action` 内
+
+- 当将此注解应用于 `Controller` 上，则作用域为整个 `Controller`
+- 将此注解应用于 `Action` 上，则作用域仅为当前的 `Action`  
+- `@Middleware` 用于配置单个中间件
+- `@Middlewares` 显而易见的是用于配置一组 `@Middleware`，按照定义顺序依次执行, 使用参考 `app/Controllers/MiddlewareController.php`
 
 ```php
 <?php
@@ -125,9 +129,6 @@ class MiddlewareController
     {
         return ['middleware3'];
     }
-}
-```
-
 }
 ```
 
