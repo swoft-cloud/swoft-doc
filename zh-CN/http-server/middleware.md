@@ -1,12 +1,11 @@
-# HTTP中间件 Middleware
+# 中间件 Middleware
 
-通过中间件, 可以实现在请求到达最终动作之前或之后, 对请求进行过滤和处理. 使用中间件的常见场景: 权限验证/参数验证/接口限制.
+中间件是用于控制*请求到达*和*响应请求*的整个流程的，通常用于对请求进行过滤验证处理，当你需要对请求或响应作出对应的修改或处理，或想调整请求处理的流程时均可以使用中间件来实现。  
+中间件
 
-中间件可以很好的将部分逻辑从业务中分离.
+## 定义中间件
 
-## 定义
-
-中间件的定义, 可以参考 `app/Middlewares/` 目录下的文件, 只需要实现 `Swoft\Http\Message\Middleware\MiddlewareInterface` 接口的 `process()` 方法, 就可以轻松实现一个中间件, 比如 `app/Middlewares/ActionTestMiddleware`:
+只需要实现了 `Swoft\Http\Message\Middleware\MiddlewareInterface` 接口均为一个合法的中间件，其中 `process()` 方法为该中间件逻辑处理方法, 可以参考 `Swoft` 项目呢 `app/Middlewares/` 目录下的文件, 比如 `app/Middlewares/ActionTestMiddleware`:
 
 ```php
 <?php
@@ -22,11 +21,6 @@ use Swoft\Http\Message\Middleware\MiddlewareInterface;
 
 /**
  * @Bean()
- * @uses      ActionTestMiddleware
- * @version   2017年11月16日
- * @author    huangzhhui <huangzhwork@gmail.com>
- * @copyright Copyright 2010-2017 Swoft software
- * @license   PHP Version 7.x {@link http://www.php.net/license/3_0.txt}
  */
 class ActionTestMiddleware implements MiddlewareInterface
 {
@@ -50,9 +44,9 @@ class ActionTestMiddleware implements MiddlewareInterface
 
 ## 使用
 
-通过 `@Middleware @Middlewares`, 可以很方便的使用中间件
+### 配置全局中间件
 
-中间件作用域: 当前 Action / 当前 Controller / 全局
+当你的自定义中间件需要全局请求应用，则可以考虑将此中间件作为全局中间件去使用，只需在 Bean 配置文件内配置 `serverDispatcher` 的 `middlewares` 属性，在数组中加入你的自定义中间件的命名空间地址，相关配置通常在 `app/config/beans/base.php` 内 
 
 ```php
 // 全局中间件配置: app/config/beans/base.php
@@ -68,7 +62,10 @@ return [
 ];
 ```
 
-`@Middlewares` 注解定义一组 `@Middleware`, 按照定义顺序依次执行, 使用参考 `app/Controllers/MiddlewareController.php`:
+### 通过注解配置 Controller 作用域内的中间件 
+
+通过 `@Middleware` 和 `@Middlewares`, 可以很方便的配置中间件到当前的 `Controller` 和 `Action` 内，当将此注解应用于 `Controller` 上，则作用域为整个 `Controller`， 将此注解应用于 `Action` 上，则作用域仅为当前的 `Action`  
+`@Middleware` 用于配置单个中间件， `@Middlewares` 显而易见的是用于配置一组 `@Middleware`，按照定义顺序依次执行, 使用参考 `app/Controllers/MiddlewareController.php`
 
 ```php
 <?php
@@ -131,6 +128,33 @@ class MiddlewareController
 }
 ```
 
+}
+```
+
+### 中间件中断返回
+
+当在实现验证检查类的中间件时，经常需要中断当前请求并直接给出响应，以下是中断流程的几种方式
+
+#### 构造一个新的 Response 对象直接返回
+
+```php
+public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+{
+    $auth = false;
+    // 如果验证不通过
+    if (!$auth) {
+        // response() 函数可以快速从 RequestContext 获得 Response 对象
+        return response()->withStatus(401);
+    }
+    // 委托给下一个中间件处理
+    $response = $handler->handle($request);
+    return $response;
+}
+```
+
+#### 抛出异常返回
+
+只要在请求生命周期内抛出的异常会被 `ErrorHandler` 捕获并处理，中间件内抛出也是如此，这部分不属于中间件的内容，顾在此不多做阐述。
 
 ### 示例：提前拦截请求
 
@@ -210,4 +234,5 @@ class CorsMiddleware implements MiddlewareInterface
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     }
+}
 ```
