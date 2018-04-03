@@ -59,3 +59,44 @@ app.stop
 2. `{prefix}.*` 指定分组事件的监听。eg `$em->attach('db.*', 'db_listener')`, 此时所有触发的以 `db.` 为前缀的事件(eg `db.query` `db.connect`)都会被此监听器接收到。
 
 > 当然，你在事件到达监听器前停止了本次事件的传播`$event->stopPropagation(true);`，就不会被后面的监听器接收到了。
+
+## swoft 中使用
+
+### 注册事件管理服务
+
+> 作为核心服务组件，会自动启用
+
+```php
+'eventManager'    => [
+    'class'     => \Swoft\Event\EventManager::class,
+],		     
+```
+
+### 注册事件监听
+
+- 用注解tag `@Listener("event name")` 来注册
+
+```php
+/**
+ * 应用加载事件
+ *
+ * @Listener(AppEvent::APPLICATION_LOADER)
+ */
+class ApplicationLoaderListener implements EventHandlerInterface
+{
+    /**
+     * @param EventInterface $event      事件对象
+     */
+    public function handle(EventInterface $event)
+    {
+        // do something ....
+    }
+}
+```
+
+- 触发事件
+
+```php
+\Swoft::trigger('event name', null, $arg0, $arg1);
+// OR use \Swoft\App::trigger();
+```
