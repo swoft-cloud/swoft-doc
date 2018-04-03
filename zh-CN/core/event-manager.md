@@ -94,6 +94,8 @@ class ApplicationLoaderListener implements EventHandlerInterface
 }
 ```
 
+> 事件名称管理推荐放置在一个单独类的常量里面，方便管理和维护
+
 - 触发事件
 
 ```php
