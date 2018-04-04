@@ -6,25 +6,6 @@
 - 支持设置事件优先级
 - 支持快速的事件组注册
 - 支持通配符事件的监听
- 
-## 基本使用
-
-```php
-use Swoft\Event\EventManager;
-
-$em = new EventManager;
-
-// 注册事件监听
-$em->attach('someEvent', 'callback_handler');
-
-
-// 触发事件
-$em->trigger('someEvent', 'target', ['more params']);
-
-// 也可以
-$event = new Event('someEvent', ['more params']);
-$em->trigger($event);
-```
 
 ## 事件分组
 
