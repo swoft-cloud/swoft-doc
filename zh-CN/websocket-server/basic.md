@@ -26,7 +26,7 @@ Options:
 - 前台运行
 
 ```bash
-$ php bin/swoft ws
+$ php bin/swoft ws:start
                                  Server Information
 ************************************************************************************
 * WS   | host: 0.0.0.0, port: 9088, type: 1, worker: 1, mode: 3 (http is Enabled)
