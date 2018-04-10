@@ -18,6 +18,8 @@ websocket 新增了类注解tag `@WebSocket`
 
 ## 示例
 
+> 提示： 可以通过命令 `php bin/swoft gen:websocket` 来快速创建一个控制器。 例如 `php bin/swoft gen:websocket echo --prefix /echo`
+
 ```php
 <?php
 
