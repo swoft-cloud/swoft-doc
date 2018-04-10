@@ -1,185 +1,179 @@
-# 基础查询
-类似ActiveRecord方式操作数据库
+# AR快速操作
+Model里面提供了常见的数据库操作方式。
 
-## 操作列表
+## 插入数据
 
-### save
-
-**save(string $group = Pool::GROUP)**
-
-新增数据，返回ResultInterface接口。接口数据，成功返回插入ID，如果ID传值，插入数据库返回0，错误返回false
-
-- $group 默认master配置，可以指定使用主还是从，也可以指定其它实例. $group = 'default.master' 强制使用主库，$group = 'default.slave' 强制使用从库
-
+**对象方式**    
 ```php
 $user = new User();
-$user->setName('stelin');
+$user->setName('name');
 $user->setSex(1);
 $user->setDesc('this my desc');
 $user->setAge(mt_rand(1, 100));
-$deferUser = $user->save();
-
-$count = new Count();
-$count->setUid(999);
-$count->setFans(mt_rand(1, 1000));
-$count->setFollows(mt_rand(1, 1000));
-$deferCount = $count->save();
-
-// 并发操作
-$userResult  = $deferUser->getResult();
-$countResult = $deferCount->getResult();
-
-$user = new User();
-$user->setName('stelin2');
-$user->setSex(1);
-$user->setDesc('this my desc2');
-$user->setAge(mt_rand(1, 100));
-$directUser = $user->save()->getResult();
+$id  = $user->save()->getResult();
 ```
 
-### fill
-
-**fill(array $attributes)**   
-
-数组方式设置属性值，兼容setXxx操作，注意数组Key，必须和实体成员名称一致。
-
+**数组填充**    
 ```php
-$attrs = [
-    'name' => 'stelin3',
+$data = [
+    'name' => 'name',
     'sex'  => 1,
-    'desc' => 'this is my desc2',
-    'age'  => 99,
+    'desc' => 'desc2',
+    'age'  => 100,
 ];
-$user  = new User();
-$user->fill($attrs);
+
+$user   = new User();
+$result = $user->fill($data)->save()->getResult();
+```
+
+
+**数组方式**    
+```php
+$user         = new User();
+$user['name'] = 'name2';
+$user['sex']  = 1;
+$user['desc'] = 'this my desc9';
+$user['age']  = 99;
 $result = $user->save()->getResult();
 ```
 
-
-
-### delete
-
-**delete(string $group = Pool::GROUP)**
-
-删除数据，返回ResultInterface接口。接口数据，成功返回影响行数，如果失败返回false
-
-- $group 默认master配置，可以指定使用主还是从，也可以指定其它实例。$group = 'default.master' 强制使用主库，$group = 'default.slave' 强制使用从库
+## 批量插入
 
 ```php
-$user = new User();
-$user->setAge(126);
+$values = [
+    [
+        'name'        => 'name',
+        'sex'         => 1,
+        'description' => 'this my desc',
+        'age'         => 99,
+    ],
+    [
+        'name'        => 'name2',
+        'sex'         => 1,
+        'description' => 'this my desc2',
+        'age'         => 100,
+    ]
+];
 
-$result = $user->delete()->getResult();
+$result = User::batchInsert($values)->getResult();
 ```
 
-### deleteById
+## 删除数据
 
-**deleteById($id, string $group = Pool::GROUP)**   
-
-根据ID删除数据，返回ResultInterface接口。接口数据，成功返回影响行数，如果失败返回false
-
-- $id 删除ID
-- $group 默认master配置，可以指定使用主还是从，也可以指定其它实例。$group = 'default.master' 强制使用主库，$group = 'default.slave' 强制使用从库
-
-```php
-$result = User::deleteById(287)->getResult();
-```
-
-### deleteByIds
-
-**deleteByIds(array $ids, string $group = Pool::GROUP)**   
-
-根据IDS 批量删除数据，返回ResultInterface接口。接口数据，成功返回影响行数，如果失败返回false
-
-- $ids 删除ID集合
-- $group 默认master配置，可以指定使用主还是从，也可以指定其它实例。$group = 'default.master' 强制使用主库，$group = 'default.slave' 强制使用从库
-
-```php
-$result = User::deleteByIds([288, 289])->getResult();
-```
-
-### update
-
-**update(string $group = Pool::GROUP)**   
-
-更新数据，返回ResultInterface接口。接口数据，成功返回影响行数，如果失败返回false
-
-- $group 默认master配置，可以指定使用主还是从，也可以指定其它实例。$group = 'default.master' 强制使用主库，$group = 'default.slave' 强制使用从库
-
-```php
-$query = User::findById(285);
-
-/* @var User $user */
-$user = $query->getResult(User::class);
-$user->setName('upateNameUser2');
-$user->setSex(0);
-
-$result = $user->update()->getResult();
-```
-
-
-### find
-
-**find(string $group = Pool::GROUP)**   
-
-查询数据，返回ResultInterface接口。接口数据，单条记录成功返回一维数组或一个实体，多条记录返回多维数组或实体数组
-
-- $group 默认slave配置，可以指定使用主还是从，也可以指定其它实例。$group = 'default.master' 强制使用主库，$group = 'default.slave' 强制使用从库
-
-```php
-$user = new User();
-$user->setSex(1);
-$user->setAge(93);
-$query = $user->find();
-
-$result = $query->getResult(User::class);
-```
-
-
-### findById
-
-**findById($id, string $group = Pool::GROUP)**   
-
-根据ID查询，返回ResultInterface接口。接口数据，单条记录成功返回一维数组或一个实体，多条记录返回多维数组或实体数组
-
-- $id 查询ID
-- $group 默认slave配置，可以指定使用主还是从，也可以指定其它实例。$group = 'default.master' 强制使用主库，$group = 'default.slave' 强制使用从库
-
-```php
-$result = User::findById(425)->getResult();
-
-$query = User::findById(426);
-/* @var User $user */
-$user = $query->getResult(User::class);
-$name = $user->getName();
-```
-
-
-### findByIds
-
-**findByIds(array $ids, string $group = Pool::GROUP)**   
-
-根据ID批量查询，返回ResultInterface接口。接口数据，单条记录成功返回一维数组或一个实体，多条记录返回多维数组或实体数组
-
-- $ids 查询ID集合
-- $group 默认slave配置，可以指定使用主还是从，也可以指定其它实例。$group = 'default.master' 强制使用主库，$group = 'default.slave' 强制使用从库
-
-```php
-$query = User::findByIds([416, 417]);
-$result = $query->getResult();
-
-```
-
-
-### query
-
-**query(string $group = Pool::GROUP): QueryBuilder**  
+**对象删除**   
  
-获取该表的一个查询器，只能操作该表
+```php
+/* @var User $user */
+$user   = User::findById($id)->getResult();
+$result = $user->delete()->getResult();
+$this->assertEquals(1, $result);
+```
 
-- $group 默认查询使用从库，所有更新操作使用主库，可以指定使用主还是从，也可以指定其它实例。$group = 'default.master' 强制使用主库，$group = 'default.slave' 强制使用从库
+**主键删除一条数据**   
+ 
+```php
+$result = User::deleteById(1)->getResult();
+```
+
+**主键删除多条数据**   
+ 
+```php
+$result = User::deleteByIds([1,2])->getResult();
+```
+
+
+**删除一条数据**   
 
 ```php
-$query = User::query()->selects(['id', 'sex' => 'sex2'])->leftJoin(Count::class, 'count.uid=user.id')->andWhere('id', 429)->orderBy('user.id', QueryBuilder::ORDER_BY_DESC)->limit(2)->execute();
-$result = $query->getResult();
+// delete from user where name='name2testDeleteOne' and age=99 and id=1 limit 1
+$result = User::deleteOne(['name' => 'name2testDeleteOne', 'age' => 99, 'id' => 1])->getResult();
+```
+
+**删除多条数据**
+```php
+// delete from user where name='name' and id in (1,2)
+$result = User::deleteAll(['name' => 'name', 'id' => [1,2])->getResult();
+```
+
+
+## 更新数据
+
+**实体更新**   
+ 
+```php
+/* @var User $user */
+$user = User::findById(1)->getResult();
+$user->setName('newName');
+$updateResult = $user->update()->getResult();
+```
+
+**更新一条数据**   
+ 
+```php
+// update user set name='testUpdateOne' where id=1 limit 1
+$result = User::updateOne(['name' => 'testUpdateOne'], ['id' => 1])->getResult();
+```
+
+
+**更新多条数据**   
+ 
+```php
+// update user set name='testUpdateOne' where id in (1,2)
+$result = User::updateAll(['name' => 'testUpdateAll'], ['id' => [1,2]])->getResult();
+```
+
+## 查询数据
+使用AR实体查询，返回结果是都是实体对象，不是数组。
+
+**查询一条数据**   
+ 
+```php
+// select id,name from user where id=1 limit 1
+$user2 = User::findOne(['id' => 1], ['fields' => ['id', 'name']])->getResult();
+```
+
+**查询多条数据**   
+ 
+```php
+// select * from user where name='testUpdateAll' and id in (1,2)
+$count = User::findAll(['name' => 'testUpdateAll', 'id' => [1,2]])->getResult();
+```
+
+**主键查询一条数据**   
+ 
+```php
+// selet * from user where id=1
+/* @var User $user */
+$user = User::findById(1)->getResult();
+```
+
+**主键查询多条数据**   
+ 
+```php
+// select id from user where id in(1,2) order by id asc limit 0,2
+$users = User::findByIds([1,2], ['fields' => ['id'], 'orderby' => ['id' => 'asc'], 'limit' => 2])->getResult();
+```
+
+**实体查询器**   
+ 
+```php
+// select * from user order by id desc limit 0,2
+$result = User::query()->orderBy('id', QueryBuilder::ORDER_BY_DESC)->limit(2)->get()->getResult();
+```
+
+**主键是否存在查询**   
+ 
+存在返回true,不存在返回false
+
+```php
+User::exist(1)->getResult()
+```
+
+
+**计数查询**   
+
+直接返回满足条件的行数
+ 
+```php
+$count = User::count('id', ['id' => [1,2]])->getResult();
 ```

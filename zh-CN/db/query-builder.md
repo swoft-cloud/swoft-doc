@@ -34,12 +34,12 @@
 | closeHaving | having括号结束语句 |
 | groupBy | group by语句 |
 | orderBy | order by语句 |
+| condition | 条件查询 |
 | limit | limit语句 |
 | set | 设置更新值 |
 | setParameter | 设置参数 |
 | setParameters | 设置多个参数 |
 | getSql | 获取执行语句 |
-
 
 ## 规则与格式
 
