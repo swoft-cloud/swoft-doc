@@ -1,16 +1,16 @@
 # 容器
-Swoft 中一个bean就是一个类的一个对象实例。 容器就是一个巨大的工厂，用于存放和管理bean生命周期。
+Swoft 中一个 Bean 就是一个类的一个对象实例。 容器就是一个巨大的工厂，用于存放和管理 Bean 生命周期。
 
 ## 注解
 
 **@Bean**
-
-- name 定义bean别名，缺省默认类名
-- scope 注入bean类型，默认单例，Scope::SINGLETON/Scope::PROTOTYPE(每次创建)
-- ref 指定引用bean，用于定义在接口上面，指定使用哪个接口实现。
+> 命名空间：`\Swoft\Bean\Annotation\Bean`
+- name 定义 Bean 别名，缺省默认类名
+- scope 注入 Bean 类型，默认单例，Scope::SINGLETON/Scope::PROTOTYPE(每次创建)
+- ref 指定引用 Bean ，用于定义在接口上面，指定使用哪个接口实现。
 
 **@Inject**
-
+> 命名空间：`\Swoft\Bean\Annotation\Inject`
 - name 定义属性注入的bean名称，缺省属性自动类型名称
 
 ## 定义bean
