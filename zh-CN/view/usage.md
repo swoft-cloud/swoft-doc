@@ -67,3 +67,13 @@ class DemoController
 1. 在配置中 配置默认的布局文件，那么即使不设置 `layout`，也会使用默认的(视图的可用配置请看上一节)
 2. 如示例一样，可以手动设置一个布局文件。它的优先级更高（即使有默认的布局文件，也会使用当前传入的替代。）
 3. 你可以传入 `layout=false` 来禁用渲染布局文件
+
+# 视图加载静态文件
+
+没有使用  apache nginx  
+静态文件在public下面
+下面是使用 不加public啊
+```php
+<script type="text/javascript" src="/static/plugins/layui/layui.js"></script>
+```
+如果使用了  nginx apache 一样的不加public前提是你目录指定到publci下面,具体nginx配置看 环境搭建
