@@ -70,10 +70,7 @@ class DemoController
 
 # 视图加载静态文件
 
-没有使用  apache nginx  
-静态文件在public下面
-下面是使用 不加public啊
-```php
-<script type="text/javascript" src="/static/plugins/layui/layui.js"></script>
+Swoft 可以提供静态资源访问的支持，将静态文件放置于根目录下的`public`目录内即可，下面是一个引用的示例，注意引用时无需包含`public`
+```html
+<script type="text/javascript" src="/static/some.js"></script>
 ```
-如果使用了  nginx apache 一样的不加public前提是你目录指定到publci下面,具体nginx配置看 环境搭建
