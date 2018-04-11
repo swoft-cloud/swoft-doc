@@ -90,6 +90,7 @@
   * [负载均衡](service-governance/balance.md)
   * [服务注册与发现](service-governance/register-discovery.md)
 * [开发者工具](devtool/index.md)
+  * [工具配置](devtool/config.md)
   * [表结构生成实体类](db/create-entity.md)
   * [文件生成命令](devtool/gen-commands.md)
 
@@ -102,3 +103,5 @@
 * [参与贡献](#)
   * [加入 Swoft](question/join.md)
   * [如何贡献](question/contributing.md)
+
+
