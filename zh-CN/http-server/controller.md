@@ -160,3 +160,18 @@ array
 Controller 中也可以使用 Bean 相关的方法, 但是 **注意**: `@Controller` 注解已经实现了 `@Bean` 的功能, 不能和 `@Bean` 注解同时使用
 
 其他注解方法, 比如 `@Inject`, 参考 [Bean容器](../core/container.md)
+
+不知道其他地方有没有介绍怎么使用这个@Inject()
+
+记得 use App\Models\Logic\UserLogic; 不然不会成功的
+
+```php
+    /**
+     * @Inject()
+     * @var UserLogic
+     */
+    private $UserLogic;
+    下面就是使用了
+  $user_data=$this->UserLogic->login($username,$password);
+```
+
