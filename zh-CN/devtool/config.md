@@ -30,6 +30,8 @@
 
 3. 发布devtool的静态资源到项目的 `public` 目录.
 
+在项目目录下执行：
+
 ```bash
 php bin/swoft dev:publish swoft/devtool
 // -f 将会删除旧的资源，每次devtool更后请都带上这个选项重新执行一次命令

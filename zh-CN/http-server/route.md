@@ -1,4 +1,4 @@
-## HTTP路由 HttpRouter
+## HTTP路由
 
 HTTP路由在 `\Swoft\Http\Server\Router\HandlerMapping` 中实现, 配置文件在 `config/beans/base.php`:
 
@@ -9,3 +9,6 @@ HTTP路由在 `\Swoft\Http\Server\Router\HandlerMapping` 中实现, 配置文件
     'matchAll'       => '', // 匹配所有，所有请求都会匹配到这个uri或闭包
 ],
 ```
+
+> 路由的具体使用请参看控制器章节
+

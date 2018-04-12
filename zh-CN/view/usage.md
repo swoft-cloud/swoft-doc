@@ -68,9 +68,12 @@ class DemoController
 2. 如示例一样，可以手动设置一个布局文件。它的优先级更高（即使有默认的布局文件，也会使用当前传入的替代。）
 3. 你可以传入 `layout=false` 来禁用渲染布局文件
 
-# 视图加载静态文件
+## 视图加载静态文件
 
-Swoft 可以提供静态资源访问的支持，将静态文件放置于根目录下的`public`目录内即可，下面是一个引用的示例，注意引用时无需包含`public`
+Swoft 可以提供静态资源访问的支持，将静态文件放置于根目录下的 `public` 目录内即可，下面是一个引用的示例，注意引用时无需包含 `public`
+
 ```html
 <script type="text/javascript" src="/static/some.js"></script>
 ```
+
+

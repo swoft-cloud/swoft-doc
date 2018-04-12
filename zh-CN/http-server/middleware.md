@@ -228,8 +228,17 @@ class CorsMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        if ('OPTIONS' === $request->getMethod()) {
+            return $this->configResponse(\response());
+        }
+    		
         $response = $handler->handle($request);
     
+        return $this->configResponse($response);
+    }
+    
+    private function configResponse(ResponseInterface $response) 
+    {
         return $response
             ->withHeader('Access-Control-Allow-Origin', 'http://mysite')
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
@@ -237,3 +246,5 @@ class CorsMiddleware implements MiddlewareInterface
     }
 }
 ```
+
+

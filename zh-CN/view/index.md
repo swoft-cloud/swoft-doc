@@ -19,10 +19,12 @@ composer require swoft/view dev-master
 - 通过 composer.json 配置:
 
 ```json
-    "swoft/view": "dev-master"
+    "swoft/view": "~1.0"
 ```
 
 ## 基本信息
 
 视图核心类文件： `\Swoft\View\Base\View`
 注解tag类： `Swoft\View\Bean\Annotation\View`
+
+

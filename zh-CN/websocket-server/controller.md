@@ -38,8 +38,8 @@ php bin/swoft gen:websocket echo --prefix /echo
 
 `checkHandshake` 必须返回含有两个元素的array
 
-  - 第一个元素的值来决定是否进行握手
-  - 第二个元素是response对象 - _可以在response设置一些自定义header,body等信息_
+- 第一个元素的值来决定是否进行握手
+- 第二个元素是response对象 - _可以在response设置一些自定义header,body等信息_
 
 ### 连接打开 `open`
 
@@ -48,7 +48,7 @@ php bin/swoft gen:websocket echo --prefix /echo
 **注意**
 
 - 此方法也是可选的，可以没有
-- onOpen 是swoft在握手后通过 `$server-defer()` 来触发的，没有在协程环境中。
+- onOpen 是swoft在握手后通过 `$server->defer()` 来触发的，没有在协程环境中。
 
 ### 接收消息 `message`
 

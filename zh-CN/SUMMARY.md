@@ -5,7 +5,7 @@
 * [介绍](README.md)
   * [版本更新](introduction/update.md)
 * [快速起步](quickstart/overview.md)
-  * [环境搭建](quickstart/enviroment.md)
+  * [环境需求](quickstart/enviroment.md)
   * [框架安装](quickstart/install.md)
   * [使用Docker](quickstart/docker-installation.md)
   * [开发准备](quickstart/development.md)
@@ -19,7 +19,7 @@
 * [应用组件](core/component.md)
 * [事件管理](core/event-manager.md)
 * [连接池](core/connection-pool.md)
-* [AOP面向切面编程](core/aop/overview.md)
+* [AOP切面编程](core/aop/overview.md)
   * [实现原理](core/aop/principle.md)
 * [异常处理](core/exception.md)
 

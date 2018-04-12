@@ -4,7 +4,7 @@
 
 ## 请求生命周期
 
-请参考 [框架核心 - 生命周期](https://doc.swoft.org/beta/zh-CN/core/framework.html). 了解 **请求生命周期**, 有利于理解HTTP服务各组件, 编写出更好代码.
+请参考 [框架核心 - 生命周期](../core/framework.html). 了解 **请求生命周期**, 有利于理解HTTP服务各组件, 编写出更好代码.
 
 ## HTTP服务组件
 
@@ -13,3 +13,5 @@
 - 中间件: Middleware, 处理一些前置或者后置逻辑
 - 验证器: Validtor, 请求中的数据验证
 - RESTFUL: restful 风格的HTTP服务
+
+
