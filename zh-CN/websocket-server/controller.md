@@ -147,7 +147,7 @@ class EchoController implements HandlerInterface
 
 效果截图：
 
-![ws-test-page](../images/ws-test-page-1.jpg)
+![ws-test-page](../images/ws-test-page.jpg)
 
 
 > 当然也可在网上找一个 ws test网页来进行测试
