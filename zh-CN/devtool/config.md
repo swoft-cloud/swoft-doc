@@ -21,7 +21,9 @@
 
 ```php
 'devtool' => [
+	 // 前台运行服务器时，是否打印事件调用到console
     'logEventToConsole' => true,
+	 // 前台运行服务器时，是否打印http请求到console
     'logHttpRequestToConsole' => true,
 ],
 ```
@@ -36,7 +38,7 @@ php bin/swoft dev:publish swoft/devtool -f
 
 4. 好了，现在你可以通过浏览器访问 `HOST:PORT/__devtool`（e.g `http://127.0.0.1:9088/__devtool`）
 
-5. If you see the following screen, you have successfully installed
+5. 如果你能看到下面的截图，说明已经成功安装并启用
 
 ![image](../images/devtool.jpg)
 

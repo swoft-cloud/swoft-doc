@@ -3,7 +3,7 @@
 使用 `php bin/swoft gen` 可以查看到现在支持生成的文件类型
 
 ```bash
-% php bin/swoft gen                                                                                                                                                          18-03-29 - 10:22:23
+% php bin/swoft gen     
 Description:
   Generate some common application template classes[built-in]
 

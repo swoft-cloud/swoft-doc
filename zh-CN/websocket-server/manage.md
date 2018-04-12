@@ -1,6 +1,6 @@
 # 启动与管理
 
-在项目目录下执行如下命令可以看到websocket server的管理命令
+在项目目录下执行如下命令可以看到websocket server的管理命令. 跟http server的管理命令一致.
 
 ```bash
 $ php bin/swoft ws
@@ -42,8 +42,12 @@ You can use CTRL + C to stop run.
 $ php bin/swoft ws:start -d
 ```
 
-> `http is Enabled` 标明同时启用了http请求处理功能
+> `http is Enabled` 表明同时 **启用了http请求处理** 功能
 
 ## 使用
 
 如果你注册了ws的路由处理控制器，现在就可以通过浏览器等ws客户端连接上server了
+
+如果没有，接下来的一章 将会说明如何创建一个ws控制器并使用 :)
+
+
