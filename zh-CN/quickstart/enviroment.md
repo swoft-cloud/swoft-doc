@@ -17,5 +17,6 @@
 - `xhprof`
 - `blackfire`
 - `zend`
+- `trace`
 
 
