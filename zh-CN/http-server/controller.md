@@ -10,7 +10,7 @@
 
 设置在 Controller 类上
 
-- 显示指定路由前缀: `@Controller(prefix="/route")` 或 `@Controller("/route")`
+- 显式指定路由前缀: `@Controller(prefix="/route")` 或 `@Controller("/route")`
 - 隐式指定路由前缀: `@Controller()` 默认自动解析 controller 前的名称, 并且使用驼峰格式. 
   - 比如 `HttpClientController` 将会设置路由 prefix 为 `httpClient`
 
