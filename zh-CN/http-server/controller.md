@@ -18,7 +18,7 @@
 
 设置控制器类的在Action方法上
 
-- 显示指定路由后缀: `@RequestMapping(route="index")`或 `@RequestMapping("index")`
+- 显式指定路由后缀: `@RequestMapping(route="index")`或 `@RequestMapping("index")`
 - 隐式指定路由后缀: 不使用 `@RequestMapping` 或者使用 `@RequestMapping()`, 默认解析方法名为后缀
 - 限定HTTP方法: `@RequestMapping(route="index", method=RequestMethod::GET)` 指定路由支持的HTTP方法, 默认是支持`GET`和`POST`。
   - 比如 `@RequestMapping(route="/user", method={RequestMethod::POST,RequestMethod::PUT})` 设置路由支持 `POST` 和 `PUT`
