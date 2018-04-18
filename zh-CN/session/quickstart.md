@@ -54,3 +54,17 @@ Session 生命时长，单位为 `秒`
 - `storage`
 类型：`int`  
 Session 信息储存位置，仅在 `file` 驱动下生效
+
+### 常见问题
+
+Q: 每次的请求都产生了不同的 SessionID  
+A: 检查 Nginx 配置是否在反向代理时有将 `Host` Header 设置到反向代理的请求去，通常在设置反向代理的时候都会带上下列的 Header 项，以确保反向代理后获取到的信息是一致的  
+
+```bash
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header REMOTE-HOST $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+```
+
+其中 `proxy_set_header Host $host;` 就是将当前的域名也设置到反向代理的请求的 Header 上，请检查是否有设置，以确保 Cookies 上设置的 Host 是与当前访问域名是一致的
