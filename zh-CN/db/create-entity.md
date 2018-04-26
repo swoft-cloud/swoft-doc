@@ -27,12 +27,14 @@ Usage:
   entity:create -d[|--database] <database> -i[|--include] <table1,table2> -e[|--exclude] <table3,table4>
 
 Options:
-  -d           数据库
-  --database   数据库
-  -i           指定特定的数据表，多表之间用逗号分隔
-  --include    指定特定的数据表，多表之间用逗号分隔
-  -e           排除指定的数据表，多表之间用逗号分隔
-  --exclude    排除指定的数据表，多表之间用逗号分隔
+  -d                    数据库
+  --database            数据库
+  -i                    指定特定的数据表，多表之间用逗号分隔
+  --include             指定特定的数据表，多表之间用逗号分隔
+  -e                    排除指定的数据表，多表之间用逗号分隔
+  --exclude             排除指定的数据表，多表之间用逗号分隔
+  --remove-table-prefix 去除表前缀
+  --entity-file-path    实体路径(必须在以@app开头并且在app目录下存在的目录,否则将会重定向到@app/Models/Entity)
 
 Example:
   php bin/swoft entity:create -d test
