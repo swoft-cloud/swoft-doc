@@ -25,13 +25,13 @@ TCP_OPEN_EOF_CHECK=false
 
 
 ## 中间件配置
-config/beans/base.php 配置RPC服务在执行过程中的中间件。
+app/config/beans/base.php 配置RPC服务在执行过程中的中间件。
 
 ```php
 return [
     // ......
     'ServiceDispatcher' => [
-        'class' => ServiceDispatcher::class,
+        'class' => serviceDispatcher::class,
         'middlewares' => [
             'xxx:class',
         ]
