@@ -31,7 +31,7 @@ config/beans/base.php 配置RPC服务在执行过程中的中间件。
 return [
     // ......
     'ServiceDispatcher' => [
-        'class' => ServiceDispatcher::class,
+        'class' => serviceDispatcher::class,
         'middlewares' => [
             'xxx:class',
         ]
