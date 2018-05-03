@@ -72,7 +72,7 @@ Mac 除了可以使用 Docker 镜像进行快速的部署开发，当然也可�
 2. 安装 PHP 7.1，autoconf，openssl，redis
 
 ```bash
-brew install php71  
+brew install php@7.1  
 brew install autoconf
 brew install openssl
 brew install redis
