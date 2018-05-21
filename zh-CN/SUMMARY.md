@@ -9,6 +9,8 @@
   * [框架安装](quickstart/install.md)
   * [使用Docker](quickstart/docker-installation.md)
   * [开发准备](quickstart/development.md)
+  * [服务启动与管理](quickstart/start-server.md)
+  * [env环境配置](quickstart/env-config.md)
 
 ### 框架核心
 
