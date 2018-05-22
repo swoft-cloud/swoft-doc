@@ -6,7 +6,7 @@ Swoft 的请求与响应实现于 [PSR 7](https://github.com/php-fig/http-messag
 
 ## PSR-7
 
-> 注意：根据 PSR-7 对象的不可变性(immutable)，所有的 `with*` 方法都是克隆对象然后返回，必须接收新对象来做进一步处理
+> 注意：根据 PSR-7 对象的不可变性(immutable)，所有的 `with*` 方法都是克隆对象然后返回，必须接收新对象来做进一步处理   
 > Tips: 可通过使用链式调用的写法使代码变得更简洁
 
 PSR-7 接口为请求和响应对象提供了这些公共方法:
