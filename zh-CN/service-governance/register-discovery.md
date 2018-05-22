@@ -1,9 +1,9 @@
 # 服务注册
 
-RPC启动的时候，可以配置是否启动的时候注册到第三方比如consul/etc，使用服务也可通过第三方获取。
+RPC 启动的时候，可以配置是否启动的时候注册到第三方比如 consul/etcd ，使用服务也可通过第三方获取。
 
 ## 初始化配置
-.env中配置是否启动注册RPC服务，默认false，如果配置true，必须配置服务提供方
+`.env` 中配置是否启动注册 RPC服务，默认`false`，如果配置`true`，必须配置服务提供方
 
 ```
 AUTO_REGISTER=false
@@ -11,7 +11,9 @@ AUTO_REGISTER=false
 
 ## 服务提供方
 
-通常情况可以不用配置，系统已经配置了默认值。app/config/beans/base.php
+通常情况可以不用配置，系统已经配置了默认值
+
+配置文件：`./config/beans/base.php`
 
 ```
 return [
@@ -29,8 +31,8 @@ return [
 - provider 配置服务提供方，默认consul
 - providers 配置自定义服务，通过KEY名称使用
 ```
-### consul服务方配置
-consul服务提供方，在.env和app/config/properties/provider.php都可以配置，但是properties会覆盖env。
+### Consul服务方配置
+Consul 服务提供方，在`.env`和`./config/properties/provider.php`都可以配置，但是`env`会覆盖`properties`
 
 **env**    
 
@@ -84,7 +86,7 @@ return [
 
 ```
 
-- 参数具体含义，参考consul
+- 参数具体含义，参考 Consul 相关文档
 
 
 
