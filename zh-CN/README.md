@@ -30,5 +30,5 @@
 - 强大的日志系统
 
 <div class="alert alert-success" role="alert">
-   <strong>项目地址</strong> <a href="https://github.com/swoft-cloud/swoft">https://github.com/swoft-cloud/swoft</a>
+   <strong>项目地址</strong> <a class="alert-link" href="https://github.com/swoft-cloud/swoft">https://github.com/swoft-cloud/swoft</a>
 </div>
