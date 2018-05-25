@@ -27,7 +27,7 @@
 - 随着server启动，将会附加到 server, 并被其管理
 - 保证 `boot=true` 和 `check()` 返回 `true` 才会启动
 
- ```php
+```php
  /**
   * Boot process
   *
@@ -57,9 +57,9 @@
          return true;
      }
  }
- ```
- 
- ## 用户自定义进程
+```
+
+### 用户自定义进程
  
  - 不会随着server启动
  - 可以使用 `ProcessBuilder::create('customProcess')->start()` 来创建它
@@ -69,7 +69,7 @@
    - 命令行里，执行某个命令时。启动使用它
    - ... 在你需要的时候
  
- ```php
+```php
   /**
    * Custom process
    *
@@ -92,13 +92,14 @@
           return true;
       }
   }
-  ```
+```
+
 <div class="alert alert-warning" role="alert">
 <strong>提示!</strong>
 run 方法里面可以使用 Swoft 所有功能。
 唯一不一样的是，如果进程不是协程模式运行，所有IO操作，框架底层会自动切换成传统的同步阻塞，但是使用方法是一样的
 </div>
-  
+
 ## 运行进程
 
 运行进程很简单，是通过进程唯一标识名称运行。
