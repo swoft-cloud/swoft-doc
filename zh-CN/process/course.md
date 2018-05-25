@@ -1,4 +1,5 @@
 # 定义进程
+
 定义进程主要是通过 @Process 注解完成定义。
 
 ## 注解
@@ -12,7 +13,8 @@
  - coroutine 是否启动一个协程来运行进程逻辑即开启协程模式，默认false
  - num 启动进程的个数，默认是1
  
- ## 定义进程
+## 定义进程
+ 
  无论是Server前置进程或用户自定义进程，定义方式都是一样，基础ProcessInterface接口，实现run和check方法
  
  - run 方法里面实现进程的主要业务逻辑
@@ -86,6 +88,7 @@
 ```php
 ProcessBuilder::create('customProcess')->start();
 ```
+
 ## 投递任务
 
 进程里面需要投递任务功能，需要依赖swoft/task组件。组件安装成功后，直接调用方法投递，具体如何投递任务Task里面有详细介绍。
