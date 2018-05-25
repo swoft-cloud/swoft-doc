@@ -7,7 +7,8 @@ Swoft 的请求与响应实现于 [PSR 7](https://github.com/php-fig/http-messag
 ## PSR-7
 
 <div class="alert alert-warning alert-dismissible" role="alert">
-  <strong>注意!</strong> 根据 PSR-7 对象的不可变性(immutable)，所有的 <code>with*</code> 方法都是克隆对象然后返回，必须接收新对象来做进一步处理 
+  <strong>注意!</strong> 
+  <p>根据 PSR-7 对象的不可变性(immutable)，所有的 <code>with*</code> 方法都是克隆对象然后返回，必须接收新对象来做进一步处理</p>
 </div>
 
 <div class="alert alert-info" role="alert">
