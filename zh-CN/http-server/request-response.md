@@ -11,7 +11,7 @@ Swoft 的请求与响应实现于 [PSR 7](https://github.com/php-fig/http-messag
 </div>
 
 <div class="alert alert-info" role="alert">
-   <strong>Tips<strong> 可通过使用链式调用的写法使代码变得更简洁
+   <strong>Tips</strong> 可通过使用链式调用的写法使代码变得更简洁
 </div>
 
 PSR-7 接口为请求和响应对象提供了这些公共方法:
