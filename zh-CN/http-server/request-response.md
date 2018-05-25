@@ -8,7 +8,7 @@ Swoft 的请求与响应实现于 [PSR 7](https://github.com/php-fig/http-messag
 
 <div class="alert alert-warning alert-dismissible" role="alert">
   <strong>注意!</strong> 
-  <p>根据 PSR-7 对象的不可变性(immutable)，所有的 <code>with*</code> 方法都是克隆对象然后返回，必须接收新对象来做进一步处理</p>
+  <p>根据PSR-7对象的不可变性(immutable)，所有的<code>with*</code>方法都是克隆对象然后返回，必须接收新对象来做进一步处理</p>
 </div>
 
 <div class="alert alert-info" role="alert">
@@ -127,4 +127,41 @@ $contentType = $request->getContentType();
 
 ### 请求数据获取
 
+### GET数据
+
+```php
+$data = $request->get();
+$some = $request->get('key', 'default value')
+```
+
+### POST数据
+
+```php
+$data = $request->post();
+$some = $request->post('key', 'default value')
+```
+
+### SERVER数据
+
+```php
+$data = $request->serverParams();
+$some = $request->serverParam('key', 'default value')
+```
+
+### 额外的方法
+
+- 获取 swoole 的 request 对象
+
+```php
+$swooleRequest = $request->getSwooleRequest();
+```
+
 ## 响应对象
+
+### 额外的方法
+
+- 获取 swoole 的 response 对象
+
+```php
+$swooleResponse = $response->getSwooleResponse();
+```
