@@ -29,6 +29,6 @@
 - 跨平台热更新自动 Reload
 - 强大的日志系统
 
-<div class="alert alert-info" role="alert">
+<div class="alert alert-success" role="alert">
    <strong>项目地址</strong> <a href="https://github.com/swoft-cloud/swoft">https://github.com/swoft-cloud/swoft</a>
 </div>
