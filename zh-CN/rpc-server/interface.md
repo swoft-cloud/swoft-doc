@@ -1,7 +1,22 @@
 # 接口服务
+
 定义接口并实现接口，才能提供RPC服务。
 
+## 目录定义
+
+官方应用中给出的目录如下：
+
+```text
+app/
+  - Lib/          // 服务的公共接口定义目录，里面通常只有php接口类
+  - Pool/         // 服务池配置，里面可以配置不同服务的连接池，参考里面的 UserServicePool
+  - Services/     // 具体的服务接口实现类，里面的类通常实现了 Lib 中定义的接口
+```
+
+> 当然在多个服务中使用时， 要将lib库 `app/Lib` 移到一个公共的git仓库里，然后各个服务通过 composer 来获取使用
+
 ## 定义接口
+
 服务提供方定义好接口格式，存放到公共的lib库里面，服务调用方，加载lib库，就能使用接口服务。
 
 ```php
@@ -40,16 +55,20 @@ interface DemoInterface
 }
 ```
 
-> 接口定义和普通接口完全一致，唯一不一样的是，需要使用注解定义类似deferXxx方法，对应类里面方法且首字母大写。这种deferXxx方法，一般用于业务延迟收包和并发使用。
+接口定义和普通接口完全一致，唯一不一样的是
+
+- 需要在类注释上定义类似 `deferGetUser` 方法，对应类里面方法 `getUser` 且首字母大写。这种 `defer*` 方法，一般用于业务延迟收包和并发使用。
+- 这些方法是不需要实现的，仅用于提供IDE提示。内部调用逻辑由框架帮你完成
 
 ## 接口实现
+
 一个接口，会存在多种不同的实现，通过一个版本号来标识是那个逻辑实现。
 
 ### 注解
 
 **@Service**    
 
-- version 定义接口版本，默认是0
+- version 定义接口版本，默认是 `0`
 
 ### 实例
 
@@ -63,7 +82,7 @@ interface DemoInterface
  * @method ResultInterface deferGetUser(string $id)
  * @method ResultInterface deferGetUserByCond(int $type, int $uid, string $name, float $price, string $desc = "desc")
  *
- * @Service()
+ * @Service() // 实现了接口 DemoInterface，版本号为 0
  */
 class DemoService implements DemoInterface
 {
@@ -92,7 +111,7 @@ class DemoService implements DemoInterface
 }
 ```
 
-**实现版本1**    
+**实现版本2**    
 
 ```php
 /**
@@ -101,7 +120,7 @@ class DemoService implements DemoInterface
  * @method ResultInterface deferGetUsers(array $ids)
  * @method ResultInterface deferGetUser(string $id)
  * @method ResultInterface deferGetUserByCond(int $type, int $uid, string $name, float $price, string $desc = "desc")
- * @Service(version="1.0.1")
+ * @Service(version="1.0.1") // 实现了接口 DemoInterface，版本号为 1.0.1
  */
 class DemoServiceV2 implements DemoInterface
 {
@@ -130,4 +149,5 @@ class DemoServiceV2 implements DemoInterface
 }
 ```
 
-> 不同的实现，需要定义不同的唯一版本号，如果存在相同，加载之后的服务会覆盖之前的服务。实现也和普通接口实现一致，唯一不同的是，需要使用注解定义deferXxx方法。
+> 不同的实现，需要定义**不同的唯一版本号**，如果存在相同，加载之后的服务会覆盖之前的服务
+
