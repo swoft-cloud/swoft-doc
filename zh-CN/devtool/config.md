@@ -34,7 +34,7 @@
 
 ```bash
 php bin/swoft dev:publish swoft/devtool
-// -f 将会删除旧的资源，每次devtool更后请都带上这个选项重新执行一次命令
+// -f 将会删除旧的资源，每次devtool更新后请都带上这个选项重新执行一次命令
 php bin/swoft dev:publish swoft/devtool -f
 ```
 
@@ -48,13 +48,14 @@ php bin/swoft dev:publish swoft/devtool -f
 
 如果你访问这个地址 `HOST:PORT/__devtool` 报错或没有任何显示
 
+- 确认访问地址正确，`HOST:PORT` + `/__devtool`
 - 确认资源是否成功发布
 - 确认你的 `public` 目录是可被浏览器访问的
 - 确认安装或更新组件后 **重启** 了服务器
 
 ## 注意
 
-！！打开devTool会对服务器的运行造成一定影响，请在进行压力测试前，将其关闭。
+> ！！打开devTool会对服务器的运行造成一定影响，请在进行压力测试前，将其关闭。
 
 
 
