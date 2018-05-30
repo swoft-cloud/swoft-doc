@@ -5,7 +5,7 @@
 
 ## properties
 
-配置app/config/properties/db.php
+配置 `app/config/properties/db.php`
 
 ```php
 return [
@@ -37,6 +37,7 @@ return [
     ],
 ];
 ```
+
 - master/slave 主从配置
 - name 连接池节点名称，用于服务发现
 - uri 连接地址信息
@@ -47,7 +48,9 @@ return [
 - maxWait 最大等待连接
 - timeout 超时时间，单位秒
 
-# env
+> master,slave 是两个特殊的名称，他们会归纳到 `default` 实例中去。表现为 `default.master`, `default.slave`
+
+## env
 
 配置.env文件
 
@@ -81,4 +84,46 @@ DB_SLAVE_TIMEOUT=200
 - DB/DB_SLAVE_MAX_WAIT_TIME 连接最大等待时间，单位秒
 - DB/DB_SLAVE_MAX_WAIT 最大等待连接
 - DB/DB_SLAVE_TIMEOUT 超时时间，单位秒
+
+## 数据库实例
+
+上面的配置都是属于默认实例 `default`, 含有两个节点 `master` `slave`
+
+### 增加实例
+
+增加实例需在 `db.php` 增加新的实例配置，如下：
+
+- 新增实例 `other`
+- 它同样含有两个节点
+
+```php
+return [
+    // ...
+    'other' => [
+        'master' => [
+            'name'        => 'master2',
+            'uri'         => [
+                '127.0.0.1:3301',
+                '127.0.0.1:3301',
+            ],
+            'maxIdel'     => 1,
+            'maxActive'   => 1,
+            'maxWait'     => 1,
+            'timeout'     => 1,
+        ],
+
+        'slave' => [
+            'name'        => 'slave3',
+            'uri'         => [
+                '127.0.0.1:3301',
+                '127.0.0.1:3301',
+            ],
+            'maxIdel'     => 1,
+            'maxActive'   => 1,
+            'maxWait'     => 1,
+            'timeout'     => 1,
+        ],
+    ],
+];
+```
 
