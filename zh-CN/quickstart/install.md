@@ -8,9 +8,13 @@ composer create-project swoft/swoft swoft
 
 ## 手动安装
 
-- clone 项目
-- composer install 安装依赖
-- 复制根目录下的 `.env.example` 并粘贴重命名为 `.env` 并根据需要调整启动参数
+```bash
+git clone https://github.com/swoft-cloud/swoft
+cd swoft
+composer install --no-dev # 不安装 dev 依赖会更快一些
+cp .env.example .env
+vim .env # 根据需要调整启动参数
+```
 
 ## Docker方式安装
 
@@ -20,8 +24,8 @@ docker run -p 80:80 swoft/swoft
 
 ## Docker-Compose 安装
 
-- clone 项目
-- cd swoft
-- docker-compose up
-
-
+```bash
+git clone https://github.com/swoft-cloud/swoft
+cd swoft
+docker-compose up
+```

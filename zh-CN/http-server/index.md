@@ -13,5 +13,3 @@
 - 中间件: Middleware, 处理一些前置或者后置逻辑
 - 验证器: Validtor, 请求中的数据验证
 - RESTFUL: restful 风格的HTTP服务
-
-

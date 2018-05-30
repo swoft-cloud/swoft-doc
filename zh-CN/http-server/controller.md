@@ -11,7 +11,7 @@
 设置在 Controller 类上
 
 - 显式指定路由前缀: `@Controller(prefix="/route")` 或 `@Controller("/route")`
-- 隐式指定路由前缀: `@Controller()` 默认自动解析 controller 前的名称, 并且使用驼峰格式. 
+- 隐式指定路由前缀: `@Controller()` 默认自动解析 controller 前的名称, 并且使用驼峰格式.
   - 比如 `HttpClientController` 将会设置路由 prefix 为 `httpClient`
 
 ### `@RequestMapping`
@@ -38,10 +38,10 @@ use Swoft\Http\Server\Bean\Annotation\RequestMethod;
 
 ```bash
 // Gen DemoController class to `@app/Controllers`
-php bin/swoft gen:controller demo --prefix /demo -y          
+php bin/swoft gen:controller demo --prefix /demo -y
 
 // Gen UserController class to `@app/Controllers`(RESTFul type)
-php bin/swoft gen:controller user --prefix /users --rest     
+php bin/swoft gen:controller user --prefix /users --rest
 ```
 
 ## 示例
@@ -179,5 +179,3 @@ Controller 中也可以使用 Bean 相关的方法
 > **注意**: `@Controller` 注解已经实现了 `@Bean` 的功能, 不能和 `@Bean` 注解同时使用
 
 其他注解方法, 比如 `@Inject`, 参考 [Bean容器](../core/container.md)
-
-

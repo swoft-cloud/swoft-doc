@@ -36,7 +36,7 @@ $beanConfig = [
 - pro1/pro1 和类面的成员变量名称是一一对应
 - 属性值和构造函数参数值，都可以通过 ${xxx} 和 ${config.xx}, 注入Bean和引用properties配置信息
 
- ### 注解定义
+### 注解定义
 
  注解定义使用PHP文档注解，在类上做一些标记，通过解析类注解，实现不同的功能。
 
@@ -59,9 +59,8 @@ BeanFactory::getBean('name');
 BeanFactory::hasBean("name");
 ```
 
- - App/ApplicationContext/BeanFactory都可从容器中得到Bean
- - hasBean 某个bean是否存在
-
+- App/ApplicationContext/BeanFactory都可从容器中得到Bean
+- hasBean 某个bean是否存在
 
 ## 实例
 
@@ -177,9 +176,9 @@ class UserLogic
      private function getUser()
      {
          return $this->userData->getData();
-     }
+     }#
  }
  ```
 
- - 接口上面指定了使用的实现bean别名
- - 接口使用处，无需指定使用那个别名，会根据接口上面的引用注入不同的实例bean
+- 接口上面指定了使用的实现bean别名
+- 接口使用处，无需指定使用那个别名，会根据接口上面的引用注入不同的实例bean

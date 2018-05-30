@@ -24,7 +24,7 @@ return [
 - drivers 配置自定义驱动，key是驱动名称
 
 ## 连接池配置
-连接池配置有properties和env两种方式，但是evn配置会覆盖properties。
+连接池配置有 properties 和 env 两种方式，但是 env 配置会覆盖 properties。
 
 ### properties
 app/config/properties/cache.php配置文件

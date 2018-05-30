@@ -1,6 +1,6 @@
 # 中间件 Middleware
 
-中间件是用于控制*请求到达*和*响应请求*的整个流程的，通常用于对请求进行过滤验证处理，当你需要对请求或响应作出对应的修改或处理，或想调整请求处理的流程时均可以使用中间件来实现。  
+中间件是用于控制 **请求到达** 和 **响应请求** 的整个流程的，通常用于对请求进行过滤验证处理，当你需要对请求或响应作出对应的修改或处理，或想调整请求处理的流程时均可以使用中间件来实现。
 中间件
 
 ## 定义中间件
@@ -46,7 +46,7 @@ class ActionTestMiddleware implements MiddlewareInterface
 
 ### 配置全局中间件
 
-当你的自定义中间件需要全局请求应用，则可以考虑将此中间件作为全局中间件去使用，只需在 Bean 配置文件内配置 `serverDispatcher` 的 `middlewares` 属性，在数组中加入你的自定义中间件的命名空间地址，相关配置通常在 `app/config/beans/base.php` 内 
+当你的自定义中间件需要全局请求应用，则可以考虑将此中间件作为全局中间件去使用，只需在 Bean 配置文件内配置 `serverDispatcher` 的 `middlewares` 属性，在数组中加入你的自定义中间件的命名空间地址，相关配置通常在 `app/config/beans/base.php` 内
 
 ```php
 // 全局中间件配置: app/config/beans/base.php
@@ -67,7 +67,7 @@ return [
 通过 `@Middleware` 和 `@Middlewares`, 可以很方便的配置中间件到当前的 `Controller` 和 `Action` 内
 
 - 当将此注解应用于 `Controller` 上，则作用域为整个 `Controller`
-- 将此注解应用于 `Action` 上，则作用域仅为当前的 `Action`  
+- 将此注解应用于 `Action` 上，则作用域仅为当前的 `Action`
 - `@Middleware` 用于配置单个中间件
 - `@Middlewares` 显而易见的是用于配置一组 `@Middleware`，按照定义顺序依次执行, 使用参考 `app/Controllers/MiddlewareController.php`
 
@@ -190,11 +190,11 @@ class SomeMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $path = $request->getUri()->getPath();
- 
+
         if ($path === '/favicon.ico') {
             return \response()->withStatus(404);
         }
-    
+
         return $handler->handle($request);
     }
 ```
@@ -231,13 +231,13 @@ class CorsMiddleware implements MiddlewareInterface
         if ('OPTIONS' === $request->getMethod()) {
             return $this->configResponse(\response());
         }
-    		
+
         $response = $handler->handle($request);
-    
+
         return $this->configResponse($response);
     }
-    
-    private function configResponse(ResponseInterface $response) 
+
+    private function configResponse(ResponseInterface $response)
     {
         return $response
             ->withHeader('Access-Control-Allow-Origin', 'http://mysite')
