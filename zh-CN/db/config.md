@@ -1,7 +1,8 @@
 # 数据库配置
 
-主要是配置数据库主从连接信息，Swoft 提供properties和env 两种方式配置，且env会覆盖properties配置。主从都配置，默认读操作使用从配置，写操作使用主配置，若配置主，读写操作都会使用主配置。
+主要是配置数据库主从连接信息，Swoft 提供 `properties` 和 `env` 两种方式配置，且 `env` 会覆盖 `properties` 配置。
 
+> 主从都配置，默认读操作使用从配置，写操作使用主配置. 若**只配置主**，读写操作都会使用主配置
 
 ## properties
 
@@ -94,7 +95,7 @@ DB_SLAVE_TIMEOUT=200
 增加实例需在 `db.php` 增加新的实例配置，如下：
 
 - 新增实例 `other`
-- 它同样含有两个节点
+- 它同样含有两个节点 `master` `slave`
 
 ```php
 return [
@@ -127,3 +128,11 @@ return [
 ];
 ```
 
+## 一些说明
+
+- 数据库实例: 实例相当于分类，如上面看到的含有默认的两个节点 `master` `slave`, 属于默认实例 `default`
+- 数据库节点: 每个实例下的item，都是一个节点，key 是节点名称。 通常我们会用两个节点，分别命名为 `master` `slave`
+- 每个节点都会创建一个连接池，池的名称通常是 `instance.node` 例如上面的 `default.master` `other.master`
+  - 通过 `\Swoft::getPool('instance.node')` 可以拿到连接池对象
+
+> 您可以自定义实例和节点的名称，不过使用时要注意区分和选择。
