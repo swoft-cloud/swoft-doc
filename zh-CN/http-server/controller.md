@@ -36,6 +36,8 @@ use Swoft\Http\Server\Bean\Annotation\RequestMethod;
 
 ## 快速创建控制器
 
+可以通过命令行命令快速创建控制器类，以方便快速开发使用。
+
 ```bash
 // Gen DemoController class to `@app/Controllers`
 php bin/swoft gen:controller demo --prefix /demo -y

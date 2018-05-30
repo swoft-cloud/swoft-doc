@@ -11,6 +11,7 @@
 - 灵活的注解功能
 - 全局的依赖注入容器
 - 基于 PSR-7 的 HTTP 消息实现
+- 基于 PSR-11 的容器规范实现
 - 基于 PSR-14 的事件管理器
 - 基于 PSR-15 的中间件
 - 基于 PSR-16 的缓存设计
@@ -28,5 +29,6 @@
 - 跨平台热更新自动 Reload
 - 强大的日志系统
 
-项目地址: [https://github.com/swoft-cloud/swoft](https://github.com/swoft-cloud/swoft)
-
+<div class="alert alert-success" role="alert">
+   <strong>项目地址</strong> <a class="alert-link" href="https://github.com/swoft-cloud/swoft">https://github.com/swoft-cloud/swoft</a>
+</div>
