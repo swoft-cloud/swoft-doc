@@ -4,6 +4,15 @@
 
 > 主从都配置，默认读操作使用从配置，写操作使用主配置. 若**只配置主**，读写操作都会使用主配置
 
+## 一些说明
+
+- 数据库实例: 实例相当于分类，如下面看到的含有默认的两个节点 `master` `slave`, 属于默认实例 `default`
+- 数据库节点: 每个实例下的item，都是一个节点，key 是节点名称。 通常我们会用两个节点，分别命名为 `master` `slave`
+- 每个节点都会创建一个连接池，池的名称通常是 `instance.node` 例如下面的 `default.master` `other.master`
+  - 通过 `\Swoft::getPool('instance.node')` 可以拿到连接池对象
+
+> 您可以自定义实例和节点的名称，不过使用时要注意区分和选择。当然，我们推荐使用通用的命名
+
 ## properties
 
 配置 `app/config/properties/db.php`
@@ -50,6 +59,15 @@ return [
 - timeout 超时时间，单位秒
 
 > master,slave 是两个特殊的名称，他们会归纳到 `default` 实例中去。表现为 `default.master`, `default.slave`
+
+- 像上面直接写 master,slave 框架会自动将这两个划分到 `default` 实例中去
+- 所以这里实际结构该是下面这样的(_允许上面的配置是为了兼容之前的版本_)
+```php
+'default' => [
+    'master' => [ // ...],
+    'slave' => [ // ...],
+]
+```
 
 ## env
 
@@ -127,12 +145,3 @@ return [
     ],
 ];
 ```
-
-## 一些说明
-
-- 数据库实例: 实例相当于分类，如上面看到的含有默认的两个节点 `master` `slave`, 属于默认实例 `default`
-- 数据库节点: 每个实例下的item，都是一个节点，key 是节点名称。 通常我们会用两个节点，分别命名为 `master` `slave`
-- 每个节点都会创建一个连接池，池的名称通常是 `instance.node` 例如上面的 `default.master` `other.master`
-  - 通过 `\Swoft::getPool('instance.node')` 可以拿到连接池对象
-
-> 您可以自定义实例和节点的名称，不过使用时要注意区分和选择。
