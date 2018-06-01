@@ -36,6 +36,16 @@
 
 该注解标明当前类属性对应了数据库表中的主键，**必须**有这个注解标记
 
+## 快速生成实体类
+
+swoft 提供了内置命令帮助快速生成实体类。
+
+```bash
+php bin/swoft entity:create -d dbname mytable,table2
+```
+
+> 更多使用信息请查看 [命令创建实体](create-entity.md) 或者使用 `-h` 查看命令帮助信息
+
 ## 示例
 
 ```php
