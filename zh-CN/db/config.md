@@ -8,7 +8,7 @@
 
 - 数据库实例: 实例相当于分类，如下面看到的含有默认的两个节点 `master` `slave`, 属于默认实例 `default`
 - 数据库节点: 每个实例下的item，都是一个节点，key 是节点名称。 通常我们会用两个节点，分别命名为 `master` `slave`
-- 每个节点都会创建一个连接池，池的名称通常是 `instance.node` 例如下面的 `default.master` `other.master`
+- 每个节点都会创建一个连接池，池的名称是 `instance.node` 例如下面的 `default.master` `other.master`
   - 通过 `\Swoft::getPool('instance.node')` 可以拿到连接池对象
 
 > 您可以自定义实例和节点的名称，不过使用时要注意区分和选择。当然，我们推荐使用通用的命名
@@ -61,7 +61,8 @@ return [
 > master,slave 是两个特殊的名称，他们会归纳到 `default` 实例中去。表现为 `default.master`, `default.slave`
 
 - 像上面直接写 master,slave 框架会自动将这两个划分到 `default` 实例中去
-- 所以这里实际结构该是下面这样的(_允许上面的配置是为了兼容之前的版本_)
+- 所以这里实际结构该是下面这样的(_允许上面的配置是为了兼容之前的版本_), 新增实例应当遵循这个结构
+
 ```php
 'default' => [
     'master' => [ // ...],
@@ -145,3 +146,6 @@ return [
     ],
 ];
 ```
+
+> 注意： 新增实例除了要添加配置外，还需新增相关的 pool配置类，pool类，请参照 `app/Pool` 和 `swoft/db` 的test示例
+
