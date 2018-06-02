@@ -2,7 +2,7 @@
 
 基本的事件注册与触发管理
 
-- implement the [Psr 14](https://github.com/php-fig/fig-standards/blob/master/proposed/event-manager.md) - Event Manager
+- implement the [Psr 14](https://github.com/php-fig/fig-standards/blob/master/proposed/event-dispatcher.md) - Event dispatcher
 - 支持设置事件优先级
 - 支持快速的事件组注册
 - 支持通配符事件的监听
