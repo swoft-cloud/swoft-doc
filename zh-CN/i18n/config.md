@@ -1,6 +1,6 @@
 # 国际化配置
 
-国际化配置主要是配置，国际化翻译文件路径和默认语言信息。Swoft 提供两种方式配置，properties 和 env，env 配置会覆盖 properties 和 env
+国际化配置主要是配置，国际化翻译文件路径和默认语言信息。Swoft 提供两种方式配置，properties 和 env，env 配置会覆盖 properties
 
 ##  properties
 配置文件，app/config/properties/app.php
