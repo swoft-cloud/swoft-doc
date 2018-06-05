@@ -16,17 +16,31 @@
 
 ### `@RequestMapping`
 
+注解参数：
+
+- `route` 设置路由path，也是默认参数。
+- `method` 设置允许的请求方法, 可以多个。eg `GET` `POST`
+
 设置控制器类的在Action方法上
+
+```php
+/**
+ * @RequestMapping(route="index")
+ * @RequestMapping(route="index", method=RequestMethod::GET)
+ * @RequestMapping(route="index", method={RequestMethod::POST,RequestMethod::PUT})
+ */
 
 - 显式指定路由后缀: `@RequestMapping(route="index")`或 `@RequestMapping("index")`
 - 隐式指定路由后缀: 不使用 `@RequestMapping` 或者使用 `@RequestMapping()`, 默认解析方法名为后缀
 - 限定HTTP方法: `@RequestMapping(route="index", method=RequestMethod::GET)` 指定路由支持的HTTP方法, 默认是支持`GET`和`POST`。
-  - 比如 `@RequestMapping(route="/user", method={RequestMethod::POST,RequestMethod::PUT})` 设置路由支持 `POST` 和 `PUT`
+  - 比如 `method={RequestMethod::POST,RequestMethod::PUT}` 设置路由支持 `POST` 和 `PUT`
 - 指定路由参数: `@RequestMapping(route="anyName/{name}")`, Action 方法中可以直接使用 `$name` 作为方法参数
 
-## 注意
+## 使用说明
 
-请切记要引入相关的注解tag class。
+- 通常一个完整的路由path等于 Controller的`prefix` **+** Action的`route`
+- 当你的action上的路由以 `/` 开头时，那完整的路由就是它，即不会再将 `prefix` 添加到它的前面。
+- 请切记要引入相关的注解tag class
 
 ```php
 use Swoft\Http\Server\Bean\Annotation\Controller;
