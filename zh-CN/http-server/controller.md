@@ -29,7 +29,7 @@
  * @RequestMapping(route="index", method=RequestMethod::GET)
  * @RequestMapping(route="index", method={RequestMethod::POST,RequestMethod::PUT})
  */
- ```
+```
 
 - 显式指定路由后缀: `@RequestMapping(route="index")`或 `@RequestMapping("index")`
 - 隐式指定路由后缀: 不使用 `@RequestMapping` 或者使用 `@RequestMapping()`, 默认解析方法名为后缀
