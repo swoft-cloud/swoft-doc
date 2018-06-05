@@ -29,6 +29,8 @@
  * @RequestMapping(route="index", method=RequestMethod::GET)
  * @RequestMapping(route="index", method={RequestMethod::POST,RequestMethod::PUT})
  */
+ public function some()
+ {}
 ```
 
 - 显式指定路由后缀: `@RequestMapping(route="index")`或 `@RequestMapping("index")`
