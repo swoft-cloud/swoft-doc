@@ -16,6 +16,7 @@
 ```
 
 2. DevTool 配置，用于标识是否启用某些功能(`config/properties/app.php`)，如不存在可自行添加配置
+
 ```php
 'devtool' => [
     // 是否开启 DevTool，默认值为 false
