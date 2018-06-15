@@ -12,6 +12,8 @@
 
 ## 有冲突的
 
+> :) 使用 `swoole 4+` 的同学可以跳过这里了
+
 下面列出一些已知的和swoole有冲突的php扩展，请使用swoft时不要安装或禁用它们：
 
 - `xdebug`
@@ -19,6 +21,7 @@
 - `blackfire`
 - `zend`
 - `trace`
+- `uopz`
 
 ## 推荐环境配置
 
