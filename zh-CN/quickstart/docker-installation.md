@@ -11,7 +11,7 @@ docker 及 docker-compose 基础知识:
 
 ## Swoft 源码准备
 
-详见文档 [框架安装](quickstart/install.md)
+详见文档 [框架安装](install.md)
 
 ## 启动开发环境
 
