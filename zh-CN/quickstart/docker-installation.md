@@ -53,9 +53,6 @@ docker stop swoft
 // 运行容器
 docker-compose up -d swoft
 
-// 进入容器
-docker-compose exec swoft
-
 // 停止容器
 docker-compose stop swoft
 ```
