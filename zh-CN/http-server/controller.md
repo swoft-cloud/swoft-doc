@@ -11,22 +11,39 @@
 设置在 Controller 类上
 
 - 显式指定路由前缀: `@Controller(prefix="/route")` 或 `@Controller("/route")`
-- 隐式指定路由前缀: `@Controller()` 默认自动解析 controller 前的名称, 并且使用驼峰格式. 
+- 隐式指定路由前缀: `@Controller()` 默认自动解析 controller 前的名称, 并且使用驼峰格式.
   - 比如 `HttpClientController` 将会设置路由 prefix 为 `httpClient`
 
 ### `@RequestMapping`
 
+注解参数：
+
+- `route` 设置路由path，也是默认参数。
+- `method` 设置允许的请求方法, 可以多个。eg `GET` `POST`
+
 设置控制器类的在Action方法上
+
+```php
+/**
+ * @RequestMapping(route="index")
+ * @RequestMapping(route="index", method=RequestMethod::GET)
+ * @RequestMapping(route="index", method={RequestMethod::POST,RequestMethod::PUT})
+ */
+ public function some()
+ {}
+```
 
 - 显式指定路由后缀: `@RequestMapping(route="index")`或 `@RequestMapping("index")`
 - 隐式指定路由后缀: 不使用 `@RequestMapping` 或者使用 `@RequestMapping()`, 默认解析方法名为后缀
 - 限定HTTP方法: `@RequestMapping(route="index", method=RequestMethod::GET)` 指定路由支持的HTTP方法, 默认是支持`GET`和`POST`。
-  - 比如 `@RequestMapping(route="/user", method={RequestMethod::POST,RequestMethod::PUT})` 设置路由支持 `POST` 和 `PUT`
+  - 比如 `method={RequestMethod::POST,RequestMethod::PUT}` 设置路由支持 `POST` 和 `PUT`
 - 指定路由参数: `@RequestMapping(route="anyName/{name}")`, Action 方法中可以直接使用 `$name` 作为方法参数
 
-## 注意
+## 使用说明
 
-请切记要引入相关的注解tag class。
+- 通常一个完整的路由path等于 Controller的`prefix` **+** Action的`route`
+- 当你的action上的路由以 `/` 开头时，那完整的路由就是它，即不会再将 `prefix` 添加到它的前面。
+- 请切记要引入相关的注解tag class
 
 ```php
 use Swoft\Http\Server\Bean\Annotation\Controller;
@@ -36,12 +53,14 @@ use Swoft\Http\Server\Bean\Annotation\RequestMethod;
 
 ## 快速创建控制器
 
+可以通过命令行命令快速创建控制器类，以方便快速开发使用。
+
 ```bash
 // Gen DemoController class to `@app/Controllers`
-php bin/swoft gen:controller demo --prefix /demo -y          
+php bin/swoft gen:controller demo --prefix /demo -y
 
 // Gen UserController class to `@app/Controllers`(RESTFul type)
-php bin/swoft gen:controller user --prefix /users --rest     
+php bin/swoft gen:controller user --prefix /users --rest
 ```
 
 ## 示例
@@ -179,5 +198,3 @@ Controller 中也可以使用 Bean 相关的方法
 > **注意**: `@Controller` 注解已经实现了 `@Bean` 的功能, 不能和 `@Bean` 注解同时使用
 
 其他注解方法, 比如 `@Inject`, 参考 [Bean容器](../core/container.md)
-
-

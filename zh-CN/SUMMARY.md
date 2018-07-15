@@ -4,11 +4,15 @@
 
 * [介绍](README.md)
   * [版本更新](introduction/update.md)
-* [快速起步](quickstart/overview.md)
+* [环境搭建](env-build/index.md)
   * [环境需求](quickstart/enviroment.md)
   * [框架安装](quickstart/install.md)
   * [使用Docker](quickstart/docker-installation.md)
   * [开发准备](quickstart/development.md)
+* [快速起步](quickstart/overview.md)
+  * [服务启动与管理](quickstart/start-server.md)
+  * [env环境配置](quickstart/env-config.md)
+  * [应用简介](quickstart/app-intro.md)
 
 ### 框架核心
 
@@ -102,7 +106,6 @@
   * [运行问题](question/runtime.md)
   * [一些说明](question/other.md)
 * [参与贡献](#)
-  * [加入 Swoft](question/join.md)
+  * [加入Swoft](question/join.md)
   * [如何贡献](question/contributing.md)
-
 

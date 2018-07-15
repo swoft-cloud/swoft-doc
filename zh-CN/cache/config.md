@@ -4,7 +4,7 @@
 
 ## 驱动配置
 
-缓存默认配置是redis，用户也可以在app/config/beans/base.php文件里面新增配置信息。
+缓存默认配置是redis，用户也可以在 `app/config/beans/base.php` 文件里面新增配置信息。
 
 ```php
 return [
@@ -24,10 +24,11 @@ return [
 - drivers 配置自定义驱动，key是驱动名称
 
 ## 连接池配置
-连接池配置有properties和env两种方式，但是evn配置会覆盖properties。
+连接池配置有 properties 和 env 两种方式，但是 env 配置会覆盖 properties。
 
 ### properties
-app/config/properties/cache.php配置文件
+
+`app/config/properties/cache.php` 配置文件
 
 ```php
 return [
@@ -48,6 +49,9 @@ return [
     ],
 ];
 ```
+
+**参数说明：**
+
 - name 连接池节点名称，用于服务发现
 - uri 连接地址信息
 - maxActive 最大活跃连接
@@ -59,10 +63,13 @@ return [
 - serialize 是否序列化
 - db 缓存数据库index
 
-### env
+> TIPS: 当密码中含有特殊字符时，需先将密码部分urlencode一下，比如 `auth=W&AAA` 变换为 `auth=W%26AAA`
 
-.env配置文件
-```
+### env配置
+
+.env 配置文件
+
+```ini
 REDIS_NAME=redis
 REDIS_DB=2
 REDIS_URI=127.0.0.1:6379,127.0.0.1:6379
@@ -85,4 +92,3 @@ REDIS_SERIALIZE=1
 - REDIS_TIMEOUT 超时时间，单位秒
 - REDIS_SERIALIZE 是否序列化
 - REDIS_DB 缓存数据库index
-

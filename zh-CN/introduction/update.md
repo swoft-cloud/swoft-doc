@@ -1,3 +1,3 @@
-# 版本更新
+# changelog
 
-# 1.0-beta
+changelog: https://github.com/swoft-cloud/swoft/blob/master/changelog.md
