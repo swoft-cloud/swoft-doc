@@ -79,6 +79,8 @@ class RpcController
 
 ## 非 Swoft 框架
 
+如果服务端采用 JSON 协议，非 Swoft 框架可以按照下面的 demo 格式封装调用
+
 ```php
 $result = call('App\Lib\DemoInterface', '1.0.1', 'getUsers', [['1','2']]);
 var_dump($result);
@@ -107,4 +109,4 @@ function call(string $interface, string $version, string $method, array $params 
 }
 ```
 
-> 如果服务端采用 JSON 协议，非 Swoft 框架可以按照这个 demo 格式封装调用
+> 如果服务端rpc 配置了 `package_eof = "\r\n"`, 客户端则需要在发送的data后追加 `\r\n`
