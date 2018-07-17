@@ -15,7 +15,7 @@
 
 ## properties
 
-配置 `app/config/properties/db.php`
+配置 `config/properties/db.php`
 
 ```php
 return [
