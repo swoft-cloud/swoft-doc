@@ -130,8 +130,8 @@ $contentType = $request->getContentType();
 ### GET数据
 
 ```php
-$data = $request->get();
-$some = $request->get('key', 'default value')
+$data = $request->query();
+$some = $request->querq('key', 'default value')
 ```
 
 ### POST数据
