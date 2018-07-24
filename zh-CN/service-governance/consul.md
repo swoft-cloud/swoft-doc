@@ -84,7 +84,7 @@ consul agent -server -data-dir /data/consul -node=swoft02 -bind=0.0.0.0 -client=
 #####服务器3，IP 192.168.1.120
 
 ```shell
-consul agent -server -data-dir /data/consul -node=swoft03 -bind=0.0.0.0 -clienti=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -join 192.168.1.100
+consul agent -server -data-dir /data/consul -node=swoft03 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -join 192.168.1.100
 ```
 
 以上服务器2和服务3使用 -join 加入集群，并且使用同一个数据名称sunny
@@ -94,7 +94,7 @@ consul agent -server -data-dir /data/consul -node=swoft03 -bind=0.0.0.0 -clienti
 #####服务器4，IP 192.168.1.130
 
 ```shell
-consul agent -ui -data-dir /data/consul -node=swoft04 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny  -join 192.168.1.100
+consul agent -ui -data-dir /data/consul -node=swoft04 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -join 172.17.192.148 -ui -client=0.0.0.0 -join 192.168.1.100
 ```
 
 客户端如果不使用-server就是客户端模式运行，其他参数同上，服务端和客户端都启动了之后可以在浏览器输入 http://192.168.1.130:8500 来查看信息
