@@ -97,6 +97,7 @@
   * [服务降级](service-governance/fallback.md)
   * [负载均衡](service-governance/balance.md)
   * [服务注册与发现](service-governance/register-discovery.md)
+  * [consul安装使用](service-governance/consul.md)
 * [开发者工具](devtool/index.md)
   * [工具配置](devtool/config.md)
   * [表结构生成实体类](db/create-entity.md)
