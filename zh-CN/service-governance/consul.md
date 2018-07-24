@@ -42,14 +42,14 @@ Swoft 推荐使用的就是 Consul，Consul是一个使用go写的服务注册�
 
 1、登录官网进行下载，[下载地址](https://www.consul.io/downloads.html)
 
-```shell
+```bash
 wget https://releases.hashicorp.com/consul/1.2.1/consul_1.2.1_linux_amd64.zip
 unzip consul_1.2.1_linux_amd64.zip
 ```
 
 2、设置环境变量，如果不设置可以直接把consul执行文件移动到/usr/bin目录下
 
-```shell
+```bash
 mv consul /usr/bin
 ```
 
@@ -63,7 +63,7 @@ ok, 安装成功后，我们接下来进行一些配置来启用consul
 
 > 这种方式适合用于搭建服务调试使用
 
-```shell
+```bash
 consul agent -bootstrap-expect 1 -server -data-dir /data/consul -node=swoft01 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -client=0.0.0.0 -ui
 ```
 
