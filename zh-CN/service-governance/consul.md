@@ -2,7 +2,7 @@
 
 微服务带来最大的好处就是把整个大项目分割成不同的服务，运行在不同服务器上，实现解耦和分布式处理。微服务虽然有很多好处，但是也会有不好的一方面。任何事物都会有两面性，在微服务里面运维会是一个很大的难题，如果有一天我们的服务数量非常的多，然后我们又不知道哪一个服务在什么机器上。可能会有人说这部分直接写在程序的配置里面就好了，当我们服务少的时候是可以这么做的，也允许这么做，但是在实际当中我们要尽量避免这么做，比如说我们某一个服务，地址换了，那么我们设计的相关代码就得修改重新部署；又或者说我们有一天上线一个新服务或者下线一个服务，这时候我们又得修改程序代码，这是非常不合理的做法。那么有没有什么可以解决这样的问题呢？这里就需要用到我们的服务注册和发现了。
 
-###没有服务注册发现的结构
+### 没有服务注册发现的结构
 
 ![没有服务注册发现的结构](images/consul1.png)
 
@@ -12,7 +12,7 @@
 
 而当我们有使用服务注册发现之后的结构体是什么样子的呢？
 
-###有服务注册发现的结构
+### 有服务注册发现的结构
 
 ![有服务注册发现的结构](images/consul2.png)
 
@@ -20,7 +20,7 @@
 
 我们从上图可以发现，当我们有注册中心之后调用者不需要自己去维护所有服务的信息了，仅需要向注册中心请求获取服务，就可以拿到想要的服务信息。这样当我们的服务有所调整，或者上线下线服务，都要可以轻松操作，并且可以在注册中间检查到服务的健康情况，帮助运维人员快速定位到故障的服务器。
 
-> 在Swoft这个框架里面推荐我们使用的就是consul，consult是一个使用go写的服务注册、发现、配置管理系统。
+> 在Swoft这个框架里面推荐我们使用的就是consul，consul是一个使用go写的服务注册、发现、配置管理系统。
 
 * Agent：Agent是Consul集群中一个常驻后台的程序。Agent有两种模式，一种是服务端，一种是客户端。所有Agent都可以运行DNS或者HTTP接口，并且负责检查服务是否存活，和保持服务同步。
 
@@ -34,8 +34,8 @@
 
 在consult里面有很多组件，在这里我们暂时使用一个组件就够了就是agent，对于consul的安装也是非常简单的毕竟只有一个二进制文件包，所以直接下载就可以使用了。
 
+### 安装步骤
 
-###安装步骤
 1、登录官网进行下载，[下载地址](https://www.consul.io/downloads.html)
 
 ```shell
@@ -51,9 +51,9 @@ mv consul /usr/bin
 
 3、Server配置
 
-###单机配置
+### 单机配置
 
-#####服务器1，IP 192.168.1.100
+##### 服务器1，IP 192.168.1.100
 
 > 这种方式适合用于搭建服务调试使用
 
@@ -63,19 +63,18 @@ consul agent -bootstrap-expect 1 -server -data-dir /data/consul -node=swoft01 -b
 
 可以通过 http://192.168.1.100:8500 查看服务信息
 
-
-###集群配置
+### 集群配置
 
 > 这种方式适用于生产环境
 
-#####服务器1，IP 192.168.1.100
+##### 服务器1，IP 192.168.1.100
 
 ```shell
 consul agent -bootstrap-expect 2 -server -data-dir /data/consul -node=swoft01 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -client=0.0.0.0
 ```
 上面这个命令是以服务端模式启动一个代理，进群有两个扩展机器，设置集群持久化数据存放在/data/consul0下面，节点名称是swoft01，绑定0.0.0.0地址，服务配置文件存放在/etc/consul.d，开启检查心跳，数据中心的名称是dc1，可访问的客户端地址是0.0.0.0
 
-#####服务器2，IP 192.168.1.110
+##### 服务器2，IP 192.168.1.110
 
 ```shell
 consul agent -server -data-dir /data/consul -node=swoft02 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -join 192.168.1.100
@@ -91,7 +90,7 @@ consul agent -server -data-dir /data/consul -node=swoft03 -bind=0.0.0.0 -clienti
 
 4、Client配置
 
-#####服务器4，IP 192.168.1.130
+##### 服务器4，IP 192.168.1.130
 
 ```shell
 consul agent -ui -data-dir /data/consul -node=swoft04 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny  -join 192.168.1.100
@@ -111,7 +110,7 @@ consul members
 consul info
 ```
 
-####命令解析
+#### 命令解析
 
 更多[命令解析](https://www.consul.io/docs/agent/options.html)
 
