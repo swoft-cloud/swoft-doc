@@ -32,6 +32,7 @@ return [
 - providers 配置自定义服务，通过KEY名称使用
 ```
 ### Consul服务方配置
+
 Consul 服务提供方，在`.env`和`./config/properties/provider.php`都可以配置，但是`env`会覆盖`properties`
 
 **env**    
@@ -87,12 +88,6 @@ return [
 ```
 
 - 参数具体含义，参考 Consul 相关文档
-
-## Swoft客户端
-
-
-
-
 
 
 
