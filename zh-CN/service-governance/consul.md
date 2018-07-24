@@ -43,7 +43,7 @@ wget https://releases.hashicorp.com/consul/1.2.1/consul_1.2.1_linux_amd64.zip
 unzip consul_1.2.1_linux_amd64.zip
 ```
 
-2、设置环境变量，如果不设置可以直接把consul执行文件移动到/use/bin目录下
+2、设置环境变量，如果不设置可以直接把consul执行文件移动到/usr/bin目录下
 
 ```shell
 mv consul /use/bin
