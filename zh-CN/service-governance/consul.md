@@ -75,20 +75,20 @@ consul agent -bootstrap-expect 1 -server -data-dir /data/consul -node=swoft01 -b
 
 - **服务器1，IP 192.168.1.100**
 
-```shell
+```bash
 consul agent -bootstrap-expect 2 -server -data-dir /data/consul -node=swoft01 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -client=0.0.0.0
 ```
 上面这个命令是以服务端模式启动一个代理，进群有两个扩展机器，设置集群持久化数据存放在/data/consul0下面，节点名称是swoft01，绑定0.0.0.0地址，服务配置文件存放在/etc/consul.d，开启检查心跳，数据中心的名称是dc1，可访问的客户端地址是0.0.0.0
 
 - **服务器2，IP 192.168.1.110**
 
-```shell
+```bash
 consul agent -server -data-dir /data/consul -node=swoft02 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -join 192.168.1.100
 ```
 
 - **服务器3，IP 192.168.1.120**
 
-```shell
+```bash
 consul agent -server -data-dir /data/consul -node=swoft03 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -join 192.168.1.100
 ```
 
@@ -98,7 +98,7 @@ consul agent -server -data-dir /data/consul -node=swoft03 -bind=0.0.0.0 -client=
 
 - **服务器4，IP 192.168.1.130**
 
-```shell
+```bash
 consul agent -ui -data-dir /data/consul -node=swoft04 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -ui -client=0.0.0.0 -join 192.168.1.100
 ```
 
@@ -106,13 +106,13 @@ consul agent -ui -data-dir /data/consul -node=swoft04 -bind=0.0.0.0 -config-dir 
 
 查看集群成员:
 
-```shell
+```bash
 consul members
 ```
 
 查看集群信息:
 
-```shell
+```bash
 consul info
 ```
 
