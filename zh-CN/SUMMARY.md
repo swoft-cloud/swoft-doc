@@ -29,6 +29,9 @@
 
 ### 组件列表
 
+* [认证管理](auth/index.md)
+  * [ACL](auth/acl.md)
+  * [使用帮助](auth/help.md)
 * [命令行](console/index.md)
   * [命令行配置](console/config.md)
   * [定义命令](console/definition.md)
