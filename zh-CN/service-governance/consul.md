@@ -6,7 +6,7 @@
 
 ### 没有服务注册发现的结构
 
-![没有服务注册发现的结构](images/consul1.png)
+![没有服务注册发现的结构](../images/consul1.png)
 
 <center>没有服务发现的架构</center>
 
@@ -16,7 +16,7 @@
 
 ### 有服务注册发现的结构
 
-![有服务注册发现的结构](images/consul2.png)
+![有服务注册发现的结构](../images/consul2.png)
 
 <center>有服务注册发现的结构</center>
 
