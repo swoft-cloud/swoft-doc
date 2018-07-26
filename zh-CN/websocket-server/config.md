@@ -28,6 +28,8 @@ WS_ENABLE_HTTP=true # 是否启用http处理
 
 ## 扫描配置
 
+> swoft `v1.0.6` 以上可以忽略此条，此版本以上已经是默认扫描app目录下所有文件了
+
 在 `config/properties/app.php` 文件新增扫描配置，添加 `app/WebSocket` 目录
 
 > 如果你的没有这项配置，请手动加上它
