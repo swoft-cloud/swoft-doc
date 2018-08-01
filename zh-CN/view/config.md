@@ -34,10 +34,11 @@
 - `include(string $view, array $data, bool $outputIt = true)`
 - `fetch(string $view, array $data)`
 
-> 两个方法效果一样。 只是 `fetch()` 需要你手动调用 echo 
-> `<?= $this->fetch('layouts/default/header') ?>`
+> 两个方法的区别是 `fetch()` 需要你手动调用 echo `<?= $this->fetch('layouts/default/header') ?>`
 
-> 注意： 变量数据有作用域限制。 即是传入视图的变量，无法在包含的视图里直接使用，需要手动通过第二个参数 `$data` 传入。
+**注意：**
+
+> 变量数据有作用域限制。 即是传入视图的变量，无法在包含的视图里直接使用，需要通过第二个参数 `$data` 传入到子级视图
 
 ```php
 <body>
