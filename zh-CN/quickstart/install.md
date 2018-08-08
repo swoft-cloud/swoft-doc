@@ -5,6 +5,7 @@
 ```bash
 composer create-project swoft/swoft swoft
 ```
+> 通过 `Packagist国内镜像` 加速国内下载速度，请参阅 https://packagist.laravel-china.org
 
 ## 手动安装
 
