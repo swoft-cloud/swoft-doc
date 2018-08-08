@@ -131,7 +131,7 @@ $contentType = $request->getContentType();
 
 ```php
 $data = $request->query();
-$some = $request->querq('key', 'default value')
+$some = $request->query('key', 'default value')
 ```
 
 ### POST数据
@@ -144,8 +144,8 @@ $some = $request->post('key', 'default value')
 ### SERVER数据
 
 ```php
-$data = $request->serverParams();
-$some = $request->serverParam('key', 'default value')
+$data = $request->getServerParams();
+$some = $request->server('key', 'default value')
 ```
 
 ### 额外的方法
