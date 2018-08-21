@@ -28,7 +28,7 @@ services:
 
 > 请注意上面配置中的注释说明。确保配置正确，以免无法运行容器
 
-docker 使用可以参考文档 [使用 Docker](quickstart/docker-installation.md)
+docker 使用可以参考文档 [使用 Docker](docker-installation.md)
 
 ## 如何在 Mac 搭建本地开发环境
 
