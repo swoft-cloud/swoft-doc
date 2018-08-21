@@ -49,6 +49,8 @@ docker stop swoft
 
 ## docker-compose
 
+> 运行之前需要先clone swoft项目代码到本机，再进入到swoft项目目录运行下面的命令
+
 ```bash
 // 运行容器
 docker-compose up -d swoft
