@@ -49,7 +49,10 @@ docker stop swoft
 
 ## docker-compose
 
-> 运行之前需要先clone swoft项目代码到本机，再进入到swoft项目目录运行下面的命令
+- 运行之前需要先clone swoft项目代码到本机, 使用composer安装依赖包
+- 进入到swoft项目目录运行下面的命令，启动docker容器
+
+> `composer安装依赖` 需要一定的环境支持，若本机不满足条件。可以修改 `docker-compose.yml` 的command 为 `bash`。 先启动容器，再进入容器运行`composer install`, 之后手动用 swoft 的命令启动服务 也是可以的。
 
 ```bash
 // 运行容器
