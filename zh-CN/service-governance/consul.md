@@ -99,7 +99,7 @@ consul agent -server -data-dir /data/consul -node=swoft03 -bind=0.0.0.0 -client=
 - **服务器4，IP 192.168.1.130**
 
 ```bash
-consul agent -ui -data-dir /data/consul -node=swoft04 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -ui -client=0.0.0.0 -join 192.168.1.100
+consul agent -ui -data-dir /data/consul -node=swoft04 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -client=0.0.0.0 -join 192.168.1.100
 ```
 
 客户端如果不使用-server就是客户端模式运行，其他参数同上，服务端和客户端都启动了之后可以在浏览器输入 http://192.168.1.130:8500 来查看信息
@@ -120,7 +120,7 @@ consul info
 
 更多[命令解析](https://www.consul.io/docs/agent/options.html)
 
-* `-bootstrap-expect` 数据中心中预期的服务器数。不应提供此值，或者该值必须与群集中的其他服务器一致。提供后，Consul将等待指定数量的服务器可用，然后引导群集。这允许自动选择初始领导者。这不能与传统-bootstrap标志一起使用。此标志需要在服务端模式下运行。
+* `-bootstrap-expect` 数据中心中预期的服务器数。该值必须与集群中的其他服务器一致。提供后，Consul将等待指定数量的服务器可用，然后引导群集。这允许自动选择初始领导者。这不能与传统-bootstrap标志一起使用。此标志需要在服务端模式下运行。
 * `-server` 以服务端模式启动
 * `-data-dir` 数据存放位置，这个用于持久化保存集群状态
 * `-node` 群集中此节点的名称。这在群集中必须是唯一的。默认情况下，这是计算机的主机名。
