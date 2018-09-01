@@ -17,18 +17,3 @@ return [
 ];
 
 ```
-
-## 自定义进程
-配置自定义进程扫描目录，app/config/properties/app.php
-```php
-return [
-    // ....
-    'beanScan'     => [
-        // ....
-        'App\Process',
-        // ....
-    ],
-    // ....
-];
-
-```
