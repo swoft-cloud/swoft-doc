@@ -34,7 +34,7 @@ class DemoTask
     public function asyncJob(string $p1, string $p2)
     {
         // Do anything you want.
-        // No return value in async mode.
+        return sprintf('async-%s-%s', $p1, $p2);
     }
     
 }
