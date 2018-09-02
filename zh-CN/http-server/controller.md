@@ -1,25 +1,25 @@
 # 控制器 Controller
 
-控制器作为HTTP服务的核心组件, 串接起一次请求的整个生命周期. 通过 **注解** 的方式, 相较于传统的 controller, 代码更简洁, 用户可以更关注业务逻辑.
+控制器作为HTTP服务的核心组件，串接起一次请求的整个生命周期. 通过 **注解** 的方式，相较于传统的 controller，代码更简洁，用户可以更关注业务逻辑。
 
 ## 路由 Route
 
-主要通过 `@Controller` + `@RequestMapping` 注解实现, 前者定义 **前缀**, 后者定义 **后缀**
+主要通过 `@Controller` + `@RequestMapping` 注解实现，前者定义 **前缀**，后者定义 **后缀**
 
 ### `@Controller`
 
 设置在 Controller 类上
 
 - 显式指定路由前缀: `@Controller(prefix="/route")` 或 `@Controller("/route")`
-- 隐式指定路由前缀: `@Controller()` 默认自动解析 controller 前的名称, 并且使用驼峰格式.
-  - 比如 `HttpClientController` 将会设置路由 prefix 为 `httpClient`
+- 隐式指定路由前缀: `@Controller()` 默认自动解析 controller 前的名称，并且使用驼峰格式。
+  - 比如 `HttpClientController` 将会设置路由 prefix 为 `httpClient`，注意此操作不会解析文件夹，例如该 Controller 位于 'app/Admin/HttpClientController.php'，最终设置的路由 prefix 仍然为 `httpClient`。
 
 ### `@RequestMapping`
 
 注解参数：
 
 - `route` 设置路由path，也是默认参数。
-- `method` 设置允许的请求方法, 可以多个。e.g. `GET` `POST`
+- `method` 设置允许的请求方法，可以多个。e.g. `GET` `POST`
 
 设置控制器类的在Action方法上
 
@@ -35,9 +35,9 @@
 
 - 显式指定路由后缀: `@RequestMapping(route="index")`或 `@RequestMapping("index")`
 - 隐式指定路由后缀: 不使用 `@RequestMapping` 或者使用 `@RequestMapping()`, 默认解析方法名为后缀
-- 限定HTTP方法: `@RequestMapping(route="index", method=RequestMethod::GET)` 指定路由支持的HTTP方法, 默认是支持`GET`和`POST`。
+- 限定HTTP方法: `@RequestMapping(route="index", method=RequestMethod::GET)` 指定路由支持的HTTP方法，默认是支持`GET`和`POST`。
   - 比如 `method={RequestMethod::POST,RequestMethod::PUT}` 设置路由支持 `POST` 和 `PUT`
-- 指定路由参数: `@RequestMapping(route="anyName/{name}")`, Action 方法中可以直接使用 `$name` 作为方法参数
+- 指定路由参数: `@RequestMapping(route="anyName/{name}")`，Action 方法中可以直接使用 `$name` 作为方法参数
 
 ## 使用说明
 
@@ -94,7 +94,7 @@ class RouteController
 
 ## 请求 Request
 
-Swoft HTTP服务中的 Request, 是对 [`\Swoole\Http\Request`](https://wiki.swoole.com/wiki/page/328.html) 基于 [PSR-7](https://www.php-fig.org/psr/psr-7/) 标准的封装, 常用方法可以参考 `app/Controllers/DemoController.php`:
+Swoft HTTP服务中的 Request，是对 [`\Swoole\Http\Request`](https://wiki.swoole.com/wiki/page/328.html) 基于 [PSR-7](https://www.php-fig.org/psr/psr-7/) 标准的封装，常用方法可以参考 `app/Controllers/DemoController.php`:
 
 ```php
  public function index(Request $request)
@@ -116,15 +116,15 @@ Swoft HTTP服务中的 Request, 是对 [`\Swoole\Http\Request`](https://wiki.swo
 }
 ```
 
-**注意**: [`\Swoole\Http\Request`](https://wiki.swoole.com/wiki/page/328.html) 对 HTTP Request 进行了封装, 不能像以往一样使用 `$_POST / $_GET` 等全局变量, 也不推荐这样的使用方式, 框架层通常都做了更好的封装和兼容, 比如 `$_POST` 无法取到 `application/json` 格式的数据
+**注意**: [`\Swoole\Http\Request`](https://wiki.swoole.com/wiki/page/328.html) 对 HTTP Request 进行了封装，不能像以往一样使用 `$_POST / $_GET` 等全局变量，也不推荐这样的使用方式，框架层通常都做了更好的封装和兼容，比如 `$_POST` 无法取到 `application/json` 格式的数据
 
 ## 响应 Response
 
-Swoft 对HTTP服务的 Response 做了很好的封装, 其中一个设计哲学:
+Swoft 对HTTP服务的 Response 做了很好的封装，其中一个设计哲学:
 
-> 返回的格式类型, 不应该由服务端指定, 而是根据客户端请求时的 Header 里面的 Accept 决定
+> 返回的格式类型，不应该由服务端指定，而是根据客户端请求时的 Header 里面的 Accept 决定
 
-当 Action 返回一个 array 或 Arrayable 对象, Response 将根据 Request Header 的 Accept 来返回数据, 目前支持 `View / Json / Raw`
+当 Action 返回一个 array 或 Arrayable 对象，Response 将根据 Request Header 的 Accept 来返回数据，目前支持 `View / Json / Raw`
 
 可以参考 `app/Controllers/IndexController.php`:
 
@@ -186,4 +186,4 @@ Controller 中也可以使用 Bean 相关的方法
 
 > **注意**: `@Controller` 注解已经实现了 `@Bean` 的功能, 不能和 `@Bean` 注解同时使用
 
-其他注解方法, 比如 `@Inject`, 参考 [Bean容器](../core/container.md)
+其他注解方法, 比如 `@Inject`，参考 [Bean容器](../core/container.md)
