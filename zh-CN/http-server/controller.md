@@ -11,8 +11,8 @@
 设置在 Controller 类上
 
 - 显式指定路由前缀: `@Controller(prefix="/route")` 或 `@Controller("/route")`
-- 隐式指定路由前缀: `@Controller()` 默认自动解析 controller 前的名称，并且使用驼峰格式。
-  - 比如 `HttpClientController` 将会设置路由 prefix 为 `httpClient`，注意此操作不会解析文件夹，例如该 Controller 位于 'app/Admin/HttpClientController.php'，最终设置的路由 prefix 仍然为 `httpClient`。
+- 隐式指定路由前缀: `@Controller()` 默认自动解析 `Controller` 的名称，并且使用驼峰格式。
+  - 比如 `HttpClientController` 将会设置路由 `prefix` 为 `httpClient`，注意此操作不会解析文件夹，例如该 `Controller` 位于 `app/Admin/HttpClientController.php`，最终设置的路由 prefix 仍然为 `httpClient`。
 
 ### `@RequestMapping`
 
