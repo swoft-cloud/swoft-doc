@@ -6,3 +6,5 @@ Swoft 开源框架，非商业和公司项目，个人组织开发永久更新�
 1. fork 需要统一的组件代码库 [swoft-component](https://github.com/swoft-cloud/swoft-component)
 2. 发送 Pull Request 修改请求
 3. 等待 Swoft 开发组审核和合并
+
+> 所有官方维护的组件均由[swoft-component](https://github.com/swoft-cloud/swoft-component)项目统一合并后分发到各个组件
