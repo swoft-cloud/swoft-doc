@@ -19,7 +19,7 @@
 注解参数：
 
 - `route` 设置路由path，也是默认参数。
-- `method` 设置允许的请求方法, 可以多个。eg `GET` `POST`
+- `method` 设置允许的请求方法, 可以多个。e.g. `GET` `POST`
 
 设置控制器类的在Action方法上
 
@@ -69,8 +69,6 @@ php bin/swoft gen:controller user --prefix /users --rest
 
 ```php
 /**
- * action demo
- *
  * @Controller(prefix="/route")
  */
 class RouteController
@@ -78,24 +76,15 @@ class RouteController
     /**
      * @RequestMapping()
      */
-    public function index()
+    public function index(): string
     {
         return 'index';
     }
 
     /**
      * @RequestMapping(route="user/{uid}/book/{bid}/{bool}/{name}")
-     *
-     * @param bool    $bool
-     * @param Request  $request
-     * @param int      $bid
-     * @param string   $name
-     * @param int      $uid
-     * @param Response $response
-     *
-     * @return array
      */
-    public function funcArgs(bool $bool, Request $request, int $bid, string $name, int $uid, Response $response)
+    public function funcArgs(bool $bool, Request $request, int $bid, string $name, int $uid, Response $response): array
     {
         return [$bid, $uid, $bool, $name, \get_class($request), \get_class($response)];
     }
@@ -105,7 +94,7 @@ class RouteController
 
 ## 请求 Request
 
-Swoft HTTP服务中的 Request, 是对 [`\Swoole\Http\Request`](https://wiki.swoole.com/wiki/page/328.html) 基于 PSR 标准的封装, 常用方法可以参考 `app/Controllers/DemoController.php`:
+Swoft HTTP服务中的 Request, 是对 [`\Swoole\Http\Request`](https://wiki.swoole.com/wiki/page/328.html) 基于 [PSR-7](https://www.php-fig.org/psr/psr-7/) 标准的封装, 常用方法可以参考 `app/Controllers/DemoController.php`:
 
 ```php
  public function index(Request $request)
@@ -127,7 +116,7 @@ Swoft HTTP服务中的 Request, 是对 [`\Swoole\Http\Request`](https://wiki.swo
 }
 ```
 
-**注意**: [`\Swoole\Http\Request`](https://wiki.swoole.com/wiki/page/328.html) 对 HTTP Request 进行了封装, 不能像以往一样使用 `$_POST / $_GET` 等全局变量. 也不推荐这样的使用方式, 框架层通常都做了更好的封装和兼容, 比如 `$_POST` 无法取到 `application/json` 格式的数据
+**注意**: [`\Swoole\Http\Request`](https://wiki.swoole.com/wiki/page/328.html) 对 HTTP Request 进行了封装, 不能像以往一样使用 `$_POST / $_GET` 等全局变量, 也不推荐这样的使用方式, 框架层通常都做了更好的封装和兼容, 比如 `$_POST` 无法取到 `application/json` 格式的数据
 
 ## 响应 Response
 
@@ -150,7 +139,7 @@ public function index(): array
     $name = 'Swoft';
     $notes = [
         'New Generation of PHP Framework',
-        'Hign Performance, Coroutine and Full Stack'
+        'High Performance, Coroutine and Full Stack'
     ];
     $links = [
         [
@@ -188,7 +177,7 @@ public function index(): array
 
 ## 最佳实践
 
-- 使用 PSR 标准来封装 HTTP服务的 Request 和 Response
+- 使用 [PSR-7](https://www.php-fig.org/psr/psr-7/) 标准来封装 HTTP服务的 Request 和 Response
 - **约定大于配置**, 路由应该在用户看到 URI 的时候, 就能找到相应的 `Controller/Action`
 
 ## 其他
