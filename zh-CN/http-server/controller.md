@@ -1,6 +1,6 @@
 # 控制器 Controller
 
-控制器作为HTTP服务的核心组件，串接起一次请求的整个生命周期. 通过 **注解** 的方式，相较于传统的 controller，代码更简洁，用户可以更关注业务逻辑。
+控制器作为HTTP服务的核心组件，串接起一次请求的整个生命周期. 通过 **注解** 的方式，相较于传统的 Controller，代码更简洁，用户可以更关注业务逻辑。
 
 ## 路由 Route
 
@@ -19,7 +19,7 @@
 注解参数：
 
 - `route` 设置路由path，也是默认参数。
-- `method` 设置允许的请求方法，可以多个。e.g. `GET` `POST`
+- `method` 设置允许的请求方法，可以多个，e.g. `GET` `POST`。
 
 设置控制器类的在Action方法上
 
@@ -35,7 +35,7 @@
 
 - 显式指定路由后缀: `@RequestMapping(route="index")`或 `@RequestMapping("index")`
 - 隐式指定路由后缀: 不使用 `@RequestMapping` 或者使用 `@RequestMapping()`, 默认解析方法名为后缀
-- 限定HTTP方法: `@RequestMapping(route="index", method=RequestMethod::GET)` 指定路由支持的HTTP方法，默认是支持`GET`和`POST`。
+- 限定HTTP方法: `@RequestMapping(route="index", method=RequestMethod::GET)` 指定路由支持的HTTP方法，默认是支持`GET`和`POST`
   - 比如 `method={RequestMethod::POST,RequestMethod::PUT}` 设置路由支持 `POST` 和 `PUT`
 - 指定路由参数: `@RequestMapping(route="anyName/{name}")`，Action 方法中可以直接使用 `$name` 作为方法参数
 
@@ -65,7 +65,7 @@ php bin/swoft gen:controller user --prefix /users --rest
 
 ## 示例
 
-常用方法可以参考 `app/Controllers/RouteController.php`:
+常用方法可以参考 [Swoft项目](https://github.com/swoft-cloud/swoft) 的 `app/Controllers/RouteController.php`:
 
 ```php
 /**
