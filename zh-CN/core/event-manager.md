@@ -41,7 +41,7 @@ app.stop
 
 > 当然，你在事件到达监听器前停止了本次事件的传播`$event->stopPropagation(true);`，就不会被后面的监听器接收到了。
 
-## swoft 中使用
+## swoft中使用自定义事件
 
 ### 注册事件管理服务
 
@@ -55,7 +55,7 @@ app.stop
 
 ### 注册事件监听
 
-- 用注解tag `@Listener("event name")` 来注册
+- 用注解tag `@Listener("event name")` 来注册用户自定义的事件监听
 
 ```php
 /**
@@ -83,3 +83,20 @@ class ApplicationLoaderListener implements EventHandlerInterface
 \Swoft::trigger('event name', null, $arg0, $arg1);
 // OR use \Swoft\App::trigger();
 ```
+
+## Swoole 事件
+
+用注解tag `@SwooleListener("event name")` 来注册用户swoole的回调事件监听, 支持所有swoole官网列出来的事件回调名。
+
+## Server 事件
+
+用注解tag `@ServerListener("event name")` 来注册用户服务器级别的事件监听。
+是对 `@SwooleListener` 的补充扩展，除了支持swoole的事件以外，还增加了一些额外的可用事件监听。
+
+区别是：
+
+ - SwooleListener 中事件的监听器只允许一个，并且是直接注册到 swoole server上的(**监听相同事件将会被覆盖**)
+ - ServerListener 允许对swoole事件添加多个监听器，会逐个通知
+ - ServerListener 不影响 `/framework/src/Bootstrap/Server` 里基础swoole事件的绑定
+
+> swoole和server级别的事件监听器，应当放置在boot阶段。(即通常应放置于 `App\Boot` 空间下)
