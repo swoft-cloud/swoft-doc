@@ -1,15 +1,16 @@
-# Swoft Document
+# Swoft Documentation
 
 Modern High performance AOP and Coroutine PHP Framework, base on Swoole 
 
-- [Gitee repo](https://gitee.com/swoft/swoft)
-- [Github repo](https://github.com/swoft-cloud/swoft)
+- [Github repository (Primary repository)](https://github.com/swoft-cloud/swoft)
+- [Gitee repository](https://gitee.com/swoft/swoft)
 - [Official website](https://www.swoft.org/)
-- [Document website](https://doc.swoft.org/)
+- [Documentation website](https://doc.swoft.org/)
 
-## Discuss
+## Chats & Discussion
 
-- QQ Group: **548173319**
+- QQ Group (1): **548173319**
+- QQ Group (2): **778656850**
 
 ## Languages
 
