@@ -62,15 +62,15 @@ class AdminNormalAccount implements AccountTypeInterface
      */
     public function login(array $data) : AuthResult
     {
-        $username = $data[self::LOGIN_IDENTITY];
-        $password = $data[self::LOGIN_CREDENTIAL];
-        $user = $this->dao::findOneByUsername($username);
-        $res = new AuthResult();
-        if($user instanceof AdminUserBean && $user->verify($password)){
-            $res->setExtendedData([self::ROLE => $user->getIsAdministrator()]);
-            $res->setIdentity($user->getId());
+        $identity = $data['identity'];
+        $credential = $data['credential'];
+        $user = $this->dao::findOneByUsername($identity);
+        $result = new AuthResult();
+        if($user instanceof AdminUserBean && $user->verify($credential)){
+            $result->setExtendedData([self::ROLE => $user->getIsAdministrator()]);
+            $result->setIdentity($user->getId());
         }
-        return $res;
+        return $result;
     }
 
     /**
@@ -105,11 +105,11 @@ class AuthManagerService extends AuthManager implements AuthManagerInterface
      */
     protected $cacheEnable = true;
 
-    public function adminBasicLogin(string $username, string $password) : AuthSession
+    public function adminBasicLogin(string $identity, string $credential) : AuthSession
     {
         return $this->login(AdminNormalAccount::class, [
-            'identity' => $username,
-            'crendential' => $password
+            'identity' => $identity,
+            'credential' => $credential
         ]);
     }
 }
@@ -143,18 +143,18 @@ class AuthorizationsResource
      */
     public function oauth(Request $request) : array
     {
-        $username = $request->getAttribute(AuthConstants::BASIC_USER_NAME) ?? '';
-        $password = $request->getAttribute(AuthConstants::BASIC_PASSWORD) ?? '';
-        if(!$username || !$password){
+        $identity = $request->getAttribute(AuthConstants::BASIC_USER_NAME) ?? '';
+        $credential = $request->getAttribute(AuthConstants::BASIC_PASSWORD) ?? '';
+        if(!$identity || !$credential){
             return [
                 "code" => 400,
-                "message" => "Basic Auth:{username,password}"
+                "message" => "Identity and Credential are required."
             ];
         }
         /** @var AuthManagerService $manager */
         $manager = App::getBean(AuthManagerInterface::class);
         /** @var AuthSession $session */
-        $session = $manager->adminBasicLogin($username, $password);
+        $session = $manager->adminBasicLogin($identity, $credential);
         $data = [
             'token' => $session->getToken(),
             'expire' => $session->getExpirationTime()
@@ -165,4 +165,4 @@ class AuthorizationsResource
 
 ```
 
-现在可以通过 Postman 请求我们的登录接口了
+现在可以通过 Postman 或 其它请求方式 请求我们的登录接口了
