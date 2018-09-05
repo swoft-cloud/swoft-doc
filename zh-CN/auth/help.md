@@ -1,44 +1,46 @@
 # 捕捉组件抛出的异常
 
 ```php
+use Swoft\Bean\Annotation\ExceptionHandler;
+use Swoft\Bean\Annotation\Handler;
+use Swoft\Http\Message\Server\Response;
+use Swoft\Auth\Exception\AuthException;
+
+/**
+ * @ExceptionHandler()
+ */
+class SwoftExceptionHandler
+{
+    
     /**
-     * @ExceptionHandler()
+     * @Inject()
+     * @var ErrorCodeHelper
      */
-    class SwoftExceptionHandler
-    {
-    
+    protected $authHelper;
+
+
     /**
-         * @Inject()
-         * @var ErrorCodeHelper
-         */
-        protected $authHelper;
-    
-    
-        /**
-         * @Handler(AuthException::class)
-         * @param Response $response
-         * @param \Throwable $t
-         * @return Response
-         */
-        public function handleAuthException(Response $response, \Throwable $t){
-            $errorCode = $t->getCode();
-            $statusCode = 500;
-            $message = $t->getMessage();
-    
-            if ($this->authHelper->has($errorCode)) {
-                $defaultMessage = $this->authHelper->get($errorCode);
-                $statusCode = $defaultMessage['statusCode'];
-                if (!$message) {
-                    $message = $defaultMessage['message'];
-                }
+     * @Handler(AuthException::class)
+     */
+    public function handleAuthException(Response $response, \Throwable $t) : Response
+    {
+        $errorCode = $t->getCode();
+        $statusCode = 500;
+        $message = $t->getMessage();
+
+        if ($this->authHelper->has($errorCode)) {
+            $defaultMessage = $this->authHelper->get($errorCode);
+            $statusCode = $defaultMessage['statusCode'];
+            if (!$message) {
+                $message = $defaultMessage['message'];
             }
-            $error = [
-                'code' => $errorCode,
-                'message' => $message ?: 'Unspecified error',
-            ];
-            $response = $response->withStatus($statusCode)->json($error);
-            return $response;
         }
-    
+        $error = [
+            'code' => $errorCode,
+            'message' => $message ?: 'Unspecified error',
+        ];
+        return $response->withStatus($statusCode)->json($error);
     }
+
+}
 ```
