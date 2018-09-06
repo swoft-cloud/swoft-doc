@@ -14,6 +14,7 @@ Authorization: Bearer {token}.
 ```php
 use Swoft\Auth\Mapping\AuthServiceInterface;
 use Swoft\Auth\AuthUserService;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * @Bean()
@@ -44,7 +45,8 @@ class AuthService extends AuthUserService implements AuthServiceInterface
 
 ```php
 \Swoft\Auth\Mapping\AuthServiceInterface::class => [
-    'class' => App\Domain\User\Service\AuthService::class,
+    // 你的 AuthService 的完整命名空间
+    'class' => \App\Domain\User\Service\AuthService::class,
 ]
 ```
 
