@@ -9,47 +9,48 @@
 ### @Strings
 
 - `@Strings` 字符串类型验证器
-- 实例 `@Strings(from=ValidatorFrom::GET, name="name", min=3, max=10, default="boy")`
+- 实例 `@Strings(from=ValidatorFrom::GET, name="name", min=3, max=10, default="boy",template="字段{name}必须在{min}到{max}之间,你提交的值是{value}")`
 - from: 参数定义验证数据类型, 默认 POST
 - name: 定义验证的名称
 - min: 定义字符串最小长度
 - max: 定义字符串最大长度
 - default: 定义默认值, PATH参数不支持定义默认值, 参数不存在有效
-
+- template: 自定义模板提示
 ### @Number
 
 - `@Number` 正整数验证器
-- 实例 `@Number(from=ValidatorFrom::GET, name="id", min=5, max=10, default=7)`
+- 实例 `@Number(from=ValidatorFrom::GET, name="id", min=5, max=10, default=7,template="字段{name}必须在{min}到{max}之间,你提交的值是{value}")`
 - from: 参数定义验证数据类型, 默认POST
 - name: 定义验证的名称
 - min: 定义最小值
 - max: 定义最大值
 - default: 定义默认值, PATH参数不支持定义默认值, 参数不存在有效
-
+- template: 自定义模板提示
 ### @Integer
 
 - `@Integer` 整数验证器
-- 实例 `@Integer(from=ValidatorFrom::PATH, name="id", min=5, max=10)`
+- 实例 `@Integer(from=ValidatorFrom::PATH, name="id", min=5, max=10,template="字段{name}必须在{min}到{max}之间,你提交的值是{value}")`
 - from: 参数定义验证数据类型, 默认 POST
 - name: 定义验证的名称
 - min: 定义最小值
 - max: 定义最大值
 - default: 定义默认值, PATH参数不支持定义默认值, 参数不存在有效
-
+- template: 自定义模板提示
 ### @Floats
 
 - `@Floats` 浮点数验证器
-- 实例 `@Floats(from=ValidatorFrom::POST, name="id", min=5.1, max=5.9, default=5.6)`
+- 实例 `@Floats(from=ValidatorFrom::POST, name="id", min=5.1, max=5.9, default=5.6,template="字段{name}必须在{min}到{max}之间,你提交的值是{value}")`
 - from: 参数定义验证数据类型, 默认 POST
 - name: 定义验证的名称
 - min: 定义最小值
 - max: 定义最大值
 - default: 定义默认值, PATH参数不支持定义默认值, 参数不存在有效
-
+- template: 自定义模板提示
 ### @Enum
 
 - `@Enum` 枚举验证器
-- 实例 `@Enum(from=ValidatorFrom::POST, name="name", values={1,"a",3}, default=1)`
+- 实例 `@Enum(from=ValidatorFrom::POST, name="name", values={1,"a",3}, default=1,template="字段{name}必须的,你提交的值是{value}")`
 - from: 参数定义验证数据类型, 默认 POST
 - values: 定义一个默认枚举数组
 - default: 定义默认值, PATH参数不支持定义默认值, 参数不存在有效
+- template: 自定义模板提示
