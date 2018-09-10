@@ -15,7 +15,7 @@
 - min: 定义字符串最小长度
 - max: 定义字符串最大长度
 - default: 定义默认值, PATH参数不支持定义默认值, 参数不存在有效
-- template : 自定义模板提示
+- template: 自定义模板提示
 ### @Number
 
 - `@Number` 正整数验证器
@@ -25,7 +25,7 @@
 - min: 定义最小值
 - max: 定义最大值
 - default: 定义默认值, PATH参数不支持定义默认值, 参数不存在有效
-- template : 自定义模板提示
+- template: 自定义模板提示
 ### @Integer
 
 - `@Integer` 整数验证器
@@ -35,7 +35,7 @@
 - min: 定义最小值
 - max: 定义最大值
 - default: 定义默认值, PATH参数不支持定义默认值, 参数不存在有效
-- template : 自定义模板提示
+- template: 自定义模板提示
 ### @Floats
 
 - `@Floats` 浮点数验证器
@@ -45,7 +45,7 @@
 - min: 定义最小值
 - max: 定义最大值
 - default: 定义默认值, PATH参数不支持定义默认值, 参数不存在有效
-- template : 自定义模板提示
+- template: 自定义模板提示
 ### @Enum
 
 - `@Enum` 枚举验证器
@@ -53,4 +53,4 @@
 - from: 参数定义验证数据类型, 默认 POST
 - values: 定义一个默认枚举数组
 - default: 定义默认值, PATH参数不支持定义默认值, 参数不存在有效
-- template : 自定义模板提示
+- template: 自定义模板提示
