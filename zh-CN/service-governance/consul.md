@@ -64,7 +64,7 @@ ok, 安装成功后，我们接下来进行一些配置来启用consul
 > 这种方式适合用于搭建服务调试使用
 
 ```bash
-consul agent -bootstrap-expect 1 -server -data-dir /data/consul -node=swoft01 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -client=0.0.0.0 -ui
+consul agent -bootstrap-expect 1 -server -data-dir /data/consul -node=swoft01 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=dc1 -client=0.0.0.0 -ui
 ```
 
 可以通过 http://192.168.1.100:8500 查看服务信息
@@ -76,30 +76,30 @@ consul agent -bootstrap-expect 1 -server -data-dir /data/consul -node=swoft01 -b
 - **服务器1，IP 192.168.1.100**
 
 ```bash
-consul agent -bootstrap-expect 2 -server -data-dir /data/consul -node=swoft01 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -client=0.0.0.0
+consul agent -bootstrap-expect 2 -server -data-dir /data/consul -node=swoft01 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=dc1 -client=0.0.0.0
 ```
 上面这个命令是以服务端模式启动一个代理，集群有两个扩展机器，设置集群持久化数据存放在/data/consul0下面，节点名称是swoft01，绑定0.0.0.0地址，服务配置文件存放在/etc/consul.d，开启检查心跳，数据中心的名称是dc1，可访问的客户端地址是0.0.0.0
 
 - **服务器2，IP 192.168.1.110**
 
 ```bash
-consul agent -server -data-dir /data/consul -node=swoft02 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -join 192.168.1.100
+consul agent -server -data-dir /data/consul -node=swoft02 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=dc1 -join 192.168.1.100
 ```
 
 - **服务器3，IP 192.168.1.120**
 
 ```bash
-consul agent -server -data-dir /data/consul -node=swoft03 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -join 192.168.1.100
+consul agent -server -data-dir /data/consul -node=swoft03 -bind=0.0.0.0 -client=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=dc1 -join 192.168.1.100
 ```
 
-以上服务器2和服务3使用 `-join` 加入集群，并且使用同一个数据名称 sunny
+以上服务器2和服务3使用 `-join` 加入集群，并且使用同一个数据名称 dc1
 
 ## Client配置
 
 - **服务器4，IP 192.168.1.130**
 
 ```bash
-consul agent -ui -data-dir /data/consul -node=swoft04 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=sunny -client=0.0.0.0 -join 192.168.1.100
+consul agent -ui -data-dir /data/consul -node=swoft04 -bind=0.0.0.0 -config-dir /etc/consul.d -enable-script-checks=true -datacenter=dc1 -client=0.0.0.0 -join 192.168.1.100
 ```
 
 客户端如果不使用-server就是客户端模式运行，其他参数同上，服务端和客户端都启动了之后可以在浏览器输入 http://192.168.1.130:8500 来查看信息
