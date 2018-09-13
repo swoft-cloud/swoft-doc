@@ -6,23 +6,59 @@
 - swoft server的事件，基于swoole的回调处理，扩展了一些可用事件以增强自定义性
 - 应用内的自定义事件管理和使用。也是我们通常了解和使用的事件管理了。
 
+> swoole和server级别的事件监听器，应当放置在boot阶段。(即通常应放置于 `App\Boot` 空间下)
+
 ## Swoole Server 事件
 
+- TAG: `@SwooleListener("event name")`
+
 用注解tag `@SwooleListener("event name")` 来注册swoole的回调事件监听, 支持所有swoole官网列出来的事件回调名。 
-具体请查看 `SwooleEvent::class`。
+具体请查看 `SwooleEvent::class` 以及 swoole官网。
+
+> 请谨慎使用 `@SwooleListener`。 它是直接注册到 swoole server上的(**监听相同事件将会被覆盖**)，操作不当可能导致出现问题。
 
 ## Swoft Server 事件
 
+- TAG: `@ServerListener("event name")`
+
 用注解tag `@ServerListener("event name")` 来注册服务器级别的事件监听。
+
 它是对 `@SwooleListener` 的补充扩展，除了支持swoole的事件以外，还增加了一些额外的可用事件监听。
 
-区别是：
+两者的区别是：
 
  - SwooleListener 中一个事件的监听器只允许一个，并且是直接注册到 swoole server上的(**监听相同事件将会被覆盖**)
  - ServerListener 允许对swoole事件添加多个监听器，会逐个通知
  - ServerListener 不影响基础swoole事件的监听
 
-> swoole和server级别的事件监听器，应当放置在boot阶段。(即通常应放置于 `App\Boot` 空间下)
+- Examples:
+
+```php
+<?php
+namespace App\Boot\Listener;
+
+use Swoft\Bean\Annotation\ServerListener;
+use Swoft\Bootstrap\Listeners\Interfaces\StartInterface;
+use Swoft\Bootstrap\SwooleEvent;
+use Swoole\Server;
+
+/**
+ * Class TestStartListener
+ * @package App\Boot\Listener
+ * @ServerListener(event=SwooleEvent::ON_START)
+ */
+class MyServerListener implements StartInterface
+{
+    /**
+     * @var Server $server
+     * */
+    public function onStart(Server $server)
+    {
+        \output()->writeln('TestStartListener');
+        var_dump('TestStartListener');
+    }
+}
+```
 
 ## 自定义事件
 
