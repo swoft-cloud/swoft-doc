@@ -4,27 +4,67 @@
 
 ## 路由 Route
 
-主要通过 `@Controller` + `@RequestMapping` 注解实现，前者定义 **前缀**，后者定义 **后缀**
+主要通过 `@Controller` + `@RequestMapping` 注解实现，通常前者定义 **前缀**，后者定义 **后缀**
 
+- 如下, 访问 index() 的路由是 `/users/list` (`/users` + `list`)
+
+```php
+/**
+ * @Controller(prefix="/users")
+ */
+class RouteController
+{
+    /**
+     * @RequestMapping("list")
+     */
+    public function index(): string
+    {
+    }
+ }
+ ```
+ 
 ### `@Controller`
 
-设置在 Controller 类上
+类注解，设置在 Controller 类上，标记当前类是一个http控制器类
 
 - 显式指定路由前缀: `@Controller(prefix="/route")` 或 `@Controller("/route")`
-- 隐式指定路由前缀: `@Controller()` 默认自动解析 `Controller` 的名称，并且使用驼峰格式。
-  - 比如 `HttpClientController` 将会设置路由 `prefix` 为 `httpClient`，注意此操作不会解析文件夹，例如该 `Controller` 位于 `app/Admin/HttpClientController.php`，最终设置的路由 prefix 仍然为 `httpClient`。
+- 隐式指定路由前缀: `@Controller()` 默认自动解析 controller class 的名称，并且使用驼峰格式。
+
+比如:
+
+```php
+// file: app/Admin/HttpClientController.php
+
+/**
+ * @Controller()
+ */
+class HttpClientController
+{}
+```
+
+上面的controller解析时，将会设置路由 `prefix` 为 `httpClient`，注意此操作不会解析文件夹，例如该 `Controller` 位于 `app/Admin/HttpClientController.php`，最终设置的路由 prefix 仍然为 `httpClient`。
 
 ### `@RequestMapping`
+
+方法注解，用于控制类的Action方法上。
+
+```php
+/**
+ * @RequestMapping(route, method)
+ */
+ public function some() {}
+```
 
 注解参数：
 
 - `route` 设置路由path，也是默认参数。
-- `method` 设置允许的请求方法，可以多个，e.g. `GET` `POST`。
+- `method` 设置允许的请求方法，可以多个。 e.g. `GET` `POST`。
 
-设置控制器类的在Action方法上
+示例:
 
 ```php
 /**
+ * @RequestMapping()
  * @RequestMapping(route="index")
  * @RequestMapping(route="index", method=RequestMethod::GET)
  * @RequestMapping(route="index", method={RequestMethod::POST,RequestMethod::PUT})
@@ -43,7 +83,7 @@
 
 - 通常一个完整的路由path等于 Controller的`prefix` **+** Action的`route`
 - 当你的action上的路由以 `/` 开头时，那完整的路由就是它，即不会再将 `prefix` 添加到它的前面。
-- 请切记要引入相关的注解tag class
+- **请切记要引入相关的注解类**
 
 ```php
 use Swoft\Http\Server\Bean\Annotation\Controller;
@@ -59,7 +99,7 @@ use Swoft\Http\Server\Bean\Annotation\RequestMethod;
 // Gen DemoController class to `@app/Controllers`
 php bin/swoft gen:controller demo --prefix /demo -y
 
-// Gen UserController class to `@app/Controllers`(RESTFul type)
+// Gen UserController class to `@app/Controllers`(RESTFul 风格，会默认创建一些action)
 php bin/swoft gen:controller user --prefix /users --rest
 ```
 
