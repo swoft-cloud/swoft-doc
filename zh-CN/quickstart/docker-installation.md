@@ -1,5 +1,10 @@
 # Docker 安装 Swoft
 
+## 官方 docker 镜像推荐
+
+- [swoft-cloud/docker](https://github.com/swoft-cloud/swoft-docker): 基于官方 php 镜像构建, 可以灵活控制 php/swoole 版本
+- [swoft-cloud/alphp](https://github.com/swoft-cloud/alphp): 基于官方 alpine 镜像构建, 可灵活控制 swoole 版本, 镜像大小只有官方 php 镜像一半
+
 ## Docker 环境准备
 
 安装 Docker 环境及加速: [阿里云 - 镜像加速器](https://cr.console.aliyun.com/#/accelerator)
