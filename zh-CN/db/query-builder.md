@@ -5,16 +5,19 @@
 
 | 方法 | 功能 |
 | :--- | :--- |
-| insert | 指定插入表 |
-| update | 指向更新的表 |
-| delete | 删除语句 |
-| select | 查询字段 |
-| selects | 查询多个字段 |
-| from | 指定删除和查询的表 |
+| insert | 插入数据 |
+| batchInsert | 批量插入数据 |
+| update | 更新数据 |
+| delete | 删除数据 |
+| counter | count数据 |
+| get | 查询数据 |
+| one | 查询一行数据 |
+| table | 指定表名及别名 |
 | innerJoin | 内连接 |
 | leftJoin | 左连接 |
 | rightJoin | 右连接 |
-| where | where条件语句 |
+| condition | 通过数组结构快速指定条件 |
+| where | where 条件语句 |
 | andWhere | where and 条件语句 |
 | openWhere | where 里面左括号 |
 | closeWhere | where 里面右括号 |
@@ -36,10 +39,21 @@
 | orderBy | order by语句 |
 | condition | 条件查询 |
 | limit | limit语句 |
-| set | 设置更新值 |
+| count | count语句 |
+| max | max语句 |
+| min | min语句 |
+| avg | avg语句 |
+| sum | sum语句 |
 | setParameter | 设置参数 |
 | setParameters | 设置多个参数 |
-| getSql | 获取执行语句 |
+| selectDb | 设置连接的DB |
+| selectNode | 选择连接的节点 |
+| selectInstance | 选择连接的实例 |
+| force | 强制使用 Master 节点 |
+| className | 设置数据的实体对象类 |
+
+## 获取最后执行的 SQL
+直接通过 `get_last_sql()` 函数从 SQLStack 中获得最后执行的 SQL
 
 ## 规则与格式
 
