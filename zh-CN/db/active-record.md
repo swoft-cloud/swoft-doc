@@ -123,23 +123,39 @@ $result = User::updateAll(['name' => 'testUpdateAll'], ['id' => [1,2]])->getResu
 ```
 
 ## 查询数据
+
 使用AR实体查询，返回结果是都是实体对象，不是数组。
 
-**查询一条数据**   
+### 查询一条数据   
  
 ```php
 // select id,name from user where id=1 limit 1
 $user2 = User::findOne(['id' => 1], ['fields' => ['id', 'name']])->getResult();
 ```
 
-**查询多条数据**   
- 
-```php
-// select * from user where name='testUpdateAll' and id in (1,2)
-$count = User::findAll(['name' => 'testUpdateAll', 'id' => [1,2]])->getResult();
+### 查询多条数据
+
+```
+findAll(array $condition = [], array $options = [])
 ```
 
-**主键查询一条数据**   
+- `$condition` 查找条件，数组
+- `$options` 额外选项。 如： `orderby` `limit` `offset`
+
+使用示例：
+
+```php
+// select * from user where name='testUpdateAll' and id in (1,2)
+$result = User::findAll(['name' => 'testUpdateAll', 'id' => [1,2]])->getResult();
+
+// select * from user where name='tom' and id > 2 order by createAt DESC
+$result = User::findAll(['name' => 'tom', ['id', '>', 2]], ['orderby' => ['createAt' => 'DESC'])->getResult();
+
+// select * from user where name like '%swoft%' order by createAt DESC limit 10
+$result = User::findAll([['name', 'like', '%swoft%']], ['orderby' => ['createAt' => 'DESC'], 'limit' => 10)->getResult();
+```
+
+### 主键查询一条数据  
  
 ```php
 // selet * from user where id=1
@@ -147,21 +163,21 @@ $count = User::findAll(['name' => 'testUpdateAll', 'id' => [1,2]])->getResult();
 $user = User::findById(1)->getResult();
 ```
 
-**主键查询多条数据**   
+### 主键查询多条数据 
  
 ```php
 // select id from user where id in(1,2) order by id asc limit 0,2
 $users = User::findByIds([1,2], ['fields' => ['id'], 'orderby' => ['id' => 'asc'], 'limit' => 2])->getResult();
 ```
 
-**实体查询器**   
+### 实体查询器   
  
 ```php
 // select * from user order by id desc limit 0,2
 $result = User::query()->orderBy('id', QueryBuilder::ORDER_BY_DESC)->limit(2)->get()->getResult();
 ```
 
-**主键是否存在查询**   
+### 主键是否存在查询  
  
 存在返回true,不存在返回false
 
@@ -169,8 +185,7 @@ $result = User::query()->orderBy('id', QueryBuilder::ORDER_BY_DESC)->limit(2)->g
 User::exist(1)->getResult()
 ```
 
-
-**计数查询**   
+### 计数查询
 
 直接返回满足条件的行数
  
