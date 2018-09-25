@@ -3,7 +3,8 @@ Model里面提供了常见的数据库操作方式。
 
 ## 插入数据
 
-**对象方式**    
+### 对象方式
+
 ```php
 $user = new User();
 $user->setName('name');
@@ -13,7 +14,8 @@ $user->setAge(mt_rand(1, 100));
 $id  = $user->save()->getResult();
 ```
 
-**数组填充**    
+### 数组填充
+
 ```php
 $data = [
     'name' => 'name',
@@ -26,8 +28,8 @@ $user   = new User();
 $result = $user->fill($data)->save()->getResult();
 ```
 
+### 数组方式
 
-**数组方式**    
 ```php
 $user         = new User();
 $user['name'] = 'name2';
@@ -37,7 +39,7 @@ $user['age']  = 99;
 $result = $user->save()->getResult();
 ```
 
-## 批量插入
+### 批量插入
 
 ```php
 $values = [
@@ -60,7 +62,7 @@ $result = User::batchInsert($values)->getResult();
 
 ## 删除数据
 
-**对象删除**   
+### 对象删除
  
 ```php
 /* @var User $user */
@@ -69,36 +71,35 @@ $result = $user->delete()->getResult();
 $this->assertEquals(1, $result);
 ```
 
-**主键删除一条数据**   
+### 主键删除一条数据  
  
 ```php
 $result = User::deleteById(1)->getResult();
 ```
 
-**主键删除多条数据**   
+### 主键删除多条数据 
  
 ```php
 $result = User::deleteByIds([1,2])->getResult();
 ```
 
-
-**删除一条数据**   
+### 删除一条数据    
 
 ```php
 // delete from user where name='name2testDeleteOne' and age=99 and id=1 limit 1
 $result = User::deleteOne(['name' => 'name2testDeleteOne', 'age' => 99, 'id' => 1])->getResult();
 ```
 
-**删除多条数据**
+### 删除多条数据
+
 ```php
 // delete from user where name='name' and id in (1,2)
 $result = User::deleteAll(['name' => 'name', 'id' => [1,2])->getResult();
 ```
 
-
 ## 更新数据
 
-**实体更新**   
+### 实体更新   
  
 ```php
 /* @var User $user */
@@ -107,15 +108,14 @@ $user->setName('newName');
 $updateResult = $user->update()->getResult();
 ```
 
-**更新一条数据**   
+### 更新一条数据   
  
 ```php
 // update user set name='testUpdateOne' where id=1 limit 1
 $result = User::updateOne(['name' => 'testUpdateOne'], ['id' => 1])->getResult();
 ```
 
-
-**更新多条数据**   
+### 更新多条数据  
  
 ```php
 // update user set name='testUpdateOne' where id in (1,2)
