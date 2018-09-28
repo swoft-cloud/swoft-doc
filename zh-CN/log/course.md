@@ -44,6 +44,9 @@ return [
 - flushRequest 是否每个请求刷新一次，性能有损耗
 - handlers 定义日志输出方式，系统默认配置的文件，用户可扩展其它输出方式，这里配置即可
 - handler 每一个日志处理器，都可以配置，处理日志的格式集合，可以把日志输出到多个地方。
+- formatter 日志格式化类，默认使用 lineFormatter(即 Monolog\Formatter\LineFormatter)，此处可自定义格式化类，需继承   
+  Mogolog\Formatter\NormalizerFormatter，并实现 LineFormatter 中对应的公有方法，修改常量SIMPLE_FORMAT和format方法
+  即可对输出的日志格式做自定义。值得注意的是，该类需要放入Bean容器
 
 ## 实例
 
