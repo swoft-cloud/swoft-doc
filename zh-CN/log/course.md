@@ -1,7 +1,7 @@
 # 配置与使用
 
 ## 配置
-app/config/beans/log.php
+`config/beans/log.php`
 
 ```php
 return [
@@ -39,14 +39,12 @@ return [
 
 ```
 
-- enable 是否开启日志，默认true，如果为false 不会有任何日志打印
-- flushInterval 指定日志累计到了多少条，刷新到磁盘一次
-- flushRequest 是否每个请求刷新一次，性能有损耗
-- handlers 定义日志输出方式，系统默认配置的文件，用户可扩展其它输出方式，这里配置即可
-- handler 每一个日志处理器，都可以配置，处理日志的格式集合，可以把日志输出到多个地方。
-- formatter 日志格式化类，默认使用 lineFormatter(即 Monolog\Formatter\LineFormatter)，此处可自定义格式化类，需继承   
-  Mogolog\Formatter\NormalizerFormatter，并实现 LineFormatter 中对应的公有方法，修改常量SIMPLE_FORMAT和format方法
-  即可对输出的日志格式做自定义。值得注意的是，该类需要放入Bean容器
+- `enable` 是否开启日志，默认`true`，如果为`false`则不会有任何日志输出
+- `flushInterval` 定义日志累计到了多少条，再统一刷新一次写入到磁盘
+- `flushRequest` 是否每个请求刷新一次写入到磁盘，过于频繁对性能会有损耗
+- `handlers` 定义日志输出方式，系统默认配置的文件，用户可扩展其它输出方式，在这里配置即可
+- `handler` 每一个日志处理器，都可以配置，处理日志的格式集合，可以把日志输出到多个地方
+- `formatter` 日志格式器，默认使用`lineFormatter`(即`\Monolog\Formatter\LineFormatter`)，此处可自定义格式器，需继承`\Mogolog\Formatter\NormalizerFormatter`，并实现 `LineFormatter` 中对应的公有方法，修改常量`SIMPLE_FORMAT`和`format()`方法即可对输出的日志格式做自定义，需要注意的是，格式器需定义为一个`Bean`
 
 ## 实例
 
@@ -86,4 +84,4 @@ App::counting("cache", 1, 10);
 2017/08/06 03:11:00 [notice] [swoft] [logid:598688c45cbbf] [spanid:0] [168(ms)] [2(MB)] [/index/log] [] profile[app.route.match=7.52(ms)/1,app.route=7.53(ms)/1,tag=13.58(ms)/1] counting[cache=1/10]
 ```
 
-- 切记每个请求只会有一条notice日志，框架底层自动生成的，用户不用关心。
+- 每个请求只会有一条`notice`日志，框架底层自动生成的，用户无需关心。
