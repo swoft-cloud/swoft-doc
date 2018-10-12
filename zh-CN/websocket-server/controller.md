@@ -16,7 +16,7 @@ websocket 新增了类注解tag `@WebSocket`
  */
 ```
 
-上面的注解标明了允许ws连接的URI path. 即客户端请求的ws连接类似： `ws://IP:PORR/echo`
+上面的注解标明了允许ws连接的URI path. 即客户端请求的ws连接类似： `ws://IP:PORT/echo`
 
 ### 创建控制器类
 
