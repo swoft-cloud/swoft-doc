@@ -7,6 +7,9 @@ websocket 的host,port等配置是继承http server的。
 `.env` 新增配置项
 
 ```ini
+# Swoole Settings
+DISPATCH_MODE=2 # 注意!使用websocket 时分配模式不能为1和3
+...
 # WebSocket
 WS_ENABLE_HTTP=true # 是否启用http处理
 ```
