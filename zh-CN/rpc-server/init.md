@@ -23,21 +23,6 @@ TCP_OPEN_EOF_CHECK=false
 - TCP_PACKAGE_MAX_LENGTH 参考 [https://wiki.swoole.com/wiki/page/301.html](https://wiki.swoole.com/wiki/page/301.html)
 - TCP_OPEN_EOF_CHECK 参考 [https://wiki.swoole.com/wiki/page/285.html](https://wiki.swoole.com/wiki/page/285.html)
 
-
-## 中间件配置
-config/beans/base.php 配置RPC服务在执行过程中的中间件。
-
-```php
-return [
-    // ......
-    'serviceDispatcher' => [
-        'class' => ServiceDispatcher::class,
-        'middlewares' => [
-            'xxx:class',
-        ]
-    ]
-    // ......
-];
 ```
 ## 服务启动
 此服务启动指的是单独的RPC服务启动，因为HTTP Server启动伴随着RPC服务启动方式，是不需要手动启动。
