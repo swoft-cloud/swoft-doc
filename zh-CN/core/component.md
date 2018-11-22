@@ -30,4 +30,23 @@ swoft-i18n | 官方 | 国际化组件
 
 ## 自动注册
 
+### 内部组件
+
+`app/` 目录和 `vendor/swoft` 会被自动的扫描，收集注解信息。
+
+### 自定义组件
+
+在配置文件 `config/properties/app.php` 添加如下配置
+
+```php
+'components' => [
+    'custom' => [
+        // Your package namespace.
+        'Package\\Namespace',
+    ],
+],
+```
+
+之后，swoft启动时就会到对应的包里去扫描，收集信息
+
 ## 如何实现一个组件
