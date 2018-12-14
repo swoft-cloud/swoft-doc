@@ -74,12 +74,12 @@ return [
             'enableTagOverride' => false,
             'service'           => [
                 'address' => '192.168.1.197',
-                'port'   => '20000',
+                'port'   => '8089',
             ],
             'check'             => [
                 'id'       => 'user1',
                 'name'     => 'user',
-                'tcp'      => '192.168.1.197:20000',
+                'tcp'      => '192.168.1.197:8089',
                 'interval' => 10,
                 'timeout'  => 1,
             ],
