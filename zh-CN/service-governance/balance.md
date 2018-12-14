@@ -27,7 +27,7 @@ return [
 
 >就用例子中user服务器举例说明，内网机器(192.168.7.197)分别开启两台user服务器，端口分别为8099和8089
 
-打开端口为8099服务器配置文件app/config/properties/provider.php配置如下：
+1, 打开端口为8099服务器配置文件app/config/properties/provider.php配置如下：
 
 ```php
 return [
@@ -61,7 +61,7 @@ return [
     ],
 ];
 ```
-打开端口为8089服务器配置文件app/config/properties/provider.php配置如下：
+2, 打开端口为8089服务器配置文件app/config/properties/provider.php配置如下：
 ```php
 return [
     'consul' => [
@@ -98,10 +98,10 @@ return [
 - id 定义consul服务的唯一id
 - name 定义consul服务名字，发现服务时会用到这个名字找对应服务，name是一对多，多服务器可以同名不同tags实现负载均衡
 - tags 服务标记，多台同name服务时，可以用tags来区分
-- 注意，discovery.tag 如果负载均衡时， 请配置为空， 如果配置了，就会只找这台tag，导致负载均衡不成功
+- `PS注意，discovery.tag 如果负载均衡时， 请配置为空， 如果配置了，就会只找这台tag，导致负载均衡不成功
 
 
-分别打开端口为8099和8089服务器配置文件app/config/properties/service.php配置如下：
+3, 分别打开端口为8099和8089服务器配置文件app/config/properties/service.php配置如下：
 
 ```php
 return [
