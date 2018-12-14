@@ -152,7 +152,7 @@ $result = User::findAll(['name' => 'testUpdateAll', 'id' => [1,2]])->getResult()
 $result = User::findAll(['name' => 'tom', ['id', '>', 2]], ['orderby' => ['createAt' => 'DESC'])->getResult();
 
 // select * from user where name like '%swoft%' order by createAt DESC limit 10
-$result = User::findAll([['name', 'like', '%swoft%']], ['orderby' => ['createAt' => 'DESC'], 'limit' => 10)->getResult();
+$result = User::findAll([['name', 'like', '%swoft%']], ['orderby' => ['createAt' => 'DESC'], 'limit' => 10])->getResult();
 ```
 
 ### 主键查询一条数据  
