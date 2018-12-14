@@ -98,7 +98,7 @@ return [
 - id 定义consul服务的唯一id
 - name 定义consul服务名字，发现服务时会用到这个名字找对应服务，name是一对多，多服务器可以同名不同tags实现负载均衡
 - tags 服务标记，多台同name服务时，可以用tags来区分
-- `PS注意，discovery.tag 如果负载均衡时， 请配置为空， 如果配置了，就会只找这台tag，导致负载均衡不成功
+- PS注意，discovery.tag 如果负载均衡时， 请配置为空， 如果配置了，就会只找这台tag，导致负载均衡不成功
 
 
 3, 分别打开端口为8099和8089服务器配置文件app/config/properties/service.php配置如下：
