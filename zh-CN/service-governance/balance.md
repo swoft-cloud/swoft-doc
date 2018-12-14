@@ -25,9 +25,9 @@ return [
 
 ## consul 负载均衡配置说明
 
->就用例子中user服务器举例说明，一台机器(192.168.7.197,此ip为内网ip)分别开启两台user服务器，端口分别为20000和20001
+>就用例子中user服务器举例说明，内网机器(192.168.7.197)分别开启两台user服务器，端口分别为8099和8089
 
-打开端口为20000服务器配置文件app/config/properties/provider.php配置如下：
+打开端口为8099服务器配置文件app/config/properties/provider.php配置如下：
 
 ```php
 return [
@@ -41,12 +41,12 @@ return [
             'enableTagOverride' => false,
             'service'           => [
                 'address' => '192.168.1.197',
-                'port'   => '20000',
+                'port'   => '8099',
             ],
             'check'             => [
                 'id'       => 'user',
                 'name'     => 'user',
-                'tcp'      => '192.168.1.197:20000',
+                'tcp'      => '192.168.1.197:8099',
                 'interval' => 10,
                 'timeout'  => 1,
             ],
@@ -61,7 +61,7 @@ return [
     ],
 ];
 ```
-打开端口为20001服务器配置文件app/config/properties/provider.php配置如下：
+打开端口为8089服务器配置文件app/config/properties/provider.php配置如下：
 ```php
 return [
     'consul' => [
@@ -101,15 +101,15 @@ return [
 - 注意，discovery.tag 如果负载均衡时， 请配置为空， 如果配置了，就会只找这台tag，导致负载均衡不成功
 
 
-分别打开端口为20000和20001服务器配置文件app/config/properties/service.php配置如下：
+分别打开端口为8099和8089服务器配置文件app/config/properties/service.php配置如下：
 
 ```php
 return [
     'user' => [
         'name'        => 'user',
         'uri'         => [
-            '192.168.7.197:20000',
-            '192.168.7.197:20001',
+            '192.168.7.197:8099',
+            '192.168.7.197:8089',
         ],
         'minActive'   => 8,
         'maxActive'   => 8,
