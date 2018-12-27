@@ -5,10 +5,10 @@ Swoft-Table基于Swoole的table实现，是一个基于共享内存和锁实现�
 # 注意事项
 
 - 不受PHP的memory_limit控制
-
 - 应用代码无需加锁，内置行锁自旋锁，所有操作均是多线程/多进程安全。
-
 - 支持多进程，swoole_table可以用于多进程之间共享数据（前提需要在workStart回调函数之前启动，否则进程隔离）
+
+> 遍历Table 依赖 `pcre` 如果发现无法遍历table,检查机器是否安装 `pcre-devel`
 
 ## 创建swoft-table对象
 
@@ -17,7 +17,7 @@ Swoft-Table基于Swoole的table实现，是一个基于共享内存和锁实现�
 
 ## $column 说明
 
-$column 是二维数组，结构如下：
+`$column` 是二维数组，结构如下：
 
 ```php
 
@@ -32,15 +32,14 @@ $column 是二维数组，结构如下：
 
 - {type} 类型
   - Table::TYPE_INT 默认为4个字节，可以设置1，2，4，8一共4种长度
-  - Table::TYPE_STRING设置后，设置的字符串不能超过此长度
-  - Table::TYPE_FLOAT会默认占用8个字节的内存
+  - Table::TYPE_STRING 设置后，设置的字符串不能超过此长度
+  - Table::TYPE_FLOAT 会默认占用8个字节的内存
 
 ---
 
 ## 使用例子
 
 ```php
-
 use Swoft\Memory\Table;
 
 $struct = [
@@ -51,7 +50,6 @@ $struct = [
 ];
 
 $swoftTable = new Table('shareTable', 1024, $struct)
-
 ```
 
 其他基本的api和swoole-table一致(具体也可参见swoole文档)
