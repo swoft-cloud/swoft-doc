@@ -1,5 +1,8 @@
 # 任务
+
 任务分为类似Swoole的普通任务和定时任务(无需依赖crontab)。
+
+> 组件依赖 `swoole_table`, 遍历 Table 依赖 `pcre` 如果发现无法遍历table,检查机器是否安装 `pcre-devel`
 
 ## 任务投递类型
 
