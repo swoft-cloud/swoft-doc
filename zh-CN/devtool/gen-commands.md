@@ -93,10 +93,12 @@ php bin/swoft gen:listener demo    // Gen DemoListener class to `@app/Listener`
 - 使用示例
 
 ```bash
-php bin/swoft gen:controller abc --tpl-dir ./ --tpl-file header   // Gen DemoController class to `@app/Controllers`
+php bin/swoft gen:controller abc --tpl-dir ./templates   // Gen DemoController class to `@app/Controllers`
 ```
 
-在根目录定义 header.stub 文件，这个文件的内容将会被生成到php文件头注释。
+把 /vendor/swoft/devtool/res/templates 目录拷贝出来放到自己想要放置的目录，本示例放在根目录。
+
+修改 file-header.stub 文件，生成代码的使用 --tpl-dir 指定模版目录。
 
 - `--tpl-dir` 注释文件所在目录
 - `--tpl-file` 注释文件名称
