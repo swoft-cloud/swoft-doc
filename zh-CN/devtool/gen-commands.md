@@ -86,6 +86,22 @@ php bin/swoft gen:websocket echo  // Gen EchoController class to `@app/WebSocket
 php bin/swoft gen:listener demo    // Gen DemoListener class to `@app/Listener`
 ```
 
+## 生成自定义header头注释
+
+使用命令：`php bin/swoft gen:controller --tpl-dir ./ --tpl-file header`
+
+- 使用示例
+
+```bash
+php bin/swoft gen:controller abc --tpl-dir ./ --tpl-file header   // Gen DemoController class to `@app/Controllers`
+```
+
+在根目录定义 header.stub 文件，这个文件的内容将会被生成到php文件头注释。
+
+- `--tpl-dir` 注释文件所在目录
+- `--tpl-file` 注释文件名称
+
+
 > 更多选项信息请使用 `php bin/swoft gen:listener -h` 查看
 
 
