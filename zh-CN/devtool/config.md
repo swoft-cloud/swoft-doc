@@ -54,6 +54,8 @@ php bin/swoft dev:publish swoft/devtool -f
 - 确认你的 `public` 目录是可被浏览器访问的
 - 确认安装或更新组件后 **重启** 了服务器
 
+> 由于之前 swoole 静态资源访问漏洞问题，swoft现在默认是关闭了访问public静态资源目录，要使用注意先要打开对应配置。
+
 ## 注意
 
 > ！！打开 DevTool 会对服务器的运行和性能造成一定影响，请在进行压力测试前，将其关闭。
