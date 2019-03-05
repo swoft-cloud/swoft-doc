@@ -4,7 +4,7 @@
 
 > 请安装swoole前，先安装 `hiredis`。编译swoole时加上选项 `--enable-async-redis` 
 
-# RequestContext 是否需要手动销毁？
+## RequestContext 是否需要手动销毁？
 
 > `RequestContext(请求上下文)` 作为当前的请求信息的容器将贯穿整个请求生命周期，负责信息的储存和传递；
 
