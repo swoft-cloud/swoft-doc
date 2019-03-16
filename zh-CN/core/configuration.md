@@ -3,6 +3,7 @@
 swoft 的配置与其他框架稍微有一些区别，有几份：
 
 - `config/server.php` swoft 服务器配置，主要是对swoole的配置
+  - 里面的 `setting`, 对应了swoole server的配置，设置后将会原样的应用于swoole server上。[swoole setting 参考](https://wiki.swoole.com/wiki/page/274.html)
 - `config/beans/*` swoft beans 配置，用于配置一些通过数组方式创建的bean，关于bean的创建方式请查看相关章节。
 - `config/properties/*` 这里面就是通常的 **应用配置** 数据了
   - 只会加载里面的 `app.php` 文件，其他文件都是在 `app.php` 内部include进来的
