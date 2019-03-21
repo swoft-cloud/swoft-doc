@@ -2,7 +2,7 @@
 
 要完整的启用 DevTool, 需要添加一些配置和进行一点操作。
 
-<div class="alert alert-error alert-dismissible" role="alert">
+<div class="alert alert-danger alert-dismissible" role="alert">
   <strong>警告!</strong> 
   <p>由于 1.0 没法禁用组件，线上一定不能安装 devtool 组件！</p>
 </div>
