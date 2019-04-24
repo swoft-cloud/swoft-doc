@@ -1,3 +1,3 @@
 # changelog
 
-changelog: https://github.com/swoft-cloud/swoft/blob/master/changelog.md
+changelog: https://github.com/swoft-cloud/swoft/blob/1.x/changelog.md
