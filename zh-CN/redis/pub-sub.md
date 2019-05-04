@@ -50,7 +50,7 @@ Redis::subscribe(['chan-1', 'chan-2', 'chan-3'], 'f');
 
 ## 按匹配模式订阅频道 pSubscribe
 
-使用 psubscribe 方法可以订阅通配符频道，可以用来在所有频道上获取所有消息。 $channel 名称将作为第二个参数传递给提供的回调 闭包:
+使用 psubscribe 方法可以订阅通配符频道，可以用来在所有频道上获取所有消息。
 
 参数
 - patterns 匹配规则数组

@@ -149,13 +149,13 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
 - class 是默认的 Pool 对象 你可以更具官方的自己继承实现，然后换成自己 的 Pool 类名就可以了
 - database 驱动的数据库对象 是[读 & 写连接](#读写&连接)配置的
 - minActive 连接池需要维持的连接数
-- maxActive 连接最大保持的连接数
-- maxWait   连接最多等待连接数， 如果没有限制为0(默认)
+- maxActive 连接池最大保持的连接数
+- maxWait   连接池最多等待连接数, 如果没有限制为0(默认)
 - maxWaitTime 连接最大等待时间，单位秒，如果没有限制为0(默认)
 - maxIdleTime 连接最大空闲时间，单位秒
 
 **说明：**
- 每一个 `worker` 都会创建一个同样的连接池 活跃个数更具 机器配置和 和`worker` 个数衡量
+ 每一个 `worker` 都会创建一个同样的连接池。参数配置要更具，机器配置和 和`worker` 个数衡量。
 
 ### Connector&Connection
 连接器和连接 的关系是创建连接必备的 
@@ -164,13 +164,13 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
  ### Connection
 `Connection`主要用于，数据库的语法解析，设置表前缀，获取默认查询语法实例，重连错误判断
  
- swoft 默认仅提供的 MySQL 的`Connector&Connection` 为什么呢。
+ `Swoft` 默认仅提供的 MySQL 的`Connector&Connection` 为什么呢。
  因为`swoole`**暂未** `pdo_pgsql，pdo_ori，pdo_odbc，pdo_firebird`这些 `PDO`扩展加入
  底层 `Hook`。
  
  也就是说使用 `pdo_pgsql，pdo_ori，pdo_odbc，pdo_firebird` 执行的 `IO` 操作不会让出 `CPU 资源`是**同步执行**的，执行期间`协程`不会`上下文切换`
  
- 如果想要使用 `pgsql`也是可以的 只需实现`Connector`和`Connection`参照 MySQL 的实现方式即可
+ 如果想要使用 `pgsql`（你可以用 `Swoole` 的`协程 PgSQL 客户端`）也是可以的 只需实现`Connector`和`Connection`参照 MySQL 的实现方式即可
  
  
 ## 关于分库分表的一些见解
