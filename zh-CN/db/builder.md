@@ -1,4 +1,4 @@
-#查询构造器
+# 查询构造器
 
 * 1 [简介](#简介)  
 * 2 [获取结果](#获取结果)
@@ -8,9 +8,9 @@
 * 4 [原生表达式](#原生表达式)
 * 5 [Joins](#Joins)
 * 6 [Where](#Where语句)
-    * 6.1[参数分组](#参数分组)
-    * 6.2[Where Exists](#WhereExists)
-    * 6.3[Json Where](#JsonWhere)
+    * 6.1 [参数分组](#参数分组)
+    * 6.2 [Where Exists](#WhereExists)
+    * 6.3 [Json Where](#JsonWhere)
 * 7 [Ordering, Grouping, Limit, & Offset](#Ordering,Grouping,Limit,Offset)
 * 8 [条件语句](#条件语句)
 * 9 [插入](#插入)

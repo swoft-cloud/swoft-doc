@@ -1,0 +1,1 @@
+Swoft 2.x DB 高端兼容 `Laravel`，让上手变得简单
