@@ -12,7 +12,7 @@
 
 * 5 [运行普通语句](#运行普通语句)
 
-#
+# 
 一旦配置好数据库连接后，便可以使用 DB 对象运行查询。 DB 为每种类型的查询提供了方法： select，selectOne，update，insert，delete , cursor, statement, affectingStatement 和 unprepared。
 
 ## 运行查询语句
