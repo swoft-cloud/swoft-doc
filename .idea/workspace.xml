@@ -2,38 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b600ef85-cc58-464b-9e74-ebd254bb07a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/zh-CN/db/builder.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/db/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/db/model.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/db/origin.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/db/setting.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/db/transaction.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/http-server/command.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/http-server/controller.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/http-server/exception.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/http-server/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/http-server/middleware.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/http-server/process.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/http-server/request-response.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/http-server/route.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/http-server/setting.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/log/clog.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/log/filter.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/log/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/log/log.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/log/setting.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/redis/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/redis/pipeline.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/redis/pub-sub.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/redis/setting.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/redis/transaction.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/redis/usage.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/task/async.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/task/coroutine.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/task/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zh-CN/task/statement.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zh-CN/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/zh-CN/SUMMARY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zh-CN/db/builder.md" beforeDir="false" afterPath="$PROJECT_DIR$/zh-CN/db/builder.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zh-CN/db/model.md" beforeDir="false" afterPath="$PROJECT_DIR$/zh-CN/db/model.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,12 +28,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zh-CN/db/model.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="2732">
+                <caret line="204" column="23" selection-start-line="204" selection-start-column="23" selection-end-line="204" selection-end-column="23" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zh-CN/db/builder.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="557">
-                <caret line="648" column="3" lean-forward="true" selection-start-line="648" selection-start-column="3" selection-end-line="648" selection-end-column="3" />
+              <first_editor relative-caret-position="478">
+                <caret line="364" column="17" selection-start-line="364" selection-start-column="17" selection-end-line="364" selection-end-column="17" />
               </first_editor>
               <second_editor />
             </state>
@@ -77,6 +60,9 @@
       <find>sticky</find>
       <find>new</find>
       <find>MySql</find>
+      <find>原生表达式</find>
+      <find>JsonWhere</find>
+      <find>forPage</find>
     </findStrings>
     <replaceStrings>
       <replace>MySQL</replace>
@@ -95,15 +81,16 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/zh-CN/SUMMARY.md" />
         <option value="$PROJECT_DIR$/en/README.md" />
-        <option value="$PROJECT_DIR$/zh-CN/db/transaction.md" />
         <option value="$PROJECT_DIR$/zh-CN/db/setting.md" />
         <option value="$PROJECT_DIR$/zh-CN/db/origin.md" />
+        <option value="$PROJECT_DIR$/zh-CN/db/transaction.md" />
+        <option value="$PROJECT_DIR$/zh-CN/db/model.md" />
         <option value="$PROJECT_DIR$/zh-CN/db/builder.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="282" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="x" value="187" />
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="942" />
@@ -182,18 +169,20 @@
       <workItem from="1556808204266" duration="2584000" />
       <workItem from="1556814327781" duration="709000" />
       <workItem from="1556857067038" duration="6549000" />
-      <workItem from="1556876008695" duration="11195000" />
+      <workItem from="1556876008695" duration="16957000" />
+      <workItem from="1556901367822" duration="4919000" />
+      <workItem from="1556934329891" duration="609000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44162000" />
+    <option name="totallyTimeSpent" value="55452000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="282" y="23" width="1680" height="942" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.105006106" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10744811" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -204,7 +193,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5255102" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5244898" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Database" order="0" weight="0.32967034" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
@@ -310,14 +299,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zh-CN/db/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zh-CN/db/setting.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -338,7 +319,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zh-CN/db/model.md">
+    <entry file="file://$PROJECT_DIR$/zh-CN/db/transaction.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="665">
+            <caret line="108" selection-start-line="108" selection-end-line="108" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zh-CN/db/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor />
@@ -346,11 +337,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zh-CN/db/transaction.md">
+    <entry file="file://$PROJECT_DIR$/zh-CN/db/model.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="638">
-            <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+          <first_editor relative-caret-position="2732">
+            <caret line="204" column="23" selection-start-line="204" selection-start-column="23" selection-end-line="204" selection-end-column="23" />
           </first_editor>
           <second_editor />
         </state>
@@ -359,8 +350,8 @@
     <entry file="file://$PROJECT_DIR$/zh-CN/db/builder.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="557">
-            <caret line="648" column="3" lean-forward="true" selection-start-line="648" selection-start-column="3" selection-end-line="648" selection-end-column="3" />
+          <first_editor relative-caret-position="478">
+            <caret line="364" column="17" selection-start-line="364" selection-start-column="17" selection-end-line="364" selection-end-column="17" />
           </first_editor>
           <second_editor />
         </state>

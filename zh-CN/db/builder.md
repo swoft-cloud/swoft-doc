@@ -8,10 +8,18 @@
 * 4 [原生表达式](#原生表达式)
 * 5 [Joins](#Joins)
 * 6 [Where](#Where语句)
+    * 6.1[参数分组](#参数分组)
+    * 6.2[Where Exists](#WhereExists)
+    * 6.3[Json Where](#JsonWhere)
 * 7 [Ordering, Grouping, Limit, & Offset](#Ordering,Grouping,Limit,Offset)
 * 8 [条件语句](#条件语句)
 * 9 [插入](#插入)
-* [关于连接释放](#连接何时释放)
+   * 9.1 [自增ID](#自增ID)
+* 10 [更新](#更新)
+* 11 [删除](#删除)
+* 12 [锁](#锁)
+* 13 [选择连接池](#选择连接池)
+* 14 [关于连接释放](#连接何时释放)
 
 ## 简介
 
@@ -21,6 +29,7 @@ Swoft 的查询构造器使用 `PDO` 参数绑定来保护您的应用程序免�
 
 你可以使用 `DB::table('xxxx')`得到一个 `Builder` 对象 也可以使用 
 `Builder::new()->from('xxx')` 这两种写法返回结果是一样的，
+不要把`Builder` 对象 `clone` 到另一个协程环境中
 
 ## 获取结果
 
@@ -177,7 +186,7 @@ havingRaw 和 orHavingRaw 方法可以用于将原生字符串设置为 having �
 
 **orderByRaw**
 
-orderByRaw 方法可用于将原生字符串设置为 ,order by 子句的值：
+`orderByRaw` 方法可用于将原生字符串设置为 ,order by 子句的值：
 
 ```php
 $time = time();
@@ -186,6 +195,17 @@ $orderBy = 'if(`dead_time`>' . $time . ', update_time,0) desc,create_time desc';
 $orders = DB::table('ticket')
                 ->orderByRaw($orderBy)
                 ->get();
+```
+
+**fromRaw**
+
+`fromRaw` 方法的自定义 `FROM` 关键字参数,比如使用`强制索引`:
+
+```php
+  $sql = DB::table('')
+            ->select('id', 'name')
+            ->fromRaw('`user` force index(`idx_user`)')
+            ->get();
 ```
 
 ## Joins
@@ -337,6 +357,16 @@ $users = DB::table('users')->where([
     ['subscribed', '<>', '1'],
 ])->get();
 ```
+混合数组 `where` 形式，数组里面在嵌套一个数组也是可以的
+```php
+$wheres   = [
+    'name' => 'sakuraovq',
+    ['status', '>=', 2],
+    ['money', '>', 0, 'or']
+];
+// select * from `user` where (`name` = ? and `status` >= ? or `money` > ?)
+$users    = User::where($wheres)->get();
+```
 ### Or 语句
 
 你可以一起链式调用 where 约束，也可以在查询中添加 or 字句。 orWhere 方法和 where 方法接收的参数一样：
@@ -453,7 +483,7 @@ $users = DB::table('users')
                 ])->get();
 ```
 
-**参数分组**
+### 参数分组
 
 有时候你需要创建更高级的 where 子句，例如「where exists」或者嵌套的参数分组。 Swoft 的查询构造器也能够处理这些。下面，让我们看一个在括号中进行分组约束的例子:
 
@@ -474,7 +504,7 @@ select * from `user` where `name` = 'sakura' and (`money` > 100 or `title` = 'te
 ```
 >tip: 你应该用 `orWhere` 调用这个分组，以避免应用全局作用出现意外.
  
-###  Where Exists 语句
+###  WhereExists
 
 `whereExists` 方法允许你使用 where exists SQL 语句。 `whereExists` 方法接收一个 `Closure` 参数，该 `whereExists` 方法接受一个 `Closure` 参数，该闭包获取一个查询构建器实例从而允许你定义放置在 `exists` 字句中查询：
 
@@ -495,7 +525,7 @@ where exists (
 )
 ```
 
-### JSON Where 语句
+### JsonWhere
 
 `Swoft` 也支持查询 `JSON` 类型的字段（仅在对 `JSON` 类型支持的数据库上）。目前，本特性仅支持 `MySQL 5.7`+。使用 -> 操作符查询 `JSON` 数据：
 
@@ -637,8 +667,8 @@ DB::table('users')->insert([
 ]);
 
 ```
-**自增 ID**
 
+### 自增ID
 如果数据表有自增 ID ，使用 `insertGetId` 方法来插入记录并返回 ID 值
 
 ```php
@@ -648,4 +678,88 @@ $id = DB::table('user')->insertGetId([
 ]);
 ```
 
+## 更新
+
+当然， 除了插入记录到数据库中，查询构造器也可以通过 `update` 方法更新已有的记录。 `update` 方法和 `insert` 方法一样，接受包含要更新的字段及值的数组。你可以通过 `where` 子句对 `update` 查询进行约束：
+
+**更新 JSON 字段**
+
+更新 JSON 字段时，你可以使用 -> 语法访问 JSON 对象中相应的值，此操作只能用于支持 JSON 字段类型的数据库：
+```php
+DB::table('users')
+            ->where('id', 1)
+            ->update(['options->enabled' => true]);
+```
+**自增与自减**
+
+查询构造器还为给定字段的递增或递减提供了方便的方法。此方法提供了一个比手动编写 `update` 语句更具表达力且更精练的接口。
+
+这两种方法都至少接收一个参数：需要修改的列。第二个参数是可选的，用于控制列递增或递减的量：
+
+```php
+DB::table('users')->increment('votes');
+
+DB::table('users')->increment('votes', 5);
+
+DB::table('users')->decrement('votes');
+
+DB::table('users')->decrement('votes', 5);
+```
+你也可以在操作过程中指定要更新的字段：
+```php
+DB::table('users')->where('id', 1)->increment('votes', 1, ['updated' => 1]);
+```
+如果你想自定义更新 可以这样：
+```php
+$res = DB::table('user')->where('id', $id)->update([
+            'posts' => DB::raw('`posts` + 1'),
+            'views' => Expression::new('`views` + 1'),
+            'name'  => 'updated',
+       ]);
+```
+>`DB::raw(xxx)` 等同 `Expression::new(xxx)` 使用这两个方法的时候要预防`SQL`注入
+
+## 删除
+查询构造器也可以使用 `delete` 方法从表中删除记录。 在使用 `delete` 前，可以添加 `where` 子句来约束 `delete` 语法：
+```php
+DB::table('users')->where('votes', '>', 100)->delete();
+```
+如果你需要清空表，你可以使用 truncate 方法，它将删除所有行，并重置自增 ID 为零：
+
+```php
+DB::table('users')->truncate();
+```
+
+## 锁
+查询构造器也包含一些可以帮助你在 select 语法上实现「悲观锁定」的函数。若向在查询中实现一个「共享锁」， 你可以使用 读锁 `sharedLock` 方法。 共享锁可防止选中的数据列被篡改，直到事务被提交为止 ：
+
+```php
+DB::table('users')->where('votes', '>', 100)->sharedLock()->get();
+```
+
+或者，你可以使用 写锁 `lockForUpdate` 方法。使用 「update」锁可避免行被其它共享锁修改或选取：
+```php
+DB::table('users')->where('votes', '>', 100)->lockForUpdate()->get();
+```
+
+## 选择连接池
+如果有多个连接连接池 ，默认分配的连接是在 `db.pool`默认连接池 里面获取的，如果要获取自己连接池的连接：
+```php
+// 在 bean 里面配置的连接池名
+$poolName = 'pool.order2';
+$user = DB::connection($poolName)->query()->from('user')->where('id', $id)->get();
+```
+`DB::connection($poolName)->query()`方法同样是一个 `Builder` 对象
+
 ## 连接何时释放
+
+在明白连接释放之前，我们需要之前明白**连接**是那些方法创建的
+`DB::table('user')`，`Builder::new()`，`DB::connection($poolName)`前两者都是底层都是后者实现的，
+不是处于事务状态都会分配连接。
+
+在 `Builder::new()`方法之后调用的`newQuery()` 方法，会复用当前的连接。
+
+为什么全部不公用连接，答：因为每个连接可能数据库驱动不一样语法解析器不一样。
+
+在底层调用 `toSql()` 方法和`操作执行完毕`，的时候会释放连接，如果执行失败也会释放连接。
+> 前提都是，不是处于事务状态。一旦进入事务状态连接会与当前协程绑定连接，怎么分配的都是当前绑定的连接
