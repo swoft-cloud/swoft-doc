@@ -104,7 +104,7 @@ DB::table('users')->orderBy('id')->chunk(100, function (\Swoft\Stdlib\Collection
     return false;
 });
 ```
-闭包里面传递的 `$users` 是对 [get](#获取结果)方法的封装 ，返回是一个`Collection`对象，`each`方法也是通过 `chunk` 实现的 只是参数不同位置相反。
+闭包里面传递的 `$users` 是一个`Collection`对象，`each`方法也是通过 `chunk` 实现的 只是参数不同位置相反。
 
 ### 聚合
 查询构造器还提供了各种聚合方法，比如 `count`, `max`，`min`， `avg`，还有 `sum`。你可以在构造查询后调用任何方法：
@@ -146,7 +146,7 @@ $users = DB::table('users')->distinct()->get();
 如果你已经有了一个查询构造器实例，并且希望在现有的查询语句中加入一个字段，那么你可以使用 addSelect 方法：
 ```php
 $query = DB::table('users')->select('name');
-$users = $query->addSelect('age')->get();
+$users = $query->addSelect(['age'])->get();
 ```
 
 ## 原生表达式
@@ -240,8 +240,10 @@ $users = DB::table('users')
 使用 `crossJoin` 方法和你想要连接的表名做 「交叉连接」。交叉连接在第一个表和被连接的表之间会生成笛卡尔积：
 
 ```php
-$users = DB::table('sizes')
-            ->crossJoin('colours')
+// select * from `user` cross join `count` on `count`.`user_id` = `user`.`id`
+$users =Builder::new()
+            ->from('user')
+            ->crossJoin('count', 'count.user_id', '=', 'user.id')
             ->get();
 ```
 
@@ -274,10 +276,11 @@ DB::table('users')
 你可以使用 `joinSub`，`leftJoinSub` 和 `rightJoinSub` 方法关联一个查询作为子查询。他们每一种方法都会接收三个参数：子查询，表别名和定义关联字段的闭包：
 ```php
 $latestPosts = DB::table('posts')
-                   ->select('MAX(created_at) as last_post_created_at')
+                   ->select('MAX(created_at) as last_created_at')
                    ->where('is_published', true)
                    ->groupBy('user_id');
-
+                   
+// $latestPosts 是一个 query 对象
 $users = DB::table('users')
         ->joinSub($latestPosts, 'latest_posts', function($join) {
             $join->on('users.id', '=', 'latest_posts.user_id');
@@ -289,7 +292,7 @@ $users = DB::table('users')
 
 查询构造器还提供了将两个查询 「联合」 的快捷方式。比如，你可以先创建一个查询，然后使用 union 方法将其和第二个查询进行联合：
 ```php
-
+// (select * from `user`) union all (select * from `user`) union (select * from `user`)
 Builder::new()
     ->from('user')
     ->unionAll(function (Builder $builder) {
@@ -336,22 +339,6 @@ $users = DB::table('users')
 你还可以传递条件数组到 where 函数中：
 
 ```php
-$users = DB::table('users')
-                ->where('money', '>=', 100)
-                ->get();
-
-$users = DB::table('users')
-                ->where('money', '<>', 100)
-                ->get();
-
-$users = DB::table('users')
-                ->where('name', 'like', 'T%')
-                ->get();
-```
-
-你还可以传递条件数组到 where 函数中：
-
-```php
 $users = DB::table('users')->where([
     ['status', '=', '1'],
     ['subscribed', '<>', '1'],
@@ -373,7 +360,7 @@ $users    = User::where($wheres)->get();
 
 ```php
 $users = DB::table('user')
-                    ->where('money', '>', 100)
+                    ->where('money', '>', 100, 'or')
                     ->orWhere('name', 'John')
                     ->get();
 ```
@@ -417,7 +404,7 @@ $users = DB::table('user')
 `whereNull` 方法验证指定的字段必须是 `NULL`:
 ```php
 $users = DB::table('user')
-                    ->whereNull('created_at')
+                    ->whereNull('created')
                     ->get();
 ```
 
@@ -425,24 +412,25 @@ $users = DB::table('user')
 
 ```php
 $users = DB::table('users')
-            ->whereNotNull('created_at')
+            ->whereNotNull('created')
             ->get();
 ```
 
 **whereDate / whereMonth / whereDay / whereYear / whereTime**
 
+使用这些日期函数要注意 `MySQL` 时区，
 `whereDate` 方法用于比较字段值与给定的日期:
 
 ```php
  $users = DB::table('users')
-                ->whereDate('created_at', '2018-09-08')
+                ->whereDate('created', '2018-09-08')
                 ->get();
 ```
 
 `whereMonth` 方法用于比较字段值与一年中指定的月份:
 ```php
 $users = DB::table('users')
-                ->whereMonth('created_at', '9')
+                ->whereMonth('created', '9')
                 ->get();
 ```
 
@@ -502,7 +490,6 @@ DB::table('user')
 ```sql
 select * from `user` where `name` = 'sakura' and (`money` > 100 or `title` = 'test')
 ```
->tip: 你应该用 `orWhere` 调用这个分组，以避免应用全局作用出现意外.
  
 ###  WhereExists
 
@@ -527,7 +514,9 @@ where exists (
 
 ### JsonWhere
 
-`Swoft` 也支持查询 `JSON` 类型的字段（仅在对 `JSON` 类型支持的数据库上）。目前，本特性仅支持 `MySQL 5.7`+。使用 -> 操作符查询 `JSON` 数据：
+`Swoft` 也支持查询 `JSON` 类型的字段（仅在对 `JSON` 类型支持的数据库上）。目前，本特性仅支持 `MySQL 5.7`+。
+
+使用 `->` 操作符查询 `JSON` 数据：
 
 ```php
 $users = DB::table('users')
@@ -538,7 +527,7 @@ $users = DB::table('users')
                 ->where('preferences->dining->meal', 'cookie')
                 ->get();
 ```
-你也可以使用 whereJsonContains 来查询 JSON 数组：
+你也可以使用 `whereJsonContains` 来查询 JSON 数组：
 
 ```php
 $users = DB::table('users')
@@ -561,7 +550,7 @@ $users = DB::table('users')
 
 **latest / oldest**
 
-`latest` 和 `oldest` 方法可以使你轻松地通过日期排序。它默认使用 created_at 列作为排序依据。当然，你也可以传递自定义的列名：
+`latest` 和 `oldest` 方法可以使你轻松地通过日期排序。它默认使用 `created_at` 列作为排序依据。当然，你也可以传递自定义的列名：
 
 ```php
 $user = DB::table('users')
@@ -749,7 +738,7 @@ DB::table('users')->where('votes', '>', 100)->lockForUpdate()->get();
 $poolName = 'pool.order2';
 $user = DB::connection($poolName)->query()->from('user')->where('id', $id)->get();
 ```
-`DB::connection($poolName)->query()`方法同样是一个 `Builder` 对象
+`DB::connection($poolName)->query()`方法获得同样是一个 `Builder` 对象
 
 ## 连接何时释放
 
@@ -761,5 +750,5 @@ $user = DB::connection($poolName)->query()->from('user')->where('id', $id)->get(
 
 为什么全部不公用连接，答：因为每个连接可能数据库驱动不一样语法解析器不一样。
 
-在底层调用 `toSql()` 方法和`操作执行完毕`，的时候会释放连接，如果执行失败也会释放连接。
+在底层调用 `toSql()` 方法和**操作执行完毕**，的时候会释放连接，如果执行失败也会释放连接。
 > 前提都是，不是处于事务状态。一旦进入事务状态连接会与当前协程绑定连接，怎么分配的都是当前绑定的连接
