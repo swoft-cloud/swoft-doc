@@ -107,6 +107,11 @@
   * [事物](redis/transaction.md)
   * [通道](redis/pipeline.md)
   * [发布订阅](redis/pub-sub.md)
+  
+### [国际化](i18n/index.md)
+
+  * [配置参数](i18n/setting.md)
+  * [如何使用](i18n/usage.md)
     
 ### [日志](log/index.md)
 

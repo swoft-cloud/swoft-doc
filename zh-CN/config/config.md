@@ -1,6 +1,6 @@
 ## 配置
 
-可以在 bean.php 文件配置应用配置参数。
+可以在 bean.php 文件配置应用配置参数
 
 ```php
 return [
@@ -14,18 +14,22 @@ return [
 - base 主文件名称，默认 `base`
 - type 配置文件类型，默认 `php` 同时也支持 `yaml` 格式
 - parser 配置解析器，默认已经配置 php/yaml 解析器。
+- env 配置当前环境比如pro/pre/....
 
 
-## 解析格式
+## 数据格式
 
-配置目录所有配置文件会解析成一个数组，其它文件或子目录，以它的文件名和目录名称为数组 key 进行合并数组。比如 config 目录配置文件如下
+配置目录所有配置文件会解析成一个数组，但是不会递归合并数据，只会合并当前目录文件数据，以它的文件名称为数组 key 进行合并数组。比如 config 目录配置文件如下
 
 ```
 |-- base.php
 |-- data.php
-`-- user
-    |-- sms.php
+`-- pro
+    |-- base.php
+    `-- data.php
 ```
+
+> 只会解析当前目录文件数据，不会递归解析数据。当前使用 env 配置时，环境目录里面的配置信息会覆盖最外层文件名称相同的数据。提醒：配置文件里面可以使用 `env()`函数读取环境配置。
 
 base.php
 
@@ -41,19 +45,28 @@ data.php
 return [
     'dkey' => [
         'dvalue'
-    ]
+    ],
+    'key' => 'value'
 ];
 ```
 
-sms.php
+/pro/base.php
 
 ```php
 return [
-    'skey' => 'svalue'
+    'key' => 'valuePro'
 ];
 ```
 
-如上配置文件，合并的数据格式如下：
+/pro/data.php
+
+```php
+return [
+    'key' => 'valuePro'
+];
+```
+
+如上配置文件，当不配置 env 参数，合并的数据格式如下：
 
 ```php
 return [
@@ -61,12 +74,22 @@ return [
     'data' => [
         'dkey' => [
             'dvalue'
-        ]
-    ],
-    'user' => [
-        'sms' => [
-            'skey' => 'svalue'
-        ]
+        ],
+        'key' => 'value'
+    ]
+];
+```
+
+当配置 env=pro 参数，合并的数据格式如下：
+
+```php
+return [
+    'key' => 'valuePro',
+    'data' => [
+        'dkey' => [
+            'dvalue'
+        ],
+        'key' => 'valuePro'
     ]
 ];
 ```
@@ -80,10 +103,10 @@ return [
 
 全局函数使用 `config()`
 ```
-config(string $key, mixed $default = null):mixed
+config(string $key = null, mixed $default = null):mixed
 ```
 
-- key 配置参数 key，子数组可以使用 `.` 分割，比如上面的例子 `data.dkey` 可以获取到 `["dvalue"]`
+- key 配置参数 key，子数组可以使用 `.` 分割，比如上面的例子 `data.dkey` 可以获取到 `["dvalue"]`, 当`key=null` 获取所有配置参数
 - default 默认参数，如果 key 参数不存在，返回默认值，默认值可以是任意类型
 
 ### 注解
