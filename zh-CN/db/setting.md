@@ -1,23 +1,13 @@
 # 数据库：入门
-
-* 1 [简介](#简介)
-  * 1.1 [基础配置](#基础配置)
-  
-* 2 [属性配置详解](#属性配置详解)
-  * 2.1 [读 & 写连接](#读写&连接)
-  * 2.2 [连接池配置](#连接池配置)
-  * 2.3 [Connector & Connection](#Connector&Connection)
-
-* 3 [关于分库分表的一些见解](#关于分库分表的一些见解)
-* 4 [关于去掉 DB 服务化的见解](#关于去掉DB服务化的见解)
-
   
 ## 简介
 
-Swoft DB 操作高度兼容 Laravel 能使用 原生的 SQL、流畅的查询构造器，和 Eloquent ORM 在从此与 DB 交互变得简单，去掉了复杂的对象关联模型。采用原生 `PDO` 方式连接数据库。
+`Swoft DB` 操作高度兼容 `Laravel` 能使用 原生的 `SQL`、流畅的查询构造器，和 `Eloquent ORM` 在从此与 `DB` 交互变得简单，去掉了复杂的对象关联模型。采用原生 `PDO` 方式连接数据库。
 
-说下为什么这次要采用`PDO` 的原生方式，`PDO MySQL` 扩展 `swoole` 底层加入了 `Hook`监听, IO 操作会被自动转换和 `swoole` 的 `MySQL 协程客户端`一样。让开发变得简单，更贴近传统框架。
+说下为什么这次要采用`PDO` 的原生方式
+<div class="tip"> 使用mysqlnd模式的pdo、mysqli扩展会加入Hook监听,如果未启用mysqlnd将不支持协程化 </div>
 
+也即使说 **IO** 操作会被自动转换和 `swoole` 的 `MySQL 协程客户端`一样。让开发变得简单，更贴近传统框架。
 ### 基础配置
 
 数据库的配置放置在 `app\bean.php`文件中，去掉了繁琐的`.env`文件配置，你可以认为配置的 `db` 是一个 `bean` 对象。
@@ -133,14 +123,17 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
 也就是[基础配置](#基础配置)配置的，
 连接池配置放置在 `app\bean.php`文件中。
 
+<div class="tip"> 每一个 `worker` 都会创建一个同样的连接池。并不是越多越好，参数配置要根据，机器配置和 和`worker` 个数衡量。
+ </div>
+
 下面我们看看连接池如何自定义一个连接池
 
 ```php
 'db.pool2' => [
     'class'       => Pool::class,
     'database'    => \bean('db2'),
-    'minActive'   => 50,
-    'maxActive'   => 100,
+    'minActive'   => 10,
+    'maxActive'   => 20,
     'maxWait'     => 0,
     'maxWaitTime' => 0,
     'maxIdleTime' => 60,
@@ -154,9 +147,6 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
 - maxWaitTime 连接最大等待时间，单位秒，如果没有限制为0(默认)
 - maxIdleTime 连接最大空闲时间，单位秒
 
-**说明：**
- 每一个 `worker` 都会创建一个同样的连接池。参数配置要更具，机器配置和 和`worker` 个数衡量。
-
 ### Connector&Connection
 连接器和连接 的关系是创建连接必备的 
  ### Connector 
@@ -165,7 +155,8 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
 `Connection`主要用于，数据库的语法解析，设置表前缀，获取默认查询语法实例，重连错误判断
  
  `Swoft` 默认仅提供的 MySQL 的`Connector&Connection` 为什么呢。
- 因为`swoole`**暂未** `pdo_pgsql，pdo_ori，pdo_odbc，pdo_firebird`这些 `PDO`扩展加入
+ 因为`swoole`**暂未** [`pdo_pgsql，pdo_ori，pdo_odbc，pdo_firebird`](https://wiki.swoole.com/wiki/page/965.html)
+这些 `PDO`扩展加入
  底层 `Hook`。
  
  也就是说使用 `pdo_pgsql，pdo_ori，pdo_odbc，pdo_firebird` 执行的 `IO` 操作不会让出 `CPU 资源`是**同步执行**的，执行期间`协程`不会`上下文切换`
