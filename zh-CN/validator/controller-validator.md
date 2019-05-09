@@ -26,7 +26,7 @@ class TestController
     /**
      * @RequestMapping(route="validator")
      *
-     * @Validate(validator=TestValidator::class)
+     * @Validate(validator=TestValidator::class, fields={"name", "type"})
      * @Validate(validator="userValidator")
      *
      * @param Request $request
@@ -41,5 +41,12 @@ class TestController
     }
 }
 ```
+
+## @Validate
+
+- validator 指定验证器名称
+- fields 指定验证器里面验证的字段，这样可以高效的重复使用验证器
+- params 自定义验证器使用，传递给自定义验证器的参数
+
 
 > 注意 `$request->getParsedBody()` 获取的请求数据，是已经通过验证器修改的数据。验证器可以支持表单、请求 body 数据验证，但是 body 验证需要定义对应的数据解析器，框架默认提供 JSON/XML 类型数据解析器，详细介绍，请参考 Http Server 章节。
