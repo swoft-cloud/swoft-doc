@@ -113,6 +113,12 @@
 
   * [配置参数](i18n/setting.md)
   * [如何使用](i18n/usage.md)
+  
+### [验证器](validator/index.md)
+
+  * [声明验证器](validator/statement.md)
+  * [自定义验证器](validator/user-validator.md)
+  * [控制器中使用](validator/controller-validator.md)
     
 ### [日志](log/index.md)
 
