@@ -1,11 +1,5 @@
 # Redis 设置
 
-* 1 [基础配置](#基础配置)  
-* 2 [详细配置](#详细配置)
-* 3 [Redis集群配置](#Redis集群配置)
-* 4 [Redis连接池配置](#Redis连接池配置)
-* 5 [实现predis](#实现predis)
-
 ## 基础配置
 
 Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文件里，你可以看到 redis 数组里面包含了应用程序使用的 Redis 服务器：
@@ -95,6 +89,9 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
 Swoft 所有连接池配置都差不多，如果你想使用不同的 缓存数据库indexx或者不同节点。
 那么就很适合定义连接池，配置都在 `app\bean.php`里面。
 
+<div class="tip"> 每一个 `worker` 都会创建一个同样的连接池。并不是越多越好，参数配置要根据，机器配置和 和`worker` 个数衡量。
+ </div>
+
 如果是集群的话可以这样做：
 ```php
  'redis-clusters' => [
@@ -117,8 +114,8 @@ Swoft 所有连接池配置都差不多，如果你想使用不同的 缓存数�
 'redis.clusters-pool'     => [
     'class'   => \Swoft\Redis\Pool::class,
     'redisDb' => \bean('redis-clusters'),
-    'minActive'   => 100,
-    'maxActive'   => 200,
+    'minActive'   => 10,
+    'maxActive'   => 30,
     'maxWait'     => 0,
     'maxWaitTime' => 0,
     'maxIdleTime' => 40,
@@ -183,4 +180,4 @@ Redis::set($key, "[]");
 
 参考 `PhpRedisConnection` 和 `PhpRedisConnector` 的 实现。
 
-然后在配置中的 `redis` 中的` 'driver'   => 'phpredis'`替换成 `predis` 即可，
+然后在配置中的 `redis` 中的` 'driver' => 'phpredis'`替换成 `predis` 即可，
