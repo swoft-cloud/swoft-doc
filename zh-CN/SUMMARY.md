@@ -129,6 +129,19 @@
   
 ### 异常
 
+### [最佳实践](best-practices/index.md)
+
+  * [常规架构](best-practices/architecture.md)
+  * [中间件简介](best-practices/middleware.md)
+  * [部署与使用](best-practices/deploy.md)
+  * [演示案例](best-practices/demo.md)
+
+
+### [特别注意](notice/index.md)
+
+  * [严禁使用](notice/prohibited.md)
+  * [内存泄漏排查](notice/memory-leak.md)
+  * [性能优化](notice/performance-optimization.md)
 
 ## 扩展
 
