@@ -89,6 +89,7 @@
   
 ### [任务](task/index.md)
 
+  * [配置与启用](task/setting.md)
   * [声明一个任务](task/statement.md)
   * [协程任务](task/coroutine.md)
   * [异步任务](task/async.md)
