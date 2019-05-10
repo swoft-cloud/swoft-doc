@@ -1,24 +1,32 @@
 # Summary
 
 ## 简介
-### Swoole 扩展
-### 关于 Swoft
 
-### 发展历程
-### 版本更新
-#### 2.x
-#### 1.x
-### 用户案例
-### 贡献 Swoft
+  * [关于 Swoft]()
+  * [版本更新]()
+  * [升级指南]()
+  * [常见问题]()
+  * [参与 Swoft]()
 
-## [快速入门]()
+## 开始
+
+###  [基础准备]()
+
+  * [传统架构]()
+  * [Swoole 扩展]()
+  
+### [快速起步]()
 
   * [环境安装]()
   * [框架安装]()
   * [运行服务]()
 
-### 起步
+### [特别注意](notice/index.md)
 
+  * [严禁使用](notice/prohibited.md)
+  * [内存泄漏排查](notice/memory-leak.md)
+  * [性能优化](notice/performance-optimization.md)
+  
 ## 基础
 
 ### [注解](annotation/index.md)
@@ -51,9 +59,9 @@
   * [通知顺序]()
   * [多切面顺序]()
   
-### [公共函数](common/index.md)
+### [公共方法](common/index.md)
   
-  * [协程函数](common/co.md)
+  * [协程方法](common/co.md)
   
 ## 核心
 ### 命令行
@@ -136,13 +144,6 @@
   * [中间件简介](best-practices/middleware.md)
   * [部署与使用](best-practices/deploy.md)
   * [演示案例](best-practices/demo.md)
-
-
-### [特别注意](notice/index.md)
-
-  * [严禁使用](notice/prohibited.md)
-  * [内存泄漏排查](notice/memory-leak.md)
-  * [性能优化](notice/performance-optimization.md)
 
 ## 扩展
 
