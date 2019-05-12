@@ -130,11 +130,8 @@
   * [控制器中使用](validator/controller-validator.md)
     
 ### [日志](log/index.md)
-
-  * [配置](log/setting.md)
   * [控制台日志](log/clog.md)
   * [应用日志](log/log.md)
-  * [过滤器](log/filter.md)
   
 ### 异常
 
