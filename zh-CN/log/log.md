@@ -96,8 +96,17 @@ Log::error('this %s log', 'error');
 Log::alert('this %s log', 'alert');
 Log::emergency('this %s log', 'emergency');
 
+// Pushlog
+Log::pushLog('key', 'value');
+Log::pushLog('key', ['value']);
+Log::pushLog('key', 'value');
+
 // Tag end
 Log::profileEnd('tagName');
+
+// Counting
+Log::counting('mget', 1, 10);
+Log::counting('mget', 2, 10);
 
 // 2019-05-11 06:57:27 [info] [swoft] [request] [tid:4] [cid:4] [traceid:] [spanid:] [parentid:] trace[LogController.php:29,App\Http\Controller\LogController->test] info message
 // 2019-05-11 06:57:27 [debug] [swoft] [request] [tid:4] [cid:4] [traceid:] [spanid:] [parentid:] trace[LogController.php:35,App\Http\Controller\LogController->test] this debug log
