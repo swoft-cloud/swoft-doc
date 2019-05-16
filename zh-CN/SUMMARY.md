@@ -9,7 +9,7 @@
 
 ## 开始
 
-###  [基础准备](ready/index.md)
+### [基础准备](ready/index.md)
 
   * [传统架构](ready/tradition.md)
   * [IO复用](ready/io.md)
@@ -47,8 +47,8 @@
   * [Prototype]()
   * [请求实例]()
   * [会话实例]()
-  
-### [事件]()
+
+### [事件](event/index.md)
 
   * [监听器]()
   * [触发事件]()
@@ -64,8 +64,16 @@
   * [协程方法](common/co.md)
   
 ## 核心
+
 ### [组件说明与功能列表](component.md)
-### 命令行
+
+### [命令行](console/index.md)
+
+  * [命令行配置](console/config.md)
+  * [定义命令](console/definition.md)
+  * [命令运行](console/usage.md)
+  * [输入输出](console/in-out.md)
+
 ### [Http Server](http-server/index.md)
 
    * [常用命令](http-server/command.md)
