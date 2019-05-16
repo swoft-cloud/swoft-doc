@@ -144,13 +144,3 @@
   * [中间件简介](best-practices/middleware.md)
   * [部署与使用](best-practices/deploy.md)
   * [演示案例](best-practices/demo.md)
-
-## 扩展
-
-### 如何写一个扩展组件？
-### 视图
-### 会话
-
-## 工具
-
-## 其它
