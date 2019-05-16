@@ -155,7 +155,7 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
 `Connection`主要用于，数据库的语法解析，设置表前缀，获取默认查询语法实例，重连错误判断
  
  `Swoft` 默认仅提供的 MySQL 的`Connector&Connection` 为什么呢。
- 因为`swoole`**暂未** [`pdo_pgsql，pdo_ori，pdo_odbc，pdo_firebird`](https://wiki.swoole.com/wiki/page/965.html)
+ 因为`swoole`暂且将 [`pdo_pgsql，pdo_ori，pdo_odbc，pdo_firebird`](https://wiki.swoole.com/wiki/page/965.html)
 这些 `PDO`扩展加入
  底层 `Hook`。
  
