@@ -4,8 +4,7 @@
 
   * [关于 Swoft](introduction/swoft.md)
   * [版本更新](introduction/update.md)
-  * [升级指南]()
-  * [常见问题]()
+  * [常见问题](introduction/question.md)
   * [参与 Swoft](introduction/join.md)
 
 ## 开始
