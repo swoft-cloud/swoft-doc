@@ -71,9 +71,9 @@ $user = User::find($id);
 ```
 类似这样的代码如果我们忘记 提交事务/回滚。
 
-Swoft 在`SwoftEvent::COROUTINE_DEFER`事件中会检查是否还处于事务状态，如果是会自动 `rollback`到最初开启事务的状态。正常的连接会归还到连接池中，不会造成资源泄露。
+Swoft 在`SwoftEvent::COROUTINE_DEFER`事件中会检查是否还处于事务状态，如果是会自动 `rollback`到最初开启事务的状态。连接会归还到连接池中，不会造成资源泄露。
 
-### 错误示范
+## 错误示范
 ```php
 DB::beginTransaction();
 $user = User::find($id);

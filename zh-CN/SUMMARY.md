@@ -10,10 +10,11 @@
 
 ## 开始
 
-###  [基础准备]()
+###  [基础准备](ready/index.md)
 
-  * [传统架构]()
-  * [Swoole 扩展]()
+  * [传统架构](ready/tradition.md)
+  * [IO复用](ready/io.md)
+  * [Swoole 扩展](ready/swoole.md)
   
 ### [快速起步]()
 
