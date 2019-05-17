@@ -118,14 +118,14 @@
   * [配置](db/setting.md)
   * [模型](db/model.md)
   * [查询器](db/builder.md)
-  * [事物](db/transaction.md)
+  * [事务](db/transaction.md)
   * [原生操作](db/origin.md)
   
 ### [Redis](redis/index.md)
 
   * [配置](redis/setting.md)
   * [如何使用](redis/usage.md)
-  * [事物](redis/transaction.md)
+  * [事务](redis/transaction.md)
   * [通道](redis/pipeline.md)
   * [发布订阅](redis/pub-sub.md)
   
