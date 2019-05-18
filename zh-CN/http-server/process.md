@@ -4,6 +4,6 @@
 
 ## Http生命周期
 
-![Http生命周期](../images/http-server/process/1.png)
+![Http生命周期](../image/http-server/process/1.png)
 
 了解请求生命周期, 有利于理解HTTP服务各组件, 编写出更好代码.

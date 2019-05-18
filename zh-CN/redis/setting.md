@@ -4,6 +4,8 @@
 
 Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文件里，你可以看到 redis 数组里面包含了应用程序使用的 Redis 服务器：
 
+<div class="tip"> 默认是开启`Redis`自带序列化的。你可以直接 `set`，`array` 但是 通过 `set`执行的 key 自增操作将失效。如果你想把 redis 作为一个数据库，而不是缓存你可以采用[配置一个新的连接池](#Redis连接池配置)，然后关闭序列化就可以和原生一操作</div>
+
 ```php
 'redis'      => [
     'class'    => RedisDb::class,
@@ -42,11 +44,13 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
 - timeout 超时时间 0：不超时，单位秒
 - option phpredis 的其他配置
     - prefix redis 前缀
-    - serializer 序列化支持三种选项 默认是没有序列化的
+    - serializer 序列化支持三种选项。
+        - 0   为0就会关闭序列化
         - Redis::SERIALIZER_NONE 不序列化数据
         - Redis::SERIALIZER_PHP  使用php内置序列化/反序列化
         - Redis::SERIALIZER_IGBINARY  使用igBinary序列化/反序列化
-        
+    
+> tips：关闭序列化，把 `option` 选项的 `serializer` 设置为 `0` 即可关闭序列化  
 ## Redis集群配置
 
 集群配置和基础配置有点区别都是在同一文件下，配置了 clusters 属性了普通的 redis 配置就失效了，连接池也会使用`集群配置`创建连接
@@ -115,7 +119,7 @@ Swoft 所有连接池配置都差不多，如果你想使用不同的 缓存数�
     'class'   => \Swoft\Redis\Pool::class,
     'redisDb' => \bean('redis-clusters'),
     'minActive'   => 10,
-    'maxActive'   => 30,
+    'maxActive'   => 20,
     'maxWait'     => 0,
     'maxWaitTime' => 0,
     'maxIdleTime' => 40,
@@ -140,8 +144,8 @@ Swoft 所有连接池配置都差不多，如果你想使用不同的 缓存数�
 'redis.pool.2'     => [
     'class'   => \Swoft\Redis\Pool::class,
     'redisDb' => \bean('redis-2'),
-    'minActive'   => 100,
-    'maxActive'   => 300,
+    'minActive'   => 10,
+    'maxActive'   => 20,
     'maxWait'     => 0,
     'maxWaitTime' => 0,
     'maxIdleTime' => 60,

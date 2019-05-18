@@ -227,4 +227,24 @@ $users = User::findMany([1,2,3,4], ['id','name']);
 $useer = User::whereIn('id', [1,2,3,4])->select(['id','name'])->get();
 ```
 
+如果你想获取的列表中都是 `实体`对象 可以使用 `getModels` 方法，该方法返回的是一个实体数组 你可以这样使用：
+```php
+$users = User::where('id', 22)->getModels(['id', 'age']);
+/* @var User $user */
+foreach ($users as $user) {
+    $age = $user->getAge();
+}
+```
+
+有时候我我们需要按数据库某个键作为 `key` 我们逻辑映射关系，可以使用  `Collection` 的  `keyBy` 方法。
+
+假如 需要第一页 数据需要以`id`作为`key` 你可以这样使用：
+```php
+$users = User::forPage(1, 10)->get(['id', 'age'])->keyBy('id');
+
+/* @var User $user */
+foreach ($users as $id => $user) {
+    $age = $user->getAge();
+}
+```
 更多方法请参照 查询构造器
