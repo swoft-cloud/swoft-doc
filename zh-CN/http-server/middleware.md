@@ -210,7 +210,7 @@ class AuthMiddleware implements MiddlewareInterface
         } catch (\Exception $e) {
             $json = ['code'=>0,'msg'=>'授权失败']
             $response = Context::mustGet()->getResponse();
-            return $response->json($json);
+            return $response->withData($json);
         }
         $response = $handler->handle($request);
         return $response;
