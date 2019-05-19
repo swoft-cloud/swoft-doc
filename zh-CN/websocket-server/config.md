@@ -1,45 +1,44 @@
 # websocket 配置
 
-websocket 的host,port等配置是继承http server的。
+websocket 的 host, port 等配置是都是完全可以自定义的。
 
-## env配置
+> websocket server 的默认端口是 `18308`
 
-`.env` 新增配置项
+## ws server 配置
 
-```ini
-# Swoole Settings
-DISPATCH_MODE=2 # 注意!使用websocket 时分配模式不能为1和3
-...
-# WebSocket
-WS_ENABLE_HTTP=true # 是否启用http处理
-```
-
-## server 配置
-
-`config/server.php` 新增websocket配置项 `ws`
+可以编辑： `app/bean.php`
 
 ```php
-'ws'  => [
-    // enable handle http request ?
-    'enable_http' => env('WS_ENABLE_HTTP', true),
-    // other settings will extend the 'http' config
-    // you can define separately to overwrite existing settings
-],
+    // ...
+    'wsServer'   => [
+        'class'   => WebSocketServer::class,
+        'debug' => env('SWOFT_DEBUG', 0),
+        /* @see WebSocketServer::$setting */
+        'setting' => [
+            'log_file' => alias('@runtime/swoole.log'),
+        ],
+    ],
 ```
 
-> websocket 的其他配置是继承http服务的
+### 启用http请求处理
 
-## 扫描配置
+默认的是没有启用http server功能的。如果你想开启ws时，同时处理http请求。
 
-> swoft `v1.0.6` 以上可以忽略此条，此版本以上已经是默认扫描app目录下所有文件了
-
-在 `config/properties/app.php` 文件新增扫描配置，添加 `app/WebSocket` 目录
-
-> 如果你的没有这项配置，请手动加上它
+可以编辑： `app/bean.php`
 
 ```php
-'beanScan'     => [
-    // ... ....
-    'App\WebSocket',
-],
+    // ...
+    'wsServer'   => [
+        'class'   => WebSocketServer::class,
+        'on'      => [
+            // 加上如下一行，开启处理http请求
+            SwooleEvent::REQUEST => bean(RequestListener::class),
+        ],
+        'debug' => env('SWOFT_DEBUG', 0),
+        /* @see WebSocketServer::$setting */
+        'setting' => [
+            'log_file' => alias('@runtime/swoole.log'),
+        ],
+    ],
 ```
+

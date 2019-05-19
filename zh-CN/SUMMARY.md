@@ -50,8 +50,7 @@
 
 ### [事件](event/index.md)
 
-  * [监听器]()
-  * [触发事件]()
+  * [监听与触发](event/usage.md)
   
 ### [切面编程](aop/index.md)
 
@@ -85,7 +84,13 @@
    * [中间件](http-server/middleware.md)
    * [异常处理](http-server/exception.md)
   
-### Websocket
+### [Websocket](websocket-server/index.md)
+
+  * [配置服务](websocket-server/config.md)
+  * [启动与管理](websocket-server/manage.md)
+  * [websocket模块](websocket-server/module.md)
+  * [消息处理](websocket-server/message-route.md)
+  * [消息发送](websocket-server/message-send.md)
 
 ### [RPC 组件](rpc.md)
 
