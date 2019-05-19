@@ -1,5 +1,7 @@
 # 事件管理
 
+Swoft 2 事件进行了更加清晰和严谨的规划。提供了丰富的事件，以便于开发者使用。
+
 在swoft我们将事件分为三大类：
 
 - swoole server的回调事件
@@ -23,30 +25,6 @@
 ],           
 ```
 
-### 注册事件监听
-
-- 用注解tag `@Listener("event name")` 来注册用户自定义的事件监听
-
-```php
-/**
- * 应用加载事件
- *
- * @Listener(AppEvent::APPLICATION_LOADER)
- */
-class ApplicationLoaderListener implements EventHandlerInterface
-{
-    /**
-     * @param EventInterface $event      事件对象
-     */
-    public function handle(EventInterface $event)
-    {
-        // do something ....
-    }
-}
-```
-
-> 事件名称管理推荐放置在一个单独类的常量里面，方便管理和维护
-
 ## 拓展介绍
 
 一些关于自定义事件的拓展介绍说明
@@ -60,20 +38,27 @@ class ApplicationLoaderListener implements EventHandlerInterface
 例如：
 
 ```text
-// 模型相关：
-model.insert
-model.update
-model.delete
+swoft.server.*
+swoft.process.*
+swoft.pool.*
 
-// DB相关：
-db.connect
-db.disconnect
-db.query
+swoft.http.request.before
+swoft.http.request.after
 
-// 应用相关：
-app.start
-app.run
-app.stop
+swoft.db.query.start
+swoft.db.query.after
+
+swoft.redis.start
+swoft.redis.after
+
+swoft.ws.start
+swoft.ws.after
+
+swoft.tcp.start
+swoft.tcp.after
+
+swoft.udp.start
+swoft.udp.after
 ```
 
 ### 事件通配符 `*`
@@ -88,3 +73,4 @@ app.stop
 ### 更多介绍
 
 更多关于自定义事件的理解参考 https://github.com/inhere/php-event-manager/blob/master/README.md
+
