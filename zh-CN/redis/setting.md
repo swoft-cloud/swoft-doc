@@ -50,7 +50,8 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
         - Redis::SERIALIZER_PHP  使用php内置序列化/反序列化
         - Redis::SERIALIZER_IGBINARY  使用igBinary序列化/反序列化
     
-> tips：关闭序列化，把 `option` 选项的 `serializer` 设置为 `0` 即可关闭序列化  
+> tips：关闭序列化，把 `option` 选项的 `serializer` 设置为 `0` 即可关闭序列化
+  
 ## Redis集群配置
 
 集群配置和基础配置有点区别都是在同一文件下，配置了 clusters 属性了普通的 redis 配置就失效了，连接池也会使用`集群配置`创建连接
