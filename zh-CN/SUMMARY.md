@@ -46,7 +46,6 @@
   * [单例](bean/singleton.md)
   * [Prototype](bean/prototype.md)
   * [请求实例](bean/request.md)
-  * [会话实例](bean/session.md)
 
 ### [事件](event/index.md)
 

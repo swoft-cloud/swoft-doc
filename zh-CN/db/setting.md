@@ -5,7 +5,7 @@
 `Swoft DB` 操作高度兼容 `Laravel` 能使用 原生的 `SQL`、流畅的查询构造器，和 `Eloquent ORM` 在从此与 `DB` 交互变得简单，去掉了复杂的对象关联模型。采用原生 `PDO` 方式连接数据库。
 
 说下为什么这次要采用`PDO` 的原生方式
-<div class="tip"> 使用mysqlnd模式的pdo、mysqli扩展会加入Hook监听,如果未启用mysqlnd将不支持协程化 </div>
+<p class="tip"> 使用mysqlnd模式的pdo、mysqli扩展会加入Hook监听,如果未启用mysqlnd将不支持协程化 </p>
 
 也即使说 **IO** 操作会被自动转换和 `swoole` 的 `MySQL 协程客户端`一样。让开发变得简单，更贴近传统框架。
 ### 基础配置
@@ -124,8 +124,8 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
 也就是[基础配置](#基础配置)配置的，
 连接池配置放置在 `app\bean.php`文件中。
 
-<div class="tip"> 每一个 `worker` 都会创建一个同样的连接池。并不是越多越好，参数配置要根据，机器配置和 和`worker` 个数衡量。
- </div>
+<p class="tip"> 每一个 `worker` 都会创建一个同样的连接池。并不是越多越好，参数配置要根据，机器配置和 和`worker` 个数衡量。
+ </p>
 
 下面我们看看连接池如何自定义一个连接池
 

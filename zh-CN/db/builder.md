@@ -722,4 +722,4 @@ $user = DB::query($poolName)->from('user')->where('id', $id)->get();
 
 底层只有在 执行 sql 的时候才会从 DB 连接池中拿连接执行，执行之后会自动释放。`Builder` 对象不在依赖 `Connection`
 
-<div class="tip"> 释放连接: 把连接还给连接池 </div>
+<p class="tip"> 释放连接: 把连接还给连接池 </p>
