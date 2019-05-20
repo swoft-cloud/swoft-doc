@@ -4,16 +4,16 @@
 
   * [关于 Swoft](introduction/swoft.md)
   * [版本更新](introduction/update.md)
-  * [升级指南]()
-  * [常见问题]()
+  * [常见问题](introduction/question.md)
   * [参与 Swoft](introduction/join.md)
 
 ## 开始
 
-###  [基础准备]()
+### [基础准备](ready/index.md)
 
-  * [传统架构]()
-  * [Swoole 扩展]()
+  * [传统架构](ready/tradition.md)
+  * [IO复用](ready/io.md)
+  * [Swoole 扩展](ready/swoole.md)
   
 ### [快速起步]()
 
@@ -40,18 +40,17 @@
   * [环境配置](config/env.md)
   * [应用配置](config/config.md)
   
-### [容器]()
+### [容器](bean/index.md)
 
-  * [Bean]()
-  * [单例]()
-  * [Prototype]()
-  * [请求实例]()
-  * [会话实例]()
-  
-### [事件]()
+  * [Bean](bean/bean.md)
+  * [单例](bean/singleton.md)
+  * [Prototype](bean/prototype.md)
+  * [请求实例](bean/request.md)
+  * [会话实例](bean/session.md)
 
-  * [监听器]()
-  * [触发事件]()
+### [事件](event/index.md)
+
+  * [监听与触发](event/usage.md)
   
 ### [切面编程](aop/index.md)
 
@@ -64,8 +63,16 @@
   * [协程方法](common/co.md)
   
 ## 核心
+
 ### [组件说明与功能列表](component.md)
-### 命令行
+
+### [命令行](console/index.md)
+
+  * [命令行配置](console/config.md)
+  * [定义命令](console/definition.md)
+  * [命令运行](console/usage.md)
+  * [输入输出](console/in-out.md)
+
 ### [Http Server](http-server/index.md)
 
    * [常用命令](http-server/command.md)
@@ -77,7 +84,13 @@
    * [中间件](http-server/middleware.md)
    * [异常处理](http-server/exception.md)
   
-### Websocket
+### [Websocket](websocket-server/index.md)
+
+  * [配置服务](websocket-server/config.md)
+  * [启动与管理](websocket-server/manage.md)
+  * [websocket模块](websocket-server/module.md)
+  * [消息处理](websocket-server/message-route.md)
+  * [消息发送](websocket-server/message-send.md)
 
 ### [RPC 组件](rpc.md)
 
@@ -110,14 +123,14 @@
   * [配置](db/setting.md)
   * [模型](db/model.md)
   * [查询器](db/builder.md)
-  * [事物](db/transaction.md)
+  * [事务](db/transaction.md)
   * [原生操作](db/origin.md)
   
 ### [Redis](redis/index.md)
 
   * [配置](redis/setting.md)
   * [如何使用](redis/usage.md)
-  * [事物](redis/transaction.md)
+  * [事务](redis/transaction.md)
   * [通道](redis/pipeline.md)
   * [发布订阅](redis/pub-sub.md)
   
@@ -144,13 +157,3 @@
   * [中间件简介](best-practices/middleware.md)
   * [部署与使用](best-practices/deploy.md)
   * [演示案例](best-practices/demo.md)
-
-## 扩展
-
-### 如何写一个扩展组件？
-### 视图
-### 会话
-
-## 工具
-
-## 其它

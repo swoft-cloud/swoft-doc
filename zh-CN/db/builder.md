@@ -7,8 +7,7 @@ Swoft 的数据库查询构造器为创建和运行数据库查询提供了一�
 Swoft 的查询构造器使用 `PDO` 参数绑定来保护您的应用程序免受 SQL 注入攻击。因此没有必要清理作为绑定传递的字符串。
 
 你可以使用 `DB::table('xxxx')`得到一个 `Builder` 对象 也可以使用 
-`Builder::new()->from('xxx')` 这两种写法返回结果是一样的，
-不要把`Builder` 对象 `clone` 到另一个协程环境中
+`Builder::new()->from('xxx')` 这两种写法返回结果是一样的，`Builder`对象不会分配连接，只有执行 `sql` 的时候才会从连接池从获取
 
 ## 获取结果
 
@@ -715,22 +714,12 @@ DB::table('users')->where('votes', '>', 100)->lockForUpdate()->get();
 ```php
 // 在 bean 里面配置的连接池名
 $poolName = 'pool.order2';
-$user = DB::connection($poolName)->query()->from('user')->where('id', $id)->get();
+$user = DB::query($poolName)->from('user')->where('id', $id)->get();
 ```
-`DB::connection($poolName)->query()`方法获得同样是一个 `Builder` 对象
+`DB::query($poolName)`方法获得同样是一个 `Builder` 对象
 
 ## 连接何时释放
 
-在明白连接释放之前，我们需要之前明白**连接**是那些方法创建的
-`DB::table('user')`，`Builder::new()`，`DB::connection($poolName)`前两者都是底层都是后者实现的，
-不是处于事务状态都会分配连接。
-
-在 `Builder::new()`方法之后调用的`newQuery()` 方法，会复用当前的连接。
-
-为什么全部不公用连接，答：因为每个连接可能数据库驱动不一样语法解析器不一样。
-
-在底层调用 `toSql()` 方法和**操作执行完毕**，的时候会释放连接，如果执行失败也会释放连接。
+底层只有在 执行 sql 的时候才会从 DB 连接池中拿连接执行，执行之后会自动释放。`Builder` 对象不在依赖 `Connection`
 
 <div class="tip"> 释放连接: 把连接还给连接池 </div>
-
-> 前提都是，不是处于事务状态。一旦进入事务状态连接会与当前协程绑定连接，怎么分配的都是当前绑定的连接

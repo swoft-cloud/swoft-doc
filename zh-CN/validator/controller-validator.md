@@ -36,11 +36,15 @@ class TestController
     public function validator(Request $request): array
     {
         $data = $request->getParsedBody();
-
+        $key  = ;
+        
         return $data;
     }
 }
 ```
+
+- `$request->getParsedBody()` 所有解析数据
+- `$request->parsedBody('key', 'default')`  指定 KEY 解析数据
 
 ## @Validate
 

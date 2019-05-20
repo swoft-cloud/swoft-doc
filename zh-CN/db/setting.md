@@ -49,6 +49,7 @@ return [
         'strict'    => false,
         'timezone'  => '+8:00',
         'modes'     => 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES',
+        'fetchMode' => PDO::FETCH_ASSOC,
     ],
 ],
 ```  
@@ -74,7 +75,7 @@ return [
     - timezone 设置时区设置
     - modes 设置连接模式（可以是一维数组，也可以是英文逗号分割的 modes）
     - strict 设置获取查询以启用严格模式（实际上也是设置modes配置）
-
+    - fetchMode 设置 pdo 返回的类型 默认的连接池返回的类型为 `FETCH_ASSOC` 也就是数组方式, 其他类型[参考官方手册](https://php.net/manual/en/pdo.constants.php)
 ### 读写&连接
 
 ```php
@@ -155,7 +156,7 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
 `Connection`主要用于，数据库的语法解析，设置表前缀，获取默认查询语法实例，重连错误判断
  
  `Swoft` 默认仅提供的 MySQL 的`Connector&Connection` 为什么呢。
- 因为`swoole`**暂未** [`pdo_pgsql，pdo_ori，pdo_odbc，pdo_firebird`](https://wiki.swoole.com/wiki/page/965.html)
+ 因为`swoole`暂且将 [`pdo_pgsql，pdo_ori，pdo_odbc，pdo_firebird`](https://wiki.swoole.com/wiki/page/965.html)
 这些 `PDO`扩展加入
  底层 `Hook`。
  
