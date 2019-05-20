@@ -28,10 +28,10 @@ class PrototypeClass
 }
 ```
  - scope
-    - Bean::SINGLETON [单例模式](./singleton.md)
-    - Bean::PROTOTYPE [原型模式](./prototype.md) 
-    - Bean::REQUEST  [请求](./request.md)
-    - Bean::SESSION [会话](./session.md)
+    - Bean::SINGLETON [单例Bean](./singleton.md)
+    - Bean::PROTOTYPE [原型Bean](./prototype.md) 
+    - Bean::REQUEST  [请求Bean](./request.md)
+    
  - name
     指定一个为bean 指定一个名称，有时候你可能只需要配置一个 name 可以这样写`@Bean("xxx")`这样默认是参数的 name。
     
@@ -106,22 +106,24 @@ class TestBean
 
 ## Bean 初始化
 
-每一个 `Bean`初始化的时候会自动检查`init()`这个方法是否存在
+> 在配置文件中使用 `\bean('xx.xx')` 使用`.`调用这种方式，暂不支持。
 
+每一个 `Bean`初始化的时候会自动检查`init()`这个方法是否存在
 
 如果存在会被首先调用，你可以在该方法中进行一些初始化操作， 作用类似 `golang` 中的`init`方法。
 
 ## 获取 Bean 
  
 ### @Inject
-所有的 bean 都可以通过 `@Inject` 属性注入，底层会通过反射自动注入。  
+所有的 bean 都可以通过 `@Inject` 属性注入，底层会通过反射自动注入。 
+> `Bean::REQUEST bean` 不能使用 `@Inject` 注入
 ```php
 /**
- * @Inject("session-mg")
+ * @Inject("config")
  *
- * @var \Session
+ * @var Config
  */
-private $session;
+private $config;
 ```
 - **name** 定义属性注入的bean名称。如果`name`为空，默认为`@var` 定义的类型。
 
@@ -129,9 +131,8 @@ private $session;
 
 获取`score`为`Bean::SINGLETON`，`Bean::PROTOTYPE`
 
-下面 以获取 `wsRouter` 为例：
+可以使用下面，以获取 `wsRouter` 为例：
  ```php
-
 /** @var Router $router */
 $router = Swoft::getBean('wsRouter');
 $router = BeanFactory::getBean('wsRouter');
@@ -147,23 +148,16 @@ $router = BeanFactory::getContainer()->get('wsRouter')
 /* @var WsDispatcher $dispatcher */
 $dispatcher = BeanFactory::getSingleton('wsDispatcher');
 
-  
- > 注意`BeanFactory::getBean`只能获取到 框架启动加载的 bean，不能获取到 `scope` 为 `request` 和`session` 的`bean`，因为这两种类型在是在业务使用中才初始化的。
+```
+ > 注意`BeanFactory::getBean`只能获取到 框架启动加载的 bean，不能获取到 `scope` 为 `request` 的`bean`。
  
- [`request`](./request.md) 和 [`session`](./session.md) 的类型是 2.x 新加的
+ [`request bean`](./request.md) 的类型是 2.x 新加的
  
 获取 `score`为 `request`类型的 你可以这样获取
 ```php
 $requestBean = BeanFactory::getRequestBean(RequestClass::class, (string)Co::tid());
 ```
-一般 `request`和 `session` 类型的 `bean` 通常是与`顶级协程ID`绑定在一起的
-
-`score` 为 `session`的 `bean`原理是一样的只是 `session`更适合长连接会话场景，有助于你区分 `bean`类型，获取方式和`request`类型的 `bean` 大同小异
-```php
-$session = BeanFactory::getSessionBean(SessionClass::class, (string)Co::tid());
-```
-> 如果 使用`@Inject` 注入 `score` 为 `session`和`request` 类型时候，默认是与`顶级协程ID` 绑定的。
-
+一般 `request` 类型的 `bean` 通常是与`顶级协程ID`绑定在一起的
 
 判断`当前环境`是否存在 某个 `bean`
 ```php
@@ -174,5 +168,3 @@ $exist = BeanFactory::hasBean($name);
 ```php
 $isSingleton = BeanFactory::isSingleton('name')
 ```
-
-> 不支持通过点`.`隐式调用方式获取 bean，如果需要使用`.`，指定 `bean` 的 `name` 即可，或者使用别名，具体可以参考 `db 的连接池`配置章节。

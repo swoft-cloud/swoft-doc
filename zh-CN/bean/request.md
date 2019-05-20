@@ -4,36 +4,24 @@
 
 而是在 `onRequest` 事件触发后 采用懒加载方式,
 
-只有真正调用的时候才会被初始化，在当前请求中保持单例。
+只有真正调用的时候才会被初始化，在当前请求中保持单例，请求结束后会被自动销毁。
 
 ## 使用
 
-你可以通过 `@Inject`注解注入
-```php 
-/**
- * @Inject("request-obj")
- *
- * @var RequestObj
- */
-private $obj;
-```
-也可以通过获取
+只能通过获取 `BeanFactory::getRequestBean` 获取
 ```php
-$obj = BeanFactory::getRequestBean($name, $id);
+$obj = BeanFactory::getRequestBean($name, (string)$tid);
 ```
 - **name** requestBean 的名称/别名/类名
-- **id** 通常是与`是顶级协程ID`绑定，当然你也可以指定协程绑定。通过 `Co::tid()`获取`顶级协程ID`，`Co::id()`获取当前协程环境 id。
+- **tid** 通常是与`是顶级协程ID`绑定。获取`顶级协程ID`，`Co::tid()`获取当前协程环境 `顶级协程ID`。
 
-> `@Inject` 注入的 request bean 默认是与`顶级协程ID`绑定的
-
-如果你需要获取当前请求使用了那些 `request bean` 可以使用
+如果你需要获取当前请求`加载`了那些 `request bean` 。可以使用：
 ```php
 $pool = BeanFactory::getContainer()->getRequestPool()
 ```
-
 ## 销毁
 
-在协程执行完毕的`SwoftEvent::COROUTINE_COMPLETE`事件中，
-`自动销毁`当前协程`顶级协程ID`绑定的`request bean`。
+在**所有协程**执行完毕后，在`SwoftEvent::COROUTINE_COMPLETE`事件中，
+会`自动销毁`与`顶级协程ID`绑定的`request bean`。
 
 这时 `request bean`的生命周期也就结束了。
