@@ -98,12 +98,10 @@
   * [配置参数](rpc-server/setting.md)
   * [声明服务](rpc-server/statement.md)
   
-  
 ### [RPC Client](rpc-client/index.md)
 
   * [配置服务](rpc-client/setting.md)
   * [如何使用](rpc-client/usage.md)
-
   
 ### [任务](task/index.md)
 
