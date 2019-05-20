@@ -92,7 +92,18 @@
   * [消息处理](websocket-server/message-route.md)
   * [消息发送](websocket-server/message-send.md)
 
-### [RPC 组件](rpc.md)
+### [RPC Server](rpc-server/index.md)
+
+  * [常用命令](rpc-server/command.md)
+  * [配置参数](rpc-server/setting.md)
+  * [声明服务](rpc-server/statement.md)
+  
+  
+### [RPC Client](rpc-client/index.md)
+
+  * [配置服务](rpc-client/setting.md)
+  * [如何使用](rpc-client/usage.md)
+
   
 ### [任务](task/index.md)
 
