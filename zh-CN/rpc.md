@@ -82,7 +82,7 @@ rpc-client 配置了连接池, 协程 client 需要使用连接池(**连接池�
 
 ```php
 // 注解 + 依赖注入, 从连接池中获取 rpc client
-// 变量类型设置为 UserInterface, 和 rpc server 一致
+// 变量类型设置为 UserInterface, 和 rpc server 一致, 这就是协议部分
 /**
 * @Reference(pool="user.pool")
 *
@@ -100,7 +100,7 @@ $result  = $this->userService->getList(12, 'type');
 $result2 = $this->userService2->getList(12, 'type');
 ```
 
-rpc 的简单使用, 到这里就结束了. 下面我们已 grpc 为例, 来看看更高阶一点的用法.
+rpc 的简单使用, 到这里就结束了. 下面我们以 grpc 为例, 来看看更高阶一点的用法.
 
 ## grpc 基础
 
