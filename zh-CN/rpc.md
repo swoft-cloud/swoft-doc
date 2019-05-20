@@ -4,7 +4,7 @@
 
 这里有张很好的图, 以比较复杂的 grpc 来讲解整个 rpc 的流程:
 
-![grpc 详解](http://qiniu.daydaygo.top/20190506225758.png)
+![grpc 详解](http://qiniu.daydaygo.top/20190520103806.png)
 
 RPC, 远程过程调用, 像 **访问本地函数一样通过网络调用远程提供的服务**
 
