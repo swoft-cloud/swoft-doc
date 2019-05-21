@@ -76,7 +76,7 @@
 │   ├── Exception/
 │   ├── Helper/
 │   ├── Listener/
-│   ├── AutoLoader.php  -------- 组件扫描等信息培训
+│   ├── AutoLoader.php  -------- 组件扫描等信息
 ├── test/   ------ 单元测试代码目录
 │   ├── unit/
 │   ├── testing/
@@ -86,3 +86,6 @@
 ├── composer.json
 └── phpunit.xml
 ```
+
+> `src/AutoLoader.php` 是一个组件必须存在的文件，swoft依据它来确定要扫描那些目录
+
