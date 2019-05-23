@@ -76,6 +76,8 @@ return [
     - modes 设置连接模式（可以是一维数组，也可以是英文逗号分割的 modes）
     - strict 设置获取查询以启用严格模式（实际上也是设置modes配置）
     - fetchMode 设置 pdo 返回的类型 默认的连接池返回的类型为 `FETCH_ASSOC` 也就是数组方式, 其他类型[参考官方手册](https://php.net/manual/en/pdo.constants.php)
+    
+> 默认的`db.pool`连接池的`DB`类查询查询操作，返回的是数组。自定义的`db`连接池如果也需要返回数组，需要设置`fetchMode`参数 为 ` PDO::FETCH_ASSOC`，否则返回是的 `stdClass` 对象。
 ### 读写&连接
 
 ```php
