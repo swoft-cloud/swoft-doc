@@ -94,7 +94,7 @@ class TestBean
 ```
 `testBean` 这个 key 你可以理解为是一个容器的名称。
 - **class** 参数的指定 `Bean` 使用那一个类
-- 下面这个数组` [\bean('singleton')],` 是`构造函数所需参数`,不推荐使用构造注入，请使用`@Inject`
+- 示例中的数组` [\bean('singleton')],` 是 `TestBean`类构造函数所需参数,不推荐使用构造注入，请使用`@Inject`
 - **__option** 这个`swoft` 自带的你可以指定：
     - **scope** 指定 `Bean` 是用哪个级别 
     - **alias** 指定 `Bean` 的别名
@@ -110,7 +110,7 @@ class TestBean
 
 每一个 `Bean`初始化的时候会自动检查`init()`这个方法是否存在
 
-如果存在会被首先调用，你可以在该方法中进行一些初始化操作， 作用类似 `golang` 中的`init`方法。
+会在`Bean`初始化完之后调用，你可以在该方法中进行一些初始化操作， 作用类似 `golang` 中的`init`方法。
 
 ## 获取 Bean 
  
