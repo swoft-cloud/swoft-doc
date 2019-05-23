@@ -47,9 +47,7 @@ use Swoft\Co;
 $id = Co::tid();
 ```
 
-## 读取文件
-
-全量读取文件
+## 写文件
 
 ```php
 public static function writeFile(string $filename, string $data, int $flags = null): int
@@ -70,7 +68,7 @@ $fileName = 'test.file';
 $data = Co::readFile($fileName);
 ```
 
-## 写文件
+## 读取文件
 
 ```php
 public static function readFile(string $filename): string
