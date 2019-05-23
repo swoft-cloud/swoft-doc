@@ -33,19 +33,19 @@ More command information, please use: bin/swoft COMMAND -h
 
 ```bash
 // 启动服务
-php bin/swoft start
+php bin/swoft http:start
 
 // 守护进程启动
-php bin/swoft start -d
+php bin/swoft http:start -d
 
 // 重启
-php bin/swoft restart
+php bin/swoft http:restart
 
 // 重新加载
-php bin/swoft reload
+php bin/swoft http:reload
 
 // 关闭服务
-php bin/swoft stop
+php bin/swoft http:stop
 ```
 
 ## WebSocket服务器
