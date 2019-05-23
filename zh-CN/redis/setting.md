@@ -4,7 +4,8 @@
 
 Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文件里，你可以看到 redis 数组里面包含了应用程序使用的 Redis 服务器：
 
-<p class="tip"> 默认是开启`Redis`自带序列化的。你可以直接 `set`，`array` 但是 通过 `set`执行的 key 自增操作将失效。如果你想把 redis 作为一个数据库，而不是缓存你可以采用[配置一个新的连接池](#Redis连接池配置)，然后关闭序列化就可以和原生一操作</p>
+>  默认的`redis.pool`连接池是开启自带序列化的。你可以直接 set，array 但是 通过 set执行的 key 自增操作将失效。如果你想把 redis 作为一个数据库，而不是缓存你可以采用配置一个新的连接池(自定义的连接池是没有开启序列化)
+
 
 ```php
 'redis'      => [
@@ -54,7 +55,7 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
   
 ## Redis集群配置
 
-集群配置和基础配置有点区别都是在同一文件下，配置了 clusters 属性了普通的 redis 配置就失效了，连接池也会使用`集群配置`创建连接
+集群配置和基础配置有点区别都是在同一文件下，配置了 `clusters` 的配置，普通的 redis 配置就失效了，连接池也会使用`集群配置`创建连接，因为默认会使用**集群的配置**，如果没有**集群配置**，才用的普通的配置。
 
 ```php
 
@@ -94,7 +95,7 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
 Swoft 所有连接池配置都差不多，如果你想使用不同的 缓存数据库indexx或者不同节点。
 那么就很适合定义连接池，配置都在 `app\bean.php`里面。
 
-<p class="tip"> 每一个 `worker` 都会创建一个同样的连接池。并不是越多越好，参数配置要根据，机器配置和 和`worker` 个数衡量。
+<p class="tip"> 每一个 worker 都会创建一个同样的连接池。并不是越多越好，参数配置要根据，机器配置和 和worker 个数衡量。
  </p>
 
 如果是集群的话可以这样做：
@@ -171,13 +172,13 @@ Redis::connection('redis.clusters-pool')->get($key);
 ```php
 'redis.pool'     => [
     'class'   => \Swoft\Redis\Pool::class,
-    'redisDb' => \bean('redis.clusters-pool')
+    'redisDb' => \bean('redis-2')
 ]
 ```
 `redis.pool` 是默认的连接池名称 把连接池里面的redisDb 属性替换成自己定义的就可以了
 使用就和正常一样了 例如：
 ```php
-Redis::set($key, "[]");
+Redis::set($key, ["name" => "sakura"]);
 ```
 ## 实现predis
 

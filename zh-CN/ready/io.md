@@ -31,7 +31,7 @@ Linux很早就提供了 select 系统调用，可以在一个进程内维持1024
 
 - 主线程调用`epoll_wait`等待`socket`可写。
 
-- 当`socket`可写时，`epoll_wait`通知主进程/线程主进程/线程将`socket`可写亊件放人清求队列。
+- 当`socket`可写时，`epoll_wait`通知主进程/线程主进程/线程将`socket`可写事件放人清求队列。
 
 - 睡眠在请求队列上的浆个工作线程被唤醒，它往`socket`上写人服务器处理客户淸求 
 

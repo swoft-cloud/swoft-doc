@@ -10,15 +10,15 @@
 ```php
  $users = DB::select('select * from `user` where `status` = ?', [1]);  
 ```
-`select` 方法将始终返回一个数组，数组中的每个结果都是一个 = `StdClass` 对象，可以像下面这样访问结果值：
+`select` 方法将始终返回一个数组，数组中的每个结果都是一个 = `Array`，可以像下面这样访问结果值：
 
 ```php
 foreach ($users as $user) {
     echo $user->name;
 }
 ```
-如果只是查询一条可用 `selectOne` 结果返回是一个 = `StdClass` 对象，
- 如果没有查询到数据返回是一个空的`StdClass` 对象。
+如果只是查询一条可用 `selectOne` 结果返回是一个 = `Array`，
+ 如果没有查询到数据返回是一个空的`Array`。
 ```php
     $sql= 'select * from `user` where `id` = ?';
     $res = DB::selectOne($sql, [1]);
