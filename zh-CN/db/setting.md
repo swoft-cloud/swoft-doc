@@ -15,7 +15,7 @@
 return [
     'db'         => [
        'class'     => Database::class,
-       'dsn'       => 'MySQL:dbname=test;host=127.0.0.1',
+       'dsn'       => 'mysql:dbname=test;host=127.0.0.1',
        'username'  => 'root',
        'password'  => '123456',
        'charset'   => 'utf8mb4',
@@ -36,7 +36,7 @@ return [
 
 'db'  => [
     'class'    => Database::class,
-    'dsn'      => 'MySQL:dbname=swoft;host=127.0.0.1',
+    'dsn'      => 'mysql:dbname=swoft;host=127.0.0.1',
     'username' => 'root',
     'password' => '123456',
     'charset'  => 'utf8mb4',
@@ -92,14 +92,14 @@ return [
     ],
     'writes' => [
         [
-            'dsn'      => 'MySQL:dbname=swoft;host=127.0.0.1',
+            'dsn'      => 'mysql:dbname=swoft;host=127.0.0.1',
             'username' => 'root',
             'password' => '123456',
         ],
     ],
     'reads'  => [
         [
-            'dsn'      => 'MySQL:dbname=swoft;host=127.0.0.1',
+            'dsn'      => 'mysql:dbname=swoft;host=127.0.0.1',
             'username' => 'root',
             'password' => '123456',
         ],
@@ -115,7 +115,7 @@ return [
 
 ### 连接池配置
 想必用的 1.0 的小伙伴对连接池并不陌生 2.x 对它进行了简化配置 
-连接池的好处也不用多少 更好的管理 资源，对数据库的保护
+连接池的好处也不用多说 更好的管理 资源，对数据库的保护
 
 db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`类来管理连接，创建的为短链接 操作执行失败会重试一次。
 
@@ -131,7 +131,7 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
 
 ```php
 'db.pool2' => [
-    'class'       => Pool::class,
+    'class'       => \Swoft\Db\Pool::class,
     'database'    => \bean('db2'),
     'minActive'   => 10,
     'maxActive'   => 20,
@@ -168,7 +168,7 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
 ## 关于分库分表的一些见解
  
 Swoft DB 暂未提供分库和分表 的方案 后续会提供`dbSelect interface` 实现接口来选择不同的database，
-目前暂时可以通过配置`db.pool 连接池`和`db 连接`来选择不同数据库。
+目前暂时可以通过配置`db.pool 连接池`和`db 连接`来选择不同数据库。切换连接池详见:[选择连接池](https://www.swoft.org/docs/2.x/zh-CN/db/builder.html#%E9%80%89%E6%8B%A9%E8%BF%9E%E6%8E%A5%E6%B1%A0)
 
  ## 关于去掉DB服务化的见解
  
