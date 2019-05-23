@@ -73,7 +73,7 @@ class TestBean
      *
      * @param SingletonClass $singleton
      */
-    public function __construct(SingletonClass $singleton)
+    public function __construct(SingletonClass $singleton = null)
     {
         $this->singleton = $singleton;
     }
@@ -94,7 +94,7 @@ class TestBean
 ```
 `testBean` 这个 key 你可以理解为是一个容器的名称。
 - **class** 参数的指定 `Bean` 使用那一个类
-- 下面这个数组` [\bean('singleton')],` 是`构造函数所需参数`
+- 下面这个数组` [\bean('singleton')],` 是`构造函数所需参数`,不推荐使用构造注入，请使用`@Inject`
 - **__option** 这个`swoft` 自带的你可以指定：
     - **scope** 指定 `Bean` 是用哪个级别 
     - **alias** 指定 `Bean` 的别名
