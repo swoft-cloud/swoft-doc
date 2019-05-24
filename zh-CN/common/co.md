@@ -52,14 +52,12 @@ $id = Co::tid();
 全量读取文件
 
 ```php
-public static function writeFile(string $filename, string $data, int $flags = null): int
+public static function readFile(string $filename): string
 ```
 
-- filename为文件的名称，必须有可写权限，文件不存在会自动创建。打开文件失败会立即返回false
-- $fileContent为要写入到文件的内容，最大可写入4M
-- flags为写入的选项，默认会清空当前文件内容，可以使用FILE_APPEND表示追加到文件末尾
+- 读取的文件路径
 
-写入成功返回true，写入失败返回false
+读取成功返回字符串内容，读取失败返回 false，可使用swoole_last_error获取错误信息。readFile方法没有尺寸限制，读取的内容会存放在内存中，因此读取超大文件时可能会占用过多内存
 
 使用实例：
 
@@ -73,12 +71,14 @@ $data = Co::readFile($fileName);
 ## 写文件
 
 ```php
-public static function readFile(string $filename): string
+public static function writeFile(string $filename, string $data, int $flags = null): int
 ```
 
-- 读取的文件路径
+- filename为文件的名称，必须有可写权限，文件不存在会自动创建。打开文件失败会立即返回false
+- $fileContent为要写入到文件的内容，最大可写入4M
+- flags为写入的选项，默认会清空当前文件内容，可以使用FILE_APPEND表示追加到文件末尾
 
-读取成功返回字符串内容，读取失败返回 false，可使用swoole_last_error获取错误信息。readFile方法没有尺寸限制，读取的内容会存放在内存中，因此读取超大文件时可能会占用过多内存
+写入成功返回true，写入失败返回false
 
 ```php
 use Swoft\Co;
