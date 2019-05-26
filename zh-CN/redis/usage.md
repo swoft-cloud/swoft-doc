@@ -28,6 +28,62 @@
 ```
 通过 **get** 方法 调用，底层会自动反序列化，保证了存进去，取出来的数据**一致性**。
 
+## 通过 @Inject注入连接池方式使用`Redis`
+
+通过`Inject`注入属性使用和`1.0`方式一样
+```php
+<?php declare(strict_types=1);
+
+
+namespace App\Http\Controller;
+
+use Swoft\Redis\Pool;
+use Swoft\Bean\Annotation\Mapping\Inject;
+use Swoft\Http\Server\Annotation\Mapping\Controller;
+use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
+
+/**
+ *
+ * @Controller("Redis")
+ */
+class RedisController
+{
+    /**
+     * eg 1
+     *
+     * @Inject("redis.inc.pool")
+     *
+     * @var Pool
+     */
+    private $redisInc;
+    
+    /**
+     * eg 2
+     *
+     * @Inject()
+     *
+     * @var Pool
+     */
+    private $redis;
+    
+    /**
+     * @RequestMapping(route="find")
+     *
+     * @return array
+     *
+     * @throws Throwable
+     */
+    public function find(): array
+    {
+        $this->redis->set('user', ["name"=>"gimi", "age"=>"18"]);
+
+        return $this->redis->get('user');
+    }
+}  
+```
+
+你可以在中 `Inject` 指定使用的那一个`redis`连接池，如果在`Inject`中没有指定连接池，将默认会用 `@var` 指定的类型注入。
+
 ## 指定连接池获取连接
 当然 所有的连接都是在连接池中分配的 如果你想使用自己定义的连接可以使用 
 
