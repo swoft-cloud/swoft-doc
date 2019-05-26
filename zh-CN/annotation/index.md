@@ -1,4 +1,7 @@
+# 关于注解
+
 ## 什么是注解
+
 注解其实就 PHP 代码里面的注释，但是它是有功能含义的。
 
 ```php
@@ -40,6 +43,9 @@ class A
 - `@Inject` 注释，定义一个依赖，后续章节详细介绍。
 - `@RequestMapping` 注释，定义一个 action，后续章节详细介绍。
 
+<p class="tip">
+    <strong>严重警告⚠️</strong> 注解必须以 <code>/**</code>开始，并以 <code>*/</code> 结束。否则会导致无法解析！
+</p>
 
 ## 原理
 
