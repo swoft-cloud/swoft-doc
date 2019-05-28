@@ -27,6 +27,12 @@
 - 修复 文件上传 ([10bc7fa](https://github.com/swoft-cloud/swoft-component/pull/412/commits/10bc7fa799a65743e285634ba7c5dd09fec8770c))
 - 修复 默认输出编码为UTF8 ([755c8cf](https://github.com/swoft-cloud/swoft-component/pull/412/commits/755c8cfe50bb5971d9f4b0b8af07c02cc5282f8f))
 - 优化 Redis 配置类型转换([533b592](https://github.com/swoft-cloud/swoft-component/pull/420/commits/533b5923f1610c1d7c000f6e0bde79036fe41915))
+- 打包为phar运行时路径错误([533b592](https://github.com/swoft-cloud/swoft-component/pull/417))
+
+Swoft-cli
+
+- 修复一些问题 [swoft-cli](https://github.com/swoft-cloud/swoft-cli)
+- 发布新版本时自动通过travis部署phar到GitHub release [d1503b2](https://github.com/swoft-cloud/swoft-cli/commit/d1503b209c5e6f663ef3a346d624504f2ab4a94a)
 
 Devtool
 
