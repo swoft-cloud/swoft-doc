@@ -45,11 +45,14 @@ class TestController
 
 - `$request->getParsedBody()` 所有解析数据
 - `$request->parsedBody('key', 'default')`  指定 KEY 解析数据
+- `$request->getParsedQuery()` 所有解析的 Query 参数
+- `$request->parsedQuery('key', 'default')`  指定 KEY 解析数据(>=2.0.2)
 
 ## @Validate
 
 - validator 指定验证器名称
 - fields 指定验证器里面验证的字段，这样可以高效的重复使用验证器
+- type 默认 `body`，`ValidateType::GET` 验证 GET 请求 query 参数
 - params 自定义验证器使用，传递给自定义验证器的参数
 
 
