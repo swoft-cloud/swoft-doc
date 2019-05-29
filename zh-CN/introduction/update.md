@@ -1,5 +1,11 @@
 # 版本更新
 
+## 2.0.2-beta
+修复(Fixed)：
+
+- 修复 `paginate` 无法指定查询字段问题([308d330](https://github.com/swoft-cloud/swoft-component/pull/421/commits/308d330021df702228cab3140ad2d3bb80f5463f))
+
+
 ## 2.0.1-beta
 
 新增(Enhancement)：
