@@ -65,8 +65,6 @@
   
 ## 核心
 
-### [组件说明与功能列表](component.md)
-
 ### [命令行](console/index.md)
 
   * [命令行配置](console/config.md)
@@ -143,9 +141,23 @@
   * [控制台日志](log/clog.md)
   * [应用日志](log/log.md)
 
+## 工具
+
+### [SwoftCli](tool/swoftcli/index.md)
+
+  * [自动重启服务](tool/swoftcli/hot-restart.md)
+  * [打包应用为PHAR](tool/swoftcli/build-phar.md)
+
+### [Devtool](tool/devtool/index.md)
+
+## 扩展
+
+  * [视图渲染](extra/view.md)
+
 ### [最佳实践](best-practices/index.md)
 
   * [常规架构](best-practices/architecture.md)
   * [中间件简介](best-practices/middleware.md)
   * [部署与使用](best-practices/deploy.md)
   * [演示案例](best-practices/demo.md)
+
