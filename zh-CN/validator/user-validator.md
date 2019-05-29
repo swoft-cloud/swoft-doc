@@ -31,10 +31,10 @@ class UserValidator implements ValidatorInterface
      * @param array $data
      * @param array $params
      *
-     * @return bool
+     * @return array
      * @throws ValidatorException
      */
-    public function validate(array &$data, array $params): bool
+    public function validate(array &$data, array $params): array
     {
         $start = $data['start'];
         $end   = $data['end'];
@@ -43,7 +43,7 @@ class UserValidator implements ValidatorInterface
             throw new ValidatorException('开始不能大于结束时间');
         }
 
-        return true;
+        return $data;
     }
 }
 ```
@@ -51,9 +51,9 @@ class UserValidator implements ValidatorInterface
 验证方法详细介绍
 
 ```php
-public function validate(array &$data, array $params): bool
+public function validate(array &$data, array $params): array
 ```
 - $data 用户输入参数，通过对于的解析器，已解析成数组
 - $params 传递给验证器的参数，后续章节详细介绍
 
-验证成返回 `true` , 如果验证失败，抛出 `Swoft\Validator\Exception\ValidatorException` 异常，其它由框架处理。如果验证器里面需要修改参数值，可以直接修改，修改后获取值的地方会得到新的值。
+验证成返回验证处理后的数据 , 如果验证失败，抛出 `Swoft\Validator\Exception\ValidatorException` 异常，其它由框架处理。如果验证器里面需要修改参数值，可以直接修改，修改后获取值的地方会得到新的值。
