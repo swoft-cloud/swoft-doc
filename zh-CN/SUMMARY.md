@@ -52,17 +52,25 @@
 ### [事件](event/index.md)
 
   * [监听与触发](event/usage.md)
-  
+  * [Swoole事件](event/swoole-events.md)
+  * [Swoft事件](event/swoft-events.md)
+
 ### [切面编程](aop/index.md)
 
   * [声明](aop/statement.md)
   * [使用](aop/usage.md)
   * [顺序](aop/order.md)
-  
+
+### [错误处理](error/index.md)
+
+  * [添加处理器](error/usage.md)
+
 ### [公共方法](common/index.md)
-  
+
   * [协程方法](common/co.md)
-  
+  * [通用函数](common/generic.md)
+  * [基础帮助库](common/stdlib.md)
+
 ## 核心
 
 ### [命令行](console/index.md)
@@ -74,15 +82,15 @@
 
 ### [Http Server](http-server/index.md)
 
-   * [常用命令](http-server/command.md)
-   * [配置参数](http-server/setting.md)
-   * [执行流程](http-server/process.md)
-   * [请求与响应](http-server/request-response.md)
-   * [路由](http-server/route.md)
-   * [控制器](http-server/controller.md)
-   * [中间件](http-server/middleware.md)
-   * [异常处理](http-server/exception.md)
-  
+  * [常用命令](http-server/command.md)
+  * [配置参数](http-server/setting.md)
+  * [执行流程](http-server/process.md)
+  * [请求与响应](http-server/request-response.md)
+  * [路由](http-server/route.md)
+  * [控制器](http-server/controller.md)
+  * [中间件](http-server/middleware.md)
+  * [异常处理](http-server/exception.md)
+
 ### [Websocket](websocket-server/index.md)
 
   * [配置服务](websocket-server/config.md)
