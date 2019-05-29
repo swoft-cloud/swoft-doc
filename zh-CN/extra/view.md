@@ -20,9 +20,9 @@ composer require swoft/view
     "swoft/view": "~2.0.0"
 ```
 
-# 配置视图组件
+## 配置组件
 
-当你安装了 view 组件后，swoft 将会自动的注册它。
+当你安装了 view 组件后，swoft 将会自动的注册它。你可以配置视图文件存放目录
 
 - 视图组件注册到容器里的名称为： `view`
 - bean配置(file: `app/beans.php`)
@@ -37,7 +37,7 @@ composer require swoft/view
 
 现在在任何地方都可以通过 `view()` OR `\Swoft::getBean('view')` 来获取组件实例。
 
-## 配置项说明
+### 配置项说明
 
 - `viewsPath` 视图存放路径
 - `layout` 默认的布局文件。 调用 `render()` 方法时会默认的使用它
