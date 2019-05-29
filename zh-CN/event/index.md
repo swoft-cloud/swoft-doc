@@ -1,5 +1,22 @@
 # 事件管理
 
+Swoft 2 事件进行了更加清晰和严谨的规划。提供了基本的事件注册与触发管理。
+
+- implement the [Psr 14](https://github.com/php-fig/fig-standards/blob/master/proposed/event-dispatcher.md) - Event dispatcher
+- 支持通过注解快速的注册事件，事件组
+- 支持设置事件优先级
+- 支持对通配符事件的监听
+
+> 作为Swoft的核心组件，事件管理会自动启用
+
+```php
+'eventManager'    => [
+    'class'     => \Swoft\Event\Manager\EventManager::class,
+],           
+```
+
+## swoft里的事件
+
 Swoft 2 事件进行了更加清晰和严谨的规划。提供了丰富的事件，以便于开发者使用。
 
 在swoft我们将事件分为三大类：
@@ -8,24 +25,7 @@ Swoft 2 事件进行了更加清晰和严谨的规划。提供了丰富的事件
 - swoft server的事件，基于swoole的回调处理，扩展了一些可用事件以增强自定义性
 - 应用级别内的自定义事件管理和使用
 
-## 自定义事件
-
-基本的事件注册与触发管理
-
-- implement the [Psr 14](https://github.com/php-fig/fig-standards/blob/master/proposed/event-dispatcher.md) - Event dispatcher
-- 支持设置事件优先级
-- 支持快速的事件组注册
-- 支持通配符事件的监听
-
-> 作为核心服务组件，事件管理会自动启用
-
-```php
-'eventManager'    => [
-    'class'     => \Swoft\Event\Manager\EventManager::class,
-],           
-```
-
-## 拓展介绍
+## 相关介绍
 
 一些关于自定义事件的拓展介绍说明
 
