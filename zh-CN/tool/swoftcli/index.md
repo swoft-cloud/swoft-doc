@@ -11,9 +11,9 @@ Swoft CLI 是一个独立的命令行应用包，提供了一些内置的工具�
 
 ## 安装
 
-你需要从 swoft-cli 的 [GitHub Releases](https://github.com/swoft-cloud/swoft-cli/releases) 页面下载打好的 `swoftcli.phar` 包
+你需要从 swoft-cli 的 [GitHub Releases](https://github.com/swoft-cloud/swoft-cli/releases) 下载打包好的 `swoftcli.phar`
 
-> 注意：需要将下面命令里的 `VERSION` 替换为指定的版本。当然也可以直接通过浏览器下载
+> 注意：需要将下面命令里的 `VERSION` 替换为指定的版本。当然也你可以直接通过浏览器下载
 
 ```bash
 wget https://github.com/swoft-cloud/swoft-cli/releases/download/VERSION/swoftcli.phar
