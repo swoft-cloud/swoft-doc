@@ -1,8 +1,16 @@
 # 内置事件
 
-swoft server的事件，基于swoole的回调处理，扩展了一些可用server事件和启动运行时的基础以增强自定义性
+swoft 内置事件，基于swoole的回调处理，扩展了一些可用server事件和启动运行时的基础以增强自定义性
 
 ## Server 事件
+
+基于swoole的回调处理，扩展了一些可用server事件，提供更加精细化的操作空间。
+
+- `ServerEvent::BEFORE_SETTING` 在调用 swoole server 的 `setting()` 方法之前 
+- `ServerEvent::BEFORE_BIND_EVENT` 在调用 swoole server 的 `on()` 方法绑定swoole回调之前 
+- `ServerEvent::BEFORE_START` 在调用 swoole server 的 `start()` 方法启动server之前 
+- `ServerEvent::TASK_PROCESS_START` 仅当 swoole server 的task进程启动时触发
+- `ServerEvent::WORK_PROCESS_START` 仅当 swoole server 的work进程启动时触发
 
 ```php
 <?php declare(strict_types=1);
@@ -49,6 +57,10 @@ final class ServerEvent
 ```
 
 ## Swoft 基础事件
+
+提供了一些swoft启动初始化完成后，以及一些swoft内部的特殊事件
+
+- `SwoftEvent::APP_INIT_COMPLETE` 当swoft初始化完成(配置已加载，容器已经初始化完成)后触发
 
 ```php
 <?php declare(strict_types=1);
