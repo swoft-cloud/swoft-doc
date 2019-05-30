@@ -116,7 +116,7 @@
 - name 定义类属性映射的表字段，没该注解标记的属性，不映射(默认为字段名为属性名)
 - prop 为字段设置一个别名
 - hidden 是否隐藏，如果为真那么它 `toArray()` 的时候将会被隐藏，但是不影响你通过 `Getter`获取它，你也可以调用实体的`setVisible`方法将他取消隐藏。
-> 说明：所有字段属性，必须要有`getter`和`setter`方法
+> 说明：所有字段属性，必须要有`getter`和`setter`方法，你可以使用`phpstorm` 快捷键 `ctrl+n`，它会更具属性 快速生成 `getter`和`setter`。
 
 2.x 去掉了 type 属性 现在会使用 属性上定义的 `@var` 注解定义的第一个类型，决定了返回值类型，底层会强转类型
 
@@ -125,7 +125,6 @@
 - incrementing 是否为递增主键，默认为递增主键。
 
 ## 使用实体
-
 
 ### 插入数据
 #### 对象方式
@@ -246,5 +245,10 @@ $users = User::forPage(1, 10)->get(['id', 'age'])->keyBy('id');
 foreach ($users as $id => $user) {
     $age = $user->getAge();
 }
+```
+
+> 实体使用 Join 系列操作，不会返回实体
+```php\
+$userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 ```
 更多方法请参照 查询构造器
