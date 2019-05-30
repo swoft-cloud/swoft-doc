@@ -64,3 +64,25 @@ CLog::error('error');
 - debug 日志级别，需要开启 `SWOFT_DEBUG` 才会显示
 - 框架内置不同级别不同颜色
 
+## 关闭信息
+
+默认情况下，启动时会打印一些启动信息到控制台。
+
+> 如果你的 `.env` 开启了 `SWOFT_DEBUG=1` 将会看到更多详细的启动与加载信息。
+
+如果你想关闭这些信息，可以在 `app/Application` 添加：
+
+```php
+
+    public function getCLoggerConfig(): array
+    {
+        $config = parent::getCLoggerConfig();
+        // disable print console start log
+        $config['enable'] = false;
+        
+        return $config;
+    }
+```
+
+重启swoft，可以看到不会有任何信息输出了
+

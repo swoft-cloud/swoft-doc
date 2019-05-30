@@ -105,6 +105,7 @@ php bin/swoft rpc:stop
         $config = parent::getCLoggerConfig();
         // disable print console start log
         $config['enable'] = false;
+        
         return $config;
     }
 ```
