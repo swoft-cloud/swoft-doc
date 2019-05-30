@@ -1,6 +1,10 @@
 # swoole 事件
 
+swoole文档上列出的每个事件，在swoft里面都可以监听，并且可以有多个监听器。
+
 ## 事件常量
+
+swoft 里我们为这些事件名添加了常量，方便通一使用和管理。
 
 ```php
 <?php declare(strict_types=1);
@@ -115,3 +119,41 @@ final class SwooleEvent
     public const BUFFER_EMPTY = 'bufferEmpty';
 }
 ```
+
+## 监听swoole事件
+
+这里我们监听 `master` 进程启动时的事件，要监听其他事件也是类似写法。
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Listener;
+
+use ReflectionException;
+use Swoft\Bean\Exception\ContainerException;
+use Swoft\Event\Annotation\Mapping\Listener;
+use Swoft\Event\EventHandlerInterface;
+use Swoft\Event\EventInterface;
+use Swoft\Log\Helper\CLog;
+use Swoft\Server\Swoole\SwooleEvent;
+
+/**
+ * Class MasterStartListener
+ *
+ * @Listener(SwooleEvent::START)
+ */
+class MasterStartListener implements EventHandlerInterface
+{
+    /**
+     * @param EventInterface $event
+     *
+     * @throws ReflectionException
+     * @throws ContainerException
+     */
+    public function handle(EventInterface $event): void
+    {
+        CLog::info('master started');
+    }
+}
+```
+
