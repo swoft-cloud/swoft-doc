@@ -114,7 +114,9 @@ class TestBean
  
 ### @Inject
 `score`为`Bean::SINGLETON`，`Bean::PROTOTYPE`级别的`bean`可以通过 `@Inject` 属性注入，底层会通过反射自动注入属性中。 
+
 > `Bean::REQUEST bean` 不能使用 `@Inject` 注入
+
 ```php
 /**
  * @Inject("config")
@@ -123,10 +125,13 @@ class TestBean
  */
 private $config;
 ```
+
 - **name** 定义属性注入的bean名称。如果`name`为空，默认为`@var` 定义的类型。
  这个`name` 可以是一个完整的类名，也可以是`bean别名/bean名称`。
  
+ 
 > tips： 如果要使用 `@Inject` 属性注入必须有 `类注解`才可以，不然不会被解析。
+
 ### BeanFactory
 
 `BeanFactory`提供了一种先进的配置机制来管理任何种类的bean。
