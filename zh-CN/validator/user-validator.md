@@ -34,7 +34,7 @@ class UserValidator implements ValidatorInterface
      * @return array
      * @throws ValidatorException
      */
-    public function validate(array &$data, array $params): array
+    public function validate(array $data, array $params): array
     {
         $start = $data['start'];
         $end   = $data['end'];
