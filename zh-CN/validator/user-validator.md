@@ -51,7 +51,7 @@ class UserValidator implements ValidatorInterface
 验证方法详细介绍
 
 ```php
-public function validate(array &$data, array $params): array
+public function validate(array $data, array $params): array
 ```
 - $data 用户输入参数，通过对于的解析器，已解析成数组
 - $params 传递给验证器的参数，后续章节详细介绍
