@@ -6,14 +6,7 @@ Swoft 的请求与响应实现于 [PSR 7](https://github.com/php-fig/http-messag
 
 ## PSR-7
 
-<div class="alert alert-warning alert-dismissible" role="alert">
-  <strong>注意!</strong> 
-  <p>根据PSR-7对象的不可变性(immutable)，所有的 <code>with*</code> 方法都是克隆对象然后返回，必须接收新对象来做进一步处理，或使用链式调用</p>
-</div>
-
-<div class="alert alert-info" role="alert">
-   <strong>Tips</strong> 可通过使用链式调用的写法使代码变得更简洁
-</div>
+  <p class="tip"><strong>注意!</strong> 根据PSR-7对象的不可变性(immutable)，所有的 <code>with*</code> 方法都是克隆对象然后返回，必须接收新对象来做进一步处理，或使用链式调用</p>
 
 ### 基本方法
 
@@ -41,6 +34,10 @@ PSR-7 接口为响应对象提供了这些方法:
 - `withStatus($code, $reasonPhrase = '')`
 
 > 更多请参考 PSR-7 和 查看 `swoft/http-message` 中具体的实现类
+
+<p class="tip">
+   <strong>Tips</strong> 可通过使用链式调用的写法使代码变得更简洁
+</p>
 
 ## 请求对象
 
