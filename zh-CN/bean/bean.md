@@ -146,7 +146,7 @@ $router = BeanFactory::getBean('wsRouter');
 $router = Container::$instance->get('wsRouter')
 $router = BeanFactory::getContainer()->get('wsRouter')
 ```
-上述这几种方式都可以`Bean::SINGLETON`，`Bean::PROTOTYPE`类型的`bean`
+上述这几种方式都可以获取`Bean::SINGLETON`或`Bean::PROTOTYPE`类型的`bean`
 
 你也可以指定类型获取 ：
 
