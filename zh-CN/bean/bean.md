@@ -33,7 +33,7 @@ class PrototypeClass
     - Bean::REQUEST  [请求Bean](./request.md)
     
  - name
-    指定一个为bean 指定一个名称，有时候你可能只需要配置一个 name 可以这样写`@Bean("xxx")`这样默认是参数的 name。
+    为 bean 指定一个名称，有时候你可能只需要配置一个 name 可以这样写`@Bean("xxx")`这样默认是参数的 name。
     
     
  - alias
@@ -146,7 +146,7 @@ $router = BeanFactory::getBean('wsRouter');
 $router = Container::$instance->get('wsRouter')
 $router = BeanFactory::getContainer()->get('wsRouter')
 ```
-上述这几种方式都可以`Bean::SINGLETON`，`Bean::PROTOTYPE`类型的`bean`
+上述这几种方式都可以获取`Bean::SINGLETON`或`Bean::PROTOTYPE`类型的`bean`
 
 你也可以指定类型获取 ：
 

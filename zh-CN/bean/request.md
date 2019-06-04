@@ -10,7 +10,7 @@
 
 只能通过获取 `BeanFactory::getRequestBean` 获取
 ```php
-$obj = BeanFactory::getRequestBean($name, (string)$tid);
+$obj = BeanFactory::getRequestBean($name, (string) $tid);
 ```
 - **name** requestBean 的名称/别名/类名
 - **tid** 通常是与`是顶级协程ID`绑定。获取`顶级协程ID`，`Co::tid()`获取当前协程环境 `顶级协程ID`。
