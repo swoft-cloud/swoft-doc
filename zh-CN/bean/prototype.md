@@ -3,7 +3,7 @@
 `prototype` 用的是`原型模式`, 它会被框架启动时会被自动初始化.
 
 ## 原型模式
-获取 `score`为`prototype`类型的`bean`每次都是`克隆`初始化的`bean`好的。
+获取 `score`为`prototype`类型的`bean`每次都是`克隆`初始化好的`bean`。
 
 clone 一个对象 比 重新`new`一个对象更快, 因为它是拷贝操作。 
 
