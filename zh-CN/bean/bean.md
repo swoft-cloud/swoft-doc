@@ -33,7 +33,7 @@ class PrototypeClass
     - Bean::REQUEST  [请求Bean](./request.md)
     
  - name
-    指定一个为bean 指定一个名称，有时候你可能只需要配置一个 name 可以这样写`@Bean("xxx")`这样默认是参数的 name。
+    为 bean 指定一个名称，有时候你可能只需要配置一个 name 可以这样写`@Bean("xxx")`这样默认是参数的 name。
     
     
  - alias
