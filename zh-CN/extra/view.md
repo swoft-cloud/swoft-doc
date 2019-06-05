@@ -139,6 +139,7 @@ Swoft 可以提供静态资源访问的支持（由swoole提供），通常建�
 下面是一个引用的示例（_引用时无需再包含`public`_）：
 
 ```html
+// 真实文件为： public/static/some.js
 <script type="text/javascript" src="/static/some.js"></script>
 ```
 
