@@ -6,7 +6,7 @@
 
 ## 注解
 
-由 swoft-error 组件提供的注解标签 `Swoft\Error\Annotation\Mapping\ExceptionHandler` 提供注解处理器的标记。
+由 swoft-error 组件提供的注解标签 `Swoft\Error\Annotation\Mapping\ExceptionHandler` 提供异常处理器类的标记。
 
 ### ExceptionHandler 注解
 
