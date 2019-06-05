@@ -12,6 +12,8 @@ swoft 提供了完善的异常与错误处理机制，与通常fpm下情况不�
 
 ## 错误场景类型
 
+在 `Swoft\Error\ErrorType` 定义了swoft划分的场景类型。
+
 ```php
 <?php declare(strict_types=1);
 
