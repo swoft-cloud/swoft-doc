@@ -4,28 +4,25 @@
 
 ## 注解
 
-命令的定义主要通过 `@Command` 和 `@CommandMapping`两个注解，`@Command` 定义命令组名称，`@CommandMapping` 定义操作命令的映射关系。
+命令的定义主要通过 `@Command` 和 `@CommandMapping`两个注解。
+`@Command` 定义命令组名称，`@CommandMapping` 定义操作命令的映射关系。
 
 ### Command 注解
 
-**@Command**
-
-定义命令组，标记一个类为console命令类
+**@Command** 定义命令组，标记一个类为console命令类
 
 拥有属性：
 
 - `name` 参数，定义命令组名称，如果缺省，根据类名称自动解析
 - `alias` 命令组别名，通过别名仍然可以访问它。_允许多个，以逗号隔开即可_
 - `desc` 命令组描述信息说明，支持颜色标签
-- `coroutine` 定义是否为协程下运行，默认 true, 框架会启动一个协程运行该命令
+- `coroutine` 定义是否为协程下运行，默认 true, 框架会启动一个协程运行此组里面的命令
 
-> 若 `desc` 为空，将会自动解析类的第一行注释作为描述
+> 若 `desc` 为空，将会自动解析类的第一行注释作为命令组描述
 
 ### CommandMapping 注解
 
-**@CommandMapping**
-
-定义操作命令映射关系，标明了一个具体的命令
+**@CommandMapping** 定义操作命令映射关系，标明了一个具体的命令
 
 拥有属性：
 
@@ -43,6 +40,10 @@
 - `@Options` 定义命令选项参数
 - `@Arguments` 定义命令参数
 - `@Example` 命令使用例子
+
+## example 注释
+
+`@example` 注释会被特殊处理(**不是注解**)，如果你的命令方法上面有这个注释，它的内容也会被显示到命令帮助信息上面。
 
 ## 代码示例
 
