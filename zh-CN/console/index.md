@@ -2,7 +2,7 @@
 
 swoft 提供功能强大的命令行应用处理功能。swoft 的 http server, websocket server 等都是通过命令行启动和管理。
 
-![](../image/console/cli-app.png)
+![](../image/console/cli-app.jpg)
 
 ## 功能特性
 
