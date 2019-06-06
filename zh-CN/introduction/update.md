@@ -18,6 +18,10 @@
 - Console table 数据显示修复 ([4d27718](https://github.com/swoft-cloud/swoft-component/pull/426/commits/4d277189f07903c91415d5045c3d9d3605c8f9f8))
 - 修复 devtool 生成的 phpstorm meta文件key重复([1838552](https://github.com/swoft-cloud/swoft-devtool/commit/1838552812b8c3220a3bb2ae161a8ed93250498b))
 
+扩展(Extra):
+
+- `swoft/view` 添加通过 `@View` 渲染视图支持
+
 ## 2.0.1-beta (2019-05-29)
 
 新增(Enhancement)：
