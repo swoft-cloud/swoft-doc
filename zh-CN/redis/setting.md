@@ -19,12 +19,13 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
 默认的服务器配置应该足以进行开发。当然，你也可以根据使用的环境来随意更改这个数组。只需在配置文件中给每个 Redis 服务器指定名称、`host` 和 `port` 即可。
 
 - class 指定当前配置驱动类型
-- 使用那一个 redis 驱动 默认是 `phpredis` 你也可以换成 `predis` 具体看 [实现predis](#实现predis)
+- 使用那一个 redis 驱动 默认是 `phpredis` (_php-ext_),你也可以换成 `predis` 具体看 [实现predis](#实现predis)
 - host 连接地址 默认 `127.0.0.1`
 - port 端口 默认 `6379`
 - database 缓存数据库index 默认 `0`
 
 ## 详细配置
+
 ```php
  'redis'      => [
         'class'         => RedisDb::class,
@@ -40,6 +41,7 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
         ],
     ],
 ```
+
 - retryInterval  重试间隔
 - readTimeout 读取超时时间 0：不超时，单位秒
 - timeout 超时时间 0：不超时，单位秒
@@ -58,7 +60,6 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
 集群配置和基础配置有点区别都是在同一文件下，配置了 `clusters` 的配置，普通的 redis 配置就失效了，连接池也会使用`集群配置`创建连接，因为默认会使用**集群的配置**，如果没有**集群配置**，才用的普通的配置。
 
 ```php
-
 'redis' => [
     'class'    => \Swoft\Redis\RedisDb::class,
     'option'   => [
@@ -95,10 +96,12 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
 Swoft 所有连接池配置都差不多，如果你想使用不同的 缓存数据库indexx或者不同节点。
 那么就很适合定义连接池，配置都在 `app\bean.php`里面。
 
-<p class="tip"> 每一个 worker 都会创建一个同样的连接池。并不是越多越好，参数配置要根据，机器配置和 和worker 个数衡量。
- </p>
+<p class="tip">
+    注意：每一个 worker 都会创建一个同样的连接池。并不是越多越好，参数配置要根据，机器配置和 和worker 个数衡量。
+</p>
 
 如果是集群的话可以这样做：
+
 ```php
  'redis-clusters' => [
     'class'    => \Swoft\Redis\RedisDb::class,
@@ -152,7 +155,6 @@ Swoft 所有连接池配置都差不多，如果你想使用不同的 缓存数�
     'maxWaitTime' => 0,
     'maxIdleTime' => 60,
 ],
-
 ```
 
 - redis.clusters-pool 连接池名称自定义
@@ -165,25 +167,32 @@ Swoft 所有连接池配置都差不多，如果你想使用不同的 缓存数�
     - maxIdleTime 连接最大空闲时间，单位秒
     
 使用 redis.clusters-pool 连接池 ：
+
 ```php
 Redis::connection('redis.clusters-pool')->get($key);
 ```
+
 你可以可以将默认的连接池替换成自己的
+
 ```php
 'redis.pool'     => [
     'class'   => \Swoft\Redis\Pool::class,
     'redisDb' => \bean('redis-2')
 ]
 ```
-`redis.pool` 是默认的连接池名称 把连接池里面的redisDb 属性替换成自己定义的就可以了
-使用就和正常一样了 例如：
+
+`redis.pool` 是默认的连接池名称，把连接池里面的 `redisDb` 属性替换成自己定义的使用就和正常一样了。 例如：
+
 ```php
 Redis::set($key, ["name" => "sakura"]);
 ```
+
 ## 实现predis
 
-如果使用predis 需要实现两个契约 `Swoft\Redis\Contract\ConnectorInterface`和`Swoft\Redis\Contract\ConnectionInterface`。推荐使用 `phpredis` 因为它更高效率
+如果使用predis 需要实现两个契约 `Swoft\Redis\Contract\ConnectorInterface`和`Swoft\Redis\Contract\ConnectionInterface`。
 
 参考 `PhpRedisConnection` 和 `PhpRedisConnector` 的 实现。
 
-然后在配置中的 `redis` 中的` 'driver' => 'phpredis'`替换成 `predis` 即可，
+然后在配置中的 `redis` 中的` 'driver' => 'phpredis'` 替换成 `predis` 即可，
+
+> 推荐使用 `phpredis` 因为它更高效率
