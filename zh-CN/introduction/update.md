@@ -3,6 +3,7 @@
 ## 2.0.2-beta
 
 新增(Enhancement)：
+
 - 新增 `$request->parsedQuery()` 方法 ([ab45089](https://github.com/swoft-cloud/swoft-component/commit/ab450891b126b8d1a76f1eaa5a020fd69b639383))
 - 新增 Bean 属性注入基础数据类型(string/int/bool/float/array)，自动根据注释类型转换。([e3d4085](https://github.com/swoft-cloud/swoft-component/pull/424/commits/e3d40856dabd86b85b67a65adae022aeb88f225a))
 - Http server 增加cookies响应支持 ([1a024bf](https://github.com/swoft-cloud/swoft-component/pull/426/commits/1a024bf5b9371444bcf59df4e960404bc2c99068))
@@ -15,8 +16,14 @@
 - 修复 AOP 切面重复执行问题 ([54e00ac](https://github.com/swoft-cloud/swoft-component/commit/54e00aca93d8d2d48ce6ec6a710457beaecf8e58))
 - 修复 Http 服务全局异常 `contentType` 失效问题([e704116](https://github.com/swoft-cloud/swoft-component/pull/425/commits/e7041164da51af60b9f89bfbd4110d92eb8d9612))
 - 修复 Http server在启用https 时，type 检查无法通过 ([3e9b431](https://github.com/swoft-cloud/swoft-component/pull/426/commits/3e9b431f4de5cdbff9d8898062cf3cabf0e76770))
+- 修复 Http server通过data响应html时可能出现错误([e5513df](https://github.com/swoft-cloud/swoft-component/pull/426/commits/e5513df43ec7cec3ef7b45c4ff443e13575c5844))
 - Console table 数据显示修复 ([4d27718](https://github.com/swoft-cloud/swoft-component/pull/426/commits/4d277189f07903c91415d5045c3d9d3605c8f9f8))
 - 修复 devtool 生成的 phpstorm meta文件key重复([1838552](https://github.com/swoft-cloud/swoft-devtool/commit/1838552812b8c3220a3bb2ae161a8ed93250498b))
+- 修复 ws-server 参数路由匹配失败([4d3392e6](https://github.com/swoft-cloud/swoft-component/pull/426/commits/4d3392e61ec161ebfe07f9bb6e23c2498cc5cf05))
+
+更新(Update):
+
+- 调整 Http server 匹配的路由数据存储，由原来的request改动存储到 context([3da893aeba](https://github.com/swoft-cloud/swoft-component/pull/426/commits/3da893aeba5b31d39744dc0e19f8da97be86ba38))
 
 扩展(Extra):
 
