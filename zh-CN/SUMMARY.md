@@ -121,6 +121,7 @@
 
   * [配置](db/setting.md)
   * [模型](db/model.md)
+  * [实体生成](db/entity.md)
   * [查询器](db/builder.md)
   * [事务](db/transaction.md)
   * [原生操作](db/origin.md)

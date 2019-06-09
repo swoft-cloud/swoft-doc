@@ -9,6 +9,8 @@
 - 新增 cookies响应支持 ([1a024bf](https://github.com/swoft-cloud/swoft-component/pull/426/commits/1a024bf5b9371444bcf59df4e960404bc2c99068))
 - 新增 `db()`, 使 Model/Query/DB 支持切库([f3b12c9](https://github.com/swoft-cloud/swoft-component/pull/429/commits/f3b12c9426407b45fad58391bb6da1f87ea25009))
 - 新增 `DbSelectorInterface` 用于根据业务自动切库([b36ca03](https://github.com/swoft-cloud/swoft-component/pull/429/commits/b36ca03420607098d7484976a62c3291bf2f2037))
+- 新增 Http server 增加cookies响应支持 ([1a024bf](https://github.com/swoft-cloud/swoft-component/pull/426/commits/1a024bf5b9371444bcf59df4e960404bc2c99068))
+- 新增 `devtool` 组件的实体生成([14b4d39c](https://github.com/swoft-cloud/swoft-devtool/commit/14b4d39c653823f3891343302b3903f032e00760))
 
 修复(Fixed)：
 
@@ -25,11 +27,12 @@
 - 修复 Http 服务 content-type 多值解析错误问题([1657979](https://github.com/swoft-cloud/swoft-component/pull/429/commits/165797970e69cdc4da64645583efef3c8eebede1))
 - 修复 Co::multi 抛出异常调用错误问题([d0ff0f7](https://github.com/swoft-cloud/swoft-component/pull/429/commits/d0ff0f78cd4105cdcc41653d07c054597d5675ed))
 - 修复 body 字符串无解析调用错误问题([32abf60](https://github.com/swoft-cloud/swoft-component/pull/429/commits/32abf60df7aa748bff81b7ed8541545e07a8ba3f))
-
+- 修复 通过 `setter`操作实体 `toArray`失效问题([9c0f9505](https://github.com/swoft-cloud/swoft-component/commit/9c0f9505732414149d4222574b3913f333927222))
 
 更新(Update):
 
 - 调整 Http server 匹配的路由数据存储，由原来的request改动存储到 context([3da893aeba](https://github.com/swoft-cloud/swoft-component/pull/426/commits/3da893aeba5b31d39744dc0e19f8da97be86ba38))
+- 修改模型方法`insert,insertGetId,updateOrInsert`只会插入定义了`@column`字段([9c0f9505](https://github.com/swoft-cloud/swoft-component/commit/9c0f9505732414149d4222574b3913f333927222))
 
 扩展(Extra):
 
