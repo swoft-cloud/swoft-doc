@@ -99,6 +99,7 @@ $price = DB::table('orders')
 如果没有查询到任何数据 返回值是一个 int 类型的 `0`。`avg`是`average`方法的别名，而已返回是一个 `float|int` 类型。
 
 > count 固定返回 `int`, `max`,`min`,`avg`,`sum` 这些函数 可能涉及浮点数计算 底层没有强制转换 返回类型为`float|int`这个值是`数据库`返回的值 
+
 **判断记录是否存在**
 
 除了通过 count 方法可以确定查询条件的结果是否存在之外，还可以使用 `exists` 和 `doesntExist` 方法：
