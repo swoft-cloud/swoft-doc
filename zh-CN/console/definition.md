@@ -25,7 +25,7 @@ php bin/swoft group:cmd john male 43 --opt1 value1 -y
 
 命令的命令使用帮助信息，也是通过注解完成定义。
 
-### Command 注解
+### Command
 
 **@Command** 定义命令组，标记一个类为console命令类。作用域：`class`
 
@@ -38,7 +38,7 @@ php bin/swoft group:cmd john male 43 --opt1 value1 -y
 
 > Tips: 若 `desc` 为空，将会自动解析类的第一行注释作为命令组描述
 
-### CommandMapping 注解
+### CommandMapping
 
 **@CommandMapping** 定义操作命令映射关系，标明了一个具体的命令。作用域：`method`
 
@@ -50,7 +50,7 @@ php bin/swoft group:cmd john male 43 --opt1 value1 -y
 
 > Tips: 若 `desc` 为空，将会自动解析类的第一行注释作为描述
 
-### CommandOption 注解
+### CommandOption
 
 **@CommandOption** 定义一个命令的选项。作用域：`method|class`
 
@@ -65,7 +65,7 @@ php bin/swoft group:cmd john male 43 --opt1 value1 -y
 
 > Tips: 特别的 `@CommandOption` 可以用 command 类注释上面，这样子相当于给里面所有的命令都加了公共选项。
 
-### CommandArgument 注解
+### CommandArgument
 
 **@CommandArgument** 定义一个命令的参数。作用域：`method`
 
