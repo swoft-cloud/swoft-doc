@@ -61,7 +61,7 @@ php bin/swoft group:cmd john male 43 --opt1 value1 -y
 - `default` _mixed_ 命令选项的默认值
 - `desc` _string_ 命令选项的描述信息说明，支持颜色标签
 - `type` _string_ 命令选项的值类型
-- `mode` _string_ 命令选项的值输入限定：必须，可选 等
+- `mode` _int_ 命令选项的值输入限定：必须，可选 等
 
 > Tips: 特别的 `@CommandOption` 可以用 command 类注释上面，这样子相当于给里面所有的命令都加了公共选项。
 
@@ -75,7 +75,7 @@ php bin/swoft group:cmd john male 43 --opt1 value1 -y
 - `default` _mixed_ 命令参数的默认值
 - `desc` _string_ 命令参数的描述信息说明，支持颜色标签
 - `type` _string_ 命令参数的值类型
-- `mode` _string_ 命令参数的值输入限定：必须，可选 等
+- `mode` int 命令参数的值输入限定：必须，可选 等
 
 > Tips: 命令参数是根据输入位置(有顺序的)来获取的，`name` 是代码里给这个位置的参数添加的命名。
 
