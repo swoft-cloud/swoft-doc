@@ -78,7 +78,8 @@
   * [命令行配置](console/config.md)
   * [定义命令](console/definition.md)
   * [命令运行](console/usage.md)
-  * [输入输出](console/in-out.md)
+  * [输入对象](console/input.md)
+  * [输出对象](console/output.md)
   * [数据展示](console/data-show.md)
 
 ### [Http Server](http-server/index.md)

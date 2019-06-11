@@ -18,6 +18,20 @@ php bin/swoft group:cmd john male 43 --opt1 value1 -y
                             argument: sex
 ```
 
+### 参数与选项
+
+- 没有 `-` 开头的都认为是参数 (eg: `status=2` `arg0`)
+- 反之，以 `-` 开头的则是选项数据
+    - `--` 开头的是长选项(long-option)
+    - 一个 `-` 开头的是短选项(short-option)
+
+> 支持混合式选项的赋值 `--id=154` 和 `--id 154` 是等效的
+
+**注意:** 输入如下的字符串将会认为是布尔值
+
+- `on|yes|true` -- `true`
+- `off|no|false` -- `false`
+
 ## 注解
 
 命令的定义主要通过 `@Command` 和 `@CommandMapping`两个注解。
