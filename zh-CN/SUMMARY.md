@@ -164,6 +164,7 @@
 ## 扩展
 
   * [视图渲染](extra/view.md)
+  * [如何编写组件](extra/write-component.md)
 
 ### [最佳实践](best-practices/index.md)
 
