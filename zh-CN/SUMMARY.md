@@ -79,6 +79,7 @@
   * [定义命令](console/definition.md)
   * [命令运行](console/usage.md)
   * [输入输出](console/in-out.md)
+  * [数据展示](console/data-show.md)
 
 ### [Http Server](http-server/index.md)
 
