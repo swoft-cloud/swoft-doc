@@ -2,7 +2,7 @@
 
 ## bean配置
 
-应用配置数据是由一个bean对象管理的，可以在 `bean.php` 文件设置应用配置参数
+应用配置数据是由一个bean对象管理的，可以在 `app/bean.php` 文件设置应用配置参数
 
 ```php
 return [
