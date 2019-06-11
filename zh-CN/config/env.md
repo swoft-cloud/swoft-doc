@@ -6,7 +6,7 @@
 
 项目根目录配置一个名称为 .env 文件，采用 KV 格式配置，此文件配置的数据，可以加载到内存里面，供业务使用。
 
-```sh
+```ini
 APP_DEBUG = 1
 SWOFT_DEBUG = 1
 ```
@@ -20,9 +20,10 @@ SWOFT_DEBUG = 1
 
 swoft 提供了函数读取以上两种方式配置的数据。
 
-```
+```php
 env(string $key = null, mixed $default = null): mixed
 ```
+
 获取一个环境变量的值或所有环境变量参数
 
 - 返回环境变量 key 的值， 如果环境变量 key 不存在则返回默认值。 如果省略 key 参数，则所有环境变量都将作为关联数组 array 返回
