@@ -1,12 +1,13 @@
 # 编写组件
 
 swoft 提供了非常方便的自定义和扩展能力，你可以像编写一个普通的 composer 包一样为swoft编写组件。
+通过swoft的事件你基本上可以接入swoft应用运行的任何阶段，得到你需要的任何信息。
 
 ## 组件骨架结构
 
-这是官方推荐的组件结构，当然你完全可以自定义。
+这是官方推荐的组件结构，当然你完全可以自定义。但有一点要注意的是：
 
-但有一点要注意的是： `AutoLoader.php` 是一个组件必须存在的文件，swoft依据它来确定要扫描那些目录
+> Notice: `AutoLoader.php` 是一个组件必须存在的文件，swoft依据它来确定这是一个组件和要扫描哪些目录
 
 ```text
 ├── src/
@@ -95,18 +96,22 @@ final class AutoLoader extends SwoftComponent
 }
 ```
 
-方法说明：
+> Notice: 组件的 `Autoloader` 必须继承 `Swoft\SwoftComponent`，才能被swoft正确辨别为组件。
+
+### 方法说明
 
 - `enable(): bool` 是否启用这个组件
 - `getPrefixDirs(): array` 这个组件你需要扫描那些目录，你完全可以指定只扫描一部分目录。
 - `metadata(): array` 列出组件的基本信息。可以直接通过上面的方式，返回 composer.json 里的信息。
 - `beans(): array` 如有需要你可配置添加自定义bean
 
-> 我们的应用项目 `swoft/swoft` 结构也是类似的，可以看作一个顶级组件。
+> Tips: 我们的应用项目 `swoft/swoft` 结构也是类似的，可以看作一个顶级组件。
 
 ## 组件原理
 
-- 通过 composer 的 `ClassLoader` 对象得到所有的psr4 加载注册信息
+这里介绍一下组件的收集和加载原理，有需要可以做一下了解。
+
+- swoft 通过 composer 的 `ClassLoader` 对象得到所有的 psr4 加载注册信息
 - 找到每个psr4命名空间所对应的目录，查看是否有 swoft 需要的 `AutoLoader.php`
   - 允许在启动application时，设置跳过扫描一些确定的命名空间以加快速度。 默认跳过扫描 `'Psr\\', 'PHPUnit\\', 'Symfony\\'` 几个公共的命名空间
 - 加载各个组件的 `AutoLoader.php` 文件。通过它的配置 **有目的** 的扫描指定的路径，_避免像 1.0 一样扫描了很多无效的目录_
