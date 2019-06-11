@@ -148,7 +148,7 @@ Show::table($data, 'a table', $opts);
 
 ![table-show](https://raw.githubusercontent.com/inhere/php-console/master/docs/screenshots/table-show.png)
 
-## 快速的渲染一个帮助信息面板 
+## 渲染帮助信息面板 
 
 ```php
 public static function helpPanel(array $config, $showAfterQuit = true)
