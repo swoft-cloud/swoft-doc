@@ -31,8 +31,8 @@ Linux很早就提供了 select 系统调用，可以在一个进程内维持1024
 
 - 主线程调用`epoll_wait`等待`socket`可写。
 
-- 当`socket`可写时，`epoll_wait`通知主进程/线程主进程/线程将`socket`可写事件放入清求队列。
+- 当`socket`可写时，`epoll_wait`通知主进程/线程主进程/线程将`socket`可写事件放入请求队列。
 
-- 睡眠在请求队列上的某个工作线程被唤醒，它往`socket`上写入服务器处理客户淸求 
+- 睡眠在请求队列上的某个工作线程被唤醒，它往`socket`上写入服务器处理客户请求 
 
 `swoole` 的 `Reactor` 线程 也是基于 `Reactor` 模型实现的

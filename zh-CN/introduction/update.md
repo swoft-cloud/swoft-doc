@@ -6,10 +6,9 @@
 
 - 新增 `$request->parsedQuery()` 方法 ([ab45089](https://github.com/swoft-cloud/swoft-component/commit/ab450891b126b8d1a76f1eaa5a020fd69b639383))
 - 新增 Bean 属性注入基础数据类型(string/int/bool/float/array)，自动根据注释类型转换。([e3d4085](https://github.com/swoft-cloud/swoft-component/pull/424/commits/e3d40856dabd86b85b67a65adae022aeb88f225a))
-- 新增 cookies响应支持 ([1a024bf](https://github.com/swoft-cloud/swoft-component/pull/426/commits/1a024bf5b9371444bcf59df4e960404bc2c99068))
 - 新增 `db()`, 使 Model/Query/DB 支持切库([f3b12c9](https://github.com/swoft-cloud/swoft-component/pull/429/commits/f3b12c9426407b45fad58391bb6da1f87ea25009))
 - 新增 `DbSelectorInterface` 用于根据业务自动切库([b36ca03](https://github.com/swoft-cloud/swoft-component/pull/429/commits/b36ca03420607098d7484976a62c3291bf2f2037))
-- 新增 Http server 增加cookies响应支持 ([1a024bf](https://github.com/swoft-cloud/swoft-component/pull/426/commits/1a024bf5b9371444bcf59df4e960404bc2c99068))
+- 新增 Http server 增加Cookies响应支持 ([1a024bf](https://github.com/swoft-cloud/swoft-component/pull/426/commits/1a024bf5b9371444bcf59df4e960404bc2c99068))
 - 新增 `devtool` 组件的实体生成([14b4d39c](https://github.com/swoft-cloud/swoft-devtool/commit/14b4d39c653823f3891343302b3903f032e00760))
 
 修复(Fixed)：
@@ -29,8 +28,6 @@
 - 修复 body 字符串无解析调用错误问题([32abf60](https://github.com/swoft-cloud/swoft-component/pull/429/commits/32abf60df7aa748bff81b7ed8541545e07a8ba3f))
 - 修复 通过 `setter`操作实体 `toArray`失效问题([9c0f9505](https://github.com/swoft-cloud/swoft-component/commit/9c0f9505732414149d4222574b3913f333927222))
 - 现在停止server(包含Ctrl+C)时总是会删除pid文件，修复没有删除pid文件导致docker重启失败问题([6a96b2c](https://github.com/swoft-cloud/swoft-component/pull/432/commits/6a96b2cf031e68b12ca16cd6bcb4b2263cf2d31f))
-- 修复 `count,sum,avg,max,min` 返回值问题([c9b5e17a](https://github.com/swoft-cloud/swoft-component/pull/431/commits/c9b5e17acc970b8a4d9be1a6e6539f09dfe13430
-))
 - 修复 通过 `@Inject` 注入`Redis`连接池没有释放以及连接池全部空闲判断问题([feac3700](https://github.com/swoft-cloud/swoft-component/pull/431/commits/feac3700fd882bda0e928d041444446c2737e5e9))
 
 
@@ -39,6 +36,8 @@
 - 调整 Http server 匹配的路由数据存储，由原来的request改动存储到 context([3da893aeba](https://github.com/swoft-cloud/swoft-component/pull/426/commits/3da893aeba5b31d39744dc0e19f8da97be86ba38))
 - 修改模型方法`insert,insertGetId,updateOrInsert`只会插入定义了`@Column`字段([9c0f9505](https://github.com/swoft-cloud/swoft-component/commit/9c0f9505732414149d4222574b3913f333927222))
 - 启动swoft时加入冲突扩展相关的运行环境检查([7fa7188f](https://github.com/swoft-cloud/swoft-component/pull/432/commits/7fa7188f8479c23c10dbc3190acbc981974c5f4a))
+- 调整 `count,sum,avg,max,min` 返回值类型([c9b5e17a](https://github.com/swoft-cloud/swoft-component/pull/431/commits/c9b5e17acc970b8a4d9be1a6e6539f09dfe13430
+))
 
 扩展(Extra):
 
