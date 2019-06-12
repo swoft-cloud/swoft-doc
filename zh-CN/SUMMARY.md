@@ -155,6 +155,7 @@
 
 ### [SwoftCli](tool/swoftcli/index.md)
 
+  * [下载安装](tool/swoftcli/install.md)
   * [自动重启服务](tool/swoftcli/hot-restart.md)
   * [打包应用为PHAR](tool/swoftcli/build-phar.md)
 
