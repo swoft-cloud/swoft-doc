@@ -15,7 +15,7 @@ Linux很早就提供了 select 系统调用，可以在一个进程内维持1024
 ## epoll             
 直到Linux 2.6内核提供了新的`epoll`系统调用，可以维持无限数量的连接，而且无需轮询，这才真正解决了 `C10K` 问题。现在各种高并发异步IO的服务器程序都是基于`epoll`实现的，比如`Nginx、Node.js、Erlang、Golang`。像 `Node.js`，`Redis` 这样单进程单线程的程序，都可以维持超过1百万TCP连接，全部归功于`epoll`技术。
 
-在这就不得不提，基于 `epoll` 实现的 `Reacter` 模型，`IO复用`**异步非阻塞**程序使用经典的`Reactor`模型，`Reactor`顾名思义就是`反应堆`的意思，它本身不处理任何数据收发。只是可以监视一个`socket句柄`的事件变化。
+在这就不得不提，基于 `epoll` 实现的 `Reactor` 模型，`IO复用`**异步非阻塞**程序使用经典的`Reactor`模型，`Reactor`顾名思义就是`反应堆`的意思，它本身不处理任何数据收发。只是可以监视一个`socket句柄`的事件变化。
                 
 ![模型](../image/ready/eventloop.png)
 
@@ -35,4 +35,4 @@ Linux很早就提供了 select 系统调用，可以在一个进程内维持1024
 
 - 睡眠在请求队列上的某个工作线程被唤醒，它往`socket`上写入服务器处理客户请求 
 
-`swoole` 的 `Reacter` 线程 也是基于 `Reacter` 模型实现的
+`swoole` 的 `Reactor` 线程 也是基于 `Reactor` 模型实现的
