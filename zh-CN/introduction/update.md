@@ -29,8 +29,10 @@
 - 修复 body 字符串无解析调用错误问题([32abf60](https://github.com/swoft-cloud/swoft-component/pull/429/commits/32abf60df7aa748bff81b7ed8541545e07a8ba3f))
 - 修复 通过 `setter`操作实体 `toArray`失效问题([9c0f9505](https://github.com/swoft-cloud/swoft-component/commit/9c0f9505732414149d4222574b3913f333927222))
 - 现在停止server(包含Ctrl+C)时总是会删除pid文件，修复没有删除pid文件导致docker重启失败问题([6a96b2c](https://github.com/swoft-cloud/swoft-component/pull/432/commits/6a96b2cf031e68b12ca16cd6bcb4b2263cf2d31f))
-- 修复 `count,sum,avg,max,min` 返回值问题, 具体文档([c9b5e17a](https://github.com/swoft-cloud/swoft-component/pull/431/commits/c9b5e17acc970b8a4d9be1a6e6539f09dfe13430
+- 修复 `count,sum,avg,max,min` 返回值问题([c9b5e17a](https://github.com/swoft-cloud/swoft-component/pull/431/commits/c9b5e17acc970b8a4d9be1a6e6539f09dfe13430
 ))
+- 修复 通过 `@Inject` 注入`Redis`连接池没有释放以及连接池全部空闲判断问题([feac3700](https://github.com/swoft-cloud/swoft-component/pull/431/commits/feac3700fd882bda0e928d041444446c2737e5e9))
+
 
 更新(Update):
 
@@ -70,7 +72,6 @@
 - 修复 默认输出编码为UTF8 ([755c8cf](https://github.com/swoft-cloud/swoft-component/pull/412/commits/755c8cfe50bb5971d9f4b0b8af07c02cc5282f8f))
 - 优化 Redis 配置类型转换([533b592](https://github.com/swoft-cloud/swoft-component/pull/420/commits/533b5923f1610c1d7c000f6e0bde79036fe41915))
 - 打包为phar运行时路径错误([533b592](https://github.com/swoft-cloud/swoft-component/pull/417))
-- 修复 通过 `@Inject` 注入`Redis`连接池没有释([feac3700](https://github.com/swoft-cloud/swoft-component/pull/431/commits/feac3700fd882bda0e928d041444446c2737e5e9))
 
 Swoft-cli
 
