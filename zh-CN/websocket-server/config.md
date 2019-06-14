@@ -26,6 +26,7 @@ websocket 的 host, port 等配置是都是完全可以自定义的。
     // ...
     'wsServer'   => [
         'class'   => WebSocketServer::class,
+        'port' => 18307,
         'debug' => env('SWOFT_DEBUG', 0),
         /* @see WebSocketServer::$setting */
         'setting' => [
@@ -72,4 +73,44 @@ ok, 现在 `IP:PORT` 上可以同时处理 http 和 ws 请求了。
         'port' => 18308,
     ],
 ```
+
+## 启用全部功能
+
+- websocket server
+- http server
+- task process
+- rpc server
+
+```php
+    // ...
+    'wsServer'   => [
+        'class'   => WebSocketServer::class,
+        'port' => 18307,
+        'on'      => [
+            // 开启处理http请求支持
+            SwooleEvent::REQUEST => bean(RequestListener::class),
+            // 启用任务必须添加 task, finish 事件处理
+            SwooleEvent::TASK   => bean(TaskListener::class),  
+            SwooleEvent::FINISH => bean(FinishListener::class)
+        ],
+        'listener' => [
+            // 引入 rpcServer
+            'rpc' => \bean('rpcServer')
+        ],
+        'debug' => env('SWOFT_DEBUG', 0),
+        /* @see WebSocketServer::$setting */
+        'setting' => [
+            'log_file' => alias('@runtime/swoole.log'),
+            // 任务需要配置 task worker
+            'task_worker_num'       => 2,
+            'task_enable_coroutine' => true
+        ],
+    ],
+    'rpcServer'  => [
+        'class' => ServiceServer::class,
+        'port' => 18308,
+    ],
+```
+
+ok, 现在通过 `php bin/swoft ws:start` 启动的服务器，就支持上面的全部功能了
 
