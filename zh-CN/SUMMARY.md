@@ -96,7 +96,7 @@
 ### [Websocket](websocket-server/index.md)
 
   * [配置服务](websocket-server/config.md)
-  * [启动与管理](websocket-server/manage.md)
+  * [管理服务](websocket-server/manage.md)
   * [websocket模块](websocket-server/module.md)
   * [消息处理](websocket-server/message-route.md)
   * [消息发送](websocket-server/message-send.md)
