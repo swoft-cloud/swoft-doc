@@ -1,6 +1,6 @@
 # websocket 配置
 
-websocket 的 host, port 等配置是都是完全可以自定义的。
+websocket 的 host, port 等配置是都是完全可以自定义的。配置需要编辑 `app/bean.php` 文件
 
 > websocket server 的默认端口是 `18308`
 
@@ -20,11 +20,9 @@ websocket 的 host, port 等配置是都是完全可以自定义的。
     ],
 ```
 
-### 启用http请求处理
+## 启用http请求处理
 
 默认的是没有启用http server功能的。如果你想开启ws时，同时处理http请求。
-
-可以编辑： `app/bean.php`
 
 ```php
     // ...
@@ -39,6 +37,25 @@ websocket 的 host, port 等配置是都是完全可以自定义的。
         'setting' => [
             'log_file' => alias('@runtime/swoole.log'),
         ],
+    ],
+```
+
+ok, 现在 `IP:PORT` 上可以同时处理 http 和 ws 请求了。
+
+## 添加RPC服务
+ 
+如果你想开启ws时，同时启动RPC Server服务。
+
+```php
+    // ...
+    'wsServer'   => [
+        'listener' => [
+            'rpc' => \bean('rpcServer') // 引入 rpcServer
+        ],
+    ],
+    'rpcServer'  => [
+        'class' => ServiceServer::class,
+        'port' => 18308,
     ],
 ```
 
