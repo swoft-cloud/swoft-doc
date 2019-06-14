@@ -1,14 +1,15 @@
 # 使用
 
 本章以计算类里面每个方法执行时间为例，简单介绍使用切面编程。
+
 ## 编写测试类
 
 首先先编写一个Http Controller 类
 
->App\Http\Controller\TestExecTimeController
+> App\Http\Controller\TestExecTimeController
+
 ```PHP
 <?php
-
 
 namespace App\Http\Controller;
 
@@ -18,16 +19,10 @@ use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 /**
  * 运算时间测试类
  *
- * @author JasonYH <robotme@hotmail.com>
- *
- * @package App\Http\Controller
- *
  * @Controller()
- *
  */
 class TestExecTimeController
 {
-
     /**
      * 闭包递归 计算阶乘
      *
@@ -37,12 +32,13 @@ class TestExecTimeController
      *
      * @return array
      */
-    function factorial(int $number): array
+    public function factorial(int $number): array
     {
         $factorial = function ($arg) use (&$factorial) {
             if ($arg == 1) {
                 return $arg;
             }
+            
             return $arg * $factorial($arg - 1);
         };
 
@@ -55,9 +51,8 @@ class TestExecTimeController
      * 
      * @RequestMapping()
      */
-    function sumAndSleep():array
+    public function sumAndSleep(): array
     {
-
         $sum = 0;
         for ($i = 1; $i <= 1000; $i++) {
             $sum = $sum + $i;
@@ -67,16 +62,16 @@ class TestExecTimeController
         return [$sum];
     }
 }
-
 ```
+
 ## 编写切面类
 
 创建一个切面类，对我们的测试类进行切入。
 
->App\Aspect\CalcExecTimeAspect
+> App\Aspect\CalcExecTimeAspect
+
 ```PHP
 <?php declare(strict_types=1);
-
 
 namespace App\Aspect;
 
@@ -89,8 +84,6 @@ use Swoft\Aop\Point\JoinPoint;
 /**
  * AOP切面类
  * 
- * @author JasonYH <robotme@hotmail.com>
- *
  * @since 2.0
  *
  * 声明切面类
@@ -107,7 +100,7 @@ class CalcExecTimeAspect
      * 定义通知点
      * @Before()
      */
-    function before()
+    public function before()
     {
         $this->start = microtime(true);
     }
@@ -116,19 +109,21 @@ class CalcExecTimeAspect
      * 定义通知点
      * @After()
      */
-    function after(JoinPoint $joinPoint)
+    public function after(JoinPoint $joinPoint)
     {
         $method = $joinPoint->getMethod();
         $after = microtime(true);
         $runtime = ($after - $this->start) * 1000;
+        
         echo "{$method} 方法，本次执行时间为: {$runtime}ms\n";
-
     }
-
 }
 ```
+
 启动 swoft 之后正常的访问我们的测试控制器，将会在控制器看到输出
+
 > 访问控制器
+
 ```SHEL
 $ curl http://localhost:18306/testExecTime/test/10
 [3628800]%
@@ -136,7 +131,9 @@ $ curl http://localhost:18306/testExecTime/test/10
 $ curl http://localhost:18306/testExecTime/sumAndSleep
 [500500]%
 ```
+
 > 控制台输出
+
 ```SHELL
 factorial 方法，本次执行时间为: 0.10013580322266ms
 ```
