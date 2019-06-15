@@ -8,7 +8,7 @@
 
 > App\Http\Controller\TestExecTimeController
 
-```PHP
+```php
 <?php
 
 namespace App\Http\Controller;
@@ -70,7 +70,7 @@ class TestExecTimeController
 
 > App\Aspect\CalcExecTimeAspect
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace App\Aspect;
@@ -124,7 +124,7 @@ class CalcExecTimeAspect
 
 > 访问控制器
 
-```SHEL
+```bash
 $ curl http://localhost:18306/testExecTime/test/10
 [3628800]%
 
@@ -134,6 +134,6 @@ $ curl http://localhost:18306/testExecTime/sumAndSleep
 
 > 控制台输出
 
-```SHELL
+```bash
 factorial 方法，本次执行时间为: 0.10013580322266ms
 ```
