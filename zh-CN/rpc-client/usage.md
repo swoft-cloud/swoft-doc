@@ -75,7 +75,7 @@ class RpcController
 
 ## 非 Swoft 框架
 
-默认消息协议是 json-rpc， 所以我们按照这个格式就可以了，需要注意的是，默认消息协议是以 \r\n\r\n 结尾的。
+默认消息协议是 json-rpc， 所以我们按照这个格式就可以了，需要注意的是，默认消息协议是以 `\r\n\r\n` 结尾的。
 
 这里 `method` 的格式为 `"{version}::{class_name}::{method_name}"`
 
@@ -90,6 +90,7 @@ class RpcController
 ```
 
 如果使用默认消息协议，可以按照如下方式进行封装
+
 ```php
 <?php
 
