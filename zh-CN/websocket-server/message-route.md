@@ -67,6 +67,25 @@ class ChatModule
 }
 ```
 
+> **注意** 这里定义Ws模块时，绑定了一个框架自带的消息解析器，TokenTextParser::class  内置了一个decode 的方法用来解析数据
+
+```PHP
+//默认为字符串解析，消息路由格式 `控制器.方法:数据`
+public function decode(string $data): Message
+    {
+        // use default message command
+        $cmd = '';
+        if (strpos($data, ':')) {
+            [$cmd, $body] = explode(':', $data, 2);
+            $cmd = trim($cmd);
+        } else {
+            $body = $data;
+        }
+
+        return Message::new($cmd, $body);
+    }
+```
+
 ### 消息控制器
 
 **注意** 必须使用注解 `@WsController` 以及 `@MessageMapping`
@@ -123,3 +142,13 @@ class HomeController
     }
 }
 ```
+
+### 访问
+
+根据以上定义好的 `Ws模块`、`消息解析器`、`消息控制器` 等内容后启动我们的服务。然后打开webscoket 调试工具，链接Ws的地址： `ws://localhost:port/chat ` 然后测试发送一个内容
+
+    Send: testWS
+    Recv: hi, this is home.index
+    Send: home.echo:这是数据
+    Recv: (home.echo)Recv: 这是数据
+
