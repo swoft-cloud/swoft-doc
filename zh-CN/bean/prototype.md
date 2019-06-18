@@ -59,4 +59,4 @@ class TestCollection
 }
 ```
 
-需要引入`PrototypeTrait`，在`PrototypeTrait` 中实现了 `__instance()`方法，该返回的就是一个 clone 的自身对象，你只需更新参数 即可获取一个全新的对象。
+需要引入`PrototypeTrait`，在`PrototypeTrait` 中实现了 `__instance()`方法，该返回的就是一个 clone 的自身对象，你只需对应更新属性值 即可获取一个全新的对象。
