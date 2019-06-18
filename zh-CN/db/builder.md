@@ -587,6 +587,7 @@ DB::table('users')
             ->forPage($page, $size)
             ->get();
 ```
+
 ## 条件语句
 
 有时候你可能想要子句只适用于某个情况为真是才执行查询。例如你可能只想给定值在请求中存在的情况下才应用 where 语句。 你可以通过使用 `when` 方法：
@@ -724,3 +725,19 @@ $user = DB::query($poolName)->from('user')->where('id', $id)->get();
 底层只有在 执行 sql 的时候才会从 DB 连接池中拿连接执行，执行之后会自动释放。`Builder` 对象不在依赖 `Connection`
 
 <p class="tip"> 释放连接: 把连接还给连接池 </p>
+
+
+## FQA
+
+在 where 的闭包中使用这样的例子是错误的 
+```php
+   $res = DB::table('user')
+             ->where(function (Builder $query) {
+                 $query->forPage(1, 10)
+                     ->orderBy('age', 'ase')
+                     ->where('id', 1);
+             })
+             ->orderBy('id', 'desc')
+             ->get();
+```
+在 例子闭包中的`orderBy`和`forPage`不会生效. 只有 `where` 相关的约束才会生效.

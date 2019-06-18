@@ -48,23 +48,24 @@ use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
  */
 class RedisController
 {
+    
     /**
-     * eg 1
+     * 例子 1: 如果 Inject 没有参数,会使用 var 定义的类型
+     *
+     * @Inject()
+     *
+     * @var Pool 默认连接使用的是 redis.pool
+     */
+    private $redis;
+    
+    /**
+     * 例子 2: 如果 Inject 指定参数,会使用指定的 pool 注入到该属性. 和 var 定义的类型没关系
      *
      * @Inject("redis.inc.pool")
      *
      * @var Pool
      */
     private $redisInc;
-    
-    /**
-     * eg 2
-     *
-     * @Inject()
-     *
-     * @var Pool
-     */
-    private $redis;
     
     /**
      * @RequestMapping(route="find")
@@ -77,6 +78,8 @@ class RedisController
     {
         $this->redis->set('user', ["name"=>"gimi", "age"=>"18"]);
 
+        $this->redisInc->incr('user-count',1);
+        
         return $this->redis->get('user');
     }
 }  
@@ -92,6 +95,9 @@ $poolName  = 'redis-clusters-pool'
 $redis     =  Redis::connection($poolName);
 $redis->get("a");
 ```
+>  Redis::connection(); 如果没有指定连接池名字,默认会从 系统定义的`redis.pool `连接池中获取连接,该方法
+返回的是一个`连接`, 而不是`连接池`. 不要`共享连接`,要`共享连接池`
+
  获取的连接了之后和 操作 和`phpredis` 原生使用方式扩展一致 如何创建连接池 参考 `redis 设置`章节
  ，默认是在 `redis.pool`连接池中获取的
  
