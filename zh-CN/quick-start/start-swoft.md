@@ -19,15 +19,17 @@ Options:
       --expand     Expand sub-commands for all command groups
 
 Available Commands:
-  docs     Class DocsCommand
   http     Provide some commands to manage the swoft HTTP Server(alias: httpserver,httpServer,http-server)
   rpc      Class ServiceServerCommand
   test     Class TestCommand
   ws       Provide some commands to operate swoft WebSocket Server(alias: ws-server,wsserver,websocket)
 
 More command information, please use: bin/swoft COMMAND -h
-
 ```
+
+> `reload`只是重新释放一下内存，只在开发过程中有用，线上请勿使用。
+
+> 更新代码时可以放心使用`restart`，`swoole`底层做了优化，不会中断正在处理的请求
 
 ## HTTP 服务器
 

@@ -94,7 +94,7 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
 
 ## Redis连接池配置
 
-Swoft 所有连接池配置都差不多，如果你想使用不同的 缓存数据库indexx或者不同节点。
+Swoft 所有连接池配置都差不多，如果你想使用不同的 缓存数据库index或者不同节点。
 那么就很适合定义连接池，配置都在 `app\bean.php`里面。
 
 <p class="tip">
