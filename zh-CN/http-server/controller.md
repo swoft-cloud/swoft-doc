@@ -26,7 +26,7 @@ class IndexController
 
 - prefix：指定路由前缀
 - 显式指定路由前缀: `@Controller(prefix="/index")` 或 `@Controller("/index")`
-- 隐式指定路由前缀: `@Controller()` 默认自动解析 controller class 的名称，并且使用驼峰格式。
+- 隐式指定路由前缀: `@Controller()` 默认自动解析 controller class 的名称，并且使用小驼峰格式。
 
 隐式指定路由前缀访问URL：`http://127.0.0.1:18306/index/index`
 

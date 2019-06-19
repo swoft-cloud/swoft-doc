@@ -15,7 +15,7 @@ php bin/swoft -h
 php bin/swoft --help
 ```
 
-![](../image/console/cli-app.png)
+![](../image/console/cli-app.jpg)
 
 ## 查看版本
 
@@ -27,7 +27,7 @@ php bin/swoft -V
 php bin/swoft --version
 ```
 
-![](../image/console/cli-version.png)
+![](../image/console/cli-version.jpg)
 
 ## 命令帮助信息
 
@@ -39,7 +39,7 @@ php bin/swoft http
 php bin/swoft http -h
 ```
 
-![](../image/console/cli-group.png)
+![](../image/console/cli-group.jpg)
 
 - 具体命令帮助信息
 
@@ -49,7 +49,7 @@ php bin/swoft http:start -h
 php bin/swoft http:start --help
 ```
 
-![](../image/console/cli-command.png)
+![](../image/console/cli-command.jpg)
 
 ## 执行命令
 

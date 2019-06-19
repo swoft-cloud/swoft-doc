@@ -66,7 +66,7 @@ foreach ($roles as $name => $email) {
     echo $email;
 }
 ```
-### 分块结果
+## 分块结果
 如果你需要处理上千条数据库记录，你可以考虑使用 chunk 方法。该方法一次获取结果集的一小块，并将其传递给 闭包 函数进行处理。在修复数据的时候就很适用。例如，我们可以将全部 user 表数据切割成一次处理 100 条记录的一小块：
 ```php
 DB::table('users')->orderBy('id')->chunk(100, function (\Swoft\Stdlib\Collection $users) {
@@ -84,7 +84,7 @@ DB::table('users')->orderBy('id')->chunk(100, function (\Swoft\Stdlib\Collection
 ```
 闭包里面传递的 `$users` 是一个`Collection`对象，`each`方法也是通过 `chunk` 实现的 只是参数不同位置相反。
 
-### 聚合
+## 聚合
 查询构造器还提供了各种聚合方法，比如 `count`, `max`，`min`， `avg`，还有 `sum`。你可以在构造查询后调用任何方法：
 ```php
 $userNum = DB::table('users')->count();
@@ -96,7 +96,10 @@ $price = DB::table('orders')
                 ->where('status', 1)
                 ->avg('price');
 ```
-如果没有查询到任何数据 返回值是一个 `null`。`avg`是`average`方法的别名，而已返回是一个 float 类型。
+如果没有查询到任何数据 返回值是一个 int 类型的 `0`。`avg`是`average`方法的别名，而已返回是一个 `float|int` 类型。
+
+> count 固定返回 `int`, `max`,`min`,`avg`,`sum` 这些函数 可能涉及浮点数计算 底层没有强制转换 返回类型为`float|int`这个值是`数据库`返回的值 
+
 
 **判断记录是否存在**
 
@@ -282,9 +285,7 @@ Builder::new()
 ```
 > 提示: 你也可以使用 unionAll 方法，用法 union 方法是的一样。
   
-## Where语句
-
-### 简单的 Where 语句
+## 简单的 Where 语句
 
 在构造 where 查询实例的中，你可以使用 where 方法。调用 where 最基本的方式是需要传递三个参数：第一个参数是列名，第二个参数是任意一个数据库系统支持的运算符，第三个是该列要比较的值。
 
@@ -332,7 +333,7 @@ $wheres   = [
 // select * from `user` where (`name` = ? and `status` >= ? or `money` > ?)
 $users    = User::where($wheres)->get();
 ```
-### Or 语句
+## Or 语句
 
 你可以一起链式调用 where 约束，也可以在查询中添加 or 字句。 orWhere 方法和 where 方法接收的参数一样：
 
@@ -343,7 +344,7 @@ $users = DB::table('user')
                     ->get();
 ```
 
-### 其他 Where 语句
+## 其他 Where 语句
 **whereBetween**
 
 `whereBetween` 方法验证字段值是否在给定的两个值之间：
@@ -449,7 +450,7 @@ $users = DB::table('users')
                 ])->get();
 ```
 
-### 参数分组
+## 参数分组
 
 有时候你需要创建更高级的 where 子句，例如「where exists」或者嵌套的参数分组。 Swoft 的查询构造器也能够处理这些。下面，让我们看一个在括号中进行分组约束的例子:
 
@@ -469,7 +470,7 @@ DB::table('user')
 select * from `user` where `name` = 'sakura' and (`money` > 100 or `title` = 'test')
 ```
  
-###  WhereExists
+##  WhereExists
 
 `whereExists` 方法允许你使用 where exists SQL 语句。 `whereExists` 方法接收一个 `Closure` 参数，该 `whereExists` 方法接受一个 `Closure` 参数，该闭包获取一个查询构建器实例从而允许你定义放置在 `exists` 字句中查询：
 
@@ -490,7 +491,7 @@ where exists (
 )
 ```
 
-### JsonWhere
+## JsonWhere
 
 `Swoft` 也支持查询 `JSON` 类型的字段（仅在对 `JSON` 类型支持的数据库上）。目前，本特性仅支持 `MySQL 5.7`+。
 
@@ -586,6 +587,7 @@ DB::table('users')
             ->forPage($page, $size)
             ->get();
 ```
+
 ## 条件语句
 
 有时候你可能想要子句只适用于某个情况为真是才执行查询。例如你可能只想给定值在请求中存在的情况下才应用 where 语句。 你可以通过使用 `when` 方法：
@@ -723,3 +725,19 @@ $user = DB::query($poolName)->from('user')->where('id', $id)->get();
 底层只有在 执行 sql 的时候才会从 DB 连接池中拿连接执行，执行之后会自动释放。`Builder` 对象不在依赖 `Connection`
 
 <p class="tip"> 释放连接: 把连接还给连接池 </p>
+
+
+## FQA
+
+在 where 的闭包中使用这样的例子是错误的 
+```php
+   $res = DB::table('user')
+             ->where(function (Builder $query) {
+                 $query->forPage(1, 10)
+                     ->orderBy('age', 'ase')
+                     ->where('id', 1);
+             })
+             ->orderBy('id', 'desc')
+             ->get();
+```
+在 例子闭包中的`orderBy`和`forPage`不会生效. 只有 `where` 相关的约束才会生效.

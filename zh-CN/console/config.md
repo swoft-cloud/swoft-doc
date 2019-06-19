@@ -7,10 +7,10 @@
 
 namespace Swoft\Console;
 
-use function dirname;
 use Swoft\Console\Router\Router;
 use Swoft\Helper\ComposerJSON;
 use Swoft\SwoftComponent;
+use function dirname;
 
 /**
  * class AutoLoader

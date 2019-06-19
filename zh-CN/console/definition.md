@@ -2,49 +2,106 @@
 
 一个命令由命令组和执行命令组成，一个类就是一个命令组，类里面的方法对应操作命令，一个命令的运行，是通过执行命令组对应的操作命令。
 
+> 命令逻辑里面可以使用 Swoft 所有功能
+
+## 命令结构
+
+```text
+                                        value of option: opt1
+                                option: opt1  |
+                                       |      |
+php bin/swoft group:cmd john male 43 --opt1 value1 -y
+        |         |      |    |   |                 |
+     script    command   |    |   |_____        option: yes, it use shortcat: y, and it is a bool, so no value.
+                         |    |___     |
+                 argument: name  |   argument: age
+                            argument: sex
+```
+
+### 参数与选项
+
+- 没有 `-` 开头的都认为是参数 (eg: `status=2` `arg0`)
+- 反之，以 `-` 开头的则是选项数据
+    - `--` 开头的是长选项(long-option)
+    - 一个 `-` 开头的是短选项(short-option)
+
+> 支持混合式选项的赋值 `--id=154` 和 `--id 154` 是等效的
+
+**注意:** 输入如下的字符串将会认为是布尔值
+
+- `on|yes|true` -- `true`
+- `off|no|false` -- `false`
+
 ## 注解
 
-命令的定义主要通过 `@Command` 和 `@CommandMapping`两个注解，`@Command` 定义命令组名称，`@CommandMapping` 定义操作命令的映射关系。
+命令的定义主要通过 `@Command` 和 `@CommandMapping`两个注解。
+`@Command` 定义命令组名称，`@CommandMapping` 定义操作命令的映射关系。
 
-### Command 注解
+命令的命令使用帮助信息，也是通过注解完成定义。
 
-**@Command**
+### Command
 
-定义命令组，标记一个类为console命令类
-
-拥有属性：
-
-- `name` 参数，定义命令组名称，如果缺省，根据类名称自动解析
-- `alias` 命令组别名，通过别名仍然可以访问它。_允许多个，以逗号隔开即可_
-- `desc` 命令组描述信息说明，支持颜色标签
-- `coroutine` 定义是否为协程下运行，默认 true, 框架会启动一个协程运行该命令
-
-> 若 `desc` 为空，将会自动解析类的第一行注释作为描述
-
-### CommandMapping 注解
-
-**@CommandMapping**
-
-定义操作命令映射关系，标明了一个具体的命令
+**@Command** 定义命令组，标记一个类为console命令类。作用域：`class`
 
 拥有属性：
 
-- `name` 参数，定义命令组名称，如果缺省，会执行使用方法名称
-- `alias` 命令别名，通过别名仍然可以访问它。_允许多个，以逗号隔开即可_
-- `desc` 命令的描述信息说明，支持颜色标签
+- `name` _string_ 定义命令组名称，如果缺省，根据类名称自动解析
+- `alias` _string_ 命令组别名，通过别名仍然可以访问它。_允许多个，以逗号隔开即可_
+- `desc` _string_ 命令组描述信息说明，支持颜色标签
+- `coroutine` _bool_ 定义是否为协程下运行，默认 true, 框架会启动一个协程运行此组里面的命令
 
-> 若 `desc` 为空，将会自动解析类的第一行注释作为描述
+> Tips: 若 `desc` 为空，将会自动解析类的第一行注释作为命令组描述
 
-命令帮助信息是命令使用说明信息，也是通过注解完成定义。
+### CommandMapping
 
-- 类描述，对应命令组信息描述
-- 方法描述，对应该执行命令的信息描述
-- `@Usage` 定义使用命令格式
-- `@Options` 定义命令选项参数
-- `@Arguments` 定义命令参数
-- `@Example` 命令使用例子
+**@CommandMapping** 定义操作命令映射关系，标明了一个具体的命令。作用域：`method`
+
+拥有属性：
+
+- `name` _string_ 定义命令组名称，如果缺省，会执行使用方法名称
+- `alias` _string_ 命令别名，通过别名仍然可以访问它。_允许多个，以逗号隔开即可_
+- `desc` _string_ 命令的描述信息说明，支持颜色标签
+
+> Tips: 若 `desc` 为空，将会自动解析类的第一行注释作为描述
+
+### CommandOption
+
+**@CommandOption** 定义一个命令的选项。作用域：`method|class`
+
+拥有属性：
+
+- `name` _string_ **必填项** 定义命令选项名称。eg: `opt`
+- `short` _string_ 定义命令选项名称的短选项。
+- `default` _mixed_ 命令选项的默认值
+- `desc` _string_ 命令选项的描述信息说明，支持颜色标签
+- `type` _string_ 命令选项的值类型
+- `mode` _int_ 命令选项的值输入限定：必须，可选 等
+
+> Tips: 特别的 `@CommandOption` 可以用 command 类注释上面，这样子相当于给里面所有的命令都加了公共选项。
+
+### CommandArgument
+
+**@CommandArgument** 定义一个命令的参数。作用域：`method`
+
+拥有属性：
+
+- `name` _string_ **必填项** 定义命令参数名称。eg: `opt`
+- `default` _mixed_ 命令参数的默认值
+- `desc` _string_ 命令参数的描述信息说明，支持颜色标签
+- `type` _string_ 命令参数的值类型
+- `mode` _int_ 命令参数的值输入限定：必须，可选 等
+
+> Tips: 命令参数是根据输入位置(有顺序的)来获取的，`name` 是代码里给这个位置的参数添加的命名。
+
+## example 注释
+
+`@example` 注释会被特殊处理(**不是注解**)，如果你的命令方法上面有这个注释，它的内容也会被显示到命令帮助信息上面。
 
 ## 代码示例
+
+下面是 `sowftcli` 里的 `serve:run` 命令定义。命令帮助显示效果如下：
+
+![hot-restart-help](../image/tool/hot-restart-help.jpg)
 
 ```php
 /**
@@ -52,7 +109,7 @@
  *
  * @Command()
  */
-class TestCommand
+class ServeCommand
 {
     /**
      * Start the swoft server and monitor the file changes to restart the server
@@ -90,11 +147,9 @@ class TestCommand
 }
 ```
 
-> 命令逻辑里面可以使用 Swoft 所有功能
+## 使用运行
 
-## 运行
-
-- 现在你可以执行 `php bin/swoft`, 命令列表中将会显示 test 命令
-- 执行 `php bin/swoft test` 或者 `php bin/swoft test -h` 将会看到 test组里拥有的具体命令
-- 执行 `php bin/swoft test:run -h` 将会看到此命令的完整帮助信息
+- 现在你可以执行 `php bin/swoft`, 命令列表中将会显示 serve 组命令
+- 执行 `php bin/swoft serve` 或者 `php bin/swoft serve -h` 将会看到 serve组里拥有的具体命令
+- 执行 `php bin/swoft serve:run -h` 将会看到此命令的完整帮助信息
 

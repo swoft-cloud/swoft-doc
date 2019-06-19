@@ -8,7 +8,7 @@
 <p class="tip"> 使用mysqlnd模式的pdo、mysqli扩展会加入Hook监听,如果未启用mysqlnd将不支持协程化 </p>
 
 也即使说 **IO** 操作会被自动转换和 `swoole` 的 `MySQL 协程客户端`一样。让开发变得简单，更贴近传统框架。
-### 基础配置
+## 基础配置
 
 数据库的配置放置在 `app\bean.php`文件中，去掉了繁琐的`.env`文件配置，你可以认为配置的 `db` 是一个 `bean` 对象。
 ```php
@@ -78,7 +78,7 @@ return [
     - fetchMode 设置 pdo 返回的类型 默认的连接池返回的类型为 `FETCH_ASSOC` 也就是数组方式, 其他类型[参考官方手册](https://php.net/manual/en/pdo.constants.php)
     
 > 默认的`db.pool`连接池的`DB`类查询查询操作，返回的是数组。自定义的`db`连接池如果也需要返回数组，需要设置`fetchMode`参数 为 ` PDO::FETCH_ASSOC`，否则返回是的 `stdClass` 对象。
-### 读写&连接
+## 读写&连接
 
 ```php
 'db2'  => [
@@ -115,7 +115,7 @@ return [
  
 如果你想公用配置请参考[基础配置](#基础配置)。 默认会覆盖合并`dsn' , 'username' ,'password','charset' ,'prefix'  ,'options', 'config`这些选项配置公用，所以在`writes/reads`中配置变化的值就可以了，你也可以覆盖上层配置。
 
-### 连接池配置
+## 连接池配置
 想必用的 1.0 的小伙伴对连接池并不陌生 2.x 对它进行了简化配置 
 连接池的好处也不用多说 更好的管理 资源，对数据库的保护
 
@@ -150,7 +150,7 @@ db 的连接是通过 `连接池`创建和释放的，通过`ConnectionManager`�
 - maxWaitTime 连接最大等待时间，单位秒，如果没有限制为0(默认)
 - maxIdleTime 连接最大空闲时间，单位秒
 
-### Connector&Connection
+## Connector&Connection
 连接器和连接 的关系是创建连接必备的 
  ### Connector 
 `Connector` 主要是用于，根据配置创建真实的 `PDO` 创建连接

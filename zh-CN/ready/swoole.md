@@ -44,7 +44,7 @@ swoole 的协程 和 golang的调度方式完全不同，每一个进程里面�
 
 4.0 底层加入 `Hook` 机制 使用 原生的 `Mysql PDO`，`Redis` 操作将直接被协程化，后续将支持 `Curl` 扩展。更贴近传统业务代码，迁移成本也降低。
 
-`swoole` 的 `http server` 采用优秀的 `Reactor 模型`，处理速度可逼进 `NGINX` 处理静态页面的 速度。对于 `Api`或者`基础服务`来说非常的适合。性能瞬间翻几翻，在也不用担心 php-fpm 进程数过多，导致 `CPU` 被打满。
+`swoole` 的 `http server` 采用优秀的 `Reactor 模型`，处理速度可逼进 `NGINX` 处理静态页面的 速度。对于 `Api`或者`基础服务`来说非常的适合。性能瞬间翻几翻，再也不用担心 php-fpm 进程数过多，导致 `CPU` 被打满。
 
 ### swoole 需要注意的地方
 

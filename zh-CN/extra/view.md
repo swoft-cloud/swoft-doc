@@ -45,6 +45,12 @@ composer require swoft/view
 - `suffixes` 允许的视图后缀列表。 用于判断是否需要添加默认后缀
 - `placeholder` 在布局文件里使用的内容占位符。 默认 `{_CONTENT_}`
 
+### 如何查找视图
+
+- 若你不添加后缀，会自动追加配置的默认后缀
+- 使用相对路径时，将会在我们配置的视图目录里找到对应的view文件
+- 使用绝对路径时，将直接使用它来渲染。(支持使用路径别名 `@resource/views/my-view.php`)
+
 ## 使用视图
 
 - 通过方法： `view()` 渲染一个视图文件
@@ -99,12 +105,6 @@ class DemoController
 }
 ```
 
-## 如何查找视图
-
-- 若你不添加后缀，会自动追加配置的默认后缀
-- 使用相对路径时，将会在我们配置的视图目录里找到对应的view文件
-- 使用绝对路径时，将直接使用它来渲染。(支持使用路径别名 `@res/views/my-view.php`)
-
 ## 使用布局文件
 
 使用布局文件，方式有两种：
@@ -113,13 +113,33 @@ class DemoController
 2. 如示例一样，可以手动设置一个布局文件。它的优先级更高（即使有默认的布局文件，也会使用当前传入的替代。）
 3. 你可以传入 `layout=false` 来禁用渲染布局文件
 
-## 视图加载静态文件
+## 加载静态文件
 
-Swoft 可以提供静态资源访问的支持，将静态文件放置于根目录下的 `public` 目录内即可，下面是一个引用的示例
+Swoft 可以提供静态资源访问的支持（由swoole提供），通常建议将静态文件放置于根目录下的 `public` 目录内。
 
-> 注意 需要配置静态文件处理，引用时无需包含 `public`
+### 配置Http Server
+
+首先我们需要配置静态文件处理，在 `app/bean.php` 的 http server 加上如下配置
+
+```php
+    'httpServer' => [
+        /**
+         * @see  HttpServer::$setting
+         * @link https://wiki.swoole.com/wiki/page/620.html
+         */
+        'setting'  => [
+            // enable static handle
+            'enable_static_handler'    => true,
+            // swoole v4.4.0以下版本, 此处必须为绝对路径
+            'document_root'            => dirname(__DIR__) . '/public',
+        ]
+    ],
+```
+
+下面是一个引用的示例（_引用时无需再包含`public`_）：
 
 ```html
+// 真实文件为： public/static/some.js
 <script type="text/javascript" src="/static/some.js"></script>
 ```
 

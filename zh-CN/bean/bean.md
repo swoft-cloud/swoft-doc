@@ -4,7 +4,10 @@
 
 ## 创建 Bean
 
-创建 Bean 通过 config 配置方式 还可以通过 [@Bean](#@Bean()) 注解创建 
+创建 Bean 
+ - 直接定义注解 [@Bean](#@Bean())  的方式
+ - 通过在`bean.php`中配置, 
+ - 在`AutoLoader.php` 中定义
 
 ### @Bean()
  
@@ -43,7 +46,9 @@ class PrototypeClass
 
 > scope 注入 Bean 类型，默认单例 
 
-### Config
+### 在 bean.php配置文件中,创建 Bean
+
+例如下面这个例子,下面我要利用配置文件将它 加入到 Bean 中
 ```php
 <?php declare(strict_types=1);
 
@@ -96,13 +101,72 @@ class TestBean
 - **class** 参数的指定 `Bean` 使用那一个类
 - 示例中的数组` [\bean('singleton')],` 是 `TestBean`类构造函数所需参数,不推荐使用构造注入，请使用`@Inject`
 - **__option** 这个`swoft` 自带的你可以指定：
-    - **scope** 指定 `Bean` 是用哪个级别 
-    - **alias** 指定 `Bean` 的别名
+    - **scope** 指定 `Bean` 是用哪个级别,如果没有默认`单例模式`
+    - **alias** 指定 `Bean` 的别名 
+
+> Swoft 的 `类`构造方法, 不会自动依赖注入
 
 当然你也可以注入`自己定义的属性` 比如：
 - **jwt** 这个是上面`TestBean`类定义的属性，底层会通过`反射`注入`config`中的参数
 
 > 通过 配置文件配置的 `Bean` 优先级`最高`因为它是最后执行的，如果配置的已经是一个 `Bean` ，`config`的 配置的将会覆盖它
+
+### 在`AutoLoader.php` 中定义
+
+```php
+<?php declare(strict_types=1);
+
+
+namespace App;
+
+
+use Swoft\Db\Database;
+use Swoft\SwoftComponent;
+
+/**
+ * Class AutoLoader
+ *
+ * @since 2.0
+ */
+class AutoLoader extends SwoftComponent
+{
+    /**
+     * @return array
+     */
+    public function getPrefixDirs(): array
+    {
+        return [
+            __NAMESPACE__ => __DIR__,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function metadata(): array
+    {
+        return [];
+    }
+
+    /**
+     * 使用 beans 方法 和在 bean.php 中配置的一样的使用方式,它的优先级在bean.php定义的 bean 之下
+     *    
+     * @return array
+     */
+    public function beans(): array
+    {
+        return [
+            'db' => [
+                'class'    => Database::class,
+                'dsn'      => 'mysql:dbname=test;host=172.17.0.4',
+                'username' => 'root',
+                'password' => 'swoft123456',
+            ],
+        ];
+    }
+}
+
+```
 
 ## Bean 初始化
 

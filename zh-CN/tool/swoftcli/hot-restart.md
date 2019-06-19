@@ -15,7 +15,7 @@ php swoftcli.phar run -h
 swoftcli run -h
 ```
 
-![hot-restart-help](../../image/tool/hot-restart-help.png)
+![hot-restart-help](../../image/tool/hot-restart-help.jpg)
 
 ### 选项列表
 
@@ -37,7 +37,7 @@ swoftcli run -c ws:start -b bin/swoft /path/to/php/swoft
 
 运行成功后你可以看到如下的信息：
 
-![run-hot-restart](../../image/tool/run-hot-restart.png)
+![run-hot-restart](../../image/tool/run-hot-restart.jpg)
 
 当有文件发生变动时，swoft-cli 就会自动的重新启动应用
 

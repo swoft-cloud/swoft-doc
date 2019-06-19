@@ -55,6 +55,8 @@ class DemoAspect
 - include 定义需要切入的实体名称集合
 - exclude 定义需要排除的实体名称集合
 
+> 注意 实体名称(类名)必须制定 namespace 完整路径 例如 'App\Controller\HomeController'
+
 ### @PointAnnotation
 
 定义注解切入点, 所有包含使用了对应注解的方法都会经过此切面类的代理
@@ -62,12 +64,16 @@ class DemoAspect
 - include 定义需要切入的_注解名称_集合
 - exclude 定义需要排除的注解集合
 
-### PointExecution
+> 注意 实体名称(类名)必须制定 namespace 完整路径 例如 'App\Controller\HomeController'
+
+### @PointExecution
 
 定义匹配切入点, 指明要代理目标类的哪些方法
 
 - include 定义需要切入的匹配集合，匹配的类方法，支持正则表达式
 - exclude 定义需要排序的匹配集合，匹配的类方法，支持正则表达式
+
+> 注意 实体名称(类名)必须制定 namespace 完整路径 例如 'App\Controller\HomeController'
 
 > @PointBean、@PointAnnotation、@PointExecution 三种定义的关系是并集，三种里面定义的排除也是并集后在排除。建议为了便于理解和使用，一个切面类尽量只使用上面三个中的一个
 
@@ -157,8 +163,8 @@ class DemoAspect
 }
 ```
 
-- @Before 前置通知，在目标方法执行前先执行此方法
-- @After 后置通知，在目标方法执行后执行此方法
-- @AfterReturning 最终返回通知
-- @AfterThrowing 异常通知，在目标方法执行抛出异常时执行此方法
-- @Around 环绕通知，在目标方法执行前、后都执行此方法
+- `@Before` 前置通知，在目标方法执行前先执行此方法
+- `@After` 后置通知，在目标方法执行后执行此方法
+- `@AfterReturning` 最终返回通知
+- `@AfterThrowing` 异常通知，在目标方法执行抛出异常时执行此方法
+- `@Around` 环绕通知，在目标方法执行前、后都执行此方法

@@ -78,7 +78,9 @@
   * [命令行配置](console/config.md)
   * [定义命令](console/definition.md)
   * [命令运行](console/usage.md)
-  * [输入输出](console/in-out.md)
+  * [输入对象](console/input.md)
+  * [输出对象](console/output.md)
+  * [数据展示](console/data-show.md)
 
 ### [Http Server](http-server/index.md)
 
@@ -94,7 +96,7 @@
 ### [Websocket](websocket-server/index.md)
 
   * [配置服务](websocket-server/config.md)
-  * [启动与管理](websocket-server/manage.md)
+  * [管理服务](websocket-server/manage.md)
   * [websocket模块](websocket-server/module.md)
   * [消息处理](websocket-server/message-route.md)
   * [消息发送](websocket-server/message-send.md)
@@ -153,14 +155,17 @@
 
 ### [SwoftCli](tool/swoftcli/index.md)
 
+  * [下载安装](tool/swoftcli/install.md)
   * [自动重启服务](tool/swoftcli/hot-restart.md)
   * [打包应用为PHAR](tool/swoftcli/build-phar.md)
 
 ### [Devtool](tool/devtool/index.md)
+  * [实体生成](tool/devtool/entity.md)
 
 ## 扩展
 
   * [视图渲染](extra/view.md)
+  * [如何编写组件](extra/write-component.md)
 
 ### [最佳实践](best-practices/index.md)
 
@@ -168,4 +173,5 @@
   * [中间件简介](best-practices/middleware.md)
   * [部署与使用](best-practices/deploy.md)
   * [演示案例](best-practices/demo.md)
+  * [Nginx配置](best-practices/nginx-config.md)
 
