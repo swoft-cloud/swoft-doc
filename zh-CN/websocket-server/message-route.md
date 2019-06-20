@@ -1,6 +1,11 @@
 # 消息处理
 
-如果你定义的ws模块类没有添加 `OnMessage` 处理方法，框架将会自动托管这个阶段，解析消息并根据路由分发到不同的方法执行。
+swoft 提供了灵活的 websocket 使用，支持自定义和由框架托管处理消息两种方式。
+
+- 如果你在ws模块类没有添加 `@OnMessage` 处理方法，框架将会自动托管这个阶段，解析消息并根据路由分发到不同的方法执行
+- 如果你在ws模块类里面绑定了 `@OnMessage` 处理方法，swoft就认为你想自己处理这个阶段，框架就不会处理了
+
+> 本篇文档的使用是建立在由框架托管消息路由的基础上。
 
 ## 注解
 
@@ -22,15 +27,33 @@ websocket 消息控制器注解tag `@WsController`
 - 拥有属性：
     + `command` _string_ 消息命令名称
 
-## 说明
+> 完整的消息路由path是 上面的 `preifx` 和 `command` 由点拼接而成 `PREFIX.COMMAND`
 
-完整的消息路由path是 上面的 `preifx` 和 `command` 由点拼接而成 `PREFIX.COMMAND`
+## 消息解析
+
+不同的使用者或者使用场景，用于ws通信的数据格式可能是不一样的。因此，在编写ws模块时，需要你绑定消息解析器。
+
+### 内置解析器
+
+- `Swoft\WebSocket\Server\MessageParser\RawTextParser` 简单的字符串
+- `Swoft\WebSocket\Server\MessageParser\TokenTextParser` 简单的token字符串协议(_方便测试使用的_)
+- `Swoft\WebSocket\Server\MessageParser\JsonParser` 简单的 json 数据协议
+
+JOSN 协议通信数据结构：
+
+```json
+{
+    "cmd": "message route path. eg: home.index", // type: string
+    "data": "message data", // type: mixed
+    "ext": "message extea data", // optional, type: mixed
+}
+```
 
 ## 示例
 
 ### 定义ws模块
 
-**注意** 要绑定消息处理控制器，通常也需要绑定你的消息解析器，内置了几个简单的解析器。
+**注意** 要绑定消息处理控制器，通常也需要绑定你的消息解析器，可以使用内置的几个简单的解析器，也可以根据需要自定义。
 
 ```php
 <?php declare(strict_types=1);
@@ -66,6 +89,10 @@ class ChatModule
     }
 }
 ```
+
+- 定义的ws模块路径为 `/chat`
+- 绑定了的控制器有： `HomeController::class`
+- 绑定了一个内置的消息解析器
 
 > **注意** 这里定义Ws模块时，绑定了一个框架自带的消息解析器，`TokenTextParser::class`  内置了一个decode 的方法用来解析数据
 
