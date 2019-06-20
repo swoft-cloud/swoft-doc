@@ -1,6 +1,6 @@
 # Swoft Documentation
 
-Modern High performance AOP and Coroutine PHP Framework, base on Swoole 
+Modern High performance AOP and Coroutine PHP Framework, based on Swoole 
 
 - [Github repository (Primary repository)](https://github.com/swoft-cloud/swoft)
 - [Gitee repository](https://gitee.com/swoft/swoft)
