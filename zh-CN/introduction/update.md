@@ -36,7 +36,8 @@
 - 修复 数据库开启事物多连接池操作错误([3f80474](https://github.com/swoft-cloud/swoft-component/pull/435/commits/3f80474c477c64a558b39fcaa1d065463de37ccb))
 - 修复 `init()` 方法中使用 `config()` 函数问题([fe9b92b](https://github.com/swoft-cloud/swoft-component/pull/439/commits/fe9b92ba97964f7e19742036c26e09a56adb0f0a))
 - 修复 `getParsedQuery()` 方法初始化问题([8e05836](https://github.com/swoft-cloud/swoft-component/pull/439/commits/8e0583666993d0f6553bb93ef40fad8b603c0251))
-
+- 修复 一些bean会出现重复初始化(例如 `config`)问题 ([f8ef5a9a](https://github.com/swoft-cloud/swoft-component/pull/441/commits/f8ef5a9a8938e103bff77128f7d452103a4b521c))
+- 修复 Autoloader 文件与其它composer包文件冲突问题 ([ba19af363](https://github.com/swoft-cloud/swoft-component/pull/438/commits/ba19af36399ae729df8a2a3166fac477faa939e1))
 
 更新(Update):
 
