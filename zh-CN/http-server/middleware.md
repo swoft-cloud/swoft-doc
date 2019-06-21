@@ -46,10 +46,10 @@ class ActionTestMiddleware implements MiddlewareInterface
 
 ### 配置全局中间件
 
-当你的自定义中间件需要全局请求应用，则可以考虑将此中间件作为全局中间件去使用，只需在 Bean 配置文件内配置 `serverDispatcher` 的 `middlewares` 属性，在数组中加入你的自定义中间件的命名空间地址，相关配置通常在 `app/config/beans/base.php` 内
+当你的自定义中间件需要全局请求应用，则可以考虑将此中间件作为全局中间件去使用，只需在 Bean 配置文件内配置 `serverDispatcher` 的 `middlewares` 属性，在数组中加入你的自定义中间件的命名空间地址，相关配置通常在 `config/beans/base.php` 内
 
 ```php
-// 全局中间件配置: app/config/beans/base.php
+// 全局中间件配置: config/beans/base.php
 return [
     ...
     'serverDispatcher' => [
