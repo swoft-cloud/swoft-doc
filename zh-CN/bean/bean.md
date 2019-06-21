@@ -92,8 +92,8 @@ class TestBean
      ]
  ],
 ```
-`testBean` 这个 key 你可以理解为是一个容器的名称。
-- **class** 参数的指定 `Bean` 使用那一个类
+`testBean` 这个 key 你可以理解是一个`Bea n`的名称。
+- **class** 参数的指定 `Bean` 使用哪一个类
 - 示例中的数组` [\bean('singleton')],` 是 `TestBean`类构造函数所需参数,不推荐使用构造注入，请使用`@Inject`
 - **__option** 这个`swoft` 自带的你可以指定：
     - **scope** 指定 `Bean` 是用哪个级别 
