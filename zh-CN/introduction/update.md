@@ -13,6 +13,7 @@
 - 新增 允许注册 swoole 的 pipeMessage, packet 事件[[afec0e3f](https://github.com/swoft-cloud/swoft-component/pull/438/commits/afec0e3f02a953f386324743e484931af46ebb45)]
 - 新增 添加更多启动时的相关事件[[8aaa38c4](https://github.com/swoft-cloud/swoft-component/pull/438/commits/8aaa38c42dbf3d2be8f57dbda5c4431a6907b7c5)]
 - 新增 `validate()` 不依赖注解验证方式([cc35560](https://github.com/swoft-cloud/swoft-component/pull/439/commits/cc35560ae54dd66e3ab31298cc3630aa1cdf4633))
+- 新增 RPC 调用返回错误 `RpcResponseException` 异常([baa482f](https://github.com/swoft-cloud/swoft-component/pull/440/commits/baa482fdb71287f526e740730e2ea2d98bd775d3))
 
 修复(Fixed)：
 
