@@ -12,6 +12,7 @@
 - 新增 `devtool` 组件的实体生成([14b4d39c](https://github.com/swoft-cloud/swoft-devtool/commit/14b4d39c653823f3891343302b3903f032e00760))
 - 新增 允许注册 swoole 的 pipeMessage, packet 事件[[afec0e3f](https://github.com/swoft-cloud/swoft-component/pull/438/commits/afec0e3f02a953f386324743e484931af46ebb45)]
 - 新增 添加更多启动时的相关事件[[8aaa38c4](https://github.com/swoft-cloud/swoft-component/pull/438/commits/8aaa38c42dbf3d2be8f57dbda5c4431a6907b7c5)]
+- 新增 `validate()` 不依赖注解验证方式([cc35560](https://github.com/swoft-cloud/swoft-component/pull/439/commits/cc35560ae54dd66e3ab31298cc3630aa1cdf4633))
 
 修复(Fixed)：
 
@@ -32,6 +33,9 @@
 - 现在停止server(包含Ctrl+C)时总是会删除pid文件，修复没有删除pid文件导致docker重启失败问题([6a96b2c](https://github.com/swoft-cloud/swoft-component/pull/432/commits/6a96b2cf031e68b12ca16cd6bcb4b2263cf2d31f))
 - 修复 通过 `@Inject` 注入`Redis`连接池没有释放以及连接池全部空闲判断问题([feac3700](https://github.com/swoft-cloud/swoft-component/pull/431/commits/feac3700fd882bda0e928d041444446c2737e5e9))
 - 修复 数据库开启事物多连接池操作错误([3f80474](https://github.com/swoft-cloud/swoft-component/pull/435/commits/3f80474c477c64a558b39fcaa1d065463de37ccb))
+- 修复 `init()` 方法中使用 `config()` 函数问题([fe9b92b](https://github.com/swoft-cloud/swoft-component/pull/439/commits/fe9b92ba97964f7e19742036c26e09a56adb0f0a))
+- 修复 `getParsedQuery()` 方法初始化问题([8e05836](https://github.com/swoft-cloud/swoft-component/pull/439/commits/8e0583666993d0f6553bb93ef40fad8b603c0251))
+
 
 更新(Update):
 
@@ -44,6 +48,7 @@
 - 调整 Redis `zAdd` 成员和分数的位置⚠️不向下兼容([1a3275b3](https://github.com/swoft-cloud/swoft-component/pull/436/commits/1a3275b3b2b1da144de4fe073bdfbe5c43ba7a80))
 - 调整 如果没有添加验证注解，会跳过验证解析相关流程[[582c806cc](https://github.com/swoft-cloud/swoft-component/pull/438/commits/582c806cccd72383b1e6763885fcc235551b647f)]
 - 去除swoole中已经废弃的 buffer full/empty 事件相关代码 [[873a97bed](https://github.com/swoft-cloud/swoft-component/pull/438/commits/873a97bedfbed87ac0205be08b6d0534fc3f0558)]
+- 优化 Http server 验证器流程([0e73a8c](https://github.com/swoft-cloud/swoft-component/pull/439/commits/0e73a8ccd0778812e90dffd34ecdc922a696971c))
 
 扩展(Extra):
 
