@@ -13,6 +13,7 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
     'host'     => '127.0.0.1',
     'port'     => 6379,
     'database' => 0,
+    // 'password' => 123445,
 ],
 ```
 
@@ -196,4 +197,4 @@ Redis::set($key, ["name" => "sakura"]);
 
 然后在配置中的 `redis` 中的` 'driver' => 'phpredis'` 替换成 `predis` 即可，
 
-> 推荐使用 `phpredis` 因为它更高效率
+> 推荐使用 `phpredis` 扩展，因为它更高效率
