@@ -17,7 +17,7 @@ function validate(array $data, string $validatorName, array $fields = [], array 
 - $userValidators 同时使用的自定义验证器，支持两种格式。
 
 
-所有参赛验证
+所有参数验证
 
 ```php
 use Swoft\Validator\Annotation\Mapping\Validator;

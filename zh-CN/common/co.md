@@ -3,7 +3,7 @@
 框架中封装了一些协程操作的函数，方便开发者调用
 
 ## 创建协程
-<p class="tip"> Swoft 框架中一定不要直接使用 Swoole 提供的 `go` 函数创建协程，否则会导致请求和上下文丢失导致一些奇葩问题。 </p >
+<p class="tip"> Swoft 框架中一定不要直接使用 Swoole 提供的 `go` 函数创建协程，否则会导致请求和上下文丢失导致一些奇葩问题。 </p>
 
 ```
 use Swoft\Co;
@@ -21,7 +21,7 @@ sgo(function(){
 });
 ```
 
-<p class="tip"> `sgo` 函数使用和 Swoole `go` 函数完全一样，切记框架中只能使用 `sgo` 函数，不能直接使用 `go` 函数 </p >
+<p class="tip"> `sgo` 函数使用和 Swoole `go` 函数完全一样，切记框架中只能使用 `sgo` 函数，不能直接使用 `go` 函数 </p>
 
 
 ## 协程ID
