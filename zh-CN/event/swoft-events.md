@@ -7,7 +7,9 @@ swoft 内置事件，基于swoole的回调处理，扩展了一些可用server�
 基于swoole的回调处理，扩展了一些可用server事件，提供更加精细化的操作空间。
 
 - `ServerEvent::BEFORE_SETTING` 在调用 swoole server 的 `setting()` 方法之前 
-- `ServerEvent::BEFORE_BIND_EVENT` 在调用 swoole server 的 `on()` 方法绑定swoole回调之前 
+- `ServerEvent::BEFORE_BIND_EVENT` 在调用 swoole server 的 `on()` 方法绑定swoole回调之前
+- `ServerEvent::BEFORE_BIND_LISTENER` 在调用 swoole server 的 `listen()` 方法添加多端口监听之前
+- `ServerEvent::AFTER_ADDED_LISTENER` 每当调用 swoole server 的 `listen()` 方法成功添加一个端口监听之后(添加多个端口简单，则会调用多次)
 - `ServerEvent::BEFORE_START` 在调用 swoole server 的 `start()` 方法启动server之前 
 - `ServerEvent::TASK_PROCESS_START` 仅当 swoole server 的task进程启动时触发
 - `ServerEvent::WORK_PROCESS_START` 仅当 swoole server 的work进程启动时触发
@@ -33,6 +35,16 @@ final class ServerEvent
      * Before bind swoole events
      */
     public const BEFORE_BIND_EVENT = 'swoft.server.bind.event';
+
+    /**
+     * Before bind listener(s)
+     */
+    public const BEFORE_BIND_LISTENER = 'swoft.server.bind.listener.before';
+
+    /**
+     * After each listener is successfully added
+     */
+    public const AFTER_ADDED_LISTENER = 'swoft.server.added.listener.after';
 
     /**
      * Swoft before start server event
