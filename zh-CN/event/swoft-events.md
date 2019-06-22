@@ -68,6 +68,81 @@ final class ServerEvent
 }
 ```
 
+### 使用示例
+
+我们可以在swoole server启动前注册一个自定义进程，这样可以让进程有server托管
+
+- 不需要执行start。在Server启动时会自动创建进程，并执行指定的子进程函数
+- 在shutdown关闭服务器时，会向用户进程发送SIGTERM信号，关闭用户进程
+- 自定义进程会托管到Manager进程，如果发生致命错误，Manager进程会重新创建一个
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Listener;
+
+use App\Process\MyProcess;
+use Swoft\Event\Annotation\Mapping\Listener;
+use Swoft\Event\EventHandlerInterface;
+use Swoft\Event\EventInterface;
+use Swoft\Server\ServerEvent;
+
+/**
+ * Class AttachMyProcessHandler
+ * @Listener(ServerEvent::BEFORE_START)
+ */
+class AttachMyProcessHandler implements EventHandlerInterface
+{
+    /**
+     * @param EventInterface $event
+     */
+    public function handle(EventInterface $event): void
+    {
+        $swooleServer = $event->target->getSwooleServer();
+        
+        $process = bean(MyProcess::class);
+        
+        $swooleServer->addProcess($process);
+    }
+}
+```
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Process;
+
+use Swoft\Event\Annotation\Mapping\Listener;
+use Swoole\Process;
+
+/**
+ * Class MyProcess
+ * @Bean()
+ */
+class MyProcess
+{
+    public function create(): Process
+    {
+        $process = new Process([$this, 'handle']);
+        
+        return $process;
+    }
+    
+    public function handle(Process $process)
+    {
+        CLog::info('my-process started');
+        
+        // 用户进程实现了广播功能，循环接收管道消息，并发给服务器的所有连接
+        while (true) {
+            $msg = $process->read();
+            foreach($server->connections as $conn) {
+                $server->send($conn, $msg);
+            }
+        }
+    }
+}
+```
+
 ## Swoft 基础事件
 
 提供了一些swoft启动初始化完成后，以及一些swoft内部的特殊事件
