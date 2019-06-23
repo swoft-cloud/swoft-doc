@@ -10,7 +10,9 @@ Composer 作为依赖包管理工具
 
 打开终端并执行如下命令：
 
+```bash
 composer config -g repo.packagist composer https://mirrors.huaweicloud.com/repository/php/
+```
 
 方法2：修改项目配置
 
