@@ -1,24 +1,31 @@
 # 依赖管理工具
 
-Composer 作为依赖包管理工具 
+Composer 作为依赖包管理工具
 
-## 准备工作
+> 使用前请确保您已安装PHP 和 [Composer](https://getcomposer.org/download/)
 
-使用前请确保您已安装PHP 和 [Composer](https://getcomposer.org/download/)
+## 使用国内源
 
-方法1：修改全局配置(推荐)
+- laravel-china https://packagist.laravel-china.org
+- huaweicloud https://mirrors.huaweicloud.com/repository/php/
+
+### 方法1：修改全局配置
 
 打开终端并执行如下命令：
 
 ```bash
+composer config -g repo.packagist composer https://packagist.laravel-china.org
+// OR
 composer config -g repo.packagist composer https://mirrors.huaweicloud.com/repository/php/
 ```
 
-方法2：修改项目配置
+### 方法2：修改项目配置
 
-打开终端，进入你的项目的根目录（也就是composer.json文件所在目录），执行如下命令：
+打开终端，进入你的项目的根目录（也就是 `composer.json` 文件所在目录），执行如下命令：
 
 ```bash
+composer config repo.packagist composer https://packagist.laravel-china.org
+// OR
 composer config repo.packagist composer https://mirrors.huaweicloud.com/repository/php/
 ```
 
