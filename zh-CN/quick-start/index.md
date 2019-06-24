@@ -4,10 +4,10 @@
 
 - 运行swoft需要哪些环境的支持
 - 在本机手动运行(只支持Mac Linux)
- - 安装必须的包
+- 安装必须的包
 - 使用docker运行
- - 使用官方镜像
- - 使用docker-compose
+- 使用官方镜像
+- 使用docker-compose
 
 ## 环境需求
 
