@@ -4,6 +4,8 @@
 
 新增(Enhancement)：
 
+- 新增 `getFile` 方法获取文件上传保存之后的信息
+
 修复(Fixed)：
 
 更新(Update):
