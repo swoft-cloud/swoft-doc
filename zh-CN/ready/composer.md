@@ -6,7 +6,7 @@ Composer 作为依赖包管理工具
 
 ## 使用国内源
 
-- ~laravel-china https://packagist.laravel-china.org~
+- laravel-china https://packagist.laravel-china.org
 - huaweicloud https://mirrors.huaweicloud.com/repository/php/
 
 ### 方法1：修改全局配置

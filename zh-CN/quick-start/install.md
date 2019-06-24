@@ -1,5 +1,19 @@
 # 安装Swoft
 
+## Docker方式安装（推荐）
+
+```bash
+docker run -p 18306:18306 --name swoft swoft/swoft 
+```
+
+## Docker-Compose安装（推荐）
+
+```bash
+git clone https://github.com/swoft-cloud/swoft
+cd swoft
+docker-compose up
+```
+
 ## composer安装
 
 ```bash
@@ -17,16 +31,4 @@ cp .env.example .env
 vim .env # 根据需要调整启动参数
 ```
 
-## Docker方式安装
 
-```bash
-docker run -p 80:80 swoft/swoft
-```
-
-## Docker-Compose 安装
-
-```bash
-git clone https://github.com/swoft-cloud/swoft
-cd swoft
-docker-compose up
-```
