@@ -4,9 +4,13 @@
 
 新增(Enhancement)：
 
+- 新增接口依赖注入([6169f84](https://github.com/swoft-cloud/swoft-component/pull/442/commits/6169f84ffd32622c4d3bb21f6ab3c69ef04746e2))
+
 修复(Fixed)：
 
 更新(Update):
+
+- 验证器优化，支持自定义验证规则([d959a4f](https://github.com/swoft-cloud/swoft-component/pull/442/commits/d959a4f5facfc24070fbde547f0557213e5184ee))
 
 扩展(Extra):
 
