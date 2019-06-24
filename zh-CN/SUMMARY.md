@@ -128,6 +128,8 @@
   * [查询器](db/builder.md)
   * [事务](db/transaction.md)
   * [原生操作](db/origin.md)
+  * [切库](db/selectDb.md)
+
   
 ### [Redis](redis/index.md)
 
