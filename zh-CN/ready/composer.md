@@ -6,6 +6,7 @@ Composer 作为依赖包管理工具
 
 ## 使用国内源
 
+- cnpkg.org https://php.cnpkg.org
 - laravel-china https://packagist.laravel-china.org
 - huaweicloud https://mirrors.huaweicloud.com/repository/php/
 
