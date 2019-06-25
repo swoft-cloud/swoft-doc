@@ -1,24 +1,80 @@
-## 如何使用
+### 3.实用案例
+相关方法描述:
+``` php
+/**
+ * @param string $key       文本数组中,对应文本键值
+ * @param array  $params    注入到文本中的参数,以关联数组的形式
+                            [
+                                'param1' => 'str1',
+                                'param2' => 'str2'
+                            ]
 
-使用就很简单了，通过 Swoft 里面的方法可以直接翻译文件，并且可以传递参数和指定翻译语言
-
-
-```php
+ * @param string $locale    资源文件夹下, 分组文件名称.
+ */
 \Swoft::t(string $key, array $params, string $locale): string
 ```
 
-- $key 指定翻译的内容，如果没有 `.` 号，直接默认文件中查找对应 `key`。如果存在 `.` 号，第一段是文件名称，第二段是文件内容里面的key
-- $params 传递翻译的参数，数组方式，数组 `key` 对应内容里面的 `{key}`
-- $locale 指定翻译的语言，默认是 `en`
+实例演示:
+``` php
+<?php declare(strict_types=1);
 
+namespace App\Http\Controller;
 
-## 实例
+use Swoft\Http\Server\Annotation\Mapping\Controller;
+use Swoft\Http\Message\Request;
+use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
+use Swoft\Http\Server\Annotation\Mapping\RequestMethod;
 
-已配置章节的配置的文件内容和格式为例
+/**
+ * Test 用演示实例
+ * 
+ * @since 1.0.0
+ * 
+ * @Controller(perfix="test")
+ */
+class TestController
+{
 
-```php
-\Swoft::t('name', ['name' => 'swoft']); // name swoft
-\Swoft::t('name', ['name' => 'swoft'], 'zh'); // 名称 swoft
-\Swoft::t('msg.name', ['name' => 'swoft']); // msg name swoft
-\Swoft::t('msg.name', ['name' => 'swoft'], 'zh'); // 消息名称 swoft
+    // ... 
+
+    /**
+     * i18n 示例
+     * 
+     * @RequestMapping(route="i18n", method={RequestMethod::GET})
+     *
+     * @return array
+     */
+    public function i18n(Request $request):array
+    {
+        // 显示 language/en/default.php 文本模板:
+        // 'sayhello' => 'Hey {name}!',
+        $res['en'] = \Swoft::t('sayhello', ['name' => 'man']);
+
+        // 更换模板可以使用 '.' 
+        // 显示 language/en/msg.php 模板
+        $res['en-msg'] = \Swoft::t('msg.sayhello', ['name' => 'man'], 'en');
+
+        // 显示 language/zh/default.php 模板
+        $res['zh'] = \Swoft::t('sayhello', ['name' => '李华'], 'zh');
+
+        // 显示 language/zh/msg.php 模板
+        $res['zh-msg'] = \Swoft::t('msg.sayhello', ['name' => '李华'], 'zh');
+
+        return $res;
+    }
+
+    // ... 
+}
+
+```
+        
+结果输出:
+
+``` json
+{
+    "en": "Hey man!",
+    "en-msg": "Wath's up! man",
+    "zh": "早上好,李华",
+    "zh-msg": "晚上好,李华"
+}
 ```
