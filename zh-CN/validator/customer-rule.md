@@ -24,8 +24,6 @@
 
 ### 声明注解命令
 
-验证器规则的注解命令要继承一个 `Swoft\Validator\Annotation\Mapping\Type` 类。
-
 ```php
 <?php declare(strict_types=1);
 
@@ -33,7 +31,6 @@ namespace App\Annotation\Mapping;
 
 use Doctrine\Common\Annotations\Annotation\Attribute;
 use Doctrine\Common\Annotations\Annotation\Attributes;
-use Swoft\Validator\Annotation\Mapping\Type;
 
 /**
  * Class AlphaDash
@@ -45,7 +42,7 @@ use Swoft\Validator\Annotation\Mapping\Type;
  *     @Attribute("message",type="string")
  * })
  */
-class AlphaDash extends Type
+class AlphaDash 
 {
     /**
      * @var string
