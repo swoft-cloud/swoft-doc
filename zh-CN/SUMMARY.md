@@ -149,6 +149,7 @@
 
   * [声明验证器](validator/statement.md)
   * [自定义验证器](validator/user-validator.md)
+  * [自定义验证器规则](validator/customer-rule.md)
   * [控制器中使用](validator/controller-validator.md)
   * [非注解使用](validator/anywhere-validator.md)
     

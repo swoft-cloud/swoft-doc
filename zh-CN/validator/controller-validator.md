@@ -5,42 +5,83 @@
 - 一个 `action` 可以定义多个 `@Validate` 使用多个验证器
 - 多个验证器按照配置顺序验证
 
-如下定义一个 `action`, 同时使用默认验证器和自定义验证器
+如下定义一个 `ValidatorController`, 同时使用默认验证器和自定义验证器以及我们自定义的验证规则。
 
 ```php
+<?php declare(strict_types=1);
+
+namespace App\Http\Controller;
+
 use Swoft\Http\Message\Request;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Validator\Annotation\Mapping\Validate;
-use App\Validator\TestValidator;
 
 /**
- * Class TestController
+ * Class ValidatorController
  *
- * @since 2.0
- *
- * @Controller(prefix="test")
+ * @Controller()
  */
-class TestController
+class ValidatorController
 {
     /**
-     * @RequestMapping(route="validator")
+     * 验证TestValidator验证器中的所有已定义字段
      *
-     * @Validate(validator=TestValidator::class, fields={"name", "type"})
-     * @Validate(validator="userValidator")
-     *
+     * @RequestMapping()
+     * @Validate(validator="TestValidator")
      * @param Request $request
      *
      * @return array
      */
-    public function validator(Request $request): array
+    function validateAll(Request $request): array
     {
-        $data = $request->getParsedBody();
-        $key  = ;
-        
-        return $data;
+        return $request->getParsedBody();
+    }
+
+    /**
+     * 仅验证TestValidator验证器中的 type 字段
+     *
+     * @RequestMapping()
+     * @Validate(validator="TestValidator",fields={"type"})
+     * @param Request $request
+     *
+     * @return array
+     */
+    function validateType(Request $request): array
+    {
+        return $request->getParsedBody();
+    }
+
+    /**
+     * 仅验证TestValidator验证器中的 password 字段 password字段使用的是自定义的验证规则。
+     *
+     * @RequestMapping()
+     * @Validate(validator="TestValidator",fields={"password"})
+     * @param Request $request
+     *
+     * @return array
+     */
+    function validatePassword(Request $request): array
+    {
+        return $request->getParsedBody();
+    }
+
+    /**
+     * 使用userValidator自定义验证器
+     *
+     * @RequestMapping()
+     * @Validate(validator="userValidator")
+     * @param Request $request
+     *
+     * @return array
+     */
+    function validateCustomer(Request $request): array
+    {
+        return $request->getParsedBody();
+
     }
 }
+
 ```
 
 - `$request->getParsedBody()` 所有解析数据

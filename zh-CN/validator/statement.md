@@ -7,7 +7,11 @@
 如下定义一个 TestValidator 验证器，由多个验证项（验证器条件）组成。
 
 ```php
-use Swoft\Validator\Annotation\Mapping\Email;
+<?php declare(strict_types=1);
+
+namespace App\Validator;
+
+use App\Annotation\Mapping\AlphaDash;
 use Swoft\Validator\Annotation\Mapping\IsInt;
 use Swoft\Validator\Annotation\Mapping\IsString;
 use Swoft\Validator\Annotation\Mapping\Validator;
@@ -17,7 +21,7 @@ use Swoft\Validator\Annotation\Mapping\Validator;
  *
  * @since 2.0
  *
- * @Validator()
+ * @Validator(name="TestValidator")
  */
 class TestValidator
 {
@@ -29,33 +33,11 @@ class TestValidator
     protected $name = 'defualtName';
 
     /**
-     * @IsInt(message="类型必须传递且整数")
+     * @IsInt(message="type must Integer")
      *
      * @var int
      */
     protected $type;
-
-    /**
-     * @IsString(message="邮箱必须传递且字符串")
-     * @Email(message="email 不是邮箱格式")
-     *
-     * @var string
-     */
-    protected $email;
-
-    /**
-     * @IsInt()
-     *
-     * @var int
-     */
-    protected $start = 0;
-
-    /**
-     * @IsInt()
-     *
-     * @var int
-     */
-    protected $end ;
 }
 ```
 
@@ -114,6 +96,13 @@ class TestValidator
 - message 验证失败(不是浮点数或参数没有传递)时的错误提示，默认使用框架内置的。 
 
 ### 条件注解
+
+#### @Email
+
+验证参数值格式必须为邮箱
+
+- message 验证失败错误提示，默认使用框架内置的。
+
 
 #### @Enum
 
@@ -176,4 +165,4 @@ class TestValidator
 - max 最大值(包含当前值)
 - message 验证失败错误提示，默认使用框架内置的。
 
-> 暂时官方提供了这些条件验证，如果有其它需求可以自己实现或反馈给开发组
+> 暂时官方提供了这些条件验证，如果有其它需求可以根据 [自定义验证器规则](../validator/customer-rule.md) 此章节内容自行添加验证规则。
