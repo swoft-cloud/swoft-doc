@@ -14,18 +14,22 @@
 如下定义了一个验证器，验证 `start` 开始时间不能大于 `end` 结束时间
 
 ```php
+<?php declare(strict_types=1);
+
+namespace App\Validator;
+
 use Swoft\Validator\Annotation\Mapping\Validator;
 use Swoft\Validator\Contract\ValidatorInterface;
 use Swoft\Validator\Exception\ValidatorException;
 
 /**
- * Class UserValidator
+ * Class CustomerValidator
  *
  * @since 2.0
  *
  * @Validator(name="userValidator")
  */
-class UserValidator implements ValidatorInterface
+class CustomerValidator implements ValidatorInterface
 {
     /**
      * @param array $data
@@ -36,19 +40,20 @@ class UserValidator implements ValidatorInterface
      */
     public function validate(array $data, array $params): array
     {
-        $start = $data['start'];
-        $end   = $data['end'];
-
-        if ($start > $end) {
-            throw new ValidatorException('开始不能大于结束时间');
+        $start = $data['start'] ?? null;
+        $end = $data['end'] ?? null;
+        if ($start === null && $end === null) {
+            throw new ValidatorException('Start time and end time cannot be empty');
         }
-
+        if ($start > $end) {
+            throw new ValidatorException('Start cannot be greater than the end time');
+        }
         return $data;
     }
 }
 ```
 
-验证方法详细介绍
+### 验证方法详细介绍
 
 ```php
 public function validate(array $data, array $params): array
