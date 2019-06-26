@@ -694,11 +694,14 @@ $res = DB::table('user')->where('id', $id)->update([
 DB::table('users')->where('votes', '>', 100)->delete();
 ```
 如果你需要清空表，你可以使用 truncate 方法，它将删除所有行，并重置自增 ID 为零：
-
 ```php
 DB::table('users')->truncate();
 ```
-
+## 打印最后执行的sql
+可使用`toSql()`方法打印最后执行的sql
+```php
+DB::table('users')->where('id', $id)->toSql();
+```
 ## 锁
 查询构造器也包含一些可以帮助你在 select 语法上实现「悲观锁定」的函数。若向在查询中实现一个「共享锁」， 你可以使用 读锁 `sharedLock` 方法。 共享锁可防止选中的数据列被篡改，直到事务被提交为止 ：
 
