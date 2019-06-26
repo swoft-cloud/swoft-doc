@@ -21,4 +21,4 @@ class A
 
 ## 原理
 
-为什么 PHP 普通的注释会有能？其实很简单，通过 PHP 反射获取类里面是所有注解(https://www.php.net/manual/zh/book.reflection.php), 其次通过 PHP 组件(https://github.com/doctrine/annotations) 使其实现特殊功能。
+为什么 PHP 普通的注释会有功能？其实很简单，通过 PHP 反射获取类里面是所有注解(https://www.php.net/manual/zh/book.reflection.php), 其次通过 PHP 组件(https://github.com/doctrine/annotations) 使其实现特殊功能。

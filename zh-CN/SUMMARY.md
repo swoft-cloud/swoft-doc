@@ -9,20 +9,20 @@
   * [参与 Swoft](introduction/join.md)
 
 ## 开始
+  
+### [快速起步](quick-start/index.md)
 
-### [基础准备](ready/index.md)
+  * [Annotations插件](quick-start/development.md)
+  * [swoft安装](quick-start/install.md)
+  * [运行服务](quick-start/start-swoft.md)
+  * [应用结构](quick-start/project-skeleton.md)
+  
+### [技术说明](ready/index.md)
 
   * [传统架构](ready/tradition.md)
   * [IO复用](ready/io.md)
   * [Swoole 扩展](ready/swoole.md)
   * [Composer](ready/composer.md)
-  
-### [快速起步](quick-start/index.md)
-
-  * [环境安装](quick-start/development.md)
-  * [框架安装](quick-start/install.md)
-  * [运行服务](quick-start/start-swoft.md)
-  * [应用结构](quick-start/project-skeleton.md)
 
 ### [特别注意](notice/index.md)
 
@@ -149,6 +149,7 @@
 
   * [声明验证器](validator/statement.md)
   * [自定义验证器](validator/user-validator.md)
+  * [自定义验证器规则](validator/customer-rule.md)
   * [控制器中使用](validator/controller-validator.md)
   * [非注解使用](validator/anywhere-validator.md)
     
