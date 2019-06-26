@@ -156,6 +156,14 @@
 
   * [控制台日志](log/clog.md)
   * [应用日志](log/log.md)
+  
+## 微服务
+
+### [服务治理](ms/govern/index.md)
+  * [服务注册与发现](ms/govern/register-discovery.md)
+  * [熔断](ms/govern/breaker.md)
+  * [限流](ms/govern/limit.md)
+  * [配置中心](ms/govern/config.md)
 
 ## 工具
 
@@ -172,6 +180,7 @@
 
   * [视图渲染](extra/view.md)
   * [如何编写组件](extra/write-component.md)
+  * [HTTP 客户端](extra/http.md)
 
 ### [最佳实践](best-practices/index.md)
 
