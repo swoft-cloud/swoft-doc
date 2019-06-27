@@ -104,6 +104,7 @@
   * [websocket模块](websocket-server/module.md)
   * [消息处理](websocket-server/message-route.md)
   * [消息发送](websocket-server/message-send.md)
+  * [异常处理](websocket-server/exception.md)
 
 ### [RPC Server](rpc-server/index.md)
 
