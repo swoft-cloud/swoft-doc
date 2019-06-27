@@ -13,8 +13,8 @@ Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配
 
 使用方法在控制器方法中加入 `RequestMapping` 注解
 
-- 显示指定路由后缀：`@RequestMapping("index")` 或 @RequestMapping(route="index")
-- 隐式指定路由后缀: 不使用 @RequestMapping 或者使用 @RequestMapping(), 默认解析方法名为后缀
+- 显示指定路由后缀：`@RequestMapping("index")` 或 `@RequestMapping(route="index")`
+- 隐式指定路由后缀: 使用 `@RequestMapping()` 默认解析方法名为后缀
 
 ```php
 /**
@@ -107,4 +107,6 @@ class UserController
 - 通常一个完整的路由path等于 Controller的 `prefix` + Action的 `route`
 - 当你的action上的路由以 `/` 开头时，那完整的路由就是它，即不会再将 prefix 添加到它的前面。
 
-> 请切记要引入相关的注解类 `RequestMapping` `RequestMethod`
+> 请切记要引入相关的注解类
+`Swoft\Http\Server\Annotation\Mapping\RequestMapping`
+`Swoft\Http\Server\Annotation\Mapping\RequestMethod`
