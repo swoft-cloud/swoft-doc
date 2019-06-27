@@ -89,12 +89,13 @@
   * [常用命令](http-server/command.md)
   * [配置参数](http-server/setting.md)
   * [执行流程](http-server/process.md)
-  * [路由](http-server/route.md)
+  * [控制器](http-server/controller.md)
+  * [路由绑定](http-server/route.md)
   * [请求对象](http-server/request.md)
   * [响应对象](http-server/response.md)
-  * [控制器](http-server/controller.md)
   * [中间件](http-server/middleware.md)
   * [异常处理](http-server/exception.md)
+  * [HTTP 客户端](extra/http.md)
 
 ### [Websocket](websocket-server/index.md)
 
@@ -181,7 +182,6 @@
 
   * [视图渲染](extra/view.md)
   * [如何编写组件](extra/write-component.md)
-  * [HTTP 客户端](extra/http.md)
 
 ### [最佳实践](best-practices/index.md)
 
