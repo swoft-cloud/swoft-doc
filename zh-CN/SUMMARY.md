@@ -101,8 +101,8 @@
 
   * [配置服务](websocket-server/config.md)
   * [管理服务](websocket-server/manage.md)
-  * [websocket模块](websocket-server/module.md)
-  * [消息处理](websocket-server/message-route.md)
+  * [定义模块](websocket-server/module.md)
+  * [消息控制器](websocket-server/message-route.md)
   * [消息发送](websocket-server/message-send.md)
   * [异常处理](websocket-server/exception.md)
 
