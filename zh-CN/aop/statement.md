@@ -179,7 +179,7 @@ class DemoAspect
 - `@AfterThrowing` 异常通知，在目标方法执行抛出异常时执行此方法
 - `@Around` 环绕通知，在目标方法执行前、后都执行此方法
 
-# AOP 注意事项
+## AOP 注意事项
 
 AOP只拦截 `public` 和 `protected` 方法，不拦截`private`方法。
 
