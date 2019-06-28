@@ -57,7 +57,7 @@
   * [Swoole事件](event/swoole-events.md)
   * [Swoft事件](event/swoft-events.md)
 
-### [切面编程](aop/index.md)
+### [AOP切面编程](aop/index.md)
 
   * [声明](aop/statement.md)
   * [使用](aop/usage.md)

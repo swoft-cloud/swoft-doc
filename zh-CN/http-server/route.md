@@ -1,6 +1,6 @@
 # 路由
 
-Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配置路由，而采用了注解。在Swoft里我们可以使用 `RequestMapping` 方面快速的添加路由。
+Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配置路由，而采用了注解。在Swoft里我们可以使用 `RequestMapping` 切面快速的添加路由。
 
 ## RequestMapping 注解
 
