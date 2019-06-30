@@ -94,7 +94,7 @@ public function pullWithCache(string $namespace, string $clientIp = ''): array
 - $namespace 命名空间名称
 - $clientIp 客户端IP，为空底层自动获取当前机器IP，用于灰度发布
 
-### pull
+#### pull
 
 ```php
 public function pull(string $namespace, string $releaseKey = '', string $clientIp = ''): array
@@ -106,7 +106,7 @@ public function pull(string $namespace, string $releaseKey = '', string $clientI
 - $releaseKey 上一次拉取返回的版本号，更多描述，参考 Apollo 官方文档
 - $clientIp 客户端IP，为空底层自动获取当前机器IP，用于灰度发布
 
-### batchPull
+#### batchPull
 
 ```php
 public function batchPull(array $namespaces, string $clientIp = ''): array
@@ -116,7 +116,7 @@ public function batchPull(array $namespaces, string $clientIp = ''): array
 - $namespaces 命名空间名称集合数组
 - $clientIp 客户端IP，为空底层自动获取当前机器IP，用于灰度发布
 
-### listen
+#### listen
 
 ```php
 public function listen(array $namespaces, $callback, array $notifications = [], string $clientIp = ''): void
