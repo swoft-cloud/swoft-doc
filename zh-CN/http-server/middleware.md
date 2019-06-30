@@ -34,9 +34,8 @@ class ControllerMiddleware implements MiddlewareInterface
     }
 }
 ```
-### 使用
 
-### 配置全局中间件
+## 配置全局中间件
 
 当你的自定义中间件需要全局请求应用，则可以考虑将此中间件作为全局中间件去使用，只需在 Bean 配置文件内配置 httpDispatcher 的 middlewares 属性，在数组中加入你的自定义中间件的命名空间地址，相关配置通常在 app/bean.php 内
 
@@ -53,14 +52,14 @@ return [
 ]
 ```
 
-### 通过注解使用
+## 通过注解使用
 
 通过 `@Middleware` 和 `@Middlewares`, 可以很方便的配置中间件到当前的 Controller 和 Action 内
 
-当将此注解应用于 `Controller` 上，则作用域为整个 `Controller`
-将此注解应用于 `Action` 上，则作用域仅为当前的 `Action`
-`@Middleware` 用于配置单个中间件
-`@Middlewares` 显而易见的是用于配置一组 @Middleware，按照定义顺序依次执行
+- 当将此注解应用于 `Controller` 上，则作用域为整个 `Controller`
+- 将此注解应用于 `Action` 上，则作用域仅为当前的 `Action`
+- `@Middleware` 用于配置单个中间件
+- `@Middlewares` 显而易见的是用于配置一组 `@Middleware`，按照定义顺序依次执行
 
 ```php
 namespace App\Http\Controller;
@@ -90,8 +89,9 @@ class MiddlewareController
         return "MiddlewareController";
     }
 }
-
 ```
+
+> 注意：记得要引入对应的中间件类
 
 ## 应用
 
@@ -142,6 +142,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Swoft\Bean\Annotation\Mapping\Bean;
 use Swoft\Http\Server\Contract\MiddlewareInterface;
+
 /**
  * @Bean()
  */
@@ -178,18 +179,19 @@ class CorsMiddleware implements MiddlewareInterface
 
 ```php
 namespace App\Http\Middleware;
+
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Swoft\Bean\Annotation\Mapping\Bean;
 use Swoft\Context\Context;
 use Swoft\Http\Server\Contract\MiddlewareInterface;
+
 /**
  * @Bean()
  */
 class AuthMiddleware implements MiddlewareInterface
 {
-
     /**
      * Process an incoming server request.
      * @param ServerRequestInterface $request

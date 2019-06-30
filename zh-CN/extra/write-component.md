@@ -101,11 +101,11 @@ final class AutoLoader extends SwoftComponent
 ### 方法说明
 
 - `enable(): bool` 是否启用这个组件
-- `getPrefixDirs(): array` 这个组件你需要扫描那些目录，你完全可以指定只扫描一部分目录。
+- `getPrefixDirs(): array` 这个组件你需要扫描那些目录，你 **完全可以指定只扫描一部分目录**。
 - `metadata(): array` 列出组件的基本信息。可以直接通过上面的方式，返回 composer.json 里的信息。
 - `beans(): array` 如有需要你可配置添加自定义bean
 
-> Tips: 我们的应用项目 `swoft/swoft` 结构也是类似的，可以看作一个顶级组件。
+> Tips: 我们的应用项目 `swoft/swoft` 结构也是类似的，可以看作一个顶级组件，加载配置为 `app/AutoLoader.php`。
 
 ## 组件原理
 

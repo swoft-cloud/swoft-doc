@@ -3,7 +3,7 @@
 注解方式引用和使用验证器是有限制，只支持在 Http server/ Rpc server /Websocket server 等特定位置使用，在实际业务开发中，其它地方也会涉及参数的验证。
 非注解和注解方式都是引用相同的验证器，一个验证器可以多个位置，多种方式使用，大大的减少了代码的重复成本。
 
-## 
+## 全局方法
 
 ```php
 function validate(array $data, string $validatorName, array $fields = [], array $userValidators = []): array
@@ -16,6 +16,7 @@ function validate(array $data, string $validatorName, array $fields = [], array 
 - $fields 需要验证的字段，为空验证器所有字段
 - $userValidators 同时使用的自定义验证器，支持两种格式。
 
+## 使用示例
 
 所有参数验证
 

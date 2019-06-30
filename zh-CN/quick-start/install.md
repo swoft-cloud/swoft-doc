@@ -14,12 +14,12 @@ cd swoft
 docker-compose up
 ```
 
-## composer安装
+## Composer安装
 
 ```bash
 composer create-project swoft/swoft swoft
 ```
-> 通过 `Packagist国内镜像` 加速国内下载速度，请参阅 https://packagist.laravel-china.org
+> 通过 `Packagist国内镜像` 加速国内下载速度，请参阅 [Composer配置](../ready/composer.md)
 
 ## 手动安装
 
