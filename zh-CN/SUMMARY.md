@@ -182,9 +182,11 @@
 ## 扩展
 
   * [视图渲染](extra/view.md)
-  * [如何编写组件](extra/write-component.md)
-  * [HTTP 客户端](extra/http.md)
   * [Apollo](extra/apollo.md)
+
+### [开发组件](component/index.md)
+
+  * [如何编写组件](extra/write-component.md)
 
 ### [最佳实践](best-practices/index.md)
 
