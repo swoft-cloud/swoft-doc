@@ -163,9 +163,10 @@
 ## 微服务
 
 ### [服务治理](ms/govern/index.md)
-  * [服务注册与发现](ms/govern/register-discovery.md)
-  * [熔断](ms/govern/breaker.md)
-  * [限流](ms/govern/limit.md)
+
+  * [注册与发现](ms/govern/register-discovery.md)
+  * [服务熔断](ms/govern/breaker.md)
+  * [服务限流](ms/govern/limit.md)
   * [配置中心](ms/govern/config.md)
 
 ## 工具
@@ -186,7 +187,9 @@
 
 ### [开发组件](component/index.md)
 
-  * [如何编写组件](extra/write-component.md)
+  * [组件结构](component/structure.md)
+  * [组件入口](component/entry.md)
+  * [组件加载](component/how-to-load.md)
 
 ### [最佳实践](best-practices/index.md)
 
