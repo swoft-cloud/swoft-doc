@@ -416,9 +416,17 @@ $users = DB::table('users')
 `whereDay` 方法用于比较字段值与一月中指定的日期:
 ```php
 $users = DB::table('users')
+                ->whereDay('created_at', '20')
+                ->get();
+```
+
+`whereYear` 方法用于比较字段值与指定的年份:
+```php
+$users = DB::table('users')
                 ->whereYear('created_at', '2018')
                 ->get();
 ```
+
 `whereTime` 方法用于比较字段值与指定的时间（时分秒）:
 ```php
 $users = DB::table('users')
