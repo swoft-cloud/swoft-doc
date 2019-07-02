@@ -6,7 +6,7 @@ Swoft 基于 Apollo 提供的 API，在之上进行封装，使之能在 Swoft �
 ## 安装
 
 ```php
-composer require swoft-cloud/swoft-apollo
+composer require swoft/apollo
 ```
 
 ## 文档
@@ -35,6 +35,7 @@ return [
 - clusterName Apollo 集群名称
 - timeout 超时时间单位秒
 
+<p class="tip"> 如果使用 apollo 监听更新回调函数，超时时间必须大于 60 秒 </p>
 
 Apollo 配置完成后，像一个普通的 Bean 一样注入 Apollo `Swoft\Apollo\Config` 即可使用
 
