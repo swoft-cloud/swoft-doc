@@ -121,7 +121,4 @@ php bin/swoft agent:index
 /usr/local/php/bin/php /data/www/swoft/bin/swoft http:start -d
 ```
 
-<p class="tip"> 启动命令的路径，必须是绝对路径 (/data/www/swoft/bin/swoft) 且后台运行模式 (-d)，服务的启动必须在 agent 之后，否则无法获取最新配置信息</p>
-
-
-> 本章只是一个简单的使用例子，开发者可以更加自己的实际业务情况，监听 apollo 配置变更，生成配置文件，重启服务
+<p class="tip"> 启动命令的路径，必须是绝对路径 (/data/www/swoft/bin/swoft) 且后台运行模式 (-d)，服务的启动必须在 agent 之后，否则无法获取最新配置信息。本章只是一个简单的使用例子，开发者可以更加自己的实际业务情况，监听 apollo 配置变更，生成配置文件，重启服务</p>
