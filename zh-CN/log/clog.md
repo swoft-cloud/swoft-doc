@@ -32,7 +32,7 @@ class Application extends SwoftApplication
 
 - name 名称
 - enable 是否开启
-- output 是否打印的控制台
+- output 是否打印到控制台
 - levels 输入日志的级别，为空全部输出，具体日志级别配置值，可以引用 `Logger::NOTICE/...`
 - logFile 控制台日志默认打印到控制台，也可以配置路径，同时写到指定文件
 
