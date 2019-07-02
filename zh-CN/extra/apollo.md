@@ -9,7 +9,7 @@ Swoft 基于 Apollo 提供的 API，在之上进行封装，使之能在 Swoft �
 composer require swoft/apollo
 ```
 
-## 文档
+## 配置bean
 
 下面以拉取 Apollo 命令空间为 `application` 配置为例：
 
@@ -38,6 +38,8 @@ return [
 <p class="tip"> 如果使用 apollo 监听更新回调函数，超时时间必须大于 60 秒 </p>
 
 Apollo 配置完成后，像一个普通的 Bean 一样注入 Apollo `Swoft\Apollo\Config` 即可使用
+
+## 使用
 
 ```php
 <?php declare(strict_types=1);
@@ -81,9 +83,9 @@ class ApolloLogic
 
 以上就是一个简单的 Apollo 配置拉取，swoft-apollo 出此方法外，还提供了更多的使用方法。
 
-### 方法
+## 方法列表
 
-#### pullWithCache
+### pullWithCache
 
 ```php
 public function pullWithCache(string $namespace, string $clientIp = ''): array
@@ -95,7 +97,7 @@ public function pullWithCache(string $namespace, string $clientIp = ''): array
 - $namespace 命名空间名称
 - $clientIp 客户端IP，为空底层自动获取当前机器IP，用于灰度发布
 
-#### pull
+### pull
 
 ```php
 public function pull(string $namespace, string $releaseKey = '', string $clientIp = ''): array
@@ -107,7 +109,7 @@ public function pull(string $namespace, string $releaseKey = '', string $clientI
 - $releaseKey 上一次拉取返回的版本号，更多描述，参考 Apollo 官方文档
 - $clientIp 客户端IP，为空底层自动获取当前机器IP，用于灰度发布
 
-#### batchPull
+### batchPull
 
 ```php
 public function batchPull(array $namespaces, string $clientIp = ''): array
@@ -117,7 +119,7 @@ public function batchPull(array $namespaces, string $clientIp = ''): array
 - $namespaces 命名空间名称集合数组
 - $clientIp 客户端IP，为空底层自动获取当前机器IP，用于灰度发布
 
-#### listen
+### listen
 
 ```php
 public function listen(array $namespaces, $callback, array $notifications = [], string $clientIp = ''): void
