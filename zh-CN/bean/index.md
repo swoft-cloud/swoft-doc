@@ -165,6 +165,7 @@ class MysqlDb implements DbDrive
         //TODO::插入一些数据
     }
 }
+
 /**
  * Class MongoDb
  *
@@ -246,7 +247,6 @@ $order = new Order($user);//我们的订单业务，它依赖于一个用户类�
 为了更好的理解容器，我们来实现一个简单的通过 `构造函数注入` 的容器，（**注意** 这只是为了科普教学，Swoft已经为大家准备了更加完善强大且易用的 IOC 容器）。
 
 ```php
-
 <?php
 
 /**
@@ -357,7 +357,6 @@ class Container
     }
 }
 
-
 class MysqlDb
 {
     public function insert()
@@ -398,7 +397,7 @@ $order->add();//正常的使用业务
 
 * Bean 是由 IOC 容器管理的实例。
 
-那说白了其实 `Bean` 就是一个类的对象示例，只不过它是由 `IOC 容器`  实例化、组装和管理的对象。
+那说白了其实 `Bean` 就是一个类的对象实例，只不过它是由 `IOC 容器`  实例化、组装和管理的对象。
 
 `IOC`容器可以看成是一个`Beans`关系的集合 ,我们的应用程序就是由很多个`Bean`组成的。
 
