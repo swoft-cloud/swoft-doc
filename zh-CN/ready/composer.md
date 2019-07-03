@@ -7,8 +7,9 @@ Composer 作为依赖包管理工具
 ## 使用国内源
 
 - cnpkg.org https://php.cnpkg.org
-- laravel-china https://packagist.laravel-china.org
+- aliyun https://mirrors.aliyun.com/composer/
 - huaweicloud https://mirrors.huaweicloud.com/repository/php/
+- laravel-china https://packagist.laravel-china.org
 
 ### 方法1：修改全局配置
 
