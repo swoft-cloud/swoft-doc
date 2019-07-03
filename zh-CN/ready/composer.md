@@ -6,7 +6,7 @@ Composer 作为依赖包管理工具
 
 ## 使用国内源
 
-- aliyun https://mirrors.aliyun.com/composer/
+- aliyun https://mirrors.aliyun.com/composer/ **推荐**
 - tencent https://mirrors.cloud.tencent.com/composer/
 - huaweicloud https://mirrors.huaweicloud.com/repository/php/
 - cnpkg.org https://php.cnpkg.org
