@@ -112,17 +112,14 @@ function request($host, $class, $method, $param, $version = '1.0', $ext = []) {
     $data = json_encode($req) . RPC_EOL;
     fwrite($fp, $data);
     $result = '';
-    while(!feof($fp)) {
-        $tmp = stream_socket_recvfrom($fp, 1024);
-        if (empty($tmp)) {
-            break;
+    while (!feof($fp)) {
+            $tmp = stream_socket_recvfrom($fp, 1024);
+            if (strpos($result, RPC_EOL)) {
+                break;
+            } else {
+                $result .= $tmp;
+            }
         }
-        $result .= $tmp;
-        if (strpos($result, RPC_EOL)) {
-            break;
-        }
-    }
-    fclose($fp);
     return json_decode($result, true);
 }
 
