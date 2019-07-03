@@ -95,7 +95,7 @@
   * [响应对象](http-server/response.md)
   * [中间件](http-server/middleware.md)
   * [异常处理](http-server/exception.md)
-  * [HTTP 客户端](extra/http.md)
+  * [HTTP 客户端](http-server/http.md)
 
 ### [Websocket](websocket-server/index.md)
 
@@ -184,6 +184,7 @@
 
   * [视图渲染](extra/view.md)
   * [Apollo](extra/apollo.md)
+  * [Consul](extra/consul.md)
 
 ### [开发组件](component/index.md)
 
