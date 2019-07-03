@@ -6,9 +6,10 @@ Composer 作为依赖包管理工具
 
 ## 使用国内源
 
-- cnpkg.org https://php.cnpkg.org
 - aliyun https://mirrors.aliyun.com/composer/
+- tencent https://mirrors.cloud.tencent.com/composer/
 - huaweicloud https://mirrors.huaweicloud.com/repository/php/
+- cnpkg.org https://php.cnpkg.org
 - laravel-china https://packagist.laravel-china.org
 
 ### 方法1：修改全局配置
@@ -16,7 +17,7 @@ Composer 作为依赖包管理工具
 打开终端并执行如下命令：
 
 ```bash
-composer config -g repo.packagist composer https://packagist.laravel-china.org
+composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 // OR
 composer config -g repo.packagist composer https://mirrors.huaweicloud.com/repository/php/
 ```
@@ -26,7 +27,7 @@ composer config -g repo.packagist composer https://mirrors.huaweicloud.com/repos
 打开终端，进入你的项目的根目录（也就是 `composer.json` 文件所在目录），执行如下命令：
 
 ```bash
-composer config repo.packagist composer https://packagist.laravel-china.org
+composer config repo.packagist composer https://mirrors.aliyun.com/composer/
 // OR
 composer config repo.packagist composer https://mirrors.huaweicloud.com/repository/php/
 ```
@@ -37,7 +38,7 @@ composer config repo.packagist composer https://mirrors.huaweicloud.com/reposito
 "repositories": {
     "packagist": {
         "type": "composer",
-        "url": "https://mirrors.huaweicloud.com/repository/php/"
+        "url": "https://mirrors.aliyun.com/composer/"
     }
 }
 ```
