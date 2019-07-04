@@ -68,7 +68,7 @@ class DemoAspect
 
 > 注意 实体名称(类名)必须指定 namespace 完整路径 例如 'App\Controller\HomeController' 或者先用 use 将目标类 use 进来
 
-示例：`@PointBean(include={Swoft\Http\Server\Annotation\Mapping\RequestMapping::class})`
+示例：`@PointAnnotation(include={Swoft\Http\Server\Annotation\Mapping\RequestMapping::class})`
 
 
 ### @PointExecution
