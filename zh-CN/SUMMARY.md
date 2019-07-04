@@ -116,6 +116,7 @@
 
   * [配置服务](rpc-client/setting.md)
   * [如何使用](rpc-client/usage.md)
+  * [1.0 RPC](rpc-client/rpc-1.0.md)
   
 ### [任务](task/index.md)
 
