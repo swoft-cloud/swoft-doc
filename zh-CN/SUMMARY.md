@@ -196,8 +196,5 @@
 ### [最佳实践](best-practices/index.md)
 
   * [常规架构](best-practices/architecture.md)
-  * [中间件简介](best-practices/middleware.md)
-  * [部署与使用](best-practices/deploy.md)
-  * [演示案例](best-practices/demo.md)
   * [Nginx配置](best-practices/nginx-config.md)
 
