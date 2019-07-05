@@ -2,6 +2,8 @@
 
 如果系统之前使用的是 Swoft 1.0 RPC server，Swoft 2.0 定义了一种兼容 1.0 RPC 协议，使用很简单。
 
+> Available: `>= v2.0.3`
+
 ## 配置
 
 使用 2.0 框架中调用 1.0 RPC server 提供的服务，首先必须配置(app/bean.php) 1.0 RPC 协议
@@ -68,5 +70,3 @@ class RpcController
 - 调用 1.x RPC `version` 必须指定，因为 2.x 与 1.0 默认值不一样
 - 不能调用 1.x 的 `deferXxxx` 方法 2.0 已经丢弃
 - 2.x 里面调用的接口必须和 1.x 接口命名空间、类名以及方法名称参数完全一样。
-
-> 2.0.3 才支持调用 1.x RPC 服务
