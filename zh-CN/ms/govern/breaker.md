@@ -51,6 +51,7 @@ return [
 - sucThreshold 连续成功多少次状态切换阀门
 - retryTime 熔断器由开启状态到半开状态尝试切换时间
 
+> 全局配置会被 `@Breaker` 上面的局部注解覆盖
 
 ## 使用
 

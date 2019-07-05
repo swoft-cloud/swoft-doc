@@ -167,7 +167,7 @@
 
   * [注册与发现](ms/govern/register-discovery.md)
   * [服务熔断](ms/govern/breaker.md)
-  * [服务限流](ms/govern/limit.md)
+  * [服务限流](ms/govern/limiter.md)
   * [配置中心](ms/govern/config.md)
 
 ## 工具
