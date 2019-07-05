@@ -13,7 +13,7 @@
 - 修复 cookies 设置时的一些问题，增加一些 withCookie 相关方法([b05afbb01](https://github.com/swoft-cloud/swoft-component/pull/443/commits/b05afbb011457d217bb3a40c6a3639c28b0eef18))
 - 修复 在console使用协程方式运行命令时，没有捕获处理错误([8a5418bf](https://github.com/swoft-cloud/swoft-component/pull/443/commits/8a5418bf25a4d4797d99281bf7db8881b7ca43ed))
 - 修复 websocket server 重启命令没有先停止旧server问题([db2d935](https://github.com/swoft-cloud/swoft-component/pull/443/commits/db2d935542c715bbe1ed4b3ed822b2d946317b6f))
- 修复 启动ws server，同时添加rpc server启动，控制台面板没有显示 rpc server信息([3d1d0d848](https://github.com/swoft-cloud/swoft-component/pull/454/commits/3d1d0d848a8f5ca31a09feb5ee860079f7c018e4))
+- 修复 启动ws server，同时添加rpc server启动，控制台面板没有显示 rpc server信息([3d1d0d848](https://github.com/swoft-cloud/swoft-component/pull/454/commits/3d1d0d848a8f5ca31a09feb5ee860079f7c018e4))
 
 更新(Update):
 
