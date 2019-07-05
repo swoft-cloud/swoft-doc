@@ -1,6 +1,8 @@
 # swoft组件
 
-swoft 的各项功能都是有不同的组件提供的，比如 http-server 提供了http服务器相关功能， `websocket-server` 提供了 websocket 服务器的功能。这一章节我们主要介绍如何开发一个组件。
+swoft 的各项功能都是有不同的组件提供的，比如 `http-server` 提供了http服务器相关功能，`websocket-server` 提供了 websocket 服务器的功能。
+
+这一章节我们主要介绍如何开发一个组件。
 
 ## 编写组件
 
