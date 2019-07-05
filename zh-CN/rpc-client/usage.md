@@ -114,7 +114,7 @@ function request($host, $class, $method, $param, $version = '1.0', $ext = []) {
     
     $result = '';
     while (!feof($fp)) {
-        $tmp = fread($fp, 1024);
+        $tmp = stream_socket_recvfrom($fp, 1024);
         if (strpos($tmp, RPC_EOL)) {
             break;
         } else {
