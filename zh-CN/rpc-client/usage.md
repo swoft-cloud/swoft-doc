@@ -111,9 +111,17 @@ function request($host, $class, $method, $param, $version = '1.0', $ext = []) {
     ];
     $data = json_encode($req) . RPC_EOL;
     fwrite($fp, $data);
-    $result = fread($fp, 1024);
+    $result = '';
+    while (!feof($fp)) {
+        $tmp = stream_socket_recvfrom($fp, 1024);
+        if (strpos($tmp, RPC_EOL)) {
+            break;
+        } else {
+            $result .= $tmp;
+        }
+    }
     fclose($fp);
-    return json_decode($result, true);
+    return $result;
 }
 
 var_dump(request('tcp://127.0.0.1:18307', \App\Rpc\Lib\UserInterface::class, 'getList',  [1, 2], "1.0"));
