@@ -4,7 +4,7 @@
 
 下面推荐一种根据上下文切库的 操作
 
-> Since: `>= v2.0.2`
+> Available: `>= v2.0.2`
 
 ## DbSelector
 
