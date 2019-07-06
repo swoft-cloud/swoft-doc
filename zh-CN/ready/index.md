@@ -2,13 +2,13 @@
 
 在使用 `swoft` 之前你需要具备一些服务端编程基础理论，在传统的`php-fpm`开发模式下 你基本不需要担心，资源释放，共享变量等相关的问题。
 
-不过你不用担心 在 2.x 版本，你可以 `php-fpm` 模式开发下一样简单，如果你有用过 `Laravel` 入手就更快了，因为 `DataBase` 和 `Redis` 和 `Laravel` 使用基本一致。
+不过你不用担心，在 2.x 版本，你可以像在`php-fpm` 模式下开发一样简单，如果你有用过 `Laravel` 入手就更快了，因为 `DataBase` 、 `Redis` 、 `Laravel` 使用基本一致。
 
 
 ## 入门须知
 在 swoole 常驻内存开发模式中，不要用超全局变量共享数据，你可以使用 `Context` 代替，不要使用 `curl` 扩展，当然 `guzzlehttp` 底层也是 `curl` 驱动的，`curl` 暂不支持协程化，具体原因你可以参考[swoole 官方文档](https://wiki.swoole.com/wiki/page/965.html)
 
-你可以使用 `swoft` 自带的 `httpClient` 和 `guzzlehttp` 一样方便快捷，还原生支持并发调用。你再也不用担心，因为某个`http`请求时间过长，导致服务器`CPU` 疯涨。
+你可以使用 `swoft` 自带的 `httpClient` ，它和 `guzzlehttp` 一样方便快捷，还原生支持并发调用。你再也不用担心因为某个`http`请求时间过长从而导致服务器`CPU` 疯涨。
 
 不过在接下来 swoole 会支持curl 扩展，相信不会等待太久。
 
