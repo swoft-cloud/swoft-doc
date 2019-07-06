@@ -172,7 +172,7 @@ class LimiterController
 - paramLimiter 方法根据URI地址+参数限流
 
 
-> key 这里支持 `symfony/expression-language` 表达式，可以实现很多复杂的功能，[详细文档](http://www.symfonychina.com/doc/current/components/expression_language/syntax.html), 如果被限速会抛出 `Swoft\Limiter\Exception\RateLImiterException` 异常
+> key 这里支持 `symfony/expression-language` 表达式，可以实现很多复杂的功能，[详细文档](http://www.symfonychina.com/doc/current/components/expression_language/syntax.html), 如果被限速会抛出 `Swoft\Limiter\Exception\RateLImiterException` 异常。key 表达式内置 `CLASS`(类名) 和 `METHOD`(方法名称) 两个变量，方便开发者使用。
 
 
 ### 方法限速
@@ -235,7 +235,7 @@ class LimiterLogic
 - limtier 方法，根据类名+方法名称限速且定义了一个降级函数
 - limtierParams 方法，根据调用 RequestBean 对象的方法，返回值作为限流 key
 
-<p class="tip"> `fallback` 函数必须和 `@RateLimiter` 标记的函数完全一样除了名称不一样且在同一个类里面。 如果被限速会抛出 `Swoft\Limiter\Exception\RateLImiterException` 异常 </p>
+<p class="tip"> `fallback` 函数必须和 `@RateLimiter` 标记的函数完全一样除了名称不一样且在同一个类里面。 如果被限速会抛出 `Swoft\Limiter\Exception\RateLImiterException` 异常。key 表达式内置 `CLASS`(类名) 和 `METHOD`(方法名称) 两个变量，方便开发者使用。</p>
 
 ## 注解
 
@@ -247,7 +247,7 @@ class LimiterLogic
 
 - name 缓存前缀
 - rate 允许多大的请求访问，请求数/秒
-- key 限流 key, 支持 `symfony/expression-language` 表达式
+- key 限流 key, 支持 `symfony/expression-language` 表达式，key 表达式内置 `CLASS`(类名) 和 `METHOD`(方法名称) 两个变量，方便开发者使用。
 - max 最大的请求数
 - default 初始化请求数
 - fallback 降级函数，和 breaker 一样
