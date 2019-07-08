@@ -14,6 +14,7 @@
 - 新增调用 1.x RPC 服务支持([30d73c3](https://github.com/swoft-cloud/swoft-component/pull/455/commits/30d73c3bcef6294d5985ce5af316e7aa6e86c0e5))
 - 新增 AOP 类名匹配支持正则表达式([bc5e479](https://github.com/swoft-cloud/swoft-component/pull/455/commits/bc5e47951d1426e6944b934e6c8eb5db5657f8a4))
 - 新增 RPC Server /Http Server 中间件命名空间 `use` 错误提示([b1cec04](https://github.com/swoft-cloud/swoft-component/pull/455/commits/b1cec041ea402fe1c837d6755eff6efbfcef3681))
+- 新增 验证器排除属性字段 `unfields`([b1bf44f](https://github.com/swoft-cloud/swoft-component/pull/459/commits/b1bf44f62ae096674f2c413e9630964782b14d3f))
 
 修复(Fixed)：
 
@@ -23,6 +24,7 @@
 - 修复任务返回值为 `null` 问题([a69347c](https://github.com/swoft-cloud/swoft-component/pull/455/commits/a69347c8ce486102e23bb82d70cfef63573a94eb)) 
 - 修复 RPC Server 只有类中间件无法使用问题()[204bc7f](https://github.com/swoft-cloud/swoft-component/pull/455/commits/204bc7f4f23a26f75534ac808e2f9eb05a0118a2)
 - 修复 RPC Server 返回值为 `null` 问题([4d091be](https://github.com/swoft-cloud/swoft-component/pull/455/commits/4d091bef0ece773bcd382a750de01eef830f2949))
+- 修复 Logger 和 CLog 日志等级无法覆盖和无效问题([8eb8aba](https://github.com/swoft-cloud/swoft-component/pull/459/commits/8eb8aba2313a45191318b52a3698135d92cb3e71))
 
 更新(Update):
 

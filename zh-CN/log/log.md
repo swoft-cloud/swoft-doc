@@ -14,21 +14,13 @@ return [
         'class'     => FileHandler::class,
         'logFile'   => '@runtime/logs/notice.log',
         'formatter' => \bean('lineFormatter'),
-        'levels'    => [
-            Logger::NOTICE,
-            Logger::INFO,
-            Logger::DEBUG,
-            Logger::TRACE,
-        ],
+        'levels'    => 'notice,info,debug,trace',
     ],
     'applicationHandler' => [
         'class'     => FileHandler::class,
         'logFile'   => '@runtime/logs/error.log',
         'formatter' => \bean('lineFormatter'),
-        'levels'    => [
-            Logger::ERROR,
-            Logger::WARNING,
-        ],
+        'levels'    => 'error,warning',
     ],
     'logger'             => [
         'flushRequest' => false,
@@ -43,6 +35,7 @@ return [
 
 此配置也是框架默认的配置文件，把应用日志按日志级别分别写到两个不同的文件里面。
 
+> swoft 2.0.3 `levels` 修改成字符串，方便开发者覆盖框架默认配置
 
 ### 日志格式
 
