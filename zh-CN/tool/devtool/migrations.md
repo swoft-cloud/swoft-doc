@@ -219,6 +219,11 @@ sql;
 在 `down` 命令后加上 `step` 参数，你可以限制回滚迁移的个数。例如，下面的命令将会回滚最后的 5 个迁移。
 
     php bin/swoft migrate:down --step=5
+
+默认会从 `db.pool` 中获取连接 查询 迁移记录表, 也可以指定连接池 
+
+     php bin/swoft migrate:down --step=5 --pool=db.pool2
+
     
 也可以指定迁移文件 回滚
 
@@ -230,6 +235,10 @@ sql;
     php bin/swoft migrate:his  
     
     php bin/swoft migrate:history  
+    
+默认会从 `db.pool` 中获取连接 查询 迁移记录表, 也可以指定连接池 
+
+    php bin/swoft mig:his --pool=db.pool2
 
 ![migrate:history](../../image/tool/migrateHis.png)
 
@@ -249,6 +258,7 @@ sql;
 
 你可以方便地使用 `hasTable` 和 `hasColumn` 方法来检查数据表或字段是否存在：
 
+```php
     if (Schema::hasTable('users')) {
         //
     }
@@ -257,39 +267,51 @@ sql;
         //
     }
 
+```
 #### 数据库连接与存储引擎
 
 如果你想要在一个非默认的数据库连接中进行数据库结构操作，可以使用 `getSchemaBuilder` 方法：
+```php
 
     Schema::getSchemaBuilder('db.pool2')->create('users', function (Blueprint $table) {
         $table->increments('id');
     });
+    
+```
 
 你可以在数据库结构构造器上设置 `engine` 属性来设置数据表的存储引擎, Mysql 默认为 `InnoDB` ：
 
-    Schema::create('users', function (Blueprint $table) {
+```php
+Schema::create('users', function (Blueprint $table) {
         $table->engine = 'InnoDB';
 
         $table->increments('id');
-    });
+});
+```
     
 如果要判断数据表已存在就不创建可以使用 `createIfNotExists` 方法只针对[可用的字段类型](#可用的字段类型)有效其他方法无法判断是否已经被创建过了
     
-     Schema::createIfNotExists('users', function (Blueprint $blueprint) {
+```php
+Schema::createIfNotExists('users', function (Blueprint $blueprint) {
         $blueprint->increments('id');
-    });
+});
+```     
 
 ### 重命名与删除数据表
 
 若要重命名一张已存在的数据表，可以使用 `rename` 方法：
 
-    Schema::rename($from, $to);
+```php
+ Schema::rename($from, $to);
+```
 
 要删除已存在的数据表，可使用 `drop` 或 `dropIfExists` 方法：
 
-    Schema::drop('users');
+```php
+Schema::drop('users');
 
-    Schema::dropIfExists('users');
+Schema::dropIfExists('users');
+```    
 
 #### 重命名带外键的数据表
 
@@ -301,9 +323,11 @@ sql;
 
 使用 `Schema` facade 的 `table` 方法可以更新已有的数据表。如同 `create` 方法，`table` 方法会接收两个参数：一个是数据表的名称，另一个则是接收 `Blueprint` 实例的`闭包`。我们可以使用它来为数据表新增字段：
 
-    Schema::table('users', function (Blueprint $table) {
+```php
+Schema::table('users', function (Blueprint $table) {
         $table->string('email');
-    });
+});
+```    
 
 #### 可用的字段类型
 
@@ -362,9 +386,11 @@ sql;
 
 除了上述的字段类型列表，还有一些其它的字段「修饰」，你可以将它增加到字段中。例如，若要让字段「nullable」，那么你可以使用 `nullable` 方法：
 
-    Schema::table('users', function (Blueprint $table) {
+```php
+Schema::table('users', function (Blueprint $table) {
         $table->string('email')->nullable();
-    });
+});
+```
 
 以下列表为字段的可用修饰。此列表不包括 [索引修饰](#索引)：
 
@@ -398,7 +424,7 @@ Schema::table($table, function (Blueprint $blueprint) {
 
 ```php
 Schema::table('users', function (Blueprint $table) {
-        $table->dropColumn('votes');
+    $table->dropColumn('votes');
 });
 ```    
 
@@ -418,19 +444,27 @@ Schema::table('users', function (Blueprint $table) {
 
 数据库结构构造器支持多种类型的索引。首先，让我们先来看一个示例，其指定了字段的值必须是唯一的。你可以简单的在字段定义之后链式调用 `unique` 方法来创建索引：
 
-    $table->string('email')->unique();
+```php
+$table->string('email')->unique();
+```   
 
 此外，你也可以在定义完字段之后创建索引。例如：
 
-    $table->unique('email');
+```php
+$table->unique('email');
+```
 
 你也可以传递一个字段的数组至索引方法来创建复合索引：
 
-    $table->index(['account_id', 'created_at']);
+```php
+$table->index(['account_id', 'created_at']);
+```
 
 Laravel 会自动生成一个合理的索引名称，但你也可以使用第二个参数来自定义索引名称:
 
-    $table->index('email', 'my_index_name');
+```php
+$table->index('email', 'my_index_name');
+```
 
 #### 可用的索引类型
 
@@ -471,28 +505,38 @@ Swoft 默认使用 `utf8mb4` 字符，包括支持在数据库存储「表情」
 
 Laravel 也为创建外键约束提供了支持，用于在数据库层中的强制引用完整性。例如，让我们定义一个有 `user_id` 字段的 `posts` 数据表，`user_id` 引用了 `users` 数据表的 `id` 字段：
 
-    Schema::table('posts', function (Blueprint $table) {
+```php
+Schema::table('posts', function (Blueprint $table) {
         $table->integer('user_id')->unsigned();
 
         $table->foreign('user_id')->references('id')->on('users');
-    });
+});
+```    
 
 你也可以指定约束的「on delete」及「on update」：
 
-    $table->foreign('user_id')
+```php
+$table->foreign('user_id')
           ->references('id')->on('users')
           ->onDelete('cascade');
+```
 
 要移除外键，你可以使用 `dropForeign` 方法。外键约束与索引采用相同的命名方式。所以，我们可以将数据表名称和约束字段连接起来，接着在该名称后面加上「_foreign」后缀：
 
-    $table->dropForeign('posts_user_id_foreign');
+```php
+$table->dropForeign('posts_user_id_foreign');
+```
 
 你也可以传递一个包含字段的数组，在移除的时候字段会按照惯例被自动转换为对应的外键名称：
 
-    $table->dropForeign(['user_id']);
+```php
+$table->dropForeign(['user_id']);
+```
 
 你可以在迁移文件里使用以下方法来开启和关闭外键约束：
 
-    Schema::enableForeignKeyConstraints();
+```php
+Schema::enableForeignKeyConstraints();
 
-    Schema::disableForeignKeyConstraints();
+Schema::disableForeignKeyConstraints();
+```    
