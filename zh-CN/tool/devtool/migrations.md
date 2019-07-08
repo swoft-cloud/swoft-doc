@@ -223,11 +223,10 @@ sql;
 默认会从 `db.pool` 中获取连接 查询 迁移记录表, 也可以指定连接池 
 
      php bin/swoft migrate:down --step=5 --pool=db.pool2
-
-    
+  
 也可以指定迁移文件 回滚
 
-![migrate:down(../../image/tool/migrateMessge.png)
+![migrate:down](../../image/tool/migrateMessge.png)
 
 ### 显示迁移历史
 显示执行的 up/down 历史
@@ -315,7 +314,7 @@ Schema::dropIfExists('users');
 
 #### 重命名带外键的数据表
 
-在重命名前，你需要检查外键的约束涉及到的数据表名需要在迁移文件中显式的提供，而不是让 Laravel 按照约定来设置一个名称。因为那样会让外键约束关联到旧的数据表上。
+在重命名前，你需要检查外键的约束涉及到的数据表名需要在迁移文件中显式的提供，而不是让 Swoft 按照约定来设置一个名称。因为那样会让外键约束关联到旧的数据表上。
 
 ## 字段
 
@@ -460,7 +459,7 @@ $table->unique('email');
 $table->index(['account_id', 'created_at']);
 ```
 
-Laravel 会自动生成一个合理的索引名称，但你也可以使用第二个参数来自定义索引名称:
+Swoft 会自动生成一个合理的索引名称，但你也可以使用第二个参数来自定义索引名称:
 
 ```php
 $table->index('email', 'my_index_name');
@@ -481,7 +480,9 @@ Command  | Description
 
 Swoft 默认使用 `utf8mb4` 字符，包括支持在数据库存储「表情」。如果你正在运行的 MySQL release 版本低于5.7.7 或 MariaDB release 版本低于10.2.2 ，为了MySQL为它们创建索引，你可能需要手动配置迁移生成的默认字符串长度， `Schema::defaultStringLength` 方法来配置它：
 
-     Schema::defaultStringLength(191);   
+```php
+Schema::defaultStringLength(191);
+```   
 
 或者你可以为数据库开启 `innodb_large_prefix` 选项，有关如何正确开启此选项的说明请查阅数据库文档。
 
@@ -497,13 +498,15 @@ Swoft 默认使用 `utf8mb4` 字符，包括支持在数据库存储「表情」
 
 如果你对 `dropIndex` 传参索引数组，默认的约定是索引名称由数据库表名字和键名拼接而成：
 
-    Schema::table('geo', function (Blueprint $table) {
-        $table->dropIndex(['state']); // 移除索引 'geo_state_index'
-    });
+```php
+Schema::table('geo', function (Blueprint $table) {
+    $table->dropIndex(['state']); // 移除索引 'geo_state_index'
+});
+```
 
 ### 外键约束
 
-Laravel 也为创建外键约束提供了支持，用于在数据库层中的强制引用完整性。例如，让我们定义一个有 `user_id` 字段的 `posts` 数据表，`user_id` 引用了 `users` 数据表的 `id` 字段：
+Swoft 也为创建外键约束提供了支持，用于在数据库层中的强制引用完整性。例如，让我们定义一个有 `user_id` 字段的 `posts` 数据表，`user_id` 引用了 `users` 数据表的 `id` 字段：
 
 ```php
 Schema::table('posts', function (Blueprint $table) {
