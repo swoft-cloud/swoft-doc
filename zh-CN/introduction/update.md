@@ -2,17 +2,27 @@
 
 ## 2.0.3-beta
 
+移除(Remove)
+
+- 移除 `request->json()` 方法([c9e8f04](https://github.com/swoft-cloud/swoft-component/pull/455/commits/c9e8f048217670fd975e70d4eee1d8d3b2fccd7e))
+
 新增(Enhancement)：
 
 - 新增接口依赖注入([6169f84](https://github.com/swoft-cloud/swoft-component/pull/442/commits/6169f84ffd32622c4d3bb21f6ab3c69ef04746e2))
 - 新增 `getFile` 方法获取文件上传保存之后的信息([fe7e3a6](https://github.com/swoft-cloud/swoft-component/commit/fe7e3a69f215a92af83c5837d32b72a5c181383a))
 - 新增 `restart()` 服务新增重启方法([2ffec37](https://github.com/swoft-cloud/swoft-component/pull/453/commits/2ffec37568618cc49c038f96a901cbb339769623))
+- 新增调用 1.x RPC 服务支持([30d73c3](https://github.com/swoft-cloud/swoft-component/pull/455/commits/30d73c3bcef6294d5985ce5af316e7aa6e86c0e5))
+- 新增 AOP 类名匹配支持正则表达式([bc5e479](https://github.com/swoft-cloud/swoft-component/pull/455/commits/bc5e47951d1426e6944b934e6c8eb5db5657f8a4))
+- 新增 RPC Server /Http Server 中间件命名空间 `use` 错误提示([b1cec04](https://github.com/swoft-cloud/swoft-component/pull/455/commits/b1cec041ea402fe1c837d6755eff6efbfcef3681))
 
 修复(Fixed)：
 
 - 修复 cookies 设置时的一些问题，增加一些 withCookie 相关方法([b05afbb01](https://github.com/swoft-cloud/swoft-component/pull/443/commits/b05afbb011457d217bb3a40c6a3639c28b0eef18))
 - 修复 在console使用协程方式运行命令时，没有捕获处理错误([8a5418bf](https://github.com/swoft-cloud/swoft-component/pull/443/commits/8a5418bf25a4d4797d99281bf7db8881b7ca43ed))
 - 修复 websocket server 重启命令没有先停止旧server问题([db2d935](https://github.com/swoft-cloud/swoft-component/pull/443/commits/db2d935542c715bbe1ed4b3ed822b2d946317b6f))
+- 修复任务返回值为 `null` 问题([a69347c](https://github.com/swoft-cloud/swoft-component/pull/455/commits/a69347c8ce486102e23bb82d70cfef63573a94eb)) 
+- 修复 RPC Server 只有类中间件无法使用问题()[204bc7f](https://github.com/swoft-cloud/swoft-component/pull/455/commits/204bc7f4f23a26f75534ac808e2f9eb05a0118a2)
+- 修复 RPC Server 返回值为 `null` 问题([4d091be](https://github.com/swoft-cloud/swoft-component/pull/455/commits/4d091bef0ece773bcd382a750de01eef830f2949))
 
 更新(Update):
 
@@ -28,6 +38,10 @@
 
 - 文档添加支持通过google进行搜索
 - 新增 apollo 组件
+- 新增 consul 组件
+- 新增 breaker 组件
+- 新增 limter 组件
+- 新增 tcp-server 组件
 
 ## 2.0.2-beta(2019-06-21)
 
