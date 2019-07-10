@@ -159,9 +159,9 @@ sql;
 
 简单分库 假设 后缀编号是自增的 例如:
 
-    php bin/swoft migrate:up --prefix=wx_order --start=1000 --end=1400
+    php bin/swoft migrate:up --prefix=order --start=1000 --end=1400
     
-类似这样的操作会执行 `wx_order_1000` 到 `wx_order_1400` 之间的所有数据库, 如果有些不存在会自动过滤掉
+类似这样的操作会执行 `order_1000` 到 `order_1400` 之间的所有数据库, 如果有些不存在会自动过滤掉
 
 ![migrate:up](../../image/tool/migrateUpPrefix.png)
 
@@ -247,9 +247,11 @@ sql;
 
 要创建一张新的数据表，可以使用 `Schema` facade 的 `create` 方法。`create` 方法接收两个参数：第一个参数为数据表的名称，第二个参数为一个 `闭包` ，此闭包会接收一个用于定义新数据表的 `Blueprint` 对象：
 
-    Schema::create('users', function (Blueprint $table) {
+```php
+Schema::create('users', function (Blueprint $table) {
         $table->increments('id');
-    });
+});
+```     
 
 当然，在创建数据表的时候，你也可以使用任何数据库结构构造器的 [字段方法](#字段) 来定义数据表的字段。
 
@@ -326,7 +328,17 @@ Schema::dropIfExists('users');
 Schema::table('users', function (Blueprint $table) {
         $table->string('email');
 });
-```    
+```  
+
+### 添加表评论
+
+使用 `comment` 方法 可以为数据表添加上注释
+
+```php
+Schema::table('users', function (Blueprint $table) {
+        $table->comment('this users table comment wow !');
+});
+```  
 
 #### 可用的字段类型
 
@@ -434,8 +446,6 @@ Schema::table('users', function (Blueprint $table) {
     $table->dropColumn(['votes', 'avatar', 'location']);
 });
 ```    
-
-> {note} SQLite 数据库并不支持在单个迁移中移除或修改多个字段。
 
 ## 索引
 
