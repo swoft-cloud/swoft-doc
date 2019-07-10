@@ -91,7 +91,7 @@ class RegisterServiceListener implements EventHandlerInterface
 
 ### 取消服务
 
-服务启动注册服务，服务关闭或者退出则需要取消服务注册，此时这里和注册一样监听一个 `SwooleEvent::SHUTDOWN` 时间即可，本章这里还是以 取消 Http server 服务为例：
+服务启动注册服务，服务关闭或者退出则需要取消服务注册，此时这里和注册一样监听一个 `SwooleEvent::SHUTDOWN` 事件即可，本章这里还是以 取消 Http server 服务为例：
 
 ```php
 <?php declare(strict_types=1);
