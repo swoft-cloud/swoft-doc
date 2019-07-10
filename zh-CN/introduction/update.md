@@ -2,9 +2,10 @@
 
 ## 2.0.3-beta
 
-移除(Remove)
+不兼容(Incompatible)
 
-- 移除 `request->json()` 方法([c9e8f04](https://github.com/swoft-cloud/swoft-component/pull/455/commits/c9e8f048217670fd975e70d4eee1d8d3b2fccd7e))
+- 移除 `request->json()` 方法([c9e8f04](https://github.com/swoft-cloud/swoft-component/pull/455/commits/c9e8f048217670fd975e70d4eee1d8d3b2fccd7e)) 替代方法 `getParserdBody()`
+- 应用日志和控制台日志 `levels` 由数组配置改成，字符串配置，详细见文档
 
 新增(Enhancement)：
 
