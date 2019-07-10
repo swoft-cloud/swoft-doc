@@ -180,6 +180,7 @@
 
 ### [Devtool](tool/devtool/index.md)
   * [实体生成](tool/devtool/entity.md)
+  * [数据迁移](tool/devtool/migrations.md)
 
 ## 扩展
 
