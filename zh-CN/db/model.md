@@ -196,7 +196,7 @@ $result = User::where('stauts',1 )->limit(1)->delete();
 
 #### 实体更新
 
-使用 `setter` 或者`array`都可以更新
+使用 `setter` 或者`array` 都可以更新
 
 ```php
 $user = User::find($id);
@@ -207,22 +207,22 @@ $user->setAge(1);
 $result = $user->update(['name' => $name]);
 ```
 
-#### 条件更新
+#### 条件批量更新
 
 更新一条数据
 
 ```php
 $wheres   = [
-    'name' => 'sakuraovq',
+    'name' => 'swoft',
     ['id', '>=', 2]
 ];
 $orWheres = [
-    ['status', '<>', 1']
+    ['status', '<>', '1']
 ];
 $result   = User::where($wheres)
                 ->limit(1)
                 ->orWhere($orWheres)
-                ->update(['name' => 'sakuraovq' . mt_rand(1, 10)]);
+                ->update(['status' => 1]);
 ```
 
 #### 更新/插入
@@ -291,4 +291,275 @@ foreach ($users as $id => $user) {
 $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 ```
 
+### 分块结果
+
+如果你需要处理数千个 Eloquent 记录，可以使用 `chunk` 命令。`chunk` 方法会检索 Eloquent 模型的「分块」，将它们提供给指定的 `Closure` 进行处理。在处理大型结果集时，使用 `chunk` 方法可节省内存：
+
+
+    Flight::chunk(200, function ($flights) {
+        foreach ($flights as $flight) {
+            //
+        }
+    });
+
+传递到方法的第一个参数是希望每个「分块」接收的数据量。闭包则被作为第二个参数传递，它会在每次执行数据库查询传递每个块时被调用。
+
+
+#### 使用游标
+
+`cursor` 允许你使用游标来遍历数据库数据，该游标只执行一个查询。处理大量数据时，可以使用 `cursor` 方法可以大幅度减少内存的使用量：
+
+```php
+    foreach (Flight::where('foo', 'bar')->cursor() as $flight) {
+        //
+    }
+```
+
+### 「找不到」异常
+
+如果你希望在找不到模型时抛出异常，可以使用 `findOrFail` 以及 `firstOrFail` 方法。这些方法会检索查询的第一个结果。如果没有找到相应结果，就会抛出一个 `DbException`：
+
+```php
+    $model = App\Flight::findOrFail(1);
+
+    $model = App\Flight::where('legs', '>', 100)->firstOrFail();
+```
+
+### 赋值
+ 如果你觉得 `setter` 太麻烦了可以使用,批量填充功能, 使用这种方式要注意如果该字段可以匹配到 `@Column` 将会被忽 这样能保证安全的更新和插入
+ ```php
+// Properties
+    $attributes = [
+        'name'      => uniqid(),
+        'password'  => md5(uniqid()),
+        'age'       => mt_rand(1, 100),
+        'user_desc' => 'u desc'
+    ];
+    // one 
+    $result3 = User::new($attributes)->save();
+    // two
+    $result3 = User::new()->fill($attributes)->save();
+```
+
+### 检索集合
+
+你还可以使用 [查询构造器](builder.md) 提供的 `count`、`sum`、`max` 以及其它 聚合函数。这些方法只会返回适当的标量值而不是整个模型实例：
+
+```php
+    $count = App\Flight::where('active', 1)->count();
+
+    $max = App\Flight::where('active', 1)->max('price');
+```
+
+### 其他创建方法
+
+#### `firstOrCreate`/ `firstOrNew`
+你还可以使用其他两种方法来创建模型：`firstOrCreate` 和 `firstOrNew`。`firstOrCreate` 方法会使用给定的字段及其值在数据库中查找记录。如果在数据库中找不到模型，则将使用第一个参数中的属性以及可选的第二个参数中的属性插入记录。
+
+`firstOrNew` 方法就类似 `firstOrCreate` 方法，会在数据库中查找匹配给定属性的记录。如果模型未被找到，则会返回一个新的模型实例。请注意，在这里面，`firstOrnew` 返回的模型还尚未保存到数据库，必须要手动调用 `save` 方法才能保存它：
+```php
+    // 通过 name 属性检索航班，当结果不存在时创建它...
+    $flight = App\Flight::firstOrCreate(['name' => 'Flight 10']);
+
+    // 通过 name 属性检索航班，当结果不存在的时候用 name 属性和 delayed 属性去创建它
+    $flight = App\Flight::firstOrCreate(
+        ['name' => 'Flight 10'], ['delayed' => 1]
+    );
+
+    // 通过 name 属性检索航班，当结果不存在时实例化...
+    $flight = App\Flight::firstOrNew(['name' => 'Flight 10']);
+
+    // 通过 name 属性检索航班，当结果不存在的时候用 name 属性和 delayed 属性实例化
+    $flight = App\Flight::firstOrNew(
+        ['name' => 'Flight 10'], ['delayed' => 1]
+    );
+```
+
+#### `updateOrCreate`
+你也可能会遇到想要更新现有模型或创建新模型（如果不存在）的情况。Swoft 提供了 `updateOrCreate` 方法来完成该操作，像 `firstOrCreate` 方法一样，`updateOrCreate` 方法会保存模型，所以不需要调用 `save()` :
+
+```php
+    // 如果有从奥克兰飞往圣地亚哥的航班，将价格设为 99 美元
+    // 如果不存在匹配的模型就创建一个
+    $flight = App\Flight::updateOrCreate(
+        ['departure' => 'Oakland', 'destination' => 'San Diego'],
+        ['price' => 99]
+    );
+```   
+
+
 更多方法请参照 [查询构造器](builder.md)
+
+## 自动写入时间戳
+
+默认情况下，Eloquent 会默认数据表中存在 `created_at` 和 `updated_at` 这两个字段。如果你不需要这两个字段，则需要在模型内将 `$modelTimestamps` 属性设置为 `false`：
+
+```php
+<?php
+
+    namespace App;
+
+    use App\Model\Dao;
+
+    class UserDao extends User
+    {
+        /**
+         * 该模型是否被自动维护时间戳
+         *
+         * @var bool
+         */
+        public $modelTimestamps = false;
+    }
+```    
+
+如果你需要自定义时间戳格式，可在模型内设置 `$modelDateFormat` 属性。这个属性决定了日期属性应如何存储在数据库中，以及模型被序列化成数组或 JSON 时的格式：
+
+```php
+<?php
+    class UserDao extends User
+    {
+        /**
+         * 模型的日期字段的存储格式
+         *
+         * @var string
+         */
+        protected $modelDateFormat = 'Y-m-d H:i:s';
+    }
+```
+
+如果需要自定义用于存储时间戳的字段名，可在模型中通过设置 `CREATED_AT` 和 `UPDATED_AT` 常量来实现：
+
+> 时间戳 支持 数据库 `int`  和 `timestamp` 类型, 底层会自动根据实体的属性  `CREATED_AT` 和 `UPDATED_AT` 这个两个字段定义的 `@var` 来判断. 用户无需操心生成时间戳格式
+
+```php
+<?php
+    class UserDao extends User
+    {
+       protected const CREATED_AT = 'create_time';
+       protected const UPDATED_AT = 'update_data';
+    }
+```  
+
+> 不推荐在实体里面改动,这样改动了数据表结构就可以使用自动生成实体来更新. 推荐在 `Dao` 层来对实体扩展 
+
+## 事件
+
+Eloquent 的模型触发了几个事件，可以在模型的生命周期的以下几点进行监控： `creating`、`created`、`updating`、`updated`、`saving`、`saved`、`deleting`、`deleted`。事件能在每次在数据库中保存或更新特定模型类时轻松地执行代码。当然你完全可以通过 `AOP` 来实现它
+
+ 当新模型第一次被保存时， `creating` 以及 `created` 事件会被触发。如果模型已经存在于数据库中并且调用了 `save` 方法，会触发 `updating` 和 `updated` 事件。在这两种情况下，`saving` / `saved` 事件都会触发。
+
+事件名称是 `swoft.model`+模型名+动作名
+
+- 模型名 是首字母默认会小写 例如实体名称 `SendMessage` 要监听它的`creating` 动作的话 格式就是 `swoft.model.sendMessage.saving` 其他模型也类似 
+
+可以监听某个模型的`saving`操作的动作, 也可以监听所有模型的`saving`动作 
+
+- 监听模型单个动作
+
+```php
+<?php declare(strict_types=1);
+
+
+namespace App\Listener;
+
+use App\Model\Entity\User;
+use Swoft\Event\Annotation\Mapping\Listener;
+use Swoft\Event\EventHandlerInterface;
+use Swoft\Event\EventInterface;
+
+/**
+ * Class UserSavingListener
+ *
+ * @since 2.0
+ *
+ * @Listener("swoft.model.user.saving")
+ */
+class UserSavingListener implements EventHandlerInterface
+{
+    /**
+     * @param EventInterface $event
+     */
+    public function handle(EventInterface $event): void
+    {
+        /* @var User $user */
+        $user = $event->getTarget();
+
+        if ($user->getAge() > 100) {
+            // stopping saving
+            $event->stopPropagation(true);
+
+            $user->setAdd(100);
+        }
+    }
+}
+
+```
+
+- 监听所有模型的单个动作
+
+```php
+<?php declare(strict_types=1);
+
+
+namespace App\Listener;
+
+use App\Model\Entity\User;
+use Swoft\Db\DbEvent;
+use Swoft\Db\Eloquent\Model;
+use Swoft\Event\Annotation\Mapping\Listener;
+use Swoft\Event\EventHandlerInterface;
+use Swoft\Event\EventInterface;
+
+/**
+ * Class RanListener
+ *
+ * @since 2.0
+ *
+ * @Listener(DbEvent::MODEL_SAVED)
+ */
+class ModelSavedListener implements EventHandlerInterface
+{
+    /**
+     * @param EventInterface $event
+     */
+    public function handle(EventInterface $event): void
+    {
+        /* @var Model $modelStatic */
+        $modelStatic = $event->getTarget();
+
+        if ($modelStatic instanceof User) {
+            // to do something....
+        }
+
+        // ....
+    }
+}
+
+```
+
+公共的事件名列表, 可以在`Swoft\Db\DbEvent` 类中参看所有事件
+
+Event  | Params | Description
+------------- | ------------- | -------------
+`swoft.db.transaction.begin`  | 没有参数 | 事务启动。
+`swoft.db.transaction.commit`  | 没有参数 | 事务提交。
+`swoft.db.transaction.rollback`  | 没有参数 | 事务回滚。
+`swoft.model.saving`  | target 是具体操作实体类 | 所有实体保存中事件。
+`swoft.model.saved`  | target 是具体操作实体类 | 所有实体保存后事件。
+`swoft.model.updating`  | target 是具体操作实体类 | 所有实体更新前事件。
+`swoft.model.updated`  | target 是具体操作实体类 | 所有实体更新后事件。
+`swoft.model.creating`  | target 是具体操作实体类 | 所有实体创建前事件。
+`swoft.model.created`  | target 是具体操作实体类 | 所有实体创建后事件。
+`swoft.model.deleting`  | target 是具体操作实体类 | 所有实体删除前事件。
+`swoft.model.deleted`  | target 是具体操作实体类 | 所有实体后删除前事件。
+`swoft.db.ran`  | target 是连接对象,参数 1=未预处理 sql ,参数 2=绑定的参数 | 所有 sql 执行后的事件,事件返回的连接已返回给连接池只能获取它的配置信息。
+`swoft.db.affectingStatementing`  | target 是连接对象,参数 1=正在处理的` PDO statement` ,参数 2=绑定的参数 | 正在执行 `update` 和`delete`动作
+`swoft.db.selecting`  | target 是连接对象,参数 1=正在处理的` PDO statement` ,参数 2=绑定的参数  | 正在执行查询动作。
+
+> 如果是`正在进行时(ing)` 在监听事件中是调用了 `$event->stopPropagation(true);` 后续操作会终止直接返回结果. 对`过去式`停止无效
+
+## FQA
+
+使用模型 使用 `select` 方法最好, 不要使用 `as` 不然查询结果与实体映射可能会有问题
+
+> 使用模型的方法 更新/插入的值 都会过滤处理 没有 定义 `@Column` 的值将会被过滤
