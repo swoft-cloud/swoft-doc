@@ -247,7 +247,7 @@ class TestValidator
 
 验证规则:
 
-验证参数值必须和另外一个参数值相同。
+验证参数值必须和另外一个字段参数值相同。
 
 参数说明:
 - `name:` 需要确认对比的字段名,在`类型注解`中设置过的 `name` 或者是默认的 `属性名`。
@@ -255,6 +255,45 @@ class TestValidator
 
 使用示例:
 `@Confirm(name="field",message="error message")`。
+
+### @Different
+
+验证规则:
+
+验证参数值必须和另外一个字段参数值不同。
+
+参数说明:
+- `name:` 需要确认对比的字段名,在`类型注解`中设置过的 `name` 或者是默认的 `属性名`。
+- `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
+
+使用示例:
+`@Different(name="field",message="error message")`。
+
+### @GreaterThan
+
+验证规则:
+
+验证参数值必须比另外一个字段参数值大，只支持 `int` 或 `float`, 字符串会被转化为 float 后进行对比。
+
+参数说明:
+- `name:` 需要确认对比的字段名,在`类型注解`中设置过的 `name` 或者是默认的 `属性名`。
+- `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
+
+使用示例:
+`@GreaterThan(name="field",message="error message")`。
+
+### @LessThan
+
+验证规则:
+
+验证参数值必须比另外一个字段参数值小，只支持 `int` 或 `float`, 字符串会被转化为 float 后进行对比。
+
+参数说明:
+- `name:` 需要确认对比的字段名,在`类型注解`中设置过的 `name` 或者是默认的 `属性名`。
+- `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
+
+使用示例:
+`@LessThan(name="field",message="error message")`。
 
 ### @Date
 
