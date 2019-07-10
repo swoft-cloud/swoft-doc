@@ -295,12 +295,14 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 
 如果你需要处理数千个 Eloquent 记录，可以使用 `chunk` 命令。`chunk` 方法会检索 Eloquent 模型的「分块」，将它们提供给指定的 `Closure` 进行处理。在处理大型结果集时，使用 `chunk` 方法可节省内存：
 
-
-    Flight::chunk(200, function ($flights) {
+```php
+ Flight::chunk(200, function ($flights) {
         foreach ($flights as $flight) {
             //
         }
-    });
+ });
+```
+   
 
 传递到方法的第一个参数是希望每个「分块」接收的数据量。闭包则被作为第二个参数传递，它会在每次执行数据库查询传递每个块时被调用。
 
@@ -326,7 +328,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 ```
 
 ### 赋值
- 如果你觉得 `setter` 太麻烦了可以使用,批量填充功能, 使用这种方式要注意如果该字段可以匹配到 `@Column` 将会被忽 这样能保证安全的更新和插入
+ 如果你觉得 `setter` 太麻烦了可以使用,批量填充功能, 使用这种方式要注意如果该字段`没有匹配`到 `@Column` 值将会被忽 这样能保证安全的更新和插入
  ```php
 // Properties
     $attributes = [
@@ -440,7 +442,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
     }
 ```  
 
-> 不推荐在实体里面改动,这样改动了数据表结构就可以使用自动生成实体来更新. 推荐在 `Dao` 层来对实体扩展 
+> 不推荐在实体里面改动,这样方便改动了数据表结构就可以使用自动生成实体来更新. 推荐在 `Dao` 层来对实体扩展 
 
 ## 事件
 
@@ -450,7 +452,7 @@ Eloquent 的模型触发了几个事件，可以在模型的生命周期的以�
 
 事件名称是 `swoft.model`+模型名+动作名
 
-- 模型名 是首字母默认会小写 例如实体名称 `SendMessage` 要监听它的`creating` 动作的话 格式就是 `swoft.model.sendMessage.saving` 其他模型也类似 
+- 模型名 是首字母默认会小写 例如实体名称 `SendMessage` 要监听它的`saving` 动作的话 格式就是 `swoft.model.sendMessage.saving` 其他模型也类似.
 
 可以监听某个模型的`saving`操作的动作, 也可以监听所有模型的`saving`动作 
 
