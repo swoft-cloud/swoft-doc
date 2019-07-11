@@ -107,9 +107,12 @@ rpc 的简单使用, 到这里就结束了. 下面我们以 grpc 为例, 来看�
 关于 grpc 的基础, 推荐参看这篇 [tech| 再探grpc](https://www.jianshu.com/p/f3221df39e6f)
 
 要注意 2 个点:
+
 - grpc 是基于 http2 协议进行通信的, 底层需要使用 `\Swoole\Http\Server`
 - 并不需要完整的代码生成, 只要解决 protobuf 的序列化/反序列, swoft 框架提供了 grpc 协议解析和网络通信能力
 
 完整过程, 请回顾上图 **grpc 详解**
 
 ## swoft 中使用 grpc
+
+test
