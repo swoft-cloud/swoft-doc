@@ -81,7 +81,7 @@ class ApolloLogic
 }
 ```
 
-以上就是一个简单的 Apollo 配置拉取，swoft-apollo 出此方法外，还提供了更多的使用方法。
+以上就是一个简单的 Apollo 配置拉取，swoft-apollo 除此方法外，还提供了更多的使用方法。
 
 ## 方法列表
 
