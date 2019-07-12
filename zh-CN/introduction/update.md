@@ -9,8 +9,13 @@
 
 - 修复 迁移类名太长导致记录类名不全([58314b8](https://github.com/swoft-cloud/swoft-ext/pull/9/commits/58314b87d38b6579eff9123d58713276bc22c913))
 - 修复 实体查询之后使用`Setter`更新字段值之后`update`更新无效([caadf0e](https://github.com/swoft-cloud/swoft-component/pull/472/commits/caadf0e9e24e470465656cf46f1199f735ae6358))
+- 修复 stop 后删除pid文件的结果返回错误，导致restart失败 ([2be450bf11](https://github.com/swoft-cloud/swoft-component/pull/470/commits/2be450bf11db5cab7dc5ac5facfab336a9a59acf))
 
 更新(Update):
+
+扩展(Extra):
+
+- 在GitHub上对文档的修改，将会自动更新到官网文档
 
 
 ## 2.0.3-beta(2019-07-08)
