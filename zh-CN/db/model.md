@@ -435,14 +435,14 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 
 ```php
 <?php
-    class UserDao extends User
+    class User
     {
        protected const CREATED_AT = 'create_time';
        protected const UPDATED_AT = 'update_data';
     }
 ```  
 
-> 不推荐在实体里面改动,这样方便改动了数据表结构就可以使用自动生成实体来更新. 推荐在 `Dao` 层来对实体扩展 
+> 暂不支持注解继承 `Dao` 层继承 `Entity` 暂不可用
 
 ## 事件
 
