@@ -26,6 +26,9 @@
 - 自定义用户进程
 - 强大的日志系统
 
-<div class="alert alert-success" role="alert">
+<p class="tip">
    <strong>项目地址</strong> <a class="alert-link" href="https://github.com/swoft-cloud/swoft">https://github.com/swoft-cloud/swoft</a>
-</div>
+</p>
+
+
+> 文档仓库： https://github.com/swoft-cloud/swoft-doc
