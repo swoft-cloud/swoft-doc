@@ -1,5 +1,18 @@
 # 版本更新
 
+## 2.0.4-beta
+
+新增(Enhancement)：
+
+
+修复(Fixed)：
+
+- 修复 迁移类名太长导致记录类名不全([58314b8](https://github.com/swoft-cloud/swoft-ext/pull/9/commits/58314b87d38b6579eff9123d58713276bc22c913))
+- 修复 实体查询之后使用`Setter`更新字段值之后`update`更新无效([caadf0e](https://github.com/swoft-cloud/swoft-component/pull/472/commits/caadf0e9e24e470465656cf46f1199f735ae6358))
+
+更新(Update):
+
+
 ## 2.0.3-beta(2019-07-08)
 
 不兼容(Incompatible)
