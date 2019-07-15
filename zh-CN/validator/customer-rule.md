@@ -16,6 +16,7 @@
      */
     protected $password;
 ```
+
 如上我们就添加好了一个 `password` 字段，并且使用了一个 `@AlphaDash()` 的验证规则，该规则就是我们接下来要自定义的规则，它的功能是校验该字段的格式，使其只能是 `字母`,`数字`,`-`,`_`。
 
 思考下由于我们的验证规则是以注解的方式工作的，所以定义验证规则，其实也就是相当于定义一个我们自己的自定义注解命令，这一点清楚了之后我们继续。
@@ -162,6 +163,7 @@ class AlphaDashParser extends Parser
 声明要解析的注解命令
 
 #### parse()
+
 由于我们继承了 `Swoft\Annotation\Annotation\Parser\Parser` , 而它有声明了一个 `Swoft\Annotation\Annotation\Parser\ParserInterface` 接口,而这个方法正是 `ParserInterface` 这个接口所定义的一个必须由我们来实现的一个接口。
 其实这里就是我们要处理的业务逻辑了，Swoft 解析到一个注解命令后，就会执行这个注解所对应的解析器中的 `parse()` 这个方法
 
@@ -227,11 +229,8 @@ class AlphaDashRule implements RuleInterface
 这是 `RuleInterface` 接口中规定要实现的方法，到了这里其实就是写我们具体的验证规则了。
 
  * `array $data` 待验证的所有数据
-   
  * `string $propertyName` 需要验证的字段名
- 
  * `$item` 注解类的对象
- 
  * `$default` 字段的默认值
  
  至此我们已经定义好了一个验证器规则。
