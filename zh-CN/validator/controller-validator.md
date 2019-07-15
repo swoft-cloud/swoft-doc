@@ -33,7 +33,7 @@ class ValidatorController
      *
      * @return array
      */
-    function validateAll(Request $request): array
+    public function validateAll(Request $request): array
     {
         return $request->getParsedBody();
     }
