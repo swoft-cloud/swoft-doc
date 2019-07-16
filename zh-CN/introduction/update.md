@@ -4,6 +4,10 @@
 
 新增(Enhancement)：
 
+- `Swoft\Http\Message\Request` 新增 `getHeaderLines()` ([74a2a91](https://github.com/swoft-cloud/swoft-component/pull/480/commits/74a2a91d62dd4230c8cffca621c95354a251ac82))
+- Aop 新增 `getArgsMap()` 和 `getClassName()` 方法 ([c47e785](https://github.com/swoft-cloud/swoft-component/pull/480/commits/c47e785ef40bc65a98fabc81c73ee0099228c3aa))
+- 新增 `srun()` 函数，用于协程调度 ([3c4a6a4](https://github.com/swoft-cloud/swoft-component/pull/475/commits/3c4a6a41976c4813f8c60b2f5321d0a25d3572dc))
+- 优化 server 事件(`onStart` / `onWorkStart` / `onWorkStop` / `onShutdown`)，事件自带支持协程 ([a8d5a8d](https://github.com/swoft-cloud/swoft-component/pull/475/commits/a8d5a8da82f236d485ac771e8668efa62d8033b9))
 
 修复(Fixed)：
 
@@ -22,6 +26,12 @@
 
 - 在官网增加案例展示，欢迎大家提交案例到官方案例仓库 [swoft-cloud/swoft-case](https://github.com/swoft-cloud/swoft-case)
 - 在GitHub上对文档的修改，将会自动更新到官网文档，不再需要手动刷新
+
+进程组件(Process)
+
+- 进程管理([c61b8f7](https://github.com/swoft-cloud/swoft-component/pull/480/commits/c61b8f77a259aef1e7b5bded86cd0c1e0ca5d1fd))
+- 自定义用户进程([c328d54](https://github.com/swoft-cloud/swoft-component/pull/480/commits/c328d540236a710b6380c9470fd1b651d2d67dfe))
+- 进程池([d2e6290](https://github.com/swoft-cloud/swoft-component/pull/480/commits/d2e6290f5a397d038c0aabe03fc719493207562f))
 
 ## 2.0.3-beta(2019-07-08)
 
