@@ -143,7 +143,7 @@
 
 ### 插入数据
 
-#### 对象方式
+#### 对象方式 插入获取自增 Id
 
 ```php
 $user = User::new();
@@ -151,7 +151,9 @@ $user->setName('name');
 $user->setSex(1);
 $user->setDesc('this my desc');
 $user->setAge(mt_rand(1, 100));
-$id  = $user->save();
+$user->save();
+// saved after getId()  
+$id = $user->getId();
 ```
 
 #### 数组方式
@@ -163,9 +165,14 @@ $attributes = [
     'age'       => mt_rand(1, 100),
     'user_desc' => 'u desc'
 ];
+$user  = User::new($attributes)
 
-$result3 = User::new($attributes)->save();
+$result3 =$user->save();
+
+$id = $user->getId()
 ```
+
+> 在新增`save` 之后可以用过 `getter` 方法获取自增 id. 
 
 #### 批量插入
 
