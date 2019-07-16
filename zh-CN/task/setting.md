@@ -94,4 +94,4 @@ return [
 - `task_enable_coroutine` 必须设置为 `false`
 - task 事件必须是 `SyncTaskListener::class`
 
-<p class="tip"> 同步阻塞任务，不能直接使用框架提供的所有 IO 操作(数据库、缓存、RPC等等)以及应用日志，控制器日志可以使用。 </p>
+<p class="tip"> 同步阻塞任务，不能直接使用框架提供的所有 IO 操作(数据库、缓存、RPC等等)以及应用日志，控制器日志可以使用。 同步阻塞任务的定义和使用与协程任务一直，但是没有上下文。</p>
