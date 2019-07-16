@@ -154,17 +154,91 @@ php bin/swoft process:start
 后台启动：
 
 ```
- php bin/swoft http:start -d
+ [root@swoft swoft]# php bin/swoft process:start -d
+ 2019/07/16-09:44:34 [INFO] Swoft\SwoftApplication:setSystemAlias(496) Set alias @base=/data/www/swoft
+ 2019/07/16-09:44:34 [INFO] Swoft\SwoftApplication:setSystemAlias(497) Set alias @app=@base/app
+ 2019/07/16-09:44:34 [INFO] Swoft\SwoftApplication:setSystemAlias(498) Set alias @config=@base/config
+ 2019/07/16-09:44:34 [INFO] Swoft\SwoftApplication:setSystemAlias(499) Set alias @runtime=@base/runtime
+ 2019/07/16-09:44:34 [INFO] Project path is /data/www/swoft
+ 2019/07/16-09:44:34 [INFO] Swoft\Processor\EnvProcessor:handle(52) Env file(/data/www/swoft/.env) is loaded
+ 2019/07/16-09:44:43 [INFO] Swoft\Processor\AnnotationProcessor:handle(45) Annotations is scanned(autoloader 31, annotation 369, parser 65)
+ 2019/07/16-09:44:44 [INFO] Swoft\Processor\BeanProcessor:handle(57) config path=/data/www/swoft/config
+ 2019/07/16-09:44:44 [INFO] Swoft\Processor\BeanProcessor:handle(58) config env=
+ 2019/07/16-09:44:44 [INFO] Swoft\Processor\BeanProcessor:handle(62) Bean is initialized(singleton 259, prototype 71, definition 41)
+ 2019/07/16-09:44:44 [INFO] Swoft\Processor\EventProcessor:handle(37) Event manager initialized(51 listener, 3 subscriber)
+ 2019/07/16-09:44:44 [INFO] Swoft\WebSocket\Server\Listener\AppInitCompleteListener:handle(40) WebSocket server route registered(module 2, message command 3)
+ 2019/07/16-09:44:44 [INFO] Swoft\Tcp\Server\Listener\AppInitCompleteListener:handle(42) Tcp server route registered(routes 2)
+ 2019/07/16-09:44:44 [INFO] Swoft\Error\Listener\AppInitCompleteListener:handle(37) Error manager init completed(4 type, 5 handler, 5 exception)
+ 2019/07/16-09:44:44 [INFO] Swoft\Processor\ConsoleProcessor:handle(39) Console command route registered (group 13, command 40)
+
 ```
 
 重启所有 worker 进程：
 
 ```
- php bin/swoft http:reload
+[root@swoft swoft]# php bin/swoft process:reload 
+2019/07/16-09:45:52 [INFO] Swoft\SwoftApplication:setSystemAlias(496) Set alias @base=/data/www/swoft
+2019/07/16-09:45:52 [INFO] Swoft\SwoftApplication:setSystemAlias(497) Set alias @app=@base/app
+2019/07/16-09:45:52 [INFO] Swoft\SwoftApplication:setSystemAlias(498) Set alias @config=@base/config
+2019/07/16-09:45:52 [INFO] Swoft\SwoftApplication:setSystemAlias(499) Set alias @runtime=@base/runtime
+2019/07/16-09:45:52 [INFO] Project path is /data/www/swoft
+2019/07/16-09:45:52 [INFO] Swoft\Processor\EnvProcessor:handle(52) Env file(/data/www/swoft/.env) is loaded
+2019/07/16-09:45:59 [INFO] Swoft\Processor\AnnotationProcessor:handle(45) Annotations is scanned(autoloader 31, annotation 369, parser 65)
+2019/07/16-09:45:59 [INFO] Swoft\Processor\BeanProcessor:handle(57) config path=/data/www/swoft/config
+2019/07/16-09:45:59 [INFO] Swoft\Processor\BeanProcessor:handle(58) config env=
+2019/07/16-09:45:59 [INFO] Swoft\Processor\BeanProcessor:handle(62) Bean is initialized(singleton 259, prototype 71, definition 41)
+2019/07/16-09:45:59 [INFO] Swoft\Processor\EventProcessor:handle(37) Event manager initialized(51 listener, 3 subscriber)
+2019/07/16-09:45:59 [INFO] Swoft\WebSocket\Server\Listener\AppInitCompleteListener:handle(40) WebSocket server route registered(module 2, message command 3)
+2019/07/16-09:45:59 [INFO] Swoft\Tcp\Server\Listener\AppInitCompleteListener:handle(42) Tcp server route registered(routes 2)
+2019/07/16-09:45:59 [INFO] Swoft\Error\Listener\AppInitCompleteListener:handle(37) Error manager init completed(4 type, 5 handler, 5 exception)
+2019/07/16-09:45:59 [INFO] Swoft\Processor\ConsoleProcessor:handle(39) Console command route registered (group 13, command 40)
+Server bin/swoft is reloading
+Process pool bin/swoft reload success
+
 ```
 
 重新启动：
 
 ```
- php bin/swoft http:restart
+ [root@swoft swoft]# php bin/swoft process:restart      
+ 2019/07/16-09:45:28 [INFO] Swoft\SwoftApplication:setSystemAlias(496) Set alias @base=/data/www/swoft
+ 2019/07/16-09:45:28 [INFO] Swoft\SwoftApplication:setSystemAlias(497) Set alias @app=@base/app
+ 2019/07/16-09:45:28 [INFO] Swoft\SwoftApplication:setSystemAlias(498) Set alias @config=@base/config
+ 2019/07/16-09:45:28 [INFO] Swoft\SwoftApplication:setSystemAlias(499) Set alias @runtime=@base/runtime
+ 2019/07/16-09:45:28 [INFO] Project path is /data/www/swoft
+ 2019/07/16-09:45:28 [INFO] Swoft\Processor\EnvProcessor:handle(52) Env file(/data/www/swoft/.env) is loaded
+ 2019/07/16-09:45:36 [INFO] Swoft\Processor\AnnotationProcessor:handle(45) Annotations is scanned(autoloader 31, annotation 369, parser 65)
+ 2019/07/16-09:45:37 [INFO] Swoft\Processor\BeanProcessor:handle(57) config path=/data/www/swoft/config
+ 2019/07/16-09:45:37 [INFO] Swoft\Processor\BeanProcessor:handle(58) config env=
+ 2019/07/16-09:45:37 [INFO] Swoft\Processor\BeanProcessor:handle(62) Bean is initialized(singleton 259, prototype 71, definition 41)
+ 2019/07/16-09:45:37 [INFO] Swoft\Processor\EventProcessor:handle(37) Event manager initialized(51 listener, 3 subscriber)
+ 2019/07/16-09:45:37 [INFO] Swoft\WebSocket\Server\Listener\AppInitCompleteListener:handle(40) WebSocket server route registered(module 2, message command 3)
+ 2019/07/16-09:45:37 [INFO] Swoft\Tcp\Server\Listener\AppInitCompleteListener:handle(42) Tcp server route registered(routes 2)
+ 2019/07/16-09:45:37 [INFO] Swoft\Error\Listener\AppInitCompleteListener:handle(37) Error manager init completed(4 type, 5 handler, 5 exception)
+ 2019/07/16-09:45:37 [INFO] Swoft\Processor\ConsoleProcessor:handle(39) Console command route registered (group 13, command 40)
+ Stopping .. Successful!
+ Process pool restart success !
+
+```
+
+停止服务：
+
+```
+ [root@swoft swoft]# php bin/swoft process:stop  
+ 2019/07/16-09:46:35 [INFO] Swoft\SwoftApplication:setSystemAlias(496) Set alias @base=/data/www/swoft
+ 2019/07/16-09:46:35 [INFO] Swoft\SwoftApplication:setSystemAlias(497) Set alias @app=@base/app
+ 2019/07/16-09:46:35 [INFO] Swoft\SwoftApplication:setSystemAlias(498) Set alias @config=@base/config
+ 2019/07/16-09:46:35 [INFO] Swoft\SwoftApplication:setSystemAlias(499) Set alias @runtime=@base/runtime
+ 2019/07/16-09:46:35 [INFO] Project path is /data/www/swoft
+ 2019/07/16-09:46:35 [INFO] Swoft\Processor\EnvProcessor:handle(52) Env file(/data/www/swoft/.env) is loaded
+ 2019/07/16-09:46:45 [INFO] Swoft\Processor\AnnotationProcessor:handle(45) Annotations is scanned(autoloader 31, annotation 369, parser 65)
+ 2019/07/16-09:46:45 [INFO] Swoft\Processor\BeanProcessor:handle(57) config path=/data/www/swoft/config
+ 2019/07/16-09:46:45 [INFO] Swoft\Processor\BeanProcessor:handle(58) config env=
+ 2019/07/16-09:46:45 [INFO] Swoft\Processor\BeanProcessor:handle(62) Bean is initialized(singleton 259, prototype 71, definition 41)
+ 2019/07/16-09:46:45 [INFO] Swoft\Processor\EventProcessor:handle(37) Event manager initialized(51 listener, 3 subscriber)
+ 2019/07/16-09:46:45 [INFO] Swoft\WebSocket\Server\Listener\AppInitCompleteListener:handle(40) WebSocket server route registered(module 2, message command 3)
+ 2019/07/16-09:46:45 [INFO] Swoft\Tcp\Server\Listener\AppInitCompleteListener:handle(42) Tcp server route registered(routes 2)
+ 2019/07/16-09:46:45 [INFO] Swoft\Error\Listener\AppInitCompleteListener:handle(37) Error manager init completed(4 type, 5 handler, 5 exception)
+ 2019/07/16-09:46:45 [INFO] Swoft\Processor\ConsoleProcessor:handle(39) Console command route registered (group 13, command 40)
+ Stopping .. Successful!
 ```
