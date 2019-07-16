@@ -88,7 +88,6 @@
 
   * [常用命令](http-server/command.md)
   * [配置参数](http-server/setting.md)
-  * [执行流程](http-server/process.md)
   * [控制器](http-server/controller.md)
   * [路由绑定](http-server/route.md)
   * [请求对象](http-server/request.md)
