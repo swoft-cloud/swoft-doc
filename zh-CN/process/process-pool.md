@@ -25,7 +25,7 @@ return [
 - `ipcType`  IPC类型
 - `coroutine` 是否开启协程，默认是开启
 
-<p class="tip"> Swoft 框架中必须是协程模式运行 </p>
+<p class="tip"> Swoft 框架中必须是协程模式运行，协程模式运行下，可以使用 Swoft 封装的所有 IO 操作，以及其它非 Swoft 协程操作。</p>
 
 
 ## 声明工作进程
@@ -134,7 +134,6 @@ class Worker2Process implements ProcessInterface
 - `@Process` 注解 `workerId={1,2}` 表示第2个进程和第3个进程，同时绑定这个处理逻辑流程
 
 > `workerId` 绑定ID 是从 0 开始算起, workerId 如果不写默认情况，当前程序流程绑定到其它未绑定的进程。
-
 
 ### @Process
 
