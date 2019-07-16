@@ -129,7 +129,7 @@ swoft 的 **架构设计**, 体现在 swoft 的 **组件化** 实现中:
     },
     "packagist": {
       "type": "composer",
-      "url": "https://packagist.laravel-china.org"
+      "url": "https://mirrors.aliyun.com/composer/"
     }
   }
 }⏎
