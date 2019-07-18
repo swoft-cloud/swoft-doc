@@ -9,6 +9,7 @@
 - 新增 `srun()` 函数，用于协程调度 ([3c4a6a4](https://github.com/swoft-cloud/swoft-component/pull/475/commits/3c4a6a41976c4813f8c60b2f5321d0a25d3572dc))
 - 优化 server 事件(`onStart` / `onWorkStart` / `onWorkStop` / `onShutdown`)，事件自带支持协程 ([a8d5a8d](https://github.com/swoft-cloud/swoft-component/pull/475/commits/a8d5a8da82f236d485ac771e8668efa62d8033b9))
 - 新增投递同步阻塞任务([ec938e5](https://github.com/swoft-cloud/swoft-component/pull/480/commits/ec938e556a32849dc62fe7f8eaaab4b13c853279))
+- 新增 Redis `call` 方法, 用于使用同一连接操作([92456987](https://github.com/swoft-cloud/swoft-component/pull/482/commits/924569877aa3305dbd4ad573e537907a6ed43404))
 
 修复(Fixed)：
 
@@ -18,6 +19,7 @@
 - 修复 i18n 设置默认语言不生效的问题 ([b401a504e](https://github.com/swoft-cloud/swoft-component/pull/478/commits/b401a504e43607be119ae6e97e0633133aabb24c))
 - 修复 ws server在有多个worker时，无法主动关闭其他worker的连接([271b6398](https://github.com/swoft-cloud/swoft-component/pull/478/commits/271b63988065882da394e1e860b9142061d92aeb))
 - 修复 http server接收xml请求时，content type 不能正确匹配([2ff9a4e61](https://github.com/swoft-cloud/swoft-component/pull/478/commits/2ff9a4e6181a9e96bbfa2454abab62d886e705b9))
+- 修复 使用 Database, `json` 操作无效([92456987](https://github.com/swoft-cloud/swoft-component/pull/482/commits/924569877aa3305dbd4ad573e537907a6ed43404))
 
 更新(Update):
 
