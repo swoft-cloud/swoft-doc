@@ -2,6 +2,33 @@
 
 Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配置路由，而采用了注解。在Swoft里我们可以使用 `@RequestMapping` 注解快速的添加路由。
 
+## 路由器配置
+
+```php
+// at file: vendor/swoft/http-server/src/AutoLoader.php
+    'httpRouter'      => [
+        'name'            => 'swoft-http-router',
+        // config
+        'ignoreLastSlash' => true,
+        'tmpCacheNumber'  => 500,
+        // 'handleMethodNotAllowed' => false
+    ],
+```
+
+### 路由配置说明
+
+- `ignoreLastSlash` _bool_ 默认：`true` 是否忽略URI path最后的 `/`
+
+如果设置为 `true` 不忽略， `/home` 与 `/home/` 将是两个不同的路由
+
+- `tmpCacheNumber` _int_ 默认：`500` 动态路由缓存数量。
+
+动态参数路由匹配后会缓存下来，下次相同的路由将会更快的匹配命中。
+
+- `handleMethodNotAllowed` _bool_ 默认：`false` 是否处理 MethodNotAllowed
+
+为了加快匹配速度，默认method不匹配也是直接抛出 Route not found 错误。如有特殊需要可以开启此选项，开启后将会抛出 Method Not Allowed 错误
+
 ## RequestMapping 注解
 
 - route：路由规则path

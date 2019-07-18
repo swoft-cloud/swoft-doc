@@ -36,7 +36,7 @@ Swoft 开源框架，非商业项目，由开源组织开发与维护，这意�
 
 ### 使用 docker
 
-推荐使用 docker 解决开发环境的困扰, 开发组维护了[最新的镜像 swoft/alphp](https://github.com/swoft-cloud/alphp), 简单示例:
+推荐使用 docker 解决开发环境的困扰, 开发组维护了 [swoft/swoft](https://github.com/swoft-cloud/swoft) 和 [swoft/alphp](https://github.com/swoft-cloud/alphp) 两个镜像, 简单示例:
 
 - 使用 docker-compose 进行服务编排
 
@@ -66,6 +66,7 @@ docker-compose exec swoft # 进入容器中
 ### swoft 项目说明
 
 swoft 包含2个重要项目:
+
 - [swoft-cloud/swoft-component](https://github.com/swoft-cloud/swoft-component): swoft 源码, 组件都在此项目的 `src/` 目录下 
 - [swoft-cloud/swoft](https://github.com/swoft-cloud/swoft): swoft 脚手架, 加载了全部组件并提供了所有组件的使用 demo
 
@@ -80,13 +81,11 @@ swoft 的 **架构设计**, 体现在 swoft 的 **组件化** 实现中:
     - rpc 全家桶: rpc rpc-server rpc-client
     - cli 引用: console
 
-> 完全组件参考: [组件说明与功能列表](component.md)
-
 如果只是想 `造飞机`, 只用给 `swoft` 项目提 PR 即可; 如果想 `造飞机引擎`, 需要给 `swoft-component` 提 PR, 本地还需要一份类似 `swoft` 项目的脚手架, 用来验证
 
 ### 举个例子: 参与 RPC 组件开发
 
-如果对 RPC 的基本概念不熟悉, 参考: [RPC 组件](rpc.md)
+如果对 RPC 的基本概念不熟悉, 参考 RPC 组件相关文档
 
 新建一个空文件夹, 比如 swoft-test, 充当 `swoft` 项目的角色, 作为脚手架, 加载需要的组件
 
@@ -129,10 +128,10 @@ swoft 的 **架构设计**, 体现在 swoft 的 **组件化** 实现中:
     },
     "packagist": {
       "type": "composer",
-      "url": "https://packagist.laravel-china.org"
+      "url": "https://mirrors.aliyun.com/composer/"
     }
   }
-}⏎
+}
 ```
 
 这里涉及 composer 从本地加载依赖文件的用法, 不熟悉可以参考 [官方文档 composer-repository](https://getcomposer.org/doc/04-schema.md#repositories)

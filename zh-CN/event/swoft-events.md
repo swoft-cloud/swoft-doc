@@ -102,7 +102,7 @@ class AttachMyProcessHandler implements EventHandlerInterface
         
         $process = bean(MyProcess::class);
         
-        $swooleServer->addProcess($process);
+        $swooleServer->addProcess($process->create());
     }
 }
 ```
