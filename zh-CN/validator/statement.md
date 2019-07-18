@@ -75,7 +75,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@IsArray(name="field",message="error message")`。
+`@IsArray(name="field", message="error message")`。
 
 ### @IsBool
 
@@ -88,7 +88,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@IsBool(name="field",message="error message")`。
+`@IsBool(name="field", message="error message")`。
 
 ### @IsFloat
 
@@ -101,7 +101,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@IsFloat(name="field",message="error message")`。
+`@IsFloat(name="field", message="error message")`。
 
 ### @IsInt
 
@@ -114,7 +114,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@IsInt(name="field",message="error message")`。
+`@IsInt(name="field", message="error message")`。
 
 ### @IsString
 
@@ -127,7 +127,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@IsString(name="field",message="error message")`。
+`@IsString(name="field", message="error message")`。
 
 ### 条件注解
 
@@ -144,7 +144,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@AfterDate(date="2019-01-01 00:00:00",message="error message")`。
+`@AfterDate(date="2019-01-01 00:00:00", message="error message")`。
 
 ### @Alpha
 
@@ -193,7 +193,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@BeforeDate(date="2019-01-01 00:00:00",message="error message")`。
+`@BeforeDate(date="2019-01-01 00:00:00", message="error message")`。
 
 ### @Chs
 
@@ -254,7 +254,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@Confirm(name="field",message="error message")`。
+`@Confirm(name="field", message="error message")`。
 
 ### @Different
 
@@ -267,7 +267,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@Different(name="field",message="error message")`。
+`@Different(name="field", message="error message")`。
 
 ### @GreaterThan
 
@@ -280,7 +280,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@GreaterThan(name="field",message="error message")`。
+`@GreaterThan(name="field", message="error message")`。
 
 ### @LessThan
 
@@ -293,7 +293,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@LessThan(name="field",message="error message")`。
+`@LessThan(name="field", message="error message")`。
 
 ### @Date
 
@@ -321,7 +321,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@DateRange(start="2019-01-01 00:00:00",end="2019-01-01 00:00:00",message="error message")`。
+`@DateRange(start="2019-01-01 00:00:00",end="2019-01-01 00:00:00", message="error message")`。
 
 ### @Dns
 
@@ -538,7 +538,7 @@ class TestValidator
 - `message:` 验证失败时的错误提示，若不设置则默认使用框架内置的。
 
 使用示例:
-`@Pattern(regex="/^1\d{10}$/",message="error message")`。
+`@Pattern(regex="/^1\d{10}$/", message="error message")`。
 
 ### @Range
 
