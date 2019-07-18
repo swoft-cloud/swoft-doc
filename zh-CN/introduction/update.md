@@ -20,6 +20,7 @@
 - 修复 ws server在有多个worker时，无法主动关闭其他worker的连接([271b6398](https://github.com/swoft-cloud/swoft-component/pull/478/commits/271b63988065882da394e1e860b9142061d92aeb))
 - 修复 http server接收xml请求时，content type 不能正确匹配([2ff9a4e61](https://github.com/swoft-cloud/swoft-component/pull/478/commits/2ff9a4e6181a9e96bbfa2454abab62d886e705b9))
 - 修复 使用 Database, `json` 操作无效([92456987](https://github.com/swoft-cloud/swoft-component/pull/482/commits/924569877aa3305dbd4ad573e537907a6ed43404))
+- 修复 limiter 限速器 Redis 加前缀无法使用问题([7b54d4c](https://github.com/swoft-cloud/swoft-ext/pull/15/commits/7b54d4c3b680299e096950206443aee94d9d859b))
 
 更新(Update):
 
