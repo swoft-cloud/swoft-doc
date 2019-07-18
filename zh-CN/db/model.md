@@ -106,8 +106,10 @@
      }
  }
  ```
- 也可以使用 devtool 里面的快速生成实体工具 
+ 也可以使用 devtool 里面的快速`生成实体`工具 
  
+> 如果没有定义 `@Column` 的列, 使用插入/更新 的不存在`@Column`值, 将会被框架自动过滤. 
+
 ### 注解标签 
 
 #### @Entity
@@ -246,6 +248,76 @@ echo $user->getName();
 ```php
 $isOk = User::updateOrInsert(['id' => 1], ['age' => 18, 'name' => 'sakuraovq']);
 ```
+
+#### 使用主键进行批量更新
+
+在这例子中 `id` 是 `User`实体的 `@Id()` 主键
+
+```php
+$values = [
+    ['id' => 1, 'age' => 18],
+    ['id' => 2, 'age' => 19],
+];
+
+User::batchUpdateByIds($values);
+```
+
+> 使用批量更新 必须指定主键的值, 框架会根据主键的值进行 批量更新
+
+#### 快速更新
+
+如果已知道 更新的 主键 `id` 可以使用 `modifyById` 方法进行快速更新
+ 
+```php
+  // method 1
+  $row = User::modifyById($id, ['user_desc' => $expectLabel]);
+  // method 2
+  User::find($id)->update(['user_desc' => $expectLabel]);
+```
+
+如果不知道需要更新的主键 `id` 可以使用`modify` 方法,该方法会先根据条件查找 `id` 再进行 `update`
+
+```php
+
+   $where  = ['user_desc' => 'CP'];
+   $values = ['user_desc' => $expectLabel];
+    
+   // method 1
+   $row = User::modify($where, $values);
+   // method 2
+   $model = User::where($where)->first()->update($values);
+```
+
+> 方法 1 和方法 2 是相同的意思
+
+#### 递增/递减
+
+**单个字段 递增/递减**
+
+使用 `increment` 递减 `decrement` 递减, 第三个参数是附带更新的值
+```php
+    $updateByWhereId = User::where('id', 1)->increment('age', 1);
+    $updateByModel   = User::find(1)->decrement('age', 2);
+```
+
+**多个字段 递增/递减**
+
+使用 `updateAllCounters` 方法更新. 需要注意的是, 请谨慎使用更新条件,最好使用主键更新以免造成表锁
+
+```php
+   User::updateAllCounters(['user_desc' => $expectLabel], ['age' => -1]);
+```
+
+如果知道 需要更新的 主键`id` 可以使用 `updateAllCountersById` 方法
+
+```php
+    // method 1
+    User::updateAllCountersById((array)$id, ['age' => 1], ['user_desc' => $expectLabel]);
+    
+    // method 2
+    User::find($id)->updateCounters(['age' => -1]);
+```
+
 
 ### 查询数据
 
@@ -401,16 +473,16 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 
 ## 自动写入时间戳
 
-默认情况下，Eloquent 会默认数据表中存在 `created_at` 和 `updated_at` 这两个字段。如果你不需要这两个字段，则需要在模型内将 `$modelTimestamps` 属性设置为 `false`：
+默认情况下，Eloquent 会默认数据表中存在 `created_at` 和 `updated_at` 这两个字段。如果你不需要自动更新这两个字段，则需要在模型内将 `$modelTimestamps` 属性设置为 `false`：
 
 ```php
 <?php
 
     namespace App;
 
-    use App\Model\Dao;
+    use App\Model\Entity;
 
-    class UserDao extends User
+    class User
     {
         /**
          * 该模型是否被自动维护时间戳
@@ -450,6 +522,9 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 ```  
 
 > 暂不支持注解继承 `Dao` 层继承 `Entity` 暂不可用
+
+ <p class="tip"> 如果要让框架自动维护  CREATED_AT  和 UPDATED_AT , 那么这两个常量对应的字段, 必须要有与之对应的 getter 和 setter </p>
+
 
 ## 事件
 
