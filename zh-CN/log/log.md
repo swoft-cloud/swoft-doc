@@ -14,13 +14,13 @@ return [
         'class'     => FileHandler::class,
         'logFile'   => '@runtime/logs/notice.log',
         'formatter' => \bean('lineFormatter'),
-        'levels'    => 'notice,info,debug,trace',
+        'levels'    => ['notice','info','debug','trace'],
     ],
     'applicationHandler' => [
         'class'     => FileHandler::class,
         'logFile'   => '@runtime/logs/error.log',
         'formatter' => \bean('lineFormatter'),
-        'levels'    => 'error,warning',
+        'levels'    => ['error','warning'],
     ],
     'logger'             => [
         'flushRequest' => false,
