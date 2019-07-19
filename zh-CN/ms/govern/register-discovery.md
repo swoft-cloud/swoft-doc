@@ -69,13 +69,9 @@ class RegisterServiceListener implements EventHandlerInterface
         ];
 
 
-        $scheduler = Swoole\Coroutine\Scheduler();
-        $scheduler->add(function () use ($service) {
-            // Register
-            $this->agent->registerService($service);
-            CLog::info('Swoft http register service success by consul!');
-        });
-        $scheduler->start();
+        // Register
+        $this->agent->registerService($service);
+        CLog::info('Swoft http register service success by consul!');
     }
 }
 ```
@@ -131,11 +127,7 @@ class DeregisterServiceListener implements EventHandlerInterface
         /* @var HttpServer $httpServer */
         $httpServer = $event->getTarget();
 
-        $scheduler = Swoole\Coroutine\Scheduler();
-        $scheduler->add(function () use ($httpServer) {
-            $this->agent->deregisterService('swoft');
-        });
-        $scheduler->start();
+        $this->agent->deregisterService('swoft');
     }
 }    
 ```
