@@ -2,7 +2,11 @@
 
 ## 2.0.4-beta
 
-新增(Enhancement)：
+> 升级注意：
+1. 请去掉 `bin/swoft` 里的 `Runtime::enanbleCoroutine()` 设置
+2. 请确保 swoole 的 `swoole.use_shortname` 的值为 `On` 
+
+增强(Enhancement)：
 
 - `Swoft\Http\Message\Request` 新增 `getHeaderLines()` ([74a2a91](https://github.com/swoft-cloud/swoft-component/pull/480/commits/74a2a91d62dd4230c8cffca621c95354a251ac82))
 - Aop 新增 `getArgsMap()` 和 `getClassName()` 方法 ([c47e785](https://github.com/swoft-cloud/swoft-component/pull/480/commits/c47e785ef40bc65a98fabc81c73ee0099228c3aa))
@@ -32,11 +36,12 @@
 - 在官网增加案例展示，欢迎大家提交案例到官方案例仓库 [swoft-cloud/swoft-case](https://github.com/swoft-cloud/swoft-case)
 - 在GitHub上对文档的修改，将会自动更新到官网文档，不再需要手动刷新
 
-进程组件(Process)
+新增(New)
 
 - 进程管理([c61b8f7](https://github.com/swoft-cloud/swoft-component/pull/480/commits/c61b8f77a259aef1e7b5bded86cd0c1e0ca5d1fd))
 - 自定义用户进程([c328d54](https://github.com/swoft-cloud/swoft-component/pull/480/commits/c328d540236a710b6380c9470fd1b651d2d67dfe))
 - 进程池([d2e6290](https://github.com/swoft-cloud/swoft-component/pull/480/commits/d2e6290f5a397d038c0aabe03fc719493207562f))
+- TCP server 基本可用
 
 ## 2.0.3-beta(2019-07-08)
 
