@@ -69,10 +69,14 @@ composer require swoft/websocket-server
                       关闭连接
 ```
 
-## 仓库
+## Git仓库
 
 - github https://github.com/swoft-cloud/swoft-websocket-server
 
 ## 参与贡献
 
-您可以 fork 仓库修改然后发起 PR
+欢迎参与贡献，您可以
+
+- fork 我们的开发仓库 [swoft/component](https://github.com/swoft-cloud/swoft-component)
+- 修改代码然后发起 PR
+- 关于发起PR的[注意事项](https://github.com/swoft-cloud/swoft/issues/829)

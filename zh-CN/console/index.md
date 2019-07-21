@@ -4,6 +4,12 @@ swoft 提供功能强大的命令行应用处理功能。swoft 的 http server, 
 
 ![](../image/console/cli-app.jpg)
 
+## 安装
+
+```bash
+composer require swoft/websocket-server
+```
+
 ## 功能特性
 
 - 命令行应用, 命令行的解析运行，基于注解 `@Command` `@CommandMapping` 自动收集注册
@@ -19,4 +25,16 @@ swoft 提供功能强大的命令行应用处理功能。swoft 的 http server, 
 - 内置Phar打包工具类，可以方便的将应用打包成`phar`文件，方便作为工具分发和使用
 - 快速的为当前应用生成 `bash/zsh` 环境下的自动补全脚本(TODO)
 
-> `swoft/console` 基于 [inhere/php-console](https://github.com/inhere/php-console) 改进，并参考了 [symfony/console](https://github.com/symfony/console) 部分特性。
+> `swoft/console` 基于 [inhere/php-console](https://github.com/inhere/php-console) 改进，并参考了 [symfony/console](https://github.com/symfony/console) 部分特性
+
+## Git仓库
+
+- Github https://github.com/swoft-cloud/swoft-console
+
+## 参与贡献
+
+欢迎参与贡献，您可以
+
+- fork 我们的开发仓库 [swoft/component](https://github.com/swoft-cloud/swoft-component)
+- 修改代码然后发起 PR
+- 关于发起PR的[注意事项](https://github.com/swoft-cloud/swoft/issues/829)

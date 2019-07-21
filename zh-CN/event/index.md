@@ -2,6 +2,8 @@
 
 Swoft 2 事件进行了更加清晰和严谨的规划。提供了基本的事件注册与触发管理。
 
+## 功能说明
+
 - implement the [Psr 14](https://github.com/php-fig/fig-standards/blob/master/proposed/event-dispatcher.md) - Event dispatcher
 - 支持通过注解快速的注册事件，事件组
 - 支持设置事件优先级
@@ -9,10 +11,10 @@ Swoft 2 事件进行了更加清晰和严谨的规划。提供了基本的事件
 
 > 作为Swoft的核心组件，事件管理会自动启用
 
-```php
-'eventManager'    => [
-    'class'     => \Swoft\Event\Manager\EventManager::class,
-],           
+## 安装
+
+```bash
+composer require swoft/event
 ```
 
 ## swoft里的事件
@@ -74,3 +76,14 @@ swoft.udp.after
 
 更多关于自定义事件的理解参考 https://github.com/inhere/php-event-manager/blob/master/README.md
 
+## Git仓库
+
+- Github https://github.com/swoft-cloud/swoft-event
+
+## 参与贡献
+
+欢迎参与贡献，您可以
+
+- fork 我们的开发仓库 [swoft/component](https://github.com/swoft-cloud/swoft-component)
+- 修改代码然后发起 PR
+- 关于发起PR的[注意事项](https://github.com/swoft-cloud/swoft/issues/829)

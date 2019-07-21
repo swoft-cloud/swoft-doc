@@ -2,6 +2,12 @@
 
 swoft 提供了完善的异常与错误处理机制，与通常fpm下情况不同，swoft里将错误分为了不同的场景类型。
 
+## 安装
+
+```bash
+composer require swoft/error
+```
+
 ## 错误场景
 
 场景类型的划分：主要是根据swoole的回调事件范围来划分。
@@ -51,3 +57,15 @@ final class ErrorType
 ```
 
 异常处理的具体使用，请继续查看下一篇文档。
+
+## Git仓库
+
+- Github https://github.com/swoft-cloud/swoft-error
+
+## 参与贡献
+
+欢迎参与贡献，您可以
+
+- fork 我们的开发仓库 [swoft/component](https://github.com/swoft-cloud/swoft-component)
+- 修改代码然后发起 PR
+- 关于发起PR的[注意事项](https://github.com/swoft-cloud/swoft/issues/829)
