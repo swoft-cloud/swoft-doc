@@ -4,7 +4,7 @@
 
 ## 注解
 
-tcp server新增两个注解 `@TcpControler` 和 `TcpMapping`。
+tcp server新增两个注解 `@TcpControler` 和 `@TcpMapping`，由他们定义tcp控制器和处理方法。
 
 ### TcpControler
 
