@@ -2,6 +2,12 @@
 
 基于 \Swoole\Http\Server 实现的协程HTTP服务, 框架层做了很好的封装, 用户按照传统的 MVC 方式编写代码, 就能获得协程带来的超高性能.
 
+## 安装
+
+```bash
+composer require swoft/http-server
+```
+
 ## http 生命周期
 
 ![Http生命周期](../image/http-server/process/1.png)

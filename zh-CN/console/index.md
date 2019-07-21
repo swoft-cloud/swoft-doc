@@ -7,7 +7,7 @@ swoft 提供功能强大的命令行应用处理功能。swoft 的 http server, 
 ## 安装
 
 ```bash
-composer require swoft/websocket-server
+composer require swoft/console
 ```
 
 ## 功能特性
