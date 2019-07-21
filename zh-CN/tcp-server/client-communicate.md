@@ -1,4 +1,4 @@
-# 与客户端通信
+# 客户端通信
 
 
 ## swoft 示例
@@ -34,7 +34,7 @@ use const SWOOLE_SOCK_TCP;
             $code = $client->errCode;
             /** @noinspection PhpComposerExtensionStubsInspection */
             $msg = socket_strerror($code);
-            var_dump("Connect server failed. Error($code): $msg");
+            $output->error("Connect server failed. Error($code): $msg");
             return;
         }
 
@@ -42,14 +42,7 @@ use const SWOOLE_SOCK_TCP;
         if (false === $client->send($proto->packBody($msg))) {
             /** @noinspection PhpComposerExtensionStubsInspection */
             $output->error('Send error - ' . socket_strerror($client->errCode));
-
-            if ($this->quickConfirm($input, 'Reconnect', true)) {
-                $client->close();
-                goto CONNCET;
-            }
-
-            $output->colored('GoodBye!');
-            break;
+            return;
         }
 
         // Recv response
