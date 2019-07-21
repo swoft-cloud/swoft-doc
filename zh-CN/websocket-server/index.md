@@ -68,3 +68,11 @@ composer require swoft/websocket-server
                          v
                       关闭连接
 ```
+
+## 仓库
+
+- github https://github.com/swoft-cloud/swoft-websocket-server
+
+## 参与贡献
+
+您可以 fork 仓库修改然后发起 PR
