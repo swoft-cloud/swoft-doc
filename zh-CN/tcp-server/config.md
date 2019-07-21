@@ -16,7 +16,7 @@ tcp server 的 host, port 等配置是都是完全可以自定义的。
 - `on` 配置监听的事件
     - 注册swoole事件、设置对应事件的处理监听
 - `setting` 这里是参考 [Swoole Server配置选项](https://wiki.swoole.com/wiki/page/274.html)
-- `pidFile` 设置进程 `pid文件` 位置，默认值 `@runtime/swoft.pid`
+- `pidFile` 设置进程 `pid文件` 位置，默认值 `@runtime/swoft-tcp.pid`
 - `mode` 运行的模式，参考 [Swoole Server 构造函数](https://wiki.swoole.com/wiki/page/14.html) 第三个参数
 - `type` 指定Socket的类型，支持TCP、UDP、TCP6、UDP6、UnixSocket Stream/Dgram 等 [Swoole Server 构造函数](https://wiki.swoole.com/wiki/page/14.html) 第四个参数
 
@@ -33,7 +33,35 @@ tcp server 的 host, port 等配置是都是完全可以自定义的。
             'log_file' => alias('@runtime/swoole.log'),
         ],
     ],
+    /** @see \Swoft\Tcp\Protocol */
+    'tcpServerProtocol' => [
+        'type'            => \Swoft\Tcp\Packer\SimpleTokenPacker::TYPE,
+        // 'openEofCheck'    => true, // Defalut use EOF check
+        // 'openLengthCheck' => true,
+    ],
 ```
+
+### 协议配置
+
+通常你只需配置好协议的分包方式，内部的细节配置会自动同步设置到TcpServer。
+
+```php
+    /** @see \Swoft\Tcp\Protocol */
+    'tcpServerProtocol' => [
+        'type'            => \Swoft\Tcp\Packer\SimpleTokenPacker::TYPE,
+        // 'openEofCheck'    => true, // Defalut use EOF check
+        // 'openLengthCheck' => true,
+    ],
+```
+
+可配置项：
+
+- `type` _string_ 默认的数据打包器的类型。默认是 `token-text`
+- `packers` _array_ 可用的数据打包器的列表，内置了 `json` `php` `token-text` 三种。
+- `packageMaxLength` _int_ 同 swoole 的 `package_max_length` 默认 `81920`
+- `openEofCheck` _bool_ 同 swoole 的 `open_eof_check` 默认 `true`
+- `openLengthCheck` _bool_ 同 swoole 的 `open_length_check`，总是与 `openEofCheck` 相反。默认 `false`
+
 
 ## 添加RPC服务
  

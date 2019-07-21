@@ -121,8 +121,10 @@
 
   * [配置服务](tcp-server/config.md)
   * [管理服务](tcp-server/manage.md)
+  * [控制器](tcp-server/controller.md)
 
 ### [进程](process/index.md)
+
   * [进程](process/process.md)  
   * [用户进程](process/user-process.md)  
   * [进程池](process/process-pool.md)  
