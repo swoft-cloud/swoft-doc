@@ -9,19 +9,20 @@
   * [参与 Swoft](introduction/join.md)
 
 ## 开始
+  
+### [快速起步](quick-start/index.md)
 
-### [基础准备](ready/index.md)
+  * [Annotations插件](quick-start/development.md)
+  * [swoft安装](quick-start/install.md)
+  * [运行服务](quick-start/start-swoft.md)
+  * [应用结构](quick-start/project-skeleton.md)
+  
+### [技术说明](ready/index.md)
 
   * [传统架构](ready/tradition.md)
   * [IO复用](ready/io.md)
   * [Swoole 扩展](ready/swoole.md)
-  
-### [快速起步](quick-start/index.md)
-
-  * [环境安装](quick-start/development.md)
-  * [框架安装](quick-start/install.md)
-  * [运行服务](quick-start/start-swoft.md)
-  * [应用结构](quick-start/project-skeleton.md)
+  * [Composer](ready/composer.md)
 
 ### [特别注意](notice/index.md)
 
@@ -48,6 +49,7 @@
   * [单例](bean/singleton.md)
   * [Prototype](bean/prototype.md)
   * [请求实例](bean/request.md)
+  * [接口注入](bean/interface.md)
 
 ### [事件](event/index.md)
 
@@ -55,7 +57,7 @@
   * [Swoole事件](event/swoole-events.md)
   * [Swoft事件](event/swoft-events.md)
 
-### [切面编程](aop/index.md)
+### [AOP切面编程](aop/index.md)
 
   * [声明](aop/statement.md)
   * [使用](aop/usage.md)
@@ -86,20 +88,22 @@
 
   * [常用命令](http-server/command.md)
   * [配置参数](http-server/setting.md)
-  * [执行流程](http-server/process.md)
-  * [请求与响应](http-server/request-response.md)
-  * [路由](http-server/route.md)
   * [控制器](http-server/controller.md)
+  * [路由绑定](http-server/route.md)
+  * [请求对象](http-server/request.md)
+  * [响应对象](http-server/response.md)
   * [中间件](http-server/middleware.md)
   * [异常处理](http-server/exception.md)
+  * [HTTP 客户端](http-server/http.md)
 
 ### [Websocket](websocket-server/index.md)
 
   * [配置服务](websocket-server/config.md)
   * [管理服务](websocket-server/manage.md)
-  * [websocket模块](websocket-server/module.md)
-  * [消息处理](websocket-server/message-route.md)
+  * [定义模块](websocket-server/module.md)
+  * [消息控制器](websocket-server/message-route.md)
   * [消息发送](websocket-server/message-send.md)
+  * [异常处理](websocket-server/exception.md)
 
 ### [RPC Server](rpc-server/index.md)
 
@@ -111,6 +115,12 @@
 
   * [配置服务](rpc-client/setting.md)
   * [如何使用](rpc-client/usage.md)
+  * [1.0 RPC](rpc-client/rpc-1.0.md)
+  
+### [进程](process/index.md)
+  * [进程](process/process.md)  
+  * [用户进程](process/user-process.md)  
+  * [进程池](process/process-pool.md)  
   
 ### [任务](task/index.md)
 
@@ -126,6 +136,8 @@
   * [查询器](db/builder.md)
   * [事务](db/transaction.md)
   * [原生操作](db/origin.md)
+  * [切库](db/selectDb.md)
+
   
 ### [Redis](redis/index.md)
 
@@ -144,12 +156,23 @@
 
   * [声明验证器](validator/statement.md)
   * [自定义验证器](validator/user-validator.md)
+  * [自定义验证器规则](validator/customer-rule.md)
   * [控制器中使用](validator/controller-validator.md)
+  * [非注解使用](validator/anywhere-validator.md)
     
 ### [日志](log/index.md)
 
   * [控制台日志](log/clog.md)
   * [应用日志](log/log.md)
+  
+## 微服务
+
+### [服务治理](ms/govern/index.md)
+
+  * [注册与发现](ms/govern/register-discovery.md)
+  * [服务熔断](ms/govern/breaker.md)
+  * [服务限流](ms/govern/limiter.md)
+  * [配置中心](ms/govern/config.md)
 
 ## 工具
 
@@ -161,17 +184,22 @@
 
 ### [Devtool](tool/devtool/index.md)
   * [实体生成](tool/devtool/entity.md)
+  * [数据迁移](tool/devtool/migrations.md)
 
 ## 扩展
 
   * [视图渲染](extra/view.md)
-  * [如何编写组件](extra/write-component.md)
+  * [Apollo](extra/apollo.md)
+  * [Consul](extra/consul.md)
+
+### [开发组件](component/index.md)
+
+  * [组件结构](component/structure.md)
+  * [组件入口](component/entry.md)
+  * [组件加载](component/how-to-load.md)
 
 ### [最佳实践](best-practices/index.md)
 
   * [常规架构](best-practices/architecture.md)
-  * [中间件简介](best-practices/middleware.md)
-  * [部署与使用](best-practices/deploy.md)
-  * [演示案例](best-practices/demo.md)
   * [Nginx配置](best-practices/nginx-config.md)
 

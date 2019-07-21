@@ -41,3 +41,5 @@ swoftcli run -c ws:start -b bin/swoft /path/to/php/swoft
 
 当有文件发生变动时，swoft-cli 就会自动的重新启动应用
 
+>> 警告⚠️ 使用 swoftcli 监控server开发时，不能将server配置为后台运行，不然swoftcli会错误的认为server意外退出了，导致重复启动。
+

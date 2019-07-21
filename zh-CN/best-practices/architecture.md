@@ -1,5 +1,5 @@
 # Swoft微服务架构简图
-![swoft-architecture](swoft-architecture.png)
+![swoft-architecture](../image/best/architecture.png)
 
 ## 简介
 如上图所示，一个主流的微服务架构会由流量代理层、网关、注册中心、服务层（业务复杂时，为了职责清晰通常会拆为基础服务层和聚合服务两层）、配置中心、数据层等几个主要部分构成。

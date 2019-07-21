@@ -50,21 +50,26 @@ class DemoAspect
 
 ### @PointBean
 
-定义bean切入点, 这个bean类里的方法执行都会经过此切面类的代理
+定义bean切入点, 这个bean类里的所有`public`方法执行都会经过此切面类的代理
 
 - include 定义需要切入的实体名称集合
 - exclude 定义需要排除的实体名称集合
 
-> 注意 实体名称(类名)必须制定 namespace 完整路径 例如 'App\Controller\HomeController'
+> 注意 实体名称(类名)必须指定 namespace 完整路径 例如 'App\Controller\HomeController' 或者先用 use 将目标类 use 进来
+
+示例：`@PointBean(include={App\Controller\HomeController::class})`
 
 ### @PointAnnotation
 
-定义注解切入点, 所有包含使用了对应注解的方法都会经过此切面类的代理
+定义`注解类`切入点, 所有包含使用了对应`注解`的方法都会经过此切面类的代理
 
-- include 定义需要切入的_注解名称_集合
-- exclude 定义需要排除的注解集合
+- include 定义需要切入的`注解类名`集合
+- exclude 定义需要排除的`注解类名`集合
 
-> 注意 实体名称(类名)必须制定 namespace 完整路径 例如 'App\Controller\HomeController'
+> 注意 实体名称(类名)必须指定 namespace 完整路径 例如 'App\Controller\HomeController' 或者先用 use 将目标类 use 进来
+
+示例：`@PointAnnotation(include={Swoft\Http\Server\Annotation\Mapping\RequestMapping::class})`
+
 
 ### @PointExecution
 
@@ -73,7 +78,12 @@ class DemoAspect
 - include 定义需要切入的匹配集合，匹配的类方法，支持正则表达式
 - exclude 定义需要排序的匹配集合，匹配的类方法，支持正则表达式
 
-> 注意 实体名称(类名)必须制定 namespace 完整路径 例如 'App\Controller\HomeController'
+> 注意 实体名称(类名)必须指定 namespace 完整路径 例如 'App\Controller\HomeController' 或者先用 use 将目标类 use 进来
+
+示例：`@PointExecution(include={"App\Http\Controller\AspectTestController::a.*"})`
+
+这里需要注意下，如果需要使用正则，则传入的必须使用`双引号 " " ` 引起来，同时双引号内必须是类的完整路径。
+
 
 > @PointBean、@PointAnnotation、@PointExecution 三种定义的关系是并集，三种里面定义的排除也是并集后在排除。建议为了便于理解和使用，一个切面类尽量只使用上面三个中的一个
 
@@ -168,3 +178,26 @@ class DemoAspect
 - `@AfterReturning` 最终返回通知
 - `@AfterThrowing` 异常通知，在目标方法执行抛出异常时执行此方法
 - `@Around` 环绕通知，在目标方法执行前、后都执行此方法
+
+## AOP 注意事项
+
+AOP只拦截 `public` 和 `protected` 方法，不拦截`private`方法。
+
+另外在 Swoft AOP 中 如果切入了多个方法，此时在某一个方法内调用了另一个被切入的方法，此时AOP 也会织入通知。
+例如 我们定义了一个类 `A` 它有两个 `public` 方法 `fun1(),fun2()`,然后我们定义一个切面，使用 `@PointBean(include={A::class})` 注解将 `A` 类中的两个方法都进行切入，这是我们看下这两个方法的定义：
+```php
+<?php
+class A
+{
+    function fun1()
+    {
+        echo 'fun1'."\n";
+    }
+    function fun2()
+    {
+        $this->fun1();
+        echo 'fun2'."\n";
+    }
+}
+```
+此时如果我们访问 `fun2()` 这个方法，那么我们的切面就会执行两次,切面的执行顺序和方法的执行顺序相同。先执行 `fun2()` 方法的织入通知，再执行 `fun1()` 方法的织入通知。

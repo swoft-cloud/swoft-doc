@@ -1,6 +1,102 @@
 # 版本更新
 
-## 2.0.2-beta
+## 2.0.4-beta
+
+> 升级注意：
+1. 请去掉 `bin/swoft` 里的 `Runtime::enanbleCoroutine()` 设置
+2. 请确保 swoole 的 `swoole.use_shortname` 的值为 `On` 
+
+增强(Enhancement)：
+
+- `Swoft\Http\Message\Request` 新增 `getHeaderLines()` ([74a2a91](https://github.com/swoft-cloud/swoft-component/pull/480/commits/74a2a91d62dd4230c8cffca621c95354a251ac82))
+- Aop 新增 `getArgsMap()` 和 `getClassName()` 方法 ([c47e785](https://github.com/swoft-cloud/swoft-component/pull/480/commits/c47e785ef40bc65a98fabc81c73ee0099228c3aa))
+- 新增 `srun()` 函数，用于协程调度 ([3c4a6a4](https://github.com/swoft-cloud/swoft-component/pull/475/commits/3c4a6a41976c4813f8c60b2f5321d0a25d3572dc))
+- 优化 server 事件(`onStart` / `onWorkStart` / `onWorkStop` / `onShutdown`)，事件自带支持协程 ([a8d5a8d](https://github.com/swoft-cloud/swoft-component/pull/475/commits/a8d5a8da82f236d485ac771e8668efa62d8033b9))
+- 新增投递同步阻塞任务([ec938e5](https://github.com/swoft-cloud/swoft-component/pull/480/commits/ec938e556a32849dc62fe7f8eaaab4b13c853279))
+- 新增 Redis `call` 方法, 用于使用同一连接操作([92456987](https://github.com/swoft-cloud/swoft-component/pull/482/commits/924569877aa3305dbd4ad573e537907a6ed43404))
+- 兼容 Swoole 4.4.x
+
+修复(Fixed)：
+
+- 修复 迁移类名太长导致记录类名不全([58314b8](https://github.com/swoft-cloud/swoft-ext/pull/9/commits/58314b87d38b6579eff9123d58713276bc22c913))
+- 修复 实体查询之后使用`Setter`更新字段值之后`update`更新无效([caadf0e](https://github.com/swoft-cloud/swoft-component/pull/472/commits/caadf0e9e24e470465656cf46f1199f735ae6358))
+- 修复 stop 后删除pid文件的结果返回错误，导致restart失败 ([2be450bf11](https://github.com/swoft-cloud/swoft-component/pull/470/commits/2be450bf11db5cab7dc5ac5facfab336a9a59acf))
+- 修复 i18n 设置默认语言不生效的问题 ([b401a504e](https://github.com/swoft-cloud/swoft-component/pull/478/commits/b401a504e43607be119ae6e97e0633133aabb24c))
+- 修复 ws server在有多个worker时，无法主动关闭其他worker的连接([271b6398](https://github.com/swoft-cloud/swoft-component/pull/478/commits/271b63988065882da394e1e860b9142061d92aeb))
+- 修复 http server接收xml请求时，content type 不能正确匹配([2ff9a4e61](https://github.com/swoft-cloud/swoft-component/pull/478/commits/2ff9a4e6181a9e96bbfa2454abab62d886e705b9))
+- 修复 使用 Database, `json` 操作无效([92456987](https://github.com/swoft-cloud/swoft-component/pull/482/commits/924569877aa3305dbd4ad573e537907a6ed43404))
+- 修复 limiter 限速器 Redis 加前缀无法使用问题([7b54d4c](https://github.com/swoft-cloud/swoft-ext/pull/15/commits/7b54d4c3b680299e096950206443aee94d9d859b))
+
+更新(Update):
+
+- 更新 ws server 可以通过配置 `disabledModules` 来禁用 ws 模块([fa31111d](https://github.com/swoft-cloud/swoft-component/pull/478/commits/fa31111d2f5ab9dbf4d858f1226ad4dade407c32))
+
+扩展(Extra):
+
+- 在官网增加案例展示，欢迎大家提交案例到官方案例仓库 [swoft-cloud/swoft-case](https://github.com/swoft-cloud/swoft-case)
+- 在GitHub上对文档的修改，将会自动更新到官网文档，不再需要手动刷新
+
+新增(New)
+
+- 进程管理([c61b8f7](https://github.com/swoft-cloud/swoft-component/pull/480/commits/c61b8f77a259aef1e7b5bded86cd0c1e0ca5d1fd))
+- 自定义用户进程([c328d54](https://github.com/swoft-cloud/swoft-component/pull/480/commits/c328d540236a710b6380c9470fd1b651d2d67dfe))
+- 进程池([d2e6290](https://github.com/swoft-cloud/swoft-component/pull/480/commits/d2e6290f5a397d038c0aabe03fc719493207562f))
+- TCP server 基本可用
+
+## 2.0.3-beta(2019-07-08)
+
+不兼容(Incompatible)
+
+- 移除 `request->json()` 方法([c9e8f04](https://github.com/swoft-cloud/swoft-component/pull/455/commits/c9e8f048217670fd975e70d4eee1d8d3b2fccd7e)) 替代方法 `getParserdBody()`
+- 应用日志和控制台日志 `levels` 由数组配置改成，字符串配置，详细见文档
+
+新增(Enhancement)：
+
+- 新增接口依赖注入([6169f84](https://github.com/swoft-cloud/swoft-component/pull/442/commits/6169f84ffd32622c4d3bb21f6ab3c69ef04746e2))
+- 新增 `getFile` 方法获取文件上传保存之后的信息([fe7e3a6](https://github.com/swoft-cloud/swoft-component/commit/fe7e3a69f215a92af83c5837d32b72a5c181383a))
+- 新增 `restart()` 服务新增重启方法([2ffec37](https://github.com/swoft-cloud/swoft-component/pull/453/commits/2ffec37568618cc49c038f96a901cbb339769623))
+- 新增调用 1.x RPC 服务支持([30d73c3](https://github.com/swoft-cloud/swoft-component/pull/455/commits/30d73c3bcef6294d5985ce5af316e7aa6e86c0e5))
+- 新增 AOP 类名匹配支持正则表达式([bc5e479](https://github.com/swoft-cloud/swoft-component/pull/455/commits/bc5e47951d1426e6944b934e6c8eb5db5657f8a4))
+- 新增 RPC Server /Http Server 中间件命名空间 `use` 错误提示([b1cec04](https://github.com/swoft-cloud/swoft-component/pull/455/commits/b1cec041ea402fe1c837d6755eff6efbfcef3681))
+- 新增 验证器排除属性字段 `unfields`([b1bf44f](https://github.com/swoft-cloud/swoft-component/pull/459/commits/b1bf44f62ae096674f2c413e9630964782b14d3f))
+- 新增 自动写入时间戳([dc58011](https://github.com/swoft-cloud/swoft-component/pull/457/commits/dc58011cfa90996e6e319365fc738c1cd386f08d))
+- 新增 模型动作事件([dc58011](https://github.com/swoft-cloud/swoft-component/pull/457/commits/dc58011cfa90996e6e319365fc738c1cd386f08d))
+- 新增 数据库迁移([26bb464](https://github.com/swoft-cloud/swoft-ext/commit/26bb464ba61e43b6bbae9ba191a8e69525ad7dc5))
+- 新增 实体自动与 json 和数组互转([dc58011](https://github.com/swoft-cloud/swoft-component/pull/457/commits/dc58011cfa90996e6e319365fc738c1cd386f08d))
+- 新增 模型批量更新方法`batchUpdateByIds`([dc58011](https://github.com/swoft-cloud/swoft-component/pull/457/commits/dc58011cfa90996e6e319365fc738c1cd386f08d))
+
+
+修复(Fixed)：
+
+- 修复 cookies 设置时的一些问题，增加一些 withCookie 相关方法([b05afbb01](https://github.com/swoft-cloud/swoft-component/pull/443/commits/b05afbb011457d217bb3a40c6a3639c28b0eef18))
+- 修复 在console使用协程方式运行命令时，没有捕获处理错误([8a5418bf](https://github.com/swoft-cloud/swoft-component/pull/443/commits/8a5418bf25a4d4797d99281bf7db8881b7ca43ed))
+- 修复 websocket server 重启命令没有先停止旧server问题([db2d935](https://github.com/swoft-cloud/swoft-component/pull/443/commits/db2d935542c715bbe1ed4b3ed822b2d946317b6f))
+- 修复任务返回值为 `null` 问题([a69347c](https://github.com/swoft-cloud/swoft-component/pull/455/commits/a69347c8ce486102e23bb82d70cfef63573a94eb)) 
+- 修复 RPC Server 只有类中间件无法使用问题()[204bc7f](https://github.com/swoft-cloud/swoft-component/pull/455/commits/204bc7f4f23a26f75534ac808e2f9eb05a0118a2)
+- 修复 RPC Server 返回值为 `null` 问题([4d091be](https://github.com/swoft-cloud/swoft-component/pull/455/commits/4d091bef0ece773bcd382a750de01eef830f2949))
+- 修复 Logger 和 CLog 日志等级无法覆盖和无效问题([8eb8aba](https://github.com/swoft-cloud/swoft-component/pull/459/commits/8eb8aba2313a45191318b52a3698135d92cb3e71))
+- 修复 模型里面的属性不支持自定义表达式([dc58011](https://github.com/swoft-cloud/swoft-component/pull/457/commits/dc58011cfa90996e6e319365fc738c1cd386f08d))
+
+更新(Update):
+
+- 验证器优化，支持自定义验证规则([d959a4f](https://github.com/swoft-cloud/swoft-component/pull/442/commits/d959a4f5facfc24070fbde547f0557213e5184ee))
+- 重命名错误处理管理类 `ErrorHanlders` 为 `ErrorManager` ([f3a8f04b](https://github.com/swoft-cloud/swoft-component/pull/443/commits/f3a8f04ba6d83874b772a419fe29e5449b3dcea9))
+- console组件的异常处理改为由error组件提供的统一处理风格 ([4f47204](https://github.com/swoft-cloud/swoft-component/pull/443/commits/4f472045e3d80165145907331386f46a2912b2e3))
+- console组件允许设置禁用命令组([c5a0269](https://github.com/swoft-cloud/swoft-component/pull/454/commits/c5a0269f26ae6b9739401393a48fd3fd91280bbb))
+- 在默认的错误处理中，允许设置错误捕获级别。默认级别是 `E_ALL | E_STRICT` ([afff9029](https://github.com/swoft-cloud/swoft-component/pull/443/commits/afff90296d80085acd30b951441774049d0ca2e7))
+- 优化 启动ws server时同时启用了http处理功能，信息面板添加提示([83a81170](https://github.com/swoft-cloud/swoft-component/pull/456/commits/83a8117047036da5687fa6dc5236301716dfd59f))
+- 优化 启动ws server 并同时添加rpc server启动，信息面板没有显示 rpc server信息([3d1d0d848](https://github.com/swoft-cloud/swoft-component/pull/454/commits/3d1d0d848a8f5ca31a09feb5ee860079f7c018e4))
+
+扩展(Extra):
+
+- 文档添加支持通过google进行搜索
+- 新增 apollo 组件
+- 新增 consul 组件
+- 新增 breaker 组件
+- 新增 limter 组件
+- 新增 tcp-server 组件
+
+## 2.0.2-beta(2019-06-21)
 
 新增(Enhancement)：
 
@@ -10,6 +106,12 @@
 - 新增 `DbSelectorInterface` 用于根据业务自动切库([b36ca03](https://github.com/swoft-cloud/swoft-component/pull/429/commits/b36ca03420607098d7484976a62c3291bf2f2037))
 - 新增 Http server 增加Cookies响应支持 ([1a024bf](https://github.com/swoft-cloud/swoft-component/pull/426/commits/1a024bf5b9371444bcf59df4e960404bc2c99068))
 - 新增 `devtool` 组件的实体生成([14b4d39c](https://github.com/swoft-cloud/swoft-devtool/commit/14b4d39c653823f3891343302b3903f032e00760))
+- 新增 允许注册 swoole 的 pipeMessage, packet 事件[[afec0e3f](https://github.com/swoft-cloud/swoft-component/pull/438/commits/afec0e3f02a953f386324743e484931af46ebb45)]
+- 新增 添加更多启动时的相关事件[[8aaa38c4](https://github.com/swoft-cloud/swoft-component/pull/438/commits/8aaa38c42dbf3d2be8f57dbda5c4431a6907b7c5)]
+- 新增 `validate()` 不依赖注解验证方式([cc35560](https://github.com/swoft-cloud/swoft-component/pull/439/commits/cc35560ae54dd66e3ab31298cc3630aa1cdf4633))
+- 新增 RPC 调用返回错误 `RpcResponseException` 异常([baa482f](https://github.com/swoft-cloud/swoft-component/pull/440/commits/baa482fdb71287f526e740730e2ea2d98bd775d3))
+- 新增 允许注册 swoole 的 pipeMessage, packet 事件([afec0e3f](https://github.com/swoft-cloud/swoft-component/pull/438/commits/afec0e3f02a953f386324743e484931af46ebb45))
+- 新增 添加更多启动时的相关事件([8aaa38c4](https://github.com/swoft-cloud/swoft-component/pull/438/commits/8aaa38c42dbf3d2be8f57dbda5c4431a6907b7c5))
 
 修复(Fixed)：
 
@@ -30,18 +132,22 @@
 - 现在停止server(包含Ctrl+C)时总是会删除pid文件，修复没有删除pid文件导致docker重启失败问题([6a96b2c](https://github.com/swoft-cloud/swoft-component/pull/432/commits/6a96b2cf031e68b12ca16cd6bcb4b2263cf2d31f))
 - 修复 通过 `@Inject` 注入`Redis`连接池没有释放以及连接池全部空闲判断问题([feac3700](https://github.com/swoft-cloud/swoft-component/pull/431/commits/feac3700fd882bda0e928d041444446c2737e5e9))
 - 修复 数据库开启事物多连接池操作错误([3f80474](https://github.com/swoft-cloud/swoft-component/pull/435/commits/3f80474c477c64a558b39fcaa1d065463de37ccb))
+- 修复 `init()` 方法中使用 `config()` 函数问题([fe9b92b](https://github.com/swoft-cloud/swoft-component/pull/439/commits/fe9b92ba97964f7e19742036c26e09a56adb0f0a))
+- 修复 `getParsedQuery()` 方法初始化问题([8e05836](https://github.com/swoft-cloud/swoft-component/pull/439/commits/8e0583666993d0f6553bb93ef40fad8b603c0251))
+- 修复 一些bean会出现重复初始化(例如 `config`)问题 ([f8ef5a9a](https://github.com/swoft-cloud/swoft-component/pull/441/commits/f8ef5a9a8938e103bff77128f7d452103a4b521c))
+- 修复 Autoloader 文件与其它composer包文件冲突问题 ([ba19af363](https://github.com/swoft-cloud/swoft-component/pull/438/commits/ba19af36399ae729df8a2a3166fac477faa939e1))
 
 更新(Update):
 
-- 调整 Http server 匹配的路由数据存储，由原来的request改动存储到 context([3da893aeba](https://github.com/swoft-cloud/swoft-component/pull/426/commits/3da893aeba5b31d39744dc0e19f8da97be86ba38))
 - 修改模型方法`insert,insertGetId,updateOrInsert`只会插入定义了`@Column`字段([9c0f9505](https://github.com/swoft-cloud/swoft-component/commit/9c0f9505732414149d4222574b3913f333927222))
 - 启动swoft时加入冲突扩展相关的运行环境检查([7fa7188f](https://github.com/swoft-cloud/swoft-component/pull/432/commits/7fa7188f8479c23c10dbc3190acbc981974c5f4a))
-- 调整 `count,sum,avg,max,min` 返回值类型([c9b5e17a](https://github.com/swoft-cloud/swoft-component/pull/431/commits/c9b5e17acc970b8a4d9be1a6e6539f09dfe13430
-))
+- 调整 `count,sum,avg,max,min` 返回值类型([c9b5e17a](https://github.com/swoft-cloud/swoft-component/pull/431/commits/c9b5e17acc970b8a4d9be1a6e6539f09dfe13430))
 - Http server 路由匹配顺序优化([d8fb588](https://github.com/swoft-cloud/swoft-component/pull/435/commits/d8fb588d2c49e3dedffd3bc58580c947b37c4471))
 - 完善 RPC Client 调用错误信息提示([a1e56eb](https://github.com/swoft-cloud/swoft-component/pull/435/commits/a1e56ebbf061498632e2b21c299c8ab0fa74b117))
-- 调整 Redis `zAdd` 使用方式兼容之前的使用方式([1a3275b3](https://github.com/swoft-cloud/swoft-component/pull/436/commits/1a3275b3b2b1da144de4fe073bdfbe5c43ba7a80)
-
+- 调整 Redis `zAdd` 成员和分数的位置⚠️不向下兼容([1a3275b3](https://github.com/swoft-cloud/swoft-component/pull/436/commits/1a3275b3b2b1da144de4fe073bdfbe5c43ba7a80))
+- 调整 如果没有添加验证注解，会跳过验证解析相关流程([582c806cc](https://github.com/swoft-cloud/swoft-component/pull/438/commits/582c806cccd72383b1e6763885fcc235551b647f))
+- 去除swoole中已经废弃的 buffer full/empty 事件相关代码 ([873a97bed](https://github.com/swoft-cloud/swoft-component/pull/438/commits/873a97bedfbed87ac0205be08b6d0534fc3f0558))
+- 优化 Http server 验证器流程([0e73a8c](https://github.com/swoft-cloud/swoft-component/pull/439/commits/0e73a8ccd0778812e90dffd34ecdc922a696971c))
 
 扩展(Extra):
 
