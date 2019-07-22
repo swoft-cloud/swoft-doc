@@ -19,7 +19,7 @@ Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配
 
 - `ignoreLastSlash` _bool_ 默认：`true` 是否忽略URI path最后的 `/`
 
-如果设置为 `true` 不忽略， `/home` 与 `/home/` 将是两个不同的路由
+如果设置为 `false` 不忽略， `/home` 与 `/home/` 将是两个不同的路由
 
 - `tmpCacheNumber` _int_ 默认：`500` 动态路由缓存数量。
 
@@ -129,11 +129,18 @@ class UserController
 - 限定HTTP方法: `@RequestMapping(method={RequestMethod::GET})` 指定路由支持的HTTP方法，默认是支持 `GET` 和 `POST`
   - 比如 `method={RequestMethod::POST,RequestMethod::PUT}` 设置路由支持 `POST` 和 `PUT`
 
-## 使用说明
+## 使用注意
 
-- 通常一个完整的路由path等于 Controller的 `prefix` + Action的 `route`
-- 当你的action上的路由以 `/` 开头时，那完整的路由就是它，即不会再将 prefix 添加到它的前面。
+- **通常情况**,一个完整的路由path等于 Controller的 `prefix` + Action的 `route`
+- **特殊的**，当你的action上的路由以 `/` 开头时，那完整的路由就是它，即不会再将 prefix 添加到它的前面。
 
 > 请切记要引入相关的注解类
 `Swoft\Http\Server\Annotation\Mapping\RequestMapping`
 `Swoft\Http\Server\Annotation\Mapping\RequestMethod`
+
+## 获取匹配结果
+
+```php
+[$status, $path, $route] = $request->getAttribute(Request::ROUTER_ATTRIBUTE);
+```
+
