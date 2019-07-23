@@ -141,11 +141,10 @@
 
 - incrementing 是否为递增主键，默认为递增主键。
 
-## 使用实体
 
-### 插入数据
+## 插入数据
 
-#### 对象方式 插入获取自增 Id
+### 对象方式 插入获取自增 Id
 
 ```php
 $user = User::new();
@@ -158,7 +157,7 @@ $user->save();
 $id = $user->getId();
 ```
 
-#### 数组方式
+### 数组方式
 
 ```php
 $attributes = [
@@ -176,11 +175,11 @@ $id = $user->getId()
 
 > 在新增`save` 之后可以用过 `getter` 方法获取自增 id. 
 
-#### 批量插入
+### 批量插入
 
 如果你想批量插入可以使用 `User::insert([])`方法 使用和 查询构造器的 `insert`方法 使用完全一致
 
-### 删除数据
+## 删除数据
 
 指定 id 删除
 
@@ -201,9 +200,9 @@ $result = User::where('id', 1)->delete();
 $result = User::where('stauts',1 )->limit(1)->delete();
 ```
 
-### 更新数据
+## 更新数据
 
-#### 实体更新
+### 实体更新
 
 使用 `setter` 或者`array` 都可以更新
 
@@ -216,7 +215,7 @@ $user->setAge(1);
 $result = $user->update(['name' => $name]);
 ```
 
-#### 条件批量更新
+### 条件批量更新
 
 更新一条数据
 
@@ -234,7 +233,7 @@ $result   = User::where($wheres)
                 ->update(['status' => 1]);
 ```
 
-#### 更新/插入
+### 更新/插入
 
 可以使用`updateOrCreate` 返回的是一个实体
 
@@ -249,7 +248,7 @@ echo $user->getName();
 $isOk = User::updateOrInsert(['id' => 1], ['age' => 18, 'name' => 'sakuraovq']);
 ```
 
-#### 使用主键进行批量更新
+### 使用主键进行批量更新
 
 在这例子中 `id` 是 `User`实体的 `@Id()` 主键
 
@@ -264,7 +263,7 @@ User::batchUpdateByIds($values);
 
 > 使用批量更新 必须指定主键的值, 框架会根据主键的值进行 批量更新
 
-#### 快速更新
+### 快速更新
 
 如果已知道 更新的 主键 `id` 可以使用 `modifyById` 方法进行快速更新
  
@@ -290,7 +289,7 @@ User::batchUpdateByIds($values);
 
 > 方法 1 和方法 2 是相同的意思
 
-#### 递增/递减
+### 递增/递减
 
 **单个字段 递增/递减**
 
@@ -319,7 +318,7 @@ User::batchUpdateByIds($values);
 ```
 
 
-### 查询数据
+## 查询数据
 
 > 模型的查询方法和查询构造器完全兼容
 
@@ -370,7 +369,7 @@ foreach ($users as $id => $user) {
 $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 ```
 
-### 分块结果
+## 分块结果
 
 如果你需要处理数千个 Eloquent 记录，可以使用 `chunk` 命令。`chunk` 方法会检索 Eloquent 模型的「分块」，将它们提供给指定的 `Closure` 进行处理。在处理大型结果集时，使用 `chunk` 方法可节省内存：
 
@@ -386,7 +385,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 传递到方法的第一个参数是希望每个「分块」接收的数据量。闭包则被作为第二个参数传递，它会在每次执行数据库查询传递每个块时被调用。
 
 
-#### 使用游标
+### 使用游标
 
 `cursor` 允许你使用游标来遍历数据库数据，该游标只执行一个查询。处理大量数据时，可以使用 `cursor` 方法可以大幅度减少内存的使用量：
 
@@ -396,7 +395,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
     }
 ```
 
-### 「找不到」异常
+## 「找不到」异常
 
 如果你希望在找不到模型时抛出异常，可以使用 `findOrFail` 以及 `firstOrFail` 方法。这些方法会检索查询的第一个结果。如果没有找到相应结果，就会抛出一个 `DbException`：
 
@@ -406,7 +405,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
     $model = App\Flight::where('legs', '>', 100)->firstOrFail();
 ```
 
-### 赋值
+## 赋值
  如果你觉得 `setter` 太麻烦了可以使用,批量填充功能, 使用这种方式要注意如果该字段`没有匹配`到 `@Column` 值将会被忽 这样能保证安全的更新和插入
  ```php
 // Properties
@@ -422,7 +421,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
     $result3 = User::new()->fill($attributes)->save();
 ```
 
-### 检索集合
+## 检索集合
 
 你还可以使用 [查询构造器](builder.md) 提供的 `count`、`sum`、`max` 以及其它 聚合函数。这些方法只会返回适当的标量值而不是整个模型实例：
 
@@ -432,9 +431,9 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
     $max = App\Flight::where('active', 1)->max('price');
 ```
 
-### 其他创建方法
+## 其他创建方法
 
-#### `firstOrCreate`/ `firstOrNew`
+### `firstOrCreate`/ `firstOrNew`
 你还可以使用其他两种方法来创建模型：`firstOrCreate` 和 `firstOrNew`。`firstOrCreate` 方法会使用给定的字段及其值在数据库中查找记录。如果在数据库中找不到模型，则将使用第一个参数中的属性以及可选的第二个参数中的属性插入记录。
 
 `firstOrNew` 方法就类似 `firstOrCreate` 方法，会在数据库中查找匹配给定属性的记录。如果模型未被找到，则会返回一个新的模型实例。请注意，在这里面，`firstOrnew` 返回的模型还尚未保存到数据库，必须要手动调用 `save` 方法才能保存它：
@@ -456,7 +455,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
     );
 ```
 
-#### `updateOrCreate`
+### `updateOrCreate`
 你也可能会遇到想要更新现有模型或创建新模型（如果不存在）的情况。Swoft 提供了 `updateOrCreate` 方法来完成该操作，像 `firstOrCreate` 方法一样，`updateOrCreate` 方法会保存模型，所以不需要调用 `save()` :
 
 ```php
