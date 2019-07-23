@@ -200,9 +200,8 @@ $result = User::where('id', 1)->delete();
 $result = User::where('stauts',1 )->limit(1)->delete();
 ```
 
-## 更新数据
 
-### 实体更新
+## 实体更新
 
 使用 `setter` 或者`array` 都可以更新
 
@@ -215,7 +214,7 @@ $user->setAge(1);
 $result = $user->update(['name' => $name]);
 ```
 
-### 条件批量更新
+## 条件批量更新
 
 更新一条数据
 
@@ -233,7 +232,7 @@ $result   = User::where($wheres)
                 ->update(['status' => 1]);
 ```
 
-### 更新/插入
+## 更新/插入
 
 可以使用`updateOrCreate` 返回的是一个实体
 
@@ -248,7 +247,7 @@ echo $user->getName();
 $isOk = User::updateOrInsert(['id' => 1], ['age' => 18, 'name' => 'sakuraovq']);
 ```
 
-### 使用主键进行批量更新
+## 使用主键进行批量更新
 
 在这例子中 `id` 是 `User`实体的 `@Id()` 主键
 
@@ -263,7 +262,7 @@ User::batchUpdateByIds($values);
 
 > 使用批量更新 必须指定主键的值, 框架会根据主键的值进行 批量更新
 
-### 快速更新
+## 快速更新
 
 如果已知道 更新的 主键 `id` 可以使用 `modifyById` 方法进行快速更新
  
@@ -289,7 +288,7 @@ User::batchUpdateByIds($values);
 
 > 方法 1 和方法 2 是相同的意思
 
-### 递增/递减
+## 递增/递减
 
 **单个字段 递增/递减**
 
@@ -385,7 +384,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 传递到方法的第一个参数是希望每个「分块」接收的数据量。闭包则被作为第二个参数传递，它会在每次执行数据库查询传递每个块时被调用。
 
 
-### 使用游标
+## 使用游标
 
 `cursor` 允许你使用游标来遍历数据库数据，该游标只执行一个查询。处理大量数据时，可以使用 `cursor` 方法可以大幅度减少内存的使用量：
 
