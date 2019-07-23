@@ -141,6 +141,7 @@
 
 - incrementing 是否为递增主键，默认为递增主键。
 
+
 ## 插入数据
 
 ### 对象方式 插入获取自增 Id
@@ -432,8 +433,8 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 
 ## 其他创建方法
 
-### firstOrCreate and firstOrNew
-
+### `firstOrCreate`/ `firstOrNew`
+ 
 你还可以使用其他两种方法来创建模型：`firstOrCreate` 和 `firstOrNew`。`firstOrCreate` 方法会使用给定的字段及其值在数据库中查找记录。如果在数据库中找不到模型，则将使用第一个参数中的属性以及可选的第二个参数中的属性插入记录。
 
 `firstOrNew` 方法就类似 `firstOrCreate` 方法，会在数据库中查找匹配给定属性的记录。如果模型未被找到，则会返回一个新的模型实例。请注意，在这里面，`firstOrnew` 返回的模型还尚未保存到数据库，必须要手动调用 `save` 方法才能保存它：
