@@ -110,9 +110,9 @@
  
 > 如果没有定义 `@Column` 的列, 使用插入/更新 的不存在`@Column`值, 将会被框架自动过滤. 
 
-### 注解标签 
+## 注解标签 
 
-#### @Entity
+### @Entity
 
 标记一个类是一个实体，有两个参数
 
@@ -121,7 +121,7 @@
 
 假如 `User` 表 是 `MySQL` 的， `Count` 表 可以是 `PostSQL` 的使用不同的连接池即可实现。
 
-#### @Column
+### @Column
 
 标记一个列，如果一个列没有定义`@Column`那么查询它将不会显示，这样即使你新增了数据库字段也不会影响生产环境运行。
 
@@ -135,7 +135,7 @@
 
 2.x 去掉了 type 属性 现在会使用 属性上定义的 `@var` 注解定义的第一个类型，决定了返回值类型，底层会强转类型
 
-#### @Id
+### @Id
 
 该注解标明当前类属性对应了数据库表中的主键，必须有这个注解标记，不能设置多个`@Id`注解
 
@@ -434,9 +434,11 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 ## 其他创建方法
 
 ### `firstOrCreate`/ `firstOrNew`
+ 
 你还可以使用其他两种方法来创建模型：`firstOrCreate` 和 `firstOrNew`。`firstOrCreate` 方法会使用给定的字段及其值在数据库中查找记录。如果在数据库中找不到模型，则将使用第一个参数中的属性以及可选的第二个参数中的属性插入记录。
 
 `firstOrNew` 方法就类似 `firstOrCreate` 方法，会在数据库中查找匹配给定属性的记录。如果模型未被找到，则会返回一个新的模型实例。请注意，在这里面，`firstOrnew` 返回的模型还尚未保存到数据库，必须要手动调用 `save` 方法才能保存它：
+
 ```php
     // 通过 name 属性检索航班，当结果不存在时创建它...
     $flight = App\Flight::firstOrCreate(['name' => 'Flight 10']);
@@ -456,6 +458,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 ```
 
 ### `updateOrCreate`
+
 你也可能会遇到想要更新现有模型或创建新模型（如果不存在）的情况。Swoft 提供了 `updateOrCreate` 方法来完成该操作，像 `firstOrCreate` 方法一样，`updateOrCreate` 方法会保存模型，所以不需要调用 `save()` :
 
 ```php
