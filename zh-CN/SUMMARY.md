@@ -191,6 +191,7 @@
   * [打包应用为PHAR](tool/swoftcli/build-phar.md)
 
 ### [Devtool](tool/devtool/index.md)
+
   * [实体生成](tool/devtool/entity.md)
   * [数据迁移](tool/devtool/migrations.md)
 
@@ -199,6 +200,7 @@
   * [视图渲染](extra/view.md)
   * [Apollo](extra/apollo.md)
   * [Consul](extra/consul.md)
+  * [Whoops](extra/whoops.md)
 
 ### [开发组件](component/index.md)
 
