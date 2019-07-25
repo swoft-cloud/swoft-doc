@@ -1,5 +1,12 @@
 # 客户端通信
 
+你可以直接使用 swoole 提供的 `Swoole\Coroutine\Client` 作为tcp客户端，快速的对接swoft的tcp sever。
+
+为了分包和数据解析与tcp server保持一致，你需要依赖tcp协议包:
+
+```bash
+composer require swoft/tcp
+```
 
 ## swoft 示例
 
@@ -25,6 +32,9 @@ use const SWOOLE_SOCK_TCP;
         // $proto->setOpenLengthCheck(true);
 
         var_dump($proto->getConfig());
+        
+        $host = '127.0.0.1';
+        $port = 18309;
         
         $client = new Client(SWOOLE_SOCK_TCP);
         // Notice: config client
