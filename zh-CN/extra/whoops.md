@@ -46,7 +46,9 @@ composer require swoft/whoops
 
 ```php
 <?php declare(strict_types=1);
+
 namespace App\Exception\Handler;
+
 use ReflectionException;
 use Swoft\Bean\Exception\ContainerException;
 use Swoft\Error\Annotation\Mapping\ExceptionHandler;
@@ -58,6 +60,7 @@ use Throwable;
 use function bean;
 use function context;
 use const APP_DEBUG;
+
 /**
  * Class HttpExceptionHandler
  *
@@ -79,14 +82,17 @@ class HttpExceptionHandler extends AbstractHttpErrorHandler
         if ($request->getUriPath() === '/favicon.ico') {
             return $response->withStatus(404);
         }
+        
         // Log
         CLog::error($e->getMessage());
+        
         // Debug is false
         if (!APP_DEBUG) {
             return $response
                 ->withStatus(500)
                 ->withContent($e->getMessage());
         }
+        
         // Debug is true
         $whoops  = bean(WhoopsHandler::class);
         $content = $whoops->run($e, $request);
@@ -96,7 +102,6 @@ class HttpExceptionHandler extends AbstractHttpErrorHandler
 ```
 
 现在我们重启 http server，当出现异常时就可以看到由 `whoops` 渲染的错误信息页面了。
-
 
 ## 参与贡献
 
