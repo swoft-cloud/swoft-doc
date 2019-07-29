@@ -9,7 +9,7 @@ tcp server 的 host, port 等配置是都是完全可以自定义的。
 
 可配置项用于 `tcpServer` bean 配置，除了 `class` 其他都是 `TcpServer` 的属性。
 
-- `class` 指定 tcp server 的处理类
+- `class` 指定 tcp server 的bean类，默认即是 `Swoft\Tcp\Server\TcpServer::class`
 - `port` 指定 tcp server 的端口
 - `listener` 指定其他一同启动的服务，添加端口服务监听，可以多个。
     - rpc 启动 `RPC` 服务
