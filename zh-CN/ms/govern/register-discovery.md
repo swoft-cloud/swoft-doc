@@ -4,7 +4,7 @@
 
 ## 服务注册
 
-无论是 http / rpc / ws 服务，启动的时候只需监听 `SwooleEvent::START` 事件，即可启把启动的服务注册到第三方集群。
+无论是 http / rpc / ws 服务，启动的时候只需监听 `SwooleEvent::START` 事件，即可把启动的服务注册到第三方集群。
 
 ### 注册服务
 
@@ -220,7 +220,9 @@ class RpcProvider implements ProviderInterface
 >  db / redis 也是支持这种方式发现可用的服务，但是需要实现其相应的接口。
 
 
-有了服务提供者，现在接下把服务提供者，配置(app/bean.php)到对应的 RPC 服务上面:
+现在我们有了服务提供者，接下来将其配置到对应的 RPC 服务上面:
+
+`app/bean.php`
 
 ```php
 return [
@@ -244,5 +246,5 @@ return [
 ];
 ```
 
-- 这里在 user 服务上，通过 `provider` 熟悉注册注入了一个服务提供者 `RpcProvider::class` (bean 名称)
+- 这里在 user 服务上，通过 `provider` 参数注入了一个服务提供者 `RpcProvider::class` (bean 名称)
 

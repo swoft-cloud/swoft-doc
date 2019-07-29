@@ -11,11 +11,12 @@ Modern High performance AOP and Coroutine PHP Framework, based on Swoole
 
 - QQ Group (1): **548173319**
 - QQ Group (2): **778656850**
+- Gitter.im https://gitter.im/swoft-cloud/community
 
 ## Languages
 
 - [简体中文](./zh-CN)
-- [English](./en)
+- [English](https://en.swoft.org/docs)
 - More ...
 
 ## LICENSE
