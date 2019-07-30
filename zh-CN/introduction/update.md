@@ -6,6 +6,17 @@
 修复(Fixed)：
 
 - 修复提前中断请求逻辑可能导致无法正确的格式化对应的Content-Type [f031398](https://github.com/swoft-cloud/swoft-component/pull/493/commits/f03139886a471a0424d236061e8cb30d90b32a89)
+- 修复使用sgo创建子协程，在结束时没有清理与顶级协程的映射关系 [de11ae5b](https://github.com/swoft-cloud/swoft-component/pull/493/commits/de11ae5bc63833b80ca491132d156d51b95f6c8d)
+
+更新(Update):
+
+- 默认的 worker num 设置通过 `swoole_cpu_num` 函数获取 [553f6500](https://github.com/swoft-cloud/swoft-component/pull/493/commits/553f6500678b258080b84cffeab0fe2d5bf65550)
+
+增强(Enhancement)：
+
+- websocket server 的全部消息发送方法，支持传入 `opcode· 参数 [dc164ffe9](https://github.com/swoft-cloud/swoft-component/pull/493/commits/dc164ffe97d507e505ac8cd1b50a421a27ae5859)
+- websocket 模块允许设置当前模块的默认 `opcode`，用于自动处理返回数据设置 `opcode` [9e3e9672](https://github.com/swoft-cloud/swoft-component/pull/493/commits/9e3e9672ed83579e6135ed47ae0c30ef335d8659)
+- 增强 websocket 相关类，现在消息处理方法允许注入更多数据对象类型 `Request` `Response` [3d6c60b4](https://github.com/swoft-cloud/swoft-component/pull/493/commits/3d6c60b4812535c48d51c57476f801529f66655f)
 
 扩展(Extra):
 
