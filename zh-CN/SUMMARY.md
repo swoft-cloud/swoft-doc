@@ -121,6 +121,7 @@
 
   * [配置服务](tcp-server/config.md)
   * [管理服务](tcp-server/manage.md)
+  * [事件通知](tcp-server/event.md)
   * [控制器](tcp-server/controller.md)
   * [客户端通信](tcp-server/client-communicate.md)
 
