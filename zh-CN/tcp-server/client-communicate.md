@@ -120,3 +120,13 @@ $ret = request('tcp://127.0.0.1:18309', 'echo', 'i an client');
 
 var_dump($ret);
 ```
+
+## 测试通信
+
+你可以复制上面的示例代码，新建一个php文件来运行测试。
+
+当然，最方便直接的就是使用我们 `devtool` 包里提供的 `dclient:tcp` 工具命令。
+
+运行：`php bin/swoft dclient:tcp -h` 查看命令帮助
+
+![](https://raw.githubusercontent.com/swoft-cloud/swoft-doc/2.x/zh-CN/image/tcp-server/devtool-tcp-test.png)
