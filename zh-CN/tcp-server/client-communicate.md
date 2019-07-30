@@ -8,6 +8,8 @@
 composer require swoft/tcp
 ```
 
+开始之前，首先你得确认你已经启动了tcp server端，并且保持客户端与服务端的 **协议设置是一致的**。
+
 ## swoft 示例
 
 ```php
