@@ -1,6 +1,17 @@
 # 版本更新
 
-## 2.0.4-beta
+
+## 2.0.5-beta
+
+修复(Fixed)：
+
+- 修复提前中断请求逻辑可能导致无法正确的格式化对应的Content-Type [f031398](https://github.com/swoft-cloud/swoft-component/pull/493/commits/f03139886a471a0424d236061e8cb30d90b32a89)
+
+扩展(Extra):
+
+- [swoft/whoops](https://github.com/swoft-cloud/swoft-whoops.git) 对 `filp/whoops` 在swoft中使用的简单封装，用于渲染并显示更加利于阅读的错误信息
+
+## 2.0.4-beta(2019-07-21)
 
 > 升级注意：
 1. 请去掉 `bin/swoft` 里的 `Runtime::enanbleCoroutine()` 设置
