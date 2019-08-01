@@ -88,7 +88,7 @@ $compiler->setStripFilter(function ($file) use ($stripDirs) {
 
 ## 展开Phar包
 
-讲一个打包过的 phar 展开，类似于解压缩。
+将一个打包过的 phar 展开，类似于解压缩。
 
 ```bash
 swoftcli phar:unpack myapp.phar
