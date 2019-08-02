@@ -22,9 +22,9 @@
 
 参数
 
-* `cron` 任务的 Crontab 表达式，支持到秒
+* `value` 任务的 Crontab 表达式，支持到秒
 
-使用示例： `@Cron("* * * * * *")`、`@Cron(cron="* * * * * *")`，表达式可简写，例如一个每秒都要执行的任务则可定义为 `@Cron("*")`
+使用示例： `@Cron("* * * * * *")`、`@Cron(value="* * * * * *")`，表达式可简写，例如一个每秒都要执行的任务则可定义为 `@Cron("*")`
 
 ## Cron格式说明
 
@@ -58,6 +58,9 @@
 
 namespace App\Crontab;
 
+use Swoft\Crontab\Annotaion\Mapping\Cron;
+use Swoft\Crontab\Annotaion\Mapping\Scheduled;
+
 /**
  * Class CronTask
  *
@@ -88,14 +91,14 @@ class CronTask
 
 ## 配置启用
 
-定时任务的执行是基于 Swoft 的 [进程](process/index.md),所以我们需要和使用 [用户进程](process/user-process.md)  的方式一样在配置中启用 Crontab 组件的自定义进程 `Swoft\Crontab\Crontab` 即可。
+定时任务的执行是基于 Swoft 的 [进程](process/index.md),所以我们需要和使用 [用户进程](process/user-process.md)  的方式一样在配置中启用 Crontab 组件的自定义进程即可。
 
 ```php
  return [
     'httpServer'     => [
             // ...
             'process' => [
-                'crontab' => bean(Crontab::class)
+                'crontab' => bean(Swoft\Crontab\Crontab::class)
             ],
             // ...
         ],
