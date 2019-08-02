@@ -22,9 +22,9 @@
 
 参数
 
-* `cron` 任务的 Crontab 表达式，支持到秒
+* `value` 任务的 Crontab 表达式，支持到秒
 
-使用示例： `@Cron("* * * * * *")`、`@Cron(cron="* * * * * *")`，表达式可简写，例如一个每秒都要执行的任务则可定义为 `@Cron("*")`
+使用示例： `@Cron("* * * * * *")`、`@Cron(value="* * * * * *")`，表达式可简写，例如一个每秒都要执行的任务则可定义为 `@Cron("*")`
 
 ## Cron格式说明
 
@@ -58,6 +58,9 @@
 
 namespace App\Crontab;
 
+use Swoft\Crontab\Annotaion\Mapping\Cron;
+use Swoft\Crontab\Annotaion\Mapping\Scheduled;
+
 /**
  * Class CronTask
  *
@@ -88,17 +91,27 @@ class CronTask
 
 ## 配置启用
 
-定时任务的执行是基于 Swoft 的 [进程](process/index.md),所以我们需要和使用 [用户进程](process/user-process.md)  的方式一样在配置中启用 Crontab 组件的自定义进程 `Swoft\Crontab\Crontab` 即可。
+定时任务的执行是基于 Swoft 的 [进程](process/index.md),所以我们需要和使用 [用户进程](process/user-process.md)  的方式一样在配置中启用 Crontab 组件的自定义进程即可。
 
 ```php
  return [
     'httpServer'     => [
             // ...
             'process' => [
-                'crontab' => bean(Crontab::class)
+                'crontab' => bean(Swoft\Crontab\Crontab::class)
             ],
             // ...
         ],
  ];   
 ```
 如上我们就配置成功了服务启动后，我们的定时任务进程也会随之启动
+
+## 直接调用执行定时任务
+
+除了定时执行我们设置好的任务外，我们还可以在业务代码中直接手动执行我们的定时任务，方法如下。
+
+```php
+    $crontab = BeanFactory::getBean("crontab");
+    $crontab->execute("testCrontab", "method");
+```
+通过 Bean 容器拿到 crontab 管理器，然后直接使用 `execute($beanName,$methodName)` 方法，此方法有两个参数,`$beanName` 就是传入在 `@Scheduled()` 注解中设置的名字，`$methodName` 则是传入 `@Scheduled()` 标注的类中，`@Cron()` 标注的方法。
