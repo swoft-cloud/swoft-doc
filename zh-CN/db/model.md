@@ -486,7 +486,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
     class User
     {
         /**
-         * 该模型是否被自动维护时间戳
+         * Whether the model is automatically maintained with a timestamp
          *
          * @var bool
          */
@@ -498,10 +498,10 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 
 ```php
 <?php
-    class UserDao extends User
+    class User
     {
         /**
-         * 模型的日期字段的存储格式
+         * The storage format of the model's date field
          *
          * @var string
          */
