@@ -105,3 +105,13 @@ class CronTask
  ];   
 ```
 如上我们就配置成功了服务启动后，我们的定时任务进程也会随之启动
+
+## 直接调用执行定时任务
+
+除了定时执行我们设置好的任务外，我们还可以在业务代码中直接手动执行我们的定时任务，方法如下。
+
+```php
+    $crontab = BeanFactory::getBean("crontab");
+    $crontab->execute("testCrontab", "method");
+```
+通过 Bean 容器拿到 crontab 管理器，然后直接使用 `execute($beanName,$methodName)` 方法，此方法有两个参数,`$beanName` 就是传入在 `@Scheduled()` 注解中设置的名字，`$methodName` 则是传入 `@Scheduled()` 标注的类中，`@Cron()` 标注的方法。
