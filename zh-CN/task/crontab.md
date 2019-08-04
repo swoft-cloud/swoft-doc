@@ -2,7 +2,9 @@
 
 在某些情况下需要定时的去执行某些任务，通常我们会使用 Linux 系统自带的 Crontab 去定时的执行我们编写好的脚本，但是这样及其不方便，首先 Linux 系统默认的 Crontab 最小单位只能支持到分钟，无法支持秒级任务，其次，如果我们重新编写脚本，则不能很方便友好的复用框架内的资源，如 Mysql 连接资源，框架中的各种类库。针对以上问题，框架为我们内置了一个 Crontab 组件，可以支持秒级任务。
 
-## 注解
+> 可用自 `>= v2.0.5`
+
+## 注解
 
 在 Swoft 中，定时任务的使用非常的简单，只需要使用相关注解定义你的任务类即可。
 
@@ -114,4 +116,5 @@ class CronTask
     $crontab = BeanFactory::getBean("crontab");
     $crontab->execute("testCrontab", "method");
 ```
+
 通过 Bean 容器拿到 crontab 管理器，然后直接使用 `execute($beanName,$methodName)` 方法，此方法有两个参数,`$beanName` 就是传入在 `@Scheduled()` 注解中设置的名字，`$methodName` 则是传入 `@Scheduled()` 标注的类中，`@Cron()` 标注的方法。
