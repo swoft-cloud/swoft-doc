@@ -121,7 +121,7 @@ class TestSubscriber implements EventSubscriberInterface
 - `Swoft::triggerByArray('event name', mixd $target, array $args)`
 
 ```php
-\Swoft::trigger('event name', null, [
+\Swoft::triggerByArray('event name', null, [
     'arg0' => $arg0,
     'arg0' => $arg1
 ]);
