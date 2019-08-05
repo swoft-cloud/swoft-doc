@@ -2,7 +2,7 @@
 
 `swoft/whoops` 是对 `filp/whoops` 在swoft中使用的简单封装，用于渲染并显示更加利于阅读的异常错误信息。
 
-![swoft-whoops](https://raw.githubusercontent.com/swoft-cloud/swoft-doc/2.x/zh-CN/image/extra/swoft-whoops.png)
+![swoft-whoops](https://raw.githubusercontent.com/swoft-cloud/swoft-doc/2.x/zh-CN/image/extra/swoft-whoops.jpg)
 
 ## Github
 
