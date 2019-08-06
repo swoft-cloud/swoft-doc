@@ -36,6 +36,9 @@
 - [swoft/crontab](https://github.com/swoft-cloud/swoft-crontab.git) 秒级别定时任务
 - [swoft/whoops](https://github.com/swoft-cloud/swoft-whoops.git) 对 `filp/whoops` 在swoft中使用的简单封装，用于渲染并显示更加利于阅读的错误信息
 
+<p class="tip"> 2.0.5+ 验证器默认关闭，需要开发者开启([详细文档](https://github.com/swoft-cloud/swoft-whoops.git)) </p>
+
+
 ## 2.0.4-beta(2019-07-21)
 
 > 升级注意：
