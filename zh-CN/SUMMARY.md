@@ -163,6 +163,7 @@
   
 ### [验证器](validator/index.md)
 
+  * [配置](validator/setting.md)
   * [声明验证器](validator/statement.md)
   * [自定义验证器](validator/user-validator.md)
   * [自定义验证器规则](validator/customer-rule.md)
