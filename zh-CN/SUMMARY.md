@@ -70,6 +70,7 @@
 ### [公共方法](common/index.md)
 
   * [协程方法](common/co.md)
+  * [定时器](common/timer.md)
   * [通用函数](common/generic.md)
   * [基础帮助库](common/stdlib.md)
 

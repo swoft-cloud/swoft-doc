@@ -100,7 +100,7 @@ class CronTask
     'httpServer'     => [
             // ...
             'process' => [
-                'crontab' => bean(Swoft\Crontab\Crontab::class)
+                'crontab' => bean(Swoft\Crontab\Process\CrontabProcess::class)
             ],
             // ...
         ],
@@ -108,7 +108,7 @@ class CronTask
 ```
 如上我们就配置成功了服务启动后，我们的定时任务进程也会随之启动
 
-## 直接调用执行定时任务
+## 手动执行
 
 除了定时执行我们设置好的任务外，我们还可以在业务代码中直接手动执行我们的定时任务，方法如下。
 
