@@ -101,7 +101,7 @@ class CronTask
 
 ## 配置启用
 
-定时任务的执行是基于 Swoft 的 [进程](process/index.md),所以我们需要和使用 [用户进程](process/user-process.md)  的方式一样在配置中启用 Crontab 组件的自定义进程即可。
+定时任务的执行是基于 Swoft 的 [进程](../process/index.md),所以我们需要和使用 [用户进程](../process/user-process.md)  的方式一样在配置中启用 Crontab 组件的自定义进程即可。
 
 ```php
  return [
