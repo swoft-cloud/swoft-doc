@@ -80,9 +80,9 @@ class DemoAspect
 
 > 注意 实体名称(类名)必须指定 namespace 完整路径 例如 'App\Controller\HomeController' 或者先用 use 将目标类 use 进来
 
-示例：`@PointExecution(include={"App\Http\Controller\AspectTestController::a.*"})`
+示例：`@PointExecution(include={"App\\Http\\Controller\\AspectTestController::a.*"})`
 
-这里需要注意下，如果需要使用正则，则传入的必须使用`双引号 " " ` 引起来，同时双引号内必须是类的完整路径。
+这里需要注意下，如果需要使用正则，则传入的必须使用`双引号 " " ` 引起来，命名空间分隔符必须使用 `\` 转义，同时双引号内必须是类的完整路径。
 
 
 > @PointBean、@PointAnnotation、@PointExecution 三种定义的关系是并集，三种里面定义的排除也是并集后在排除。建议为了便于理解和使用，一个切面类尽量只使用上面三个中的一个
