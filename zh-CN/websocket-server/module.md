@@ -118,13 +118,12 @@ class EchoModule
      * On connection has open
      *
      * @OnOpen()
-     * @param Server  $server
      * @param Request $request
      * @param int     $fd
      */
-    public function onOpen(Server $server, Request $request, int $fd): void
+    public function onOpen(Request $request, int $fd): void
     {
-        $server->push($fd, 'hello, welcome! :)');
+        server()->push($fd, 'hello, welcome! :)');
     }
 
     /**
