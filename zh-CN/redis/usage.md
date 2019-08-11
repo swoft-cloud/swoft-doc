@@ -114,7 +114,7 @@ $redis->get("a");
 >  Redis::connection(); 如果没有指定连接池名字,默认会从 系统定义的`redis.pool `连接池中获取连接,该方法
 返回的是一个`连接`, 而不是`连接池`. 不要`共享连接`,要`共享连接池`
 
- 获取的连接了之后和 操作 和`phpredis` 原生使用方式扩展一致 如何创建连接池 参考 `redis 设置`章节
+ 获取的连接了之后，操作和`phpredis` 原生使用方式扩展一致。如何创建连接池 参考 `redis 设置`章节
  ，默认是在 `redis.pool`连接池中获取的
  
  ## 缓存命中率
@@ -158,7 +158,7 @@ class RedisBeforeListener implements EventHandlerInterface
 ```
  ### after 事件
  
-在 `Redis` 命令之后会抛出 `RedisEvent::AFTER_COMMAND` 事件 你可以监听命令的执行情况，如果在执行命令中出现异常 不会抛出 `RedisEvent::AFTER_COMMAND` 事件
+在 `Redis` 命令之后会抛出 `RedisEvent::AFTER_COMMAND` 事件，你可以监听命令的执行情况，如果在执行命令中出现异常则不会抛出 `RedisEvent::AFTER_COMMAND` 事件
 ```php
 <?php declare(strict_types=1);
 
