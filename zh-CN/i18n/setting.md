@@ -7,7 +7,7 @@
 
 
 ### 1.导入文本
-我们在 resource/language/ 文件夹下可创建语言组文件夹,与其文本文件,一个语言组中可以后多个模板文件,如下所示
+我们在 resource/language/ 文件夹下可创建语言组文件夹与文本文件，一个语言组中可以有多个模板文件，如下所示
 ``` shell
 # resource/language
 |-- zh
@@ -61,7 +61,7 @@ return [
         // 未填写则默认 en 文件夹
         'defaultLanguage'   => 'en',
 
-        // 设置默认默认文本文件名称
+        // 设置默认文本文件名称
         // 未填写则默认 default.php
         'defualtCategory'   => 'default',
     ],
