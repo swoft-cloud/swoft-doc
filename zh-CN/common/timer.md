@@ -18,7 +18,7 @@ $paramTwo = 1;
 
 `\Swoft\Timer::tick` 详细参数：
 
-- $msec 周期执行的时间，单位是微妙
+- $msec 周期执行的时间，单位是毫秒
 - $callback 回调函数
 - $params 传递的参数，会原封不动的传递给回调函数。
 
@@ -34,6 +34,6 @@ $paramTwo = 1;
 }, $paramOne, $paramTwo);
 ```
 
-- $msec 延迟时间，单位是微妙
+- $msec 延迟时间，单位是毫秒
 - $callback 回调函数
 - $params 传递的参数，会原封不动的传递给回调函数。
