@@ -73,7 +73,8 @@
   * [定时器](common/timer.md)
   * [通用函数](common/generic.md)
   * [基础帮助库](common/stdlib.md)
-
+    * [数组](common/stdlib-array.md)
+    
 ## 核心
 
 ### [命令行](console/index.md)
