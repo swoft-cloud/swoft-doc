@@ -1,6 +1,6 @@
 # 版本更新
 
-## 2.0.6
+## v2.0.6
 
 **修复(Fixed)**：
 
@@ -19,8 +19,9 @@
 
 **扩展(Extra)**:
 
+- `swoftcli` 已经支持基本的应用骨架和组件结构创建，以及部分类文件生成功能
 
-## 2.0.5-beta(2019-08-06)
+## v2.0.5-beta(2019-08-06)
 
 修复(Fixed)：
 
@@ -58,7 +59,7 @@
 <p class="tip"> 2.0.5+ 验证器默认关闭，需要开发者开启(<a href="https://www.swoft.org/docs/2.x/zh-CN/validator/setting.html">validator setting</a>) </p>
 
 
-## 2.0.4-beta(2019-07-21)
+## v2.0.4-beta(2019-07-21)
 
 > 升级注意：
 1. 请去掉 `bin/swoft` 里的 `Runtime::enanbleCoroutine()` 设置
@@ -101,7 +102,7 @@
 - 进程池([d2e6290](https://github.com/swoft-cloud/swoft-component/pull/480/commits/d2e6290f5a397d038c0aabe03fc719493207562f))
 - TCP server 基本可用
 
-## 2.0.3-beta(2019-07-08)
+## v2.0.3-beta(2019-07-08)
 
 不兼容(Incompatible)
 
@@ -154,7 +155,7 @@
 - 新增 limter 组件
 - 新增 tcp-server 组件
 
-## 2.0.2-beta(2019-06-21)
+## v2.0.2-beta(2019-06-21)
 
 新增(Enhancement)：
 
@@ -211,7 +212,7 @@
 
 - `swoft/view` 添加通过 `@View` 渲染视图支持
 
-## 2.0.1-beta (2019-05-29)
+## v2.0.1-beta (2019-05-29)
 
 新增(Enhancement)：
 
@@ -249,7 +250,7 @@ Devtool
 
 - 新 bean 方法代码智能提示(`bean()`/`BeanFactory::getBean()`/`Swoft::getBean()`)([b63fe07](https://github.com/swoft-cloud/swoft-devtool/commit/b63fe07a1ab7140bcc0b78fcde558b8a0cc83172))
 
-## 2.0.0-beta (2019-05-21)
+## v2.0.0-beta (2019-05-21)
 
 Swoft 2 重构归来，基于 Swoole hook 方式，底层完全重构，相比之前更佳简单、稳定、易上手。
 
