@@ -1,22 +1,23 @@
 # 版本更新
+
 ## 2.0.6
 
-修复(Fixed)：
+**修复(Fixed)**：
 
 - 修复 ws server收到消息时，默认使用当前fd作为响应消息的客户端 [3a8890cf](https://github.com/swoft-cloud/swoft-component/pull/504/commits/3a8890cfd5a4641042eb7714c6afe65e15b0b461)
 - 修复 ws server通过swoole server拿到的全部连接里，fd的类型可能不是整型导致报错。[0fa79d7](https://github.com/swoft-cloud/swoft-component/pull/504/commits/0fa79d7e5747d47883a104e2d6ab24c90b745453)
 
-更新(Update):
+**更新(Update)**:
 
 - 调整 ws server在worker 退出时自动关闭连接，添加开关配置，可以选择是否开启。[3a8890c](https://github.com/swoft-cloud/swoft-component/pull/504/commits/3a8890cfd5a4641042eb7714c6afe65e15b0b461)
 
-增强(Enhancement)：
+**增强(Enhancement)**：
 
 - 新增日志按时间切割 [f649df2](https://github.com/swoft-cloud/swoft-component/pull/503/commits/f649df2cf6bb7635ae2f0bff8ae8250e4bdecbf3)
 - 新增日志支持传递额外参数 [55d5533](https://github.com/swoft-cloud/swoft-component/pull/503/commits/55d55335f77572611ae0a469f5c848454838fc1f)
 - 调整和新增了一些ws server相关事件，方便用户使用 [e1b0583](https://github.com/swoft-cloud/swoft-component/pull/504/commits/e1b058340e27e6773a3fbac0daafaffbabea5571)
 
-扩展(Extra):
+**扩展(Extra)**:
 
 
 ## 2.0.5-beta(2019-08-06)
