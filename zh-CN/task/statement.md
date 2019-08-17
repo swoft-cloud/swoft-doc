@@ -60,4 +60,7 @@ class TestTask
 
 - name 名称映射，默认就类的方法名称
 
-> 被 `@Task` 标记类的每个方法就是一个任务，如果方法没有使用 `@TaskMapping` 注解，不会解析成任务。
+> ##### 注意
+> 1. 被 `@Task` 标记类的每个方法就是一个任务，如果方法没有使用 `@TaskMapping` 注解，不会解析成任务。
+> 2. Task投递前，会经过 `Swoft\Task\Packet::pack()` 方法被json_encode，因此，投递entity时，task获得的是entity的数组。同时，投递无法被json_encode的参数会导致报错
+（如果是异步任务且没有开启额外的日志，可能效果是task直接结束而没有报错信息）。
