@@ -70,9 +70,11 @@
 ### [公共方法](common/index.md)
 
   * [协程方法](common/co.md)
+  * [定时器](common/timer.md)
   * [通用函数](common/generic.md)
   * [基础帮助库](common/stdlib.md)
-
+    * [数组](common/stdlib-array.md)
+    
 ## 核心
 
 ### [命令行](console/index.md)
@@ -137,6 +139,7 @@
   * [声明一个任务](task/statement.md)
   * [协程任务](task/coroutine.md)
   * [异步任务](task/async.md)
+  * [定时任务](task/crontab.md)
 
 ### [数据库](db/index.md)
 
@@ -163,6 +166,7 @@
   
 ### [验证器](validator/index.md)
 
+  * [配置](validator/setting.md)
   * [声明验证器](validator/statement.md)
   * [自定义验证器](validator/user-validator.md)
   * [自定义验证器规则](validator/customer-rule.md)

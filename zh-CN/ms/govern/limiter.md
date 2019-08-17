@@ -235,7 +235,7 @@ class LimiterLogic
 - limtier 方法，根据类名+方法名称限速且定义了一个降级函数
 - limtierParams 方法，根据调用 RequestBean 对象的方法，返回值作为限流 key
 
-<p class="tip"> `fallback` 函数必须和 `@RateLimiter` 标记的函数完全一样除了名称不一样且在同一个类里面。 如果被限速会抛出 `Swoft\Limiter\Exception\RateLImiterException` 异常。key 表达式内置 `CLASS`(类名) 和 `METHOD`(方法名称) 两个变量，方便开发者使用。</p>
+<p class="tip"> fallback指定的函数必须和limiter一样，包括名称和参数、返回值，并且必须在同一个类里面。 如果被限速会抛出 `Swoft\Limiter\Exception\RateLImiterException` 异常。key 表达式内置 `CLASS`(类名) 和 `METHOD`(方法名称) 两个变量，方便开发者使用。</p>
 
 ## 注解
 

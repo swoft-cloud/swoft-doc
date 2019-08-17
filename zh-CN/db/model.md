@@ -128,7 +128,7 @@
 - name 定义类属性映射的表字段，没该注解标记的属性，不映射(默认为字段名为属性名)
 - prop 为字段设置一个别名
 > prop 只是为字段设置一个别名，只有在调用`toArray`的时候才会被转换。这样能隐藏数据库真实的字段。使用`where`等子句，需要使用数据库字段。
-- hidden 是否隐藏，如果为真那么它 `toArray()` 的时候将会被隐藏，但是不影响你通过 `Getter`获取它，你也可以调用实体的`setVisible`方法将他取消隐藏。
+- hidden 是否隐藏，如果为真那么它 `toArray()` 的时候将会被隐藏，但是不影响你通过 `Getter`获取它，你也可以调用实体的`addVisible`方法将他取消隐藏。
 > 说明：所有字段属性，必须要有`getter`和`setter`方法，你可以使用`phpstorm` 快捷键 `ctrl+n`，它会更具属性 快速生成 `getter`和`setter`。
 
 > **注意** 若表字段有下划线，类属性均定义为 `小驼峰` 写法 例： 字段 `user_name`  则属性写为 `$userName`
@@ -486,7 +486,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
     class User
     {
         /**
-         * 该模型是否被自动维护时间戳
+         * Whether the model is automatically maintained with a timestamp
          *
          * @var bool
          */
@@ -498,10 +498,10 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 
 ```php
 <?php
-    class UserDao extends User
+    class User
     {
         /**
-         * 模型的日期字段的存储格式
+         * The storage format of the model's date field
          *
          * @var string
          */

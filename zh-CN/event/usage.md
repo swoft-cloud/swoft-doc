@@ -1,6 +1,6 @@
 # 事件注册
 
-swoft提供了简便的事件使用
+swoft提供了简便的事件管理和使用
 
 ## 注解
 
@@ -108,6 +108,43 @@ class TestSubscriber implements EventSubscriberInterface
 
 > 事件名称管理推荐放置在一个单独类的常量里面，方便管理和维护
 
+### 方式一
+
+使用简便。但是多个参数按顺序放入，因此获取时需要根据索引获取。
+
+- `Swoft::trigger('event name', mixd $target, $args...)`
+
 ```php
-\Swoft::trigger('event name', null, $arg0, $arg1);
+\Swoft::trigger('event name', 'target', $arg0, $arg1);
+```
+
+获取事件参数：
+
+```php
+$target = $event->getTarget();
+
+$arg0 = $event->getParam(0);
+$arg1 = $event->getParam(1);
+```
+
+### 方式二
+
+使用稍微麻烦一点。但是多个参数按k-v放入，获取时可以根据key获取。
+
+- `Swoft::triggerByArray('event name', mixd $target, array $args)`
+
+```php
+\Swoft::triggerByArray('event name', 'target', [
+    'arg0' => $arg0,
+    'arg0' => $arg1
+]);
+```
+
+获取事件参数：
+
+```php
+$target = $event->getTarget();
+
+$arg0 = $event->getParam('arg0');
+$arg1 = $event->getParam('arg1');
 ```

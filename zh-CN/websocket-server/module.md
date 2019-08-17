@@ -16,6 +16,7 @@ websocket 模块类注解tag `@WsModule`
     + `path` _string_ 标明了允许ws连接的URI path. 
     + `controllers` _array_ 绑定到此模块的消息控制器类
     + `messageParser` _string_ 绑定到此模块的消息数据解析器
+    + `defaultOpcode` _integer_ 此模块默认的消息数据 `opcode`
 
 示例：
 
@@ -117,13 +118,12 @@ class EchoModule
      * On connection has open
      *
      * @OnOpen()
-     * @param Server  $server
      * @param Request $request
      * @param int     $fd
      */
-    public function onOpen(Server $server, Request $request, int $fd): void
+    public function onOpen(Request $request, int $fd): void
     {
-        $server->push($fd, 'hello, welcome! :)');
+        server()->push($fd, 'hello, welcome! :)');
     }
 
     /**
