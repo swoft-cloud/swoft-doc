@@ -207,6 +207,7 @@
   * [Consul](extra/consul.md)
   * [Whoops](extra/whoops.md)
   * [PostgreSql](extra/postgresql.md)
+  * [Swoole-Dashboard](extra/swoole-dashboard.md)
 
 ### [开发组件](component/index.md)
 
