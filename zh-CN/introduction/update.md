@@ -6,6 +6,7 @@
 
 - 修复 ws server收到消息时，默认使用当前fd作为响应消息的客户端 [3a8890cf](https://github.com/swoft-cloud/swoft-component/pull/504/commits/3a8890cfd5a4641042eb7714c6afe65e15b0b461)
 - 修复 ws server通过swoole server拿到的全部连接里，fd的类型可能不是整型导致报错。[0fa79d7](https://github.com/swoft-cloud/swoft-component/pull/504/commits/0fa79d7e5747d47883a104e2d6ab24c90b745453)
+- 修复 stdlib SystemHelper 在 windows 10 中会被 Defender 删除 [71c2893](https://github.com/swoft-cloud/swoft-component/pull/505/commits/71c2893c8514e5535b77a3b8bb8b2c225c771c8a)
 
 **更新(Update)**:
 
