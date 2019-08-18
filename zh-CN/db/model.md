@@ -56,7 +56,29 @@
       */
      private $age;
      
- 
+     /**
+      * @Column(name="user_desc", prop="udesc")
+      *
+      * @var string|null
+      */
+     private $userDesc;
+
+    /**
+     * @return string|null
+     */
+     public function getUserDesc(): ?string
+     {
+        return $this->userDesc;
+     }
+    
+    /**
+     * @param string|null $userDesc
+     */
+     public function setUserDesc(?string $userDesc): void
+     {
+        $this->userDesc = $userDesc;
+     }
+    
      /**
       * @return int|null
       */
@@ -141,6 +163,53 @@
 
 - incrementing 是否为递增主键，默认为递增主键。
 
+## Prop 操作
+
+> 2.0.6 支持
+
+模型插入支持 使用 `prop` 插入 
+
+例如 上面例子中实体, 真实数据库字段是 `user_desc`, prop 字段是 `udesc`, 底层会自动转化成  `user_desc` 插入
+
+当然这不影响之前的使用
+
+```php
+User::new([
+    'udesc' => $desc,
+])->save();
+```
+
+条件使用 `prop` ,使用 `whereProp` 方法, `whereProp` 方法和可以用 `where` 一样使用.
+
+```php
+
+$where      = [
+    'pwd' => md5(uniqid()),
+    ['udesc', 'like', 'swoft%'],
+    ['whereIn', 'id', [1]]
+];
+
+// 'select * from `user` where (`password` = ? and `user_desc` like ? and `id` in (?))';
+$sql = User::whereProp($where)->toSql();
+```
+
+`where` 扩展使用, 数据里面每一个元素, 为方法名, 支持 `Query Builder` 里面的所有与 `Where` 相关的方法,
+
+```php
+$toSql = 'select * from `user` where (`id` in (?) or `id` = ? or `status` > ? and `age` between ? and ?)';
+$where = [
+    ['whereIn', 'id', [1]],
+    ['orWhere', 'id', 2],
+    ['orWhere', 'status', '>', -1],
+    ['whereBetween', 'age', [18, 25]]
+];
+$sql   = User::where($where)->toSql();
+// same as
+User::where('id', '=', [1])
+            ->orWhere('id', 2)
+            ->orWhere('status', '>', -1)
+            ->whereBetween('age', [18, 25])
+```
 
 ## 插入数据
 
