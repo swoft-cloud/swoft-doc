@@ -1,42 +1,38 @@
-# [Academic Kickstart](https://sourcethemes.com/academic/)
+# 基于Hugo 的全新的官网
 
-**Academic** makes it easy to create a beautiful website for free using Markdown, Jupyter, or RStudio. Customize anything on your site with widgets, themes, and language packs. [Check out the latest demo](https://academic-demo.netlify.com/) of what you'll get in less than 10 minutes, or [view the showcase](https://sourcethemes.com/academic/#expo).
+此分支将用来构建全新的 `Swoft` 文档，使用基于 [Hugo](https://sourcethemes.com/academic/#expo) 的模板 [Academic Kickstart](https://sourcethemes.com/academic/)来构建，并通过 [Netlify](https://netlify.com) 进行持续部署。
 
-**Academic Kickstart** provides a minimal template to kickstart your new website.
+## 本地开发
 
-- [**Get Started**](#install)
-- [View the documentation](https://sourcethemes.com/academic/docs/)
-- [Ask a question](http://discuss.gohugo.io/)
-- [Request a feature or report a bug](https://github.com/gcushen/hugo-academic/issues)
-- Updating? View the [Update Guide](https://sourcethemes.com/academic/docs/update/) and [Release Notes](https://sourcethemes.com/academic/updates/)
-- Support development of Academic:
-  - [Donate a coffee](https://paypal.me/cushen)
-  - [Become a backer on Patreon](https://www.patreon.com/cushen)
-  - [Decorate your laptop or journal with an Academic sticker](https://www.redbubble.com/people/neutreno/works/34387919-academic)
-  - [Wear the T-shirt](https://academic.threadless.com/)
+首先需要安装 Hugo 根据 Hugo 官网文档 [Install Hugo](https://gohugo.io/getting-started/installing/) 的介绍安装 Hugo。
 
-[![Screenshot](https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png)](https://github.com/gcushen/hugo-academic/)
+本站使用的是 [Academic Kickstart](https://sourcethemes.com/academic/) 主题进行构建，请先阅读学习此主题文档。 
 
-## Install
+之后克隆项目，使用 Hugo 运行本地服务
 
-You can choose from one of the following four methods to install:
+```bash
+# 克隆项目
+$ git clone https://github.com/swoft-cloud/swoft-doc.git
+# 切换目录
+$ cd swoft-doc
+# 切换到 hugo-2.x 分支
+$ git checkout hugo-2.x
+# 下载 Hugo 的主题
+$ git submodule update --init --recursive
+# 启动本地服务
+$ hugo server
+```
+## 如何参与贡献
 
-* [**one-click install using your web browser (recommended)**](https://sourcethemes.com/academic/docs/install/#install-with-web-browser)
-* [install on your computer using **Git** with the Command Prompt/Terminal app](https://sourcethemes.com/academic/docs/install/#install-with-git)
-* [install on your computer by downloading the **ZIP files**](https://sourcethemes.com/academic/docs/install/#install-with-zip)
-* [install on your computer with **RStudio**](https://sourcethemes.com/academic/docs/install/#install-with-rstudio)
+目前网站处于开发状态，欢迎大家：
 
-Then [personalize your new site](https://sourcethemes.com/academic/docs/get-started/).
+* 参与网站样式开发
+* 参与文档内容编写
+* 修复错别字或错误的书写格式
+* 发 issue 讨论译法或书写格式
+* 发 issue 讨论相关建议或问题
+* 参与英文文档翻译。
 
-## Ecosystem
+注意：
 
-* **[Academic Admin](https://github.com/sourcethemes/academic-admin):** An admin tool to import publications from BibTeX or import assets for an offline site
-* **[Academic Scripts](https://github.com/sourcethemes/academic-scripts):** Scripts to help migrate content to new versions of Academic
-
-## License
-
-Copyright 2017-present [George Cushen](https://georgecushen.com).
-
-Released under the [MIT](https://github.com/sourcethemes/academic-kickstart/blob/master/LICENSE.md) license.
-
-[![Analytics](https://ga-beacon.appspot.com/UA-78646709-2/academic-kickstart/readme?pixel)](https://github.com/igrigorik/ga-beacon)
+原则上这里只进行文档官网的建设工作，此处不适合讨论 Swoft 的相关问题，建议相关问题在 Swoft 的相关仓库 、聊天室 或各大主流技术社区讨论，以便得到更多人的帮助和更充分的讨论。
