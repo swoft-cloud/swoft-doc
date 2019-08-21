@@ -1,5 +1,7 @@
 # 基于Hugo 的全新的官网
 
+预览地址：[https://swoft.netlify.com/](https://swoft.netlify.com/)
+
 此分支将用来构建全新的 `Swoft` 文档，使用基于 [Hugo](https://sourcethemes.com/academic/#expo) 的模板 [Academic Kickstart](https://sourcethemes.com/academic/)来构建，并通过 [Netlify](https://netlify.com) 进行持续部署。
 
 ## 本地开发
