@@ -79,7 +79,7 @@ use const SWOOLE_SOCK_TCP;
 
 ## 非swoft示例
 
-> 注意：这里使用的json数据，因此你需要将tcp server 的 type 配置为 `json`
+> 注意：这里使用的json数据，因此你需要将服务端 `tcpServerProtocol` 的 `type` 配置为 `json`
 
 ```php
 <?php
