@@ -26,7 +26,7 @@
 
 > 具体文档地址，以从控制台下载的对应客户端中展示的为准。
 
-将客户端中的所有文件以及以下两个文件复制到项目目录 `swoole-dashboard` 中
+将客户端中的所有文件以及以下两个文件复制到项目目录 `swoole-tacker` 中
 
 1. `entrypoint.sh`
 
@@ -44,30 +44,40 @@ php /var/www/swoft/bin/swoft http:start
 ```dockerfile
 FROM swoft/swoft
 
-LABEL maintainer="sakuraovq <sakuraovq@gmail.com>" version="2.0"
+LABEL maintainer="sakuraovq <sakuraovq@gmail.com>" version="2.6"
 
 # This php version
 ENV PHP_VERSION=72
-# This is dashborad ini config
-ENV SWOOLE_DASHBORAD_INI=/usr/local/etc/php/conf.d/swoole-plus.ini
+# This is tracker ini config
+ENV SWOOLE_TRACHER_INI=/usr/local/etc/php/conf.d/swoole-plus.ini
 
 ADD . /var/www/swoft
 
 # The address here is displayed on the client side.
-RUN  cd ./swoole-dashboard && ./deploy_env.sh www.swoole-cloud.com \
+RUN  cd ./swoole-tracker && ./deploy_env.sh www.swoole-cloud.com \
     && chmod 777 entrypoint.sh \
     && php_dir=$(php -r "echo @ini_get("extension_dir").PHP_EOL;") \
     && cp ./swoole_plus${PHP_VERSION}.so $php_dir/swoole_plus.so \
     # Enable swoole_plus
-    && echo "extension=swoole_plus.so" > ${SWOOLE_DASHBORAD_INI} \
+    && echo "extension=swoole_plus.so" > ${SWOOLE_TRACHER_INI} \
     # Open the main switch
-    && echo "apm.enable=1" >> ${SWOOLE_DASHBORAD_INI} \
-    # Sampling Rate, eg: 100% , 
-    && echo "apm.sampling_rate=100" >> ${SWOOLE_DASHBORAD_INI} \
+    && echo "apm.enable=1" >> ${SWOOLE_TRACHER_INI} \
+    # Sampling Rate, eg: 10%
+    && echo "apm.sampling_rate=10" >> ${SWOOLE_TRACHER_INI} \
     # Turn on memory leak detection Default 0 Off
-    && echo "apm.enable_memcheck=1" >> ${SWOOLE_DASHBORAD_INI}
+    && echo "apm.enable_memcheck=1" >> ${SWOOLE_TRACHER_INI}
 
-CMD ["sh", "./swoole-dashboard/entrypoint.sh"]
+CMD ["sh", "./swoole-tracker/entrypoint.sh"]
+```
+
+构建镜像
+```bash
+docker build -t swoft/tracker .
+```
+运行容器
+
+```bash
+docker run --rm --name swoft-tracker -v $(pwd):/var/www/swoft -p 18306:18306 swoft/tracker
 ```
 ### 采样率
 
@@ -76,7 +86,7 @@ CMD ["sh", "./swoole-dashboard/entrypoint.sh"]
 ### 安装组件
 
 ```bash
-composer require swoft-cloud/swoft-swoole-dashboard
+composer require swoft-cloud/swoft-swoole-tracker
 ```
 
 ## 使用
@@ -90,65 +100,41 @@ return [
        'httpDispatcher'    => [
            // Add global http middleware
            'middlewares' => [
-               \Swoft\Swoole\Dashboard\Middleware\SwooleDashboardMiddleware::class,
+                 \Swoft\Swoole\Tracker\Middleware\SwooleTrackerMiddleware::class,
            ],
        ],
 ];
 ```
 
-## 配置 
-
-默认 `Swoft` 仅开启了 链路追踪 在 在 `app/bean.php` 配置文件中 配置 `swooleDashboard` 即可, 如下:
-
-
-```php
-<?php
-
-return [
-    'swooleDashboard'   => [
-        'performanceAnalysis' => false,
-        'blockCheck'          => true,
-        'memoryLeakCheck'     => true,
-        'linkTracking'        => true,
-    ],
-];
-```
-
-- performanceAnalysis 开启性能分析
-- blockCheck 阻塞检查, 阻塞检查和性能分析不宜一起开启他们会相互影响
-- memoryLeakCheck 内存泄露
-- linkTracking 链路追踪
-
 ### 链路追踪
 
 配置了中间件框架会自动开启链路追踪, 你也可以单独使用它 例如:
 ```php
-/** @var SwooleDashboard $swooleDashboard */
-$swooleDashboard = bean('swooleDashboard');
+/** @var SwooleTracker $swooleTracker */
+$swooleTracker = bean(SwooleTracker::class);
 
-$tick = $swooleDashboard->startRpcAnalysis('/get/user', 'demo', '53.65.77.11', $traceId, $spanId);
+$tick = $swooleTracker->startRpcAnalysis('/get/user', 'demo', '53.65.77.11', $traceId, $spanId);
 
 // todo ...
-$handlerStatus = true;
+$handlerStatus = false;
 $errno         = 401;
 
-$swooleDashboard->endAnalysis($tick, $handlerStatus, $errno);
+$swooleTracker->endAnalysis($tick, $handlerStatus, $errno);
 ```
 
-登录管理后台看链路追踪
+登录管理后台看
+
+链路追踪
 
 ![trace](../image/extra/trace.png)
  
- ### 阻塞检查
+ 应用监控
  
-单独使用, 默认 是开始到结束处理时间
+ ![trace](../image/extra/monitor.png)
  
- ```php
-/** @var SwooleDashboard $swooleDashboard */
-$swooleDashboard = bean('swooleDashboard');
+ 运行程序
+  ![trace](../image/extra/process.png)
 
-$swooleDashboard->startBlockCheck();
-// todo ...
-
-$swooleDashboard->endBlockCheck();
-```
+如果需要开启 `阻塞检查`, `泄露分析`, `性能分析` 在 进程列表 中后面的按钮开启就是, 
+不需要客户端手动上报
+ 

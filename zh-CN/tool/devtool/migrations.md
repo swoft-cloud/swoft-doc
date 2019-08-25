@@ -14,7 +14,6 @@ Swoft 的 `Schema` 对所有 Swoft 支持的数据库系统提供了创建和操
         
 ![migrate](../../image/tool/migrate.png)
 
-
 ### create 迁移生成
 
 使用 `migrate:create` 来创建迁移：
@@ -333,6 +332,8 @@ Schema::table('users', function (Blueprint $table) {
 ### 添加表评论
 
 使用 `comment` 方法 可以为数据表添加上注释
+
+>  添加评论之前, 请先检查是否设置了 charset 不然生成的数据表注释, 将会是乱码.
 
 ```php
 Schema::table('users', function (Blueprint $table) {
