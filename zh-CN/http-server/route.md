@@ -4,6 +4,8 @@ Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配
 
 ## 路由器配置
 
+- 这里是默认的配置
+
 ```php
 // at file: vendor/swoft/http-server/src/AutoLoader.php
     'httpRouter'      => [
@@ -13,6 +15,14 @@ Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配
         'tmpCacheNumber'  => 500,
         // 'handleMethodNotAllowed' => false
     ],
+```
+
+你需要自定义路由配置，直接在 `app/bean.php` 添加 `httpRouter` 项配置即可：
+
+```php
+'httpRouter'  => [
+    'handleMethodNotAllowed' => true
+]
 ```
 
 ### 路由配置说明
@@ -27,7 +37,7 @@ Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配
 
 - `handleMethodNotAllowed` _bool_ 默认：`false` 是否处理 MethodNotAllowed
 
-为了加快匹配速度，默认method不匹配也是直接抛出 Route not found 错误。如有特殊需要可以开启此选项，开启后将会抛出 Method Not Allowed 错误
+为了加快匹配速度，默认method不匹配也是直接抛出 `Route not found` 错误。如有特殊需要可以开启此选项，开启后将会抛出 `Method Not Allowed` 错误
 
 ## 路由注解
 
