@@ -79,9 +79,9 @@ swoft.udp.after
 
 支持使用事件通配符 `*` 对一组相关的事件进行监听, 分两种。
 
-1. `*` 全局的事件通配符。直接对 `*` 添加监听器(`@Lisenter("*")`), 此时所有触发的事件都会被此监听器接收到。
+1. `*` 全局的事件通配符。直接对 `*` 添加监听器(`@Listener("*")`), 此时所有触发的事件都会被此监听器接收到。
 2. `{prefix}.*` 指定分组事件的监听。
-  - 例如 `@Lisenter("swoft.db.*")`, 此时所有触发的以 `swoft.db.` 为前缀的事件(eg `swoft.db.query` `swoft.db.connect`)都会被此监听器接收到。
+  - 例如 `@Listener("swoft.db.*")`, 此时所有触发的以 `swoft.db.` 为前缀的事件(eg `swoft.db.query` `swoft.db.connect`)都会被此监听器接收到。
 
 > 当然，你在事件到达监听器前停止了本次事件的传播`$event->stopPropagation(true)`，就不会被后面的监听器接收到了。
 
