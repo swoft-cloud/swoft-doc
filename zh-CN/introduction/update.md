@@ -73,6 +73,7 @@
 > 升级注意：
 1. 请去掉 `bin/swoft` 里的 `Runtime::enanbleCoroutine()` 设置
 2. 请确保 swoole 的 `swoole.use_shortname` 的值为 `On` 
+3. 从这个版本开始要求 swoole `4.4.1+`
 
 增强(Enhancement)：
 
