@@ -11,7 +11,6 @@
 - 修复 模型属性 `$modelTimestamps` 关闭了无效 [94c7171](https://github.com/swoft-cloud/swoft-component/pull/502/commits/94c7171f57c4d8952fdb0214da27e6e12231fe2d)
 - 修复 在初始化前调用了log，导致可能会在启动阶段报context丢失错误 [5a27704f](https://github.com/swoft-cloud/swoft-component/pull/504/commits/5a27704f1bd3a056b144e2ecbb4accf1c59680df)
 
-
 **更新(Update)**:
 
 - 调整 ws server在worker 退出时自动关闭连接，添加开关配置，可以选择是否开启。[3a8890c](https://github.com/swoft-cloud/swoft-component/pull/504/commits/3a8890cfd5a4641042eb7714c6afe65e15b0b461)
@@ -30,6 +29,10 @@
 - `swoft-dashboard` 支持方便开发者调试
 
 ## v2.0.5-beta(2019-08-06)
+
+> 升级提示：
+- 请使用 `context()` 代替 `Context::mustGet()`
+- 这个版本开始验证器默认关闭，需要开发者开启 [validator setting](https://www.swoft.org/docs/2.x/zh-CN/validator/setting.html")
 
 修复(Fixed)：
 
@@ -63,8 +66,6 @@
 
 - [swoft/crontab](https://github.com/swoft-cloud/swoft-crontab.git) 秒级别定时任务
 - [swoft/whoops](https://github.com/swoft-cloud/swoft-whoops.git) 对 `filp/whoops` 在swoft中使用的简单封装，用于渲染并显示更加利于阅读的错误信息
-
-<p class="tip"> 2.0.5+ 验证器默认关闭，需要开发者开启(<a href="https://www.swoft.org/docs/2.x/zh-CN/validator/setting.html">validator setting</a>) </p>
 
 
 ## v2.0.4-beta(2019-07-21)
