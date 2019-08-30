@@ -127,13 +127,11 @@ $swooleTracker->endAnalysis($tick, $handlerStatus, $errno);
 
 ![trace](../image/extra/trace.png)
  
- 应用监控
+应用监控
  
- ![trace](../image/extra/monitor.png)
+![stats](../image/extra/monitor.png)
  
- 运行程序
-  ![trace](../image/extra/process.png)
+调试器
+![debuger](../image/extra/process.png)
 
-如果需要开启 `阻塞检查`, `泄露分析`, `性能分析` 在 进程列表 中后面的按钮开启就是, 
-不需要客户端手动上报
- 
+如果需要开启 `阻塞检查`, `泄露分析`, `性能分析` 在 进程列表 中后面的按钮开启就是, 不需要客户端手动上报
