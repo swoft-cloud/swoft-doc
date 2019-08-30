@@ -4,8 +4,8 @@
 #   The weight parameter defines the order that the links will appear in.
 
 [[main]]
-  name = "首页"
-  url = "#demo"
+  name = "教程"
+  url = "documents"
   weight = 9
 
 [[main]]
@@ -17,7 +17,7 @@
   name = "文章"
   url = "#posts"
   weight = 20
-
+  
 [[main]]
   name = "项目"
   url = "#projects"
@@ -39,3 +39,37 @@
 #    name = "CV"
 #    url = "files/cv.pdf"
 #    weight = 70
+
+[[v2]]
+  name = "概述"
+  weight = 1
+  url = "/documents/v2/"
+
+[[v2]]
+  name = "快速起步"
+  weight = 10
+  identifier = "quick-start"
+[[v2]]
+  name = "基础概念"
+  weight = 20
+  identifier = "basic-concept"
+[[v2]]
+  name = "组件"
+  weight = 30
+  identifier = "components"
+[[v2]]
+  name = "其他扩展"
+  weight = 40
+  identifier = "ext"
+[[v2]]
+  name = "工具"
+  weight = 50
+  identifier = "tools"
+[[v2]]
+  name = "微服务治理"
+  weight = 60
+  identifier = "microservice"
+[[v2]]
+  name="其他问题"
+  weight = 70
+  identifier = "other-problems"

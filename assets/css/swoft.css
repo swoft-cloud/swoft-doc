@@ -1,0 +1,16 @@
+@media(min-width: 768px) {
+    @supports(position:-webkit-sticky) or (position:sticky) {
+        .docs-links {
+            max-height:calc(100vh - 70px);
+            overflow-y: auto
+        }
+    }
+}
+
+.docs-toc-item.active {
+    margin-bottom: 0;
+}
+
+.nav-sub {
+    padding-left:.5rem;
+}
