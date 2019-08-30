@@ -85,12 +85,12 @@ docker run --rm --name swoft-tracker -v $(pwd):/var/www/swoft -p 18306:18306 swo
 ### 安装组件
 
 ```bash
-composer require swoft-cloud/swoft-swoole-tracker
+composer require swoft/swoole-tracker
 ```
 
 ## 使用
 
-在 `app/bean.php` 配置文件中注册 `Swoft\Swoole\Dashboard\Middleware\SwooleDashboardMiddleware` 中间件即可，如下：
+在 `app/bean.php` 配置文件中注册 `Swoft\Swoole\Tracker\Middleware\SwooleDashboardMiddleware` 中间件即可，如下：
 
 ```php
 <?php
