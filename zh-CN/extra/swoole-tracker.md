@@ -92,6 +92,8 @@ docker run --rm --name swoft-tracker -v $(pwd):/var/www/swoft -p 18306:18306 swo
 
 其他的`Server`：`ip(hostname):prot`
 
+即安装好`swoole_tracker`扩展之后就可以正常使用`Swoole Tracker`的功能
+
 ### 依赖组件
 
 当你需要自定义应用名称时则需要安装组件，使用`Composer`安装：
