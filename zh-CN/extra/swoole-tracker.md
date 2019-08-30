@@ -1,7 +1,6 @@
-# Swoole Enterprise
+# Swoole Tracker
 
-
-[Swoole Enterprise](https://www.swoole-cloud.com/tracker.html) 作为 `Swoole` 官方出品的一整套企业级`PHP`和`Swoole`分析调试工具，更专一、更专业。
+[Swoole Tracker](https://www.swoole-cloud.com/tracker.html) 作为 `Swoole` 官方出品的一整套企业级`PHP`和`Swoole`分析调试工具，更专一、更专业。
 
 - 时刻掌握应用架构模型
 > 自动发现应用依赖拓扑结构和展示，时刻掌握应用的架构模型
@@ -22,7 +21,7 @@
 
 注册完账户后，进入[控制台](https://www.swoole-cloud.com/dashboard/catdemo/)，并申请试用，下载对应客户端。
 
-相关文档，请移步 [试用文档](https://www.yuque.com/swoole-wiki/try) 或 [详细文档](https://www.yuque.com/swoole-wiki/dam5n7) 
+相关文档，请移步 [试用文档](https://www.kancloud.cn/swoole-inc/ee-base-wiki/1214079) 或 [详细文档](https://www.kancloud.cn/swoole-inc/ee-help-wiki/1213080) 
 
 > 具体文档地址，以从控制台下载的对应客户端中展示的为准。
 
@@ -49,7 +48,7 @@ LABEL maintainer="sakuraovq <sakuraovq@gmail.com>" version="2.6"
 # This php version
 ENV PHP_VERSION=72
 # This is tracker ini config
-ENV SWOOLE_TRACHER_INI=/usr/local/etc/php/conf.d/swoole-plus.ini
+ENV SWOOLE_TRACHER_INI=/usr/local/etc/php/conf.d/swoole-tracker.ini
 
 ADD . /var/www/swoft
 
@@ -57,9 +56,9 @@ ADD . /var/www/swoft
 RUN  cd ./swoole-tracker && ./deploy_env.sh www.swoole-cloud.com \
     && chmod 777 entrypoint.sh \
     && php_dir=$(php -r "echo @ini_get("extension_dir").PHP_EOL;") \
-    && cp ./swoole_plus${PHP_VERSION}.so $php_dir/swoole_plus.so \
-    # Enable swoole_plus
-    && echo "extension=swoole_plus.so" > ${SWOOLE_TRACHER_INI} \
+    && cp ./swoole_tracker${PHP_VERSION}.so $php_dir/swoole_tracker.so \
+    # Enable swoole_tracker
+    && echo "extension=swoole_tracker.so" > ${SWOOLE_TRACHER_INI} \
     # Open the main switch
     && echo "apm.enable=1" >> ${SWOOLE_TRACHER_INI} \
     # Sampling Rate, eg: 10%
