@@ -80,17 +80,27 @@ docker run --rm --name swoft-tracker -v $(pwd):/var/www/swoft -p 18306:18306 swo
 ```
 ### 采样率
 
-采样率按照需求配置, 如果为 100%, 全部请求都会采样计算. 有损性能. 
+采样率按照需求配置, 如果为 100%, 全部请求都会进行上报.
 
-### 安装组件
+## 使用
+
+### 不依赖组件
+
+`Swoole Tracker`的`v2.5.0`版本支持自动生成应用名称并创建应用，无需修改任何代码，生成的应用名称格式为：
+
+`Swoole`的`HttpServer`：`ip:prot`
+
+其他的`Server`：`ip(hostname):prot`
+
+### 依赖组件
+
+当你需要自定义应用名称时则需要安装组件，使用`Composer`安装：
 
 ```bash
 composer require swoft/swoole-tracker
 ```
 
-## 使用
-
-在 `app/bean.php` 配置文件中注册 `Swoft\Swoole\Tracker\Middleware\SwooleDashboardMiddleware` 中间件即可，如下：
+安装完成后在 `app/bean.php` 配置文件中注册 `Swoft\Swoole\Tracker\Middleware\SwooleTrackerMiddleware` 中间件即可，如下：
 
 ```php
 <?php
