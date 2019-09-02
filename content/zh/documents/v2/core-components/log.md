@@ -1,5 +1,5 @@
 +++
-title = "日志组件"
+title = "日志"
 toc = true
 type = "docs"
 draft = false

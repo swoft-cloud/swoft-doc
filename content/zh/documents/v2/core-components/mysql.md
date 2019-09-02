@@ -1,5 +1,5 @@
 +++
-title = "Mysql组件"
+title = "Mysql"
 toc = true
 type = "docs"
 draft = false

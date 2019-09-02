@@ -1,5 +1,5 @@
 +++
-title = "命令行组件"
+title = "命令行"
 toc = true
 type = "docs"
 draft = false

@@ -40,11 +40,11 @@
 #    url = "files/cv.pdf"
 #    weight = 70
 
+# v2文档一级菜单
 [[v2]]
   name = "框架概述"
   weight = 1
   url = "/documents/v2/"
-
 [[v2]]
   name = "开发基础"
   weight = 10
@@ -54,15 +54,13 @@
   weight = 20
   identifier = "dev-guide"
 [[v2]]
-  name = "开发工具"
-  weight = 30
-  identifier = "dev-tools"
-
-[[v2]]
   name = "快速开始"
-  weight = 40
+  weight = 30
   identifier = "quick-start"
-
+[[v2]]
+  name = "开发工具"
+  weight = 40
+  identifier = "dev-tools"
 [[v2]]
   name = "基础组件"
   weight = 50
@@ -75,8 +73,15 @@
   name = "扩展组件"
   weight = 70
   identifier = "ext-components"
-
 [[v2]]
   name = "微服务"
   weight = 80
   identifier = "microservice"
+  [[v2]]
+  name = "贡献"
+  weight = 90
+  identifier = "contribute"
+  [[v2]]
+  name = "附录"
+  weight = 100
+  identifier = "appendix"

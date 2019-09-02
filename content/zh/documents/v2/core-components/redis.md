@@ -1,5 +1,5 @@
 +++
-title = "Redis组件"
+title = "Redis"
 toc = true
 type = "docs"
 draft = false

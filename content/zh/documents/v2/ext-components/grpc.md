@@ -8,7 +8,7 @@ lastmod = "2018-09-20"
 
 [menu.v2]
   parent = "ext-components"
-  weight = 10
+  weight = 13
 +++
 
 ## 概念介绍

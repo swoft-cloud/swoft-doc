@@ -1,5 +1,5 @@
 +++
-title = "验证器"
+title = "赞助Swoft"
 toc = true
 type = "docs"
 draft = false
@@ -7,8 +7,8 @@ date = "2018-09-19"
 lastmod = "2018-09-20"
 
 [menu.v2]
-  parent = "core-components"
-  weight = 10
+  parent = "appendix"
+  weight = 4
 +++
 
 ## 概念介绍

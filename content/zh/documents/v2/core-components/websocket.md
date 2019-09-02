@@ -1,5 +1,5 @@
 +++
-title = "Websocket 组件"
+title = "Websocket"
 toc = true
 type = "docs"
 draft = false

@@ -1,5 +1,5 @@
 +++
-title = "开发组件"
+title = "开源项目"
 toc = true
 type = "docs"
 draft = false
@@ -7,8 +7,8 @@ date = "2018-09-19"
 lastmod = "2018-09-20"
 
 [menu.v2]
-  parent = "core-components"
-  weight = 13
+  parent = "appendix"
+  weight = 2
 +++
 
 ## 概念介绍
