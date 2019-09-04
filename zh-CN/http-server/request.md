@@ -117,7 +117,7 @@ $data = $request->post();
 $some = $request->post('key', 'default value')
 ```
 
-> 提示： 无需关系请求的数据格式，`json` `xml` 请求都会自动解析为php的数组数据。都可以通过 `$request->post()` 获取。
+> 提示： 无需关心请求的数据格式，`json` `xml` 请求都会自动解析为php的数组数据。都可以通过 `$request->post()` 获取。
 
 ### GET & POST 数据
 
