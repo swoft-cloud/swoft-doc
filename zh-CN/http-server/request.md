@@ -117,20 +117,13 @@ $data = $request->post();
 $some = $request->post('key', 'default value')
 ```
 
+> 提示： 无需关系请求的数据格式，`json` `xml` 请求都会自动解析为php的数组数据。都可以通过 `$request->post()` 获取。
+
 ### GET & POST 数据
 
 ```php
 $data = $request->input();
 $some = $request->input('key', 'default value')
-```
-
-### JSON 数据
-
-仅当 `Content-Type` 为 `application/json` 时有效
-
-```php
-$data = $request->json();
-$some = $request->json('key', 'default value')
 ```
 
 ### RAW 数据
