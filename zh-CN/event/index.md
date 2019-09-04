@@ -17,6 +17,18 @@ Swoft 2 事件进行了更加清晰和严谨的规划。提供了基本的事件
 composer require swoft/event
 ```
 
+## Git仓库
+
+- Github https://github.com/swoft-cloud/swoft-event
+
+## 参与贡献
+
+欢迎参与贡献，您可以
+
+- fork 我们的开发仓库 [swoft/component](https://github.com/swoft-cloud/swoft-component)
+- 修改代码然后发起 PR
+- 关于发起PR的[注意事项](https://github.com/swoft-cloud/swoft/issues/829)
+
 ## swoft里的事件
 
 Swoft 2 事件进行了更加清晰和严谨的规划。提供了丰富的事件，以便于开发者使用。
@@ -67,23 +79,12 @@ swoft.udp.after
 
 支持使用事件通配符 `*` 对一组相关的事件进行监听, 分两种。
 
-1. `*` 全局的事件通配符。直接对 `*` 添加监听器(`$em->attach('*', 'global_listener')`), 此时所有触发的事件都会被此监听器接收到。
-2. `{prefix}.*` 指定分组事件的监听。eg `$em->attach('db.*', 'db_listener')`, 此时所有触发的以 `db.` 为前缀的事件(eg `db.query` `db.connect`)都会被此监听器接收到。
+1. `*` 全局的事件通配符。直接对 `*` 添加监听器(`@Listener("*")`), 此时所有触发的事件都会被此监听器接收到。
+2. `{prefix}.*` 指定分组事件的监听。
+  - 例如 `@Listener("swoft.db.*")`, 此时所有触发的以 `swoft.db.` 为前缀的事件(eg `swoft.db.query` `swoft.db.connect`)都会被此监听器接收到。
 
-> 当然，你在事件到达监听器前停止了本次事件的传播`$event->stopPropagation(true);`，就不会被后面的监听器接收到了。
+> 当然，你在事件到达监听器前停止了本次事件的传播`$event->stopPropagation(true)`，就不会被后面的监听器接收到了。
 
 ### 更多介绍
 
 更多关于自定义事件的理解参考 https://github.com/inhere/php-event-manager/blob/master/README.md
-
-## Git仓库
-
-- Github https://github.com/swoft-cloud/swoft-event
-
-## 参与贡献
-
-欢迎参与贡献，您可以
-
-- fork 我们的开发仓库 [swoft/component](https://github.com/swoft-cloud/swoft-component)
-- 修改代码然后发起 PR
-- 关于发起PR的[注意事项](https://github.com/swoft-cloud/swoft/issues/829)

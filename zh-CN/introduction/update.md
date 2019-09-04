@@ -1,10 +1,81 @@
 # 版本更新
 
-## 2.0.4-beta
+## v2.0.6
+
+**修复(Fixed)**：
+
+- 修复 ws server收到消息时，默认使用当前fd作为响应消息的客户端 [3a8890cf](https://github.com/swoft-cloud/swoft-component/pull/504/commits/3a8890cfd5a4641042eb7714c6afe65e15b0b461)
+- 修复 ws server通过swoole server拿到的全部连接里，fd的类型可能不是整型导致报错。[0fa79d7](https://github.com/swoft-cloud/swoft-component/pull/504/commits/0fa79d7e5747d47883a104e2d6ab24c90b745453)
+- 修复 stdlib SystemHelper 在 windows 10 中会被 Defender 删除 [71c2893](https://github.com/swoft-cloud/swoft-component/pull/505/commits/71c2893c8514e5535b77a3b8bb8b2c225c771c8a)
+- 修复 `increment/decrement` 多拿了一个连接 [94c7171](https://github.com/swoft-cloud/swoft-component/pull/502/commits/94c7171f57c4d8952fdb0214da27e6e12231fe2d)
+- 修复 模型属性 `$modelTimestamps` 关闭了无效 [94c7171](https://github.com/swoft-cloud/swoft-component/pull/502/commits/94c7171f57c4d8952fdb0214da27e6e12231fe2d)
+- 修复 在初始化前调用了log，导致可能会在启动阶段报context丢失错误 [5a27704f](https://github.com/swoft-cloud/swoft-component/pull/504/commits/5a27704f1bd3a056b144e2ecbb4accf1c59680df)
+- 修复 ws server的握手和open使用同一个顶级协程ID，如果有一个先执行完成，可能会导致后面的出现session丢失 [c2cd17a](https://github.com/swoft-cloud/swoft-component/pull/509/commits/c2cd17aaf0989ef9f4a2feaac714e152c1795d8c)
+
+**更新(Update)**:
+
+- 调整 ws server在worker 退出时自动关闭连接，添加开关配置，可以选择是否开启。[3a8890c](https://github.com/swoft-cloud/swoft-component/pull/504/commits/3a8890cfd5a4641042eb7714c6afe65e15b0b461)
+- ws server 新增事件： `MESSAGE_PUSH` `OPEN_BEFORE` `MESSAGE_RECEIVE` [e1b0583](https://github.com/swoft-cloud/swoft-component/pull/504/commits/e1b058340e27e6773a3fbac0daafaffbabea5571)
+
+**增强(Enhancement)**：
+
+- 新增日志按时间切割 [f649df2](https://github.com/swoft-cloud/swoft-component/pull/503/commits/f649df2cf6bb7635ae2f0bff8ae8250e4bdecbf3)
+- 新增日志支持传递额外参数 [55d5533](https://github.com/swoft-cloud/swoft-component/pull/503/commits/55d55335f77572611ae0a469f5c848454838fc1f)
+- 调整和新增了一些ws server相关事件，方便用户使用 [e1b0583](https://github.com/swoft-cloud/swoft-component/pull/504/commits/e1b058340e27e6773a3fbac0daafaffbabea5571)
+- 模型对 `Prop` 支持 [630aad8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/630aad8315894a993ef9021c23c70eed14e3fa47)
+
+
+**扩展(Extra)**:
+
+- `swoftcli` 已经支持基本的应用骨架和组件结构创建，以及部分类文件生成功能
+- `swoftTracker` 支持方便开发者调试
+
+## v2.0.5-beta(2019-08-06)
+
+> 升级提示：
+- 请使用 `context()` 代替 `Context::mustGet()`
+- 这个版本开始验证器默认关闭，需要开发者开启 [validator setting](https://www.swoft.org/docs/2.x/zh-CN/validator/setting.html")
+
+修复(Fixed)：
+
+- 修复提前中断请求逻辑可能导致无法正确的格式化对应的Content-Type [f031398](https://github.com/swoft-cloud/swoft-component/pull/493/commits/f03139886a471a0424d236061e8cb30d90b32a89)
+- 修复使用sgo创建子协程，在结束时没有清理与顶级协程的映射关系 [de11ae5b](https://github.com/swoft-cloud/swoft-component/pull/493/commits/de11ae5bc63833b80ca491132d156d51b95f6c8d)
+- 修复 Xml 格式解析方法 [24d0038](https://github.com/swoft-cloud/swoft-component/pull/495/commits/24d0038dc644fccf238d9642f049ceb961dd22b3)
+- 修复类代理 Unique 字符串问题 [444ddeb](https://github.com/swoft-cloud/swoft-component/pull/495/commits/444ddeb51e0741dda06e8f548f2579cf534bdf30)
+- 修复 `context()->get()` 存在问题以及废弃 `Context::mustGet()` 方法 [6acc1b5](https://github.com/swoft-cloud/swoft-component/pull/496/commits/6acc1b55163a18edc95de6cdb899398a9a7d0f2e)
+- 修复接口注入，类名访问错误 [2d9a31f](https://github.com/swoft-cloud/swoft-component/pull/496/commits/2d9a31fe1855054055daa6e6e73aeaddfa280900)
+- 修复 模型使用 `paginate` 方法, 结果集没有映射字段[3027287](https://github.com/swoft-cloud/swoft-component/commit/3027287a58bfa66b3c87b8d2d03fddbfc6c2c754)
+- 修复 websocket server 里，当有多个worker，主动关闭非当前worker连接时报错 [7666969](https://github.com/swoft-cloud/swoft-component/pull/500/commits/7666969f731dce68d395f45749260731eead7bda)
+
+更新(Update):
+
+- 默认的 worker num 设置通过 `swoole_cpu_num` 函数获取 [553f6500](https://github.com/swoft-cloud/swoft-component/pull/493/commits/553f6500678b258080b84cffeab0fe2d5bf65550)
+- 验证器调整成，默认非必须，用户自己开启 [e5b258d](https://github.com/swoft-cloud/swoft-component/pull/496/commits/e5b258db35683e50f4abeba22a2c6fa82dbc7ceb)
+- 不再抛出swoft内部的 `ContainerException` 到用户使用层 [1e74893](https://github.com/swoft-cloud/swoft-component/pull/498/commits/1e74893bf6e05fe954334e527e8b76eca2cef6e9)
+- console output 新增 `confirm` `select` 等交互方法 [0181138a](https://github.com/swoft-cloud/swoft-component/pull/498/commits/0181138af6f1bc1dc0f3f1025b23d9a6354d122a)
+
+增强(Enhancement)：
+
+- console 命令选项设置 `CommandOption`，现在允许选项描述为多行信息 [e5914983](https://github.com/swoft-cloud/swoft-component/pull/493/commits/e591498363dac1888f503ab18766e89542e33665)
+- websocket server 的全部消息发送方法，支持传入 `opcode` 参数 [dc164ffe9](https://github.com/swoft-cloud/swoft-component/pull/493/commits/dc164ffe97d507e505ac8cd1b50a421a27ae5859)
+- websocket 模块允许设置当前模块的默认 `opcode`，用于自动处理返回数据设置 `opcode` [9e3e9672](https://github.com/swoft-cloud/swoft-component/pull/493/commits/9e3e9672ed83579e6135ed47ae0c30ef335d8659)
+- 增强 websocket 相关类，现在消息处理方法允许注入更多数据对象类型 `Request` `Response` [3d6c60b4](https://github.com/swoft-cloud/swoft-component/pull/493/commits/3d6c60b4812535c48d51c57476f801529f66655f)
+- 当worker退出时，websocket server 会自动关闭所有连接 [5ea10ecc](https://github.com/swoft-cloud/swoft-component/pull/498/commits/5ea10ecc4bcf767b374dad9652dd57a4fcfc8fc5)
+- Add Timer 定时器封装 [eb92ee6](https://github.com/swoft-cloud/swoft-component/pull/495/commits/eb92ee6a7d5e7f2a47e30920a83ed192626b42e3)
+- Add Coroutine 方法封装 [d8c2b88](https://github.com/swoft-cloud/swoft-component/pull/495/commits/d8c2b8848d492fc4b389df6edee595ef8f0e39c5)
+
+扩展(Extra):
+
+- [swoft/crontab](https://github.com/swoft-cloud/swoft-crontab.git) 秒级别定时任务
+- [swoft/whoops](https://github.com/swoft-cloud/swoft-whoops.git) 对 `filp/whoops` 在swoft中使用的简单封装，用于渲染并显示更加利于阅读的错误信息
+
+
+## v2.0.4-beta(2019-07-21)
 
 > 升级注意：
 1. 请去掉 `bin/swoft` 里的 `Runtime::enanbleCoroutine()` 设置
 2. 请确保 swoole 的 `swoole.use_shortname` 的值为 `On` 
+3. 从这个版本开始要求 swoole `4.4.1+`
 
 增强(Enhancement)：
 
@@ -43,7 +114,7 @@
 - 进程池([d2e6290](https://github.com/swoft-cloud/swoft-component/pull/480/commits/d2e6290f5a397d038c0aabe03fc719493207562f))
 - TCP server 基本可用
 
-## 2.0.3-beta(2019-07-08)
+## v2.0.3-beta(2019-07-08)
 
 不兼容(Incompatible)
 
@@ -96,7 +167,7 @@
 - 新增 limter 组件
 - 新增 tcp-server 组件
 
-## 2.0.2-beta(2019-06-21)
+## v2.0.2-beta(2019-06-21)
 
 新增(Enhancement)：
 
@@ -153,7 +224,7 @@
 
 - `swoft/view` 添加通过 `@View` 渲染视图支持
 
-## 2.0.1-beta (2019-05-29)
+## v2.0.1-beta (2019-05-29)
 
 新增(Enhancement)：
 
@@ -191,7 +262,7 @@ Devtool
 
 - 新 bean 方法代码智能提示(`bean()`/`BeanFactory::getBean()`/`Swoft::getBean()`)([b63fe07](https://github.com/swoft-cloud/swoft-devtool/commit/b63fe07a1ab7140bcc0b78fcde558b8a0cc83172))
 
-## 2.0.0-beta (2019-05-21)
+## v2.0.0-beta (2019-05-21)
 
 Swoft 2 重构归来，基于 Swoole hook 方式，底层完全重构，相比之前更佳简单、稳定、易上手。
 

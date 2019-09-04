@@ -56,7 +56,29 @@
       */
      private $age;
      
- 
+     /**
+      * @Column(name="user_desc", prop="udesc")
+      *
+      * @var string|null
+      */
+     private $userDesc;
+
+    /**
+     * @return string|null
+     */
+     public function getUserDesc(): ?string
+     {
+        return $this->userDesc;
+     }
+    
+    /**
+     * @param string|null $userDesc
+     */
+     public function setUserDesc(?string $userDesc): void
+     {
+        $this->userDesc = $userDesc;
+     }
+    
      /**
       * @return int|null
       */
@@ -128,7 +150,7 @@
 - name 定义类属性映射的表字段，没该注解标记的属性，不映射(默认为字段名为属性名)
 - prop 为字段设置一个别名
 > prop 只是为字段设置一个别名，只有在调用`toArray`的时候才会被转换。这样能隐藏数据库真实的字段。使用`where`等子句，需要使用数据库字段。
-- hidden 是否隐藏，如果为真那么它 `toArray()` 的时候将会被隐藏，但是不影响你通过 `Getter`获取它，你也可以调用实体的`setVisible`方法将他取消隐藏。
+- hidden 是否隐藏，如果为真那么它 `toArray()` 的时候将会被隐藏，但是不影响你通过 `Getter`获取它，你也可以调用实体的`addVisible`方法将他取消隐藏。
 > 说明：所有字段属性，必须要有`getter`和`setter`方法，你可以使用`phpstorm` 快捷键 `ctrl+n`，它会更具属性 快速生成 `getter`和`setter`。
 
 > **注意** 若表字段有下划线，类属性均定义为 `小驼峰` 写法 例： 字段 `user_name`  则属性写为 `$userName`
@@ -141,6 +163,53 @@
 
 - incrementing 是否为递增主键，默认为递增主键。
 
+## Prop 操作
+
+> 2.0.6 支持
+
+模型插入支持 使用 `prop` 插入 
+
+例如 上面例子中实体, 真实数据库字段是 `user_desc`, prop 字段是 `udesc`, 底层会自动转化成  `user_desc` 插入
+
+当然这不影响之前的使用
+
+```php
+User::new([
+    'udesc' => $desc,
+])->save();
+```
+
+条件使用 `prop` ,使用 `whereProp` 方法, `whereProp` 方法和可以用 `where` 一样使用.
+
+```php
+
+$where      = [
+    'pwd' => md5(uniqid()),
+    ['udesc', 'like', 'swoft%'],
+    ['whereIn', 'id', [1]]
+];
+
+// 'select * from `user` where (`password` = ? and `user_desc` like ? and `id` in (?))';
+$sql = User::whereProp($where)->toSql();
+```
+
+`where` 扩展使用, 数据里面每一个元素, 为方法名, 支持 `Query Builder` 里面的所有与 `Where` 相关的方法,
+
+```php
+$toSql = 'select * from `user` where (`id` in (?) or `id` = ? or `status` > ? and `age` between ? and ?)';
+$where = [
+    ['whereIn', 'id', [1]],
+    ['orWhere', 'id', 2],
+    ['orWhere', 'status', '>', -1],
+    ['whereBetween', 'age', [18, 25]]
+];
+$sql   = User::where($where)->toSql();
+// same as
+User::where('id', '=', [1])
+            ->orWhere('id', 2)
+            ->orWhere('status', '>', -1)
+            ->whereBetween('age', [18, 25])
+```
 
 ## 插入数据
 
@@ -486,7 +555,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
     class User
     {
         /**
-         * 该模型是否被自动维护时间戳
+         * Whether the model is automatically maintained with a timestamp
          *
          * @var bool
          */
@@ -498,10 +567,10 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 
 ```php
 <?php
-    class UserDao extends User
+    class User
     {
         /**
-         * 模型的日期字段的存储格式
+         * The storage format of the model's date field
          *
          * @var string
          */

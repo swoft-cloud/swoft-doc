@@ -4,6 +4,8 @@ Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配
 
 ## 路由器配置
 
+- 这里是默认的配置
+
 ```php
 // at file: vendor/swoft/http-server/src/AutoLoader.php
     'httpRouter'      => [
@@ -13,6 +15,14 @@ Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配
         'tmpCacheNumber'  => 500,
         // 'handleMethodNotAllowed' => false
     ],
+```
+
+你需要自定义路由配置，直接在 `app/bean.php` 添加 `httpRouter` 项配置即可：
+
+```php
+'httpRouter'  => [
+    'handleMethodNotAllowed' => true
+]
 ```
 
 ### 路由配置说明
@@ -27,7 +37,7 @@ Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配
 
 - `handleMethodNotAllowed` _bool_ 默认：`false` 是否处理 MethodNotAllowed
 
-为了加快匹配速度，默认method不匹配也是直接抛出 Route not found 错误。如有特殊需要可以开启此选项，开启后将会抛出 Method Not Allowed 错误
+为了加快匹配速度，默认method不匹配也是直接抛出 `Route not found` 错误。如有特殊需要可以开启此选项，开启后将会抛出 `Method Not Allowed` 错误
 
 ## 路由注解
 
@@ -44,14 +54,13 @@ Swoft与传统的PHP框架不一样，并没有采用配置文件的方式来配
 ## 使用示例
 
 - **通常情况**,一个完整的路由path等于 Controller 的 `prefix` + RequestMapping 的 `route`
-- **特殊的**，当你的 `RequestMapping.route` 上的路由以 `/` 开头时，那完整的路由就是它，即不会再将 `prefix` 添加到它的前面。
+  - 显示指定路由后缀：`@RequestMapping("index")` 或 `@RequestMapping(route="index")`
+  - 隐式指定路由后缀: 使用 `@RequestMapping()` 默认解析方法名为后缀
+- **特殊的**，当你的 `RequestMapping.route` 上的路由以 `/` 开头时，那完整的路由就是它，即不会再将 `prefix` 添加到它的前面
 
 ### 简单使用
 
 使用方法在控制器方法中加入 `RequestMapping` 注解
-
-- 显示指定路由后缀：`@RequestMapping("index")` 或 `@RequestMapping(route="index")`
-- 隐式指定路由后缀: 使用 `@RequestMapping()` 默认解析方法名为后缀
 
 ```php
 /**

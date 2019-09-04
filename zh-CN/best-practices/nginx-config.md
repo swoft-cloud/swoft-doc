@@ -16,7 +16,7 @@ server {
 
     ##### 第一个必选规则: 匹配首页
     location = / {
-        proxy_pass http://127.0.0.1:9501;
+        proxy_pass http://127.0.0.1:18306;
     }
 
     ##### 第二个必选规则: 处理静态文件请求，这是nginx作为http服务器的强项
@@ -48,7 +48,7 @@ server {
         # 没有找到文件就转发到 swoole server
         # 也可去掉 if. 全部转发到后端server
         if (!-e $request_filename){
-            proxy_pass http://127.0.0.1:9501;
+            proxy_pass http://127.0.0.1:18306;
         }
     }
 }
@@ -108,7 +108,7 @@ server {
     # proxy_set_header Connection "upgrade";
     proxy_set_header Connection "keep-alive";
 
-    proxy_pass http://127.0.0.1:18306;
+    proxy_pass http://127.0.0.1:18308;
   }
 
   location ~* \.(js|map|css|png|jpg|jpeg|gif|ico|ttf|woff2|woff)$ {

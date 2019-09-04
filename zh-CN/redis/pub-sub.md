@@ -75,4 +75,18 @@ Redis::psubscribe(['users.*'], function ($redis, $pattern, $chan, $msg) {
 });
 ```
 
+> 发布订阅使用的 phpredis 原生的 可能过几秒有会断开 socket 连接断开, 在需要在开启发布订阅前 加 
+
+```php
+
+ini_set('default_socket_timeout', -1);
+
+ // todo ...
+Redis::psubscribe(['users.*'], function ($redis, $pattern, $chan, $msg) {
+   echo "Pattern: $pattern\n";
+   echo "Channel: $chan\n";
+   echo "Payload: $msg\n";
+});
+```
+
 

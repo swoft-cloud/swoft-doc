@@ -97,3 +97,6 @@ class DemoController
 }
 ```
 
+好了，服务端代码已经编写好了。这里我们使用默认的配置 `EOF` 分包方式，数据协议格式也使用默认的 `SimpleTokenPacker::TYPE`。
+
+重新启动我们的 tcp server `php bin/swoft tcp:start`，接下来一篇讲述如何与我们的tcp server进行通信交互。

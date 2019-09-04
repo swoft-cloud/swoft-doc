@@ -27,7 +27,7 @@ PSR-7 接口为响应对象提供了这些方法:
 
 ## 如何获取
 
-- 通过控制器方法参数注入 `(Request $request)`
+- 通过控制器方法参数注入 `(Response $response)`
 - 通过请求上下文获取 `Swoft\Context\Context::mustGet()->getResponse()`
 
 ## 设置状态码

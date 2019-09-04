@@ -66,6 +66,9 @@ return [
 
 ```php
 return [
+    'dkey' => [
+        'dvalue'
+    ],
     'key' => 'valuePro'
 ];
 ```
