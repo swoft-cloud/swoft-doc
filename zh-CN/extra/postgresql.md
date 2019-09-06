@@ -1,6 +1,6 @@
 # Swoft PostgreSQL
 
-`curtis18/swoft-pgsql` 是对 `PostgreSQL` 在 Swoft 中使用的简单封装，支持连接池配置。
+`curtis18/swoft-pgsql` 是对 `PostgreSQL` 在 Swoft 中使用的简单封装，支持连接池配置和某些非连接池的原生配置函数。
 
 ## Github
 
@@ -19,7 +19,7 @@ composer require curtis18/swoft-pgsql
 - 通过 `composer.json` 配置:
 
 ```json
-    "curtis18/swoft-pgsql": "~1.0.0"
+    "curtis18/swoft-pgsql": "~1.0.1"
 ```
 
 ## 使用
@@ -66,7 +66,7 @@ Swoft 所有连接池配置都差不多，配置都在配置文件 app/bean.php 
 ```
 
 <p class="tip">
-    注意：每一个 worker 都会创建一个同样的连接池。并不是越多越好，参数配置要根据，机器配置和 和worker 个数衡量。
+    注意：每一个 worker 都会创建一个同样的连接池。并不是越多越好，参数配置要根据，机器配置和 worker 个数衡量。
 </p>
 
 
@@ -97,11 +97,44 @@ class Test
      * @var Pool
      */
     private $pgsql;
-	
+    
     public function getTest(): array
     {
         $connection = $this->pgsql->createConnection();
         return $connection->select("SELECT * FROM test;");
+    }
+    
+    public function fetchNumTest(): array
+    {
+        $connection = $this->pgsql->createConnection();
+        return $connection->selectFetchNum("SELECT testid, testname FROM test;");
+    }
+    
+    public function bindingTest(int $id = 1, string name = "myname"): array
+    {
+        $connection = $this->pgsql->createConnection();
+        return $connection->select("SELECT * FROM test WHERE testid = $1 AND testname = $2;", array($id, $name));
+    }
+    
+    // 非连接池的原生配置函数
+    public function copyFromTest(): bool
+    {
+        $table = 'test';
+        $data = array(
+                array('1|C252525A|0|0|02921|02921|2|0|Welcome To Swoft|02921||benny|2019-09-03 14:40:55|1|'),
+                array('2|C252525B|0|0|02921|02921|2|0|Welcome To Swoole|02921||curtis|2019-07-03 14:40:55|1|'),
+	);
+        $connection = $this->pgsql->createConnection();
+	$connection->select("TRUNCATE ".$table.";");
+        return $connection->copyFrom($table, $data);
+    }
+    
+    // 非连接池的原生配置函数
+    public function copyToTest(): array
+    {
+        $table = 'test';
+        $connection = $this->pgsql->createConnection();
+        return $connection->copyTo($table);
     }
 }
 ```
