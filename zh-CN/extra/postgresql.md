@@ -121,11 +121,13 @@ class Test
     {
         $table = 'test';
         $data = array(
-                array('1|C252525A|0|0|02921|02921|2|0|Welcome To Swoft|02921||benny|2019-09-03 14:40:55|1|'),
-                array('2|C252525B|0|0|02921|02921|2|0|Welcome To Swoole|02921||curtis|2019-07-03 14:40:55|1|'),
-	);
+            array('1|C252525A|0|0|02921|02921|2|0|Welcome To Swoft|02921||benny|2019-09-03 14:40:55|1|'),
+            array('2|C252525B|0|0|02921|02921|2|0|Welcome To Swoole|02921||curtis|2019-07-03 14:40:55|1|'),
+        );
+
         $connection = $this->pgsql->createConnection();
-	$connection->select("TRUNCATE ".$table.";");
+        $connection->select("TRUNCATE ".$table.";");
+	
         return $connection->copyFrom($table, $data);
     }
     
