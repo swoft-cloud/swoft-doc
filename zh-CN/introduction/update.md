@@ -11,6 +11,10 @@
 - 修复 模型属性 `$modelTimestamps` 关闭了无效 [94c7171](https://github.com/swoft-cloud/swoft-component/pull/502/commits/94c7171f57c4d8952fdb0214da27e6e12231fe2d)
 - 修复 在初始化前调用了log，导致可能会在启动阶段报context丢失错误 [5a27704f](https://github.com/swoft-cloud/swoft-component/pull/504/commits/5a27704f1bd3a056b144e2ecbb4accf1c59680df)
 - 修复 ws server的握手和open使用同一个顶级协程ID，如果有一个先执行完成，可能会导致后面的出现session丢失 [c2cd17a](https://github.com/swoft-cloud/swoft-component/pull/509/commits/c2cd17aaf0989ef9f4a2feaac714e152c1795d8c)
+- 修复 `after` 定时器传递参数 bug [8ed609a](https://github.com/swoft-cloud/swoft-component/pull/508/files)
+- 修复定时任务内存泄漏和日志打印数据丢失问题 [aa6bc32](https://github.com/swoft-cloud/swoft-ext/pull/40/commits/aa6bc3223a4fc7b3cb97ec1f324c257eaa2356bf)
+- 优化 Http server `sgo` 处理流程 [e60d92e](https://github.com/swoft-cloud/swoft-component/pull/507/commits/e60d92e78853a9f0b2e9f823c941bc214c6c409f)
+- 修复数据库在事物的请求下重连导致数据不一致问题 [c2e87f2](https://github.com/swoft-cloud/swoft-component/pull/507/commits/c2e87f278815fd14dbccb71d5f6a63d4f974d38b)
 
 **更新(Update)**:
 
@@ -23,7 +27,7 @@
 - 新增日志支持传递额外参数 [55d5533](https://github.com/swoft-cloud/swoft-component/pull/503/commits/55d55335f77572611ae0a469f5c848454838fc1f)
 - 调整和新增了一些ws server相关事件，方便用户使用 [e1b0583](https://github.com/swoft-cloud/swoft-component/pull/504/commits/e1b058340e27e6773a3fbac0daafaffbabea5571)
 - 模型对 `Prop` 支持 [630aad8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/630aad8315894a993ef9021c23c70eed14e3fa47)
-
+- 新增连接连接池(mysql/redis/rpc)启动初始化连接功能 [a367173](https://github.com/swoft-cloud/swoft-component/pull/507/commits/a3671739863bacf1ba514fbe637e981b19b22b94)
 
 **扩展(Extra)**:
 
