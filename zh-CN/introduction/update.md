@@ -31,6 +31,7 @@
 - 调整和新增了一些ws server相关事件，方便用户使用 [e1b0583](https://github.com/swoft-cloud/swoft-component/pull/504/commits/e1b058340e27e6773a3fbac0daafaffbabea5571)
 - 模型对 `Prop` 支持 [630aad8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/630aad8315894a993ef9021c23c70eed14e3fa47)
 - 新增连接连接池(mysql/redis/rpc)启动初始化连接功能 [a367173](https://github.com/swoft-cloud/swoft-component/pull/507/commits/a3671739863bacf1ba514fbe637e981b19b22b94)
+- tcp server 使用长度分包时，支持自定义头部数据打包、解包格式 [a6fbe932](https://github.com/swoft-cloud/swoft-component/pull/509/commits/a6fbe93261b2facadd0c9d3384c3abd86e8779dc)
 
 **扩展(Extra)**:
 
