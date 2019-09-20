@@ -41,7 +41,7 @@
 - RPC 调用错误信息调整 [d9226b1](https://github.com/swoft-cloud/swoft-component/pull/515/commits/d9226b13e7bf1b3154922439dc4990c8f55de040)
 - 新增操作 `Database` 异常, 打印控制台 错误 `SQL`[3a60c06](https://github.com/swoft-cloud/swoft-component/pull/515/commits/3a60c063189224a360400f9fcfd9d5cb55bd3587)
 - 新增操作数据迁移 `int` 系列 长度支持[967d6f8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/967d6f84e3e1eae4c495e46c5a5edbfa79b5a7fe)
-- 新增获取原始 sql 方法`getRawSql`和`batchUpdateOrInsert`批量添加/更新方法[967d6f8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/967d6f84e3e1eae4c495e46c5a5edbfa79b5a7fe)
+- 新增获取原始 sql 方法`getRawSql`[967d6f8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/967d6f84e3e1eae4c495e46c5a5edbfa79b5a7fe)
 - 扩展`updateOrInsert`和`updateOrCreate` 支持自增参数[967d6f8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/967d6f84e3e1eae4c495e46c5a5edbfa79b5a7fe)
 
 
