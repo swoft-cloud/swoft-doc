@@ -18,6 +18,7 @@
 - 修复 Aop 极端情况返回 `0` 问题 [85bc1b1](https://github.com/swoft-cloud/swoft-component/pull/511/commits/85bc1b186f125773d55c582ecc40cde9f30c87cf)
 - 修复 `BeanFactory::createBean()` 方法创建问题[c2e2c89](https://github.com/swoft-cloud/swoft-component/pull/474/commits/c2e2c894ea17dcb3a0e97cccaff42355b72066f7)
 - 修复 RPC 错误数据是字符串问题 [3a34658](https://github.com/swoft-cloud/swoft-component/pull/474/commits/3a346589a81e35a0dd1b2ffc43dcd430153d86c7)
+- 修复 redisCluster 初始化问题[3a60c06](https://github.com/swoft-cloud/swoft-component/pull/515/commits/3a60c063189224a360400f9fcfd9d5cb55bd3587)
 
 **更新(Update)**:
 
@@ -32,6 +33,7 @@
 - 模型对 `Prop` 支持 [630aad8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/630aad8315894a993ef9021c23c70eed14e3fa47)
 - 新增连接连接池(mysql/redis/rpc)启动初始化连接功能 [a367173](https://github.com/swoft-cloud/swoft-component/pull/507/commits/a3671739863bacf1ba514fbe637e981b19b22b94)
 - tcp server 使用长度分包时，支持自定义头部数据打包、解包格式 [a6fbe932](https://github.com/swoft-cloud/swoft-component/pull/509/commits/a6fbe93261b2facadd0c9d3384c3abd86e8779dc)
+- RPC 调用错误信息调整 [d9226b1](https://github.com/swoft-cloud/swoft-component/pull/515/commits/d9226b13e7bf1b3154922439dc4990c8f55de040)
 
 **扩展(Extra)**:
 
