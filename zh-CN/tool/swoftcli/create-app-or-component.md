@@ -44,7 +44,7 @@ php swoftcli.phar create:app
 - `--repo` _string_ 自定义设置模板仓库的git地址，可以是 `UERANME/REPO` 或者 完整url地址
 - `--type` _string_ 从默认的提供的5个模板仓库里选择一个来作为源仓库，默认是 `http`
 
-> `YOUR_APP_NAME` 指定是你的新项目名称，同时也是作为新应用的目录名。
+> `YOUR_APP_NAME` 指的是你的新项目名称，同时也是作为新应用的目录名。
 
 直接使用 `create:app YOUR_APP_NAME`，默认使用 `swoft-http-project` 模板仓库。
 如果需要ws/tcp/rpc等模板仓库作为基础模板，可以如下指定 `type` 选项。

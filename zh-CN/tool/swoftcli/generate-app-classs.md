@@ -50,6 +50,6 @@ php swoftcli.phar gen:ws-mod chat --prefix /chat
 - 生成websocket controller
 
 ```bash
-php swoftcli.phar gen:ws-ctrl chat --prefix /chat
+php swoftcli.phar gen:ws-ctrl chat
 ```
 
