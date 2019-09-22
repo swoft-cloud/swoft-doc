@@ -134,7 +134,7 @@ $tick = $swooleTracker->startRpcAnalysis('/get/user', 'demo', '53.65.77.11', $tr
 $handlerStatus = false;
 $errno         = 401;
 
-$swooleTracker->endAnalysis($tick, $handlerStatus, $errno);
+$swooleTracker->endRpcAnalysis($tick, $handlerStatus, $errno);
 ```
 
 登录管理后台看
