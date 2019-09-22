@@ -193,6 +193,8 @@
 
   * [下载安装](tool/swoftcli/install.md)
   * [自动重启服务](tool/swoftcli/hot-restart.md)
+  * [生成应用类文件](tool/swoftcli/generate-app-classs.md)
+  * [创建新应用或组件](tool/swoftcli/create-app-or-component.md)
   * [打包应用为PHAR](tool/swoftcli/build-phar.md)
 
 ### [Devtool](tool/devtool/index.md)

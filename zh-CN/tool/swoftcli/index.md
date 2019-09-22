@@ -9,6 +9,10 @@ Swoft CLI 是一个独立的命令行应用包，提供了一些内置的工具�
 
 > swoft-cli 是基于 swoft 2.0 构建的应用，运行使用同样需要swoole
 
+## 运行预览
+
+![swoft-cli-home](../../image/tool/swoftcli/swoftcli-home.png)
+
 ## 仓库
 
 - github https://github.com/swoft-cloud/swoft-cli
