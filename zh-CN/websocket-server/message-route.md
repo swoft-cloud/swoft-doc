@@ -147,10 +147,10 @@ class HomeController
     /**
      * Message command is: 'home.echo'
      *
-     * @param $data
+     * @param string $data
      * @MessageMapping()
      */
-    public function echo($data): void
+    public function echo(string $data): void
     {
         Session::mustGet()->push('(home.echo)Recv: ' . $data);
     }
@@ -158,17 +158,19 @@ class HomeController
     /**
      * Message command is: 'home.ar'
      *
-     * @param $data
+     * @param string $data
      * @MessageMapping("ar")
      *
      * @return string
      */
-    public function autoReply($data): string
+    public function autoReply(string $data): string
     {
         return '(home.ar)Recv: ' . $data;
     }
 }
 ```
+
+> 注意，自 `v2.0.6` 版本起，通过参数注入接收websocket原始数据时，需要加上类型 `string`。例如： `public function echo(string $data)`
 
 ### 访问
 
