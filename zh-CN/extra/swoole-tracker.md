@@ -24,7 +24,7 @@
 当你需要自定义应用名称时则需要安装组件，使用`Composer`安装：
 
 ```bash
-composer require swoft/swoft-swoole-tracker
+composer require swoft/swoole-tracker
 ```
 
 ### 安装扩展
