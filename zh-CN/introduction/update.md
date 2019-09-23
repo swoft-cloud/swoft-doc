@@ -13,6 +13,9 @@
 
 ## v2.0.6
 
+> 升级提示：
+- 通过参数注入接收websocket原始数据时，现在需要加上类型 `string`。例如： `public function echo(string $data)`
+
 **修复(Fixed)**：
 
 - 修复 ws server收到消息时，默认使用当前fd作为响应消息的客户端 [3a8890cf](https://github.com/swoft-cloud/swoft-component/pull/504/commits/3a8890cfd5a4641042eb7714c6afe65e15b0b461)
