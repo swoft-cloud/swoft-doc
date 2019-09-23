@@ -143,11 +143,20 @@ $swooleTracker->endRpcAnalysis($tick, $handlerStatus, $errno);
 
 ![trace](../image/extra/trace.png)
  
-应用监控
+### 应用监控
  
 ![stats](../image/extra/monitor.png)
  
-调试器
+### 调试器
 ![debuger](../image/extra/process.png)
+
+
+### 内存泄露
+![memory](../image/extra/memory.png)
+
+### 阻塞检查
+
+![block](../image/extra/block.png)
+
 
 如果需要开启 `阻塞检查`, `泄露分析`, `性能分析` 在 进程列表 中后面的按钮开启就是, 不需要客户端手动上报
