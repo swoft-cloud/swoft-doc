@@ -604,7 +604,7 @@ DB::table('users')
 $role = true;
 
 $users = DB::table('users')
-                ->when($role, function ($query, $role) {
+                ->when($role, function ($query) use ($role) {
                     return $query->where('role_id', $role);
                 })
                 ->get();
@@ -616,7 +616,7 @@ $users = DB::table('users')
 $sortBy = null;
 
 $users = DB::table('users')
-                ->when($sortBy, function ($query, $sortBy) {
+                ->when($sortBy, function ($query) use ($sortBy) {
                     return $query->orderBy($sortBy);
                 }, function ($query) {
                     return $query->orderBy('name');
