@@ -9,7 +9,7 @@
 
 
 上图是断路器（Curcuit Breaker）的结构，它有两个基本状态（close和open）和一个基本trip动作：
-- close状态下， client向supplier发起的服务请求， 直接无阻碍通过断路器， supplier的返回值接直接由断路器交回给client.
+- close状态下， client向supplier发起的服务请求， 直接无阻碍通过断路器， supplier的返回值直接由断路器交回给client.
 - open状态下，client向supplier发起的服务请求后，断路器不会将请求转到supplier, 而是直接返回client, client和supplier之间的通路是断的
 - trip: 在close状态下，如果supplier持续超时报错， 达到规定的阀值后，断路器就发生trip, 之后断路器状态就会从close进入open.
 
