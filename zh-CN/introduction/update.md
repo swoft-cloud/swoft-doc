@@ -4,14 +4,14 @@
 
 **修复(Fixed)**：
 
-- 修复 config 注入时，没有找到值也会使用对应类型的默认值覆盖属性，导致属性默认值被覆盖
+- 修复 config 注入时，没有找到值也会使用对应类型的默认值覆盖属性，导致属性默认值被覆盖 [d84d50a7](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d84d50a76c4c7ff19dc0896868745cfe8f0d93c9)
+- 修复 ws server 中使用message调度时，没有过滤空数据，导致多发出一个响应 [d84d50a7](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d84d50a76c4c7ff19dc0896868745cfe8f0d93c9)
 
 **更新(Update)**:
 
 **增强(Enhancement)**：
 
-
-## v2.0.6
+## v2.0.6(2019-09-21)
 
 > 升级提示：
 - 通过参数注入接收websocket原始数据时，现在需要加上类型 `string`。例如： `public function echo(string $data)`
@@ -37,7 +37,6 @@
 - 修复 `ModelAttribute` 的 `getter` 和 `setter` 驼峰判断错误[2e2f0f1](https://github.com/swoft-cloud/swoft-component/pull/502/commits/2e2f0f197c64fecfdee82ade45a40ed509ed6108)
 - 修复 `Aggregate` 聚合, 返回字符串强行转换 `int`错误[7aa98a6](https://github.com/swoft-cloud/swoft-component/pull/502/commits/7aa98a6a565236639c9803facf2a4b01bc2adacb)
 - 修复模型 `updateCounters` 方法更新之后没有同步实体数据[967d6f8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/967d6f84e3e1eae4c495e46c5a5edbfa79b5a7fe)
-
 
 **更新(Update)**:
 
