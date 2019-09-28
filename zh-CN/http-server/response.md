@@ -34,7 +34,7 @@ PSR-7 接口为响应对象提供了这些方法:
 ## 设置状态码
 
 ```php
-$response = \context()->Response();
+$response = \context()->getResponse();
 return $response->withStatus(404);
 ```
 
