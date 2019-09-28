@@ -61,3 +61,11 @@ function context(): ContextInterface
 ```php
 function container(): Container
 ```
+
+## vdump
+
+打印数据，跟 var_dump 一样，只是会在前面多打出调用的位置，方便调试。
+
+```php
+function vdump(...$vars)
+```
