@@ -16,6 +16,14 @@ function env(string $key = null, $default = null): mixed
 function alias(string $key): string
 ```
 
+## bean
+
+从容器中获取bean对象，等同于 `\Swoft::getBean()`
+
+```php
+function bean(string $key): object
+```
+
 ## config
 
 获取应用配置的值
@@ -44,4 +52,12 @@ function server(): \Swoft\Server\Server
 
 ```php
 function context(): ContextInterface
+```
+
+## container
+
+获取容器对象
+
+```php
+function container(): Container
 ```
