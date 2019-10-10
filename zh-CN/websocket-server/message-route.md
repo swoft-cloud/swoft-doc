@@ -172,6 +172,57 @@ class HomeController
 
 > 注意，自 `v2.0.6` 版本起，通过参数注入接收websocket原始数据时，需要加上类型 `string`。例如： `public function echo(string $data)`
 
+### 获取数据
+
+有两种方式可以获取消息请求的数据信息。
+
+- 方式一 通过参数注入
+
+```php
+use Swoft\WebSocket\Server\Message\Message;
+
+...
+
+public function autoReply(Message $msg): string
+{
+    return $msg->toString();
+}
+
+public function autoReply(Message $msg): string
+{
+    return $msg->toString();
+}
+```
+
+- 方式二 通过上下文获取
+
+```php
+use Swoft\WebSocket\Server\Message\Message;
+
+...
+
+public function autoReply(): string
+{
+    $msg = context()->getMessage();
+}
+```
+
+更多获取方式：
+
+```php
+use Swoft\WebSocket\Server\Message\Request;
+
+$req = context()->getRequest();
+
+/** @var \Swoft\WebSocket\Server\Message\Message $msg */
+$msg = $req->getMessage();
+
+/** @var \Swoole\WebSocket\Frame $msg */
+$frm = $req->getFrame();
+```
+
+> 注意这里的 `Request` 是指消息阶段的请求对象，与打开连接时的请求对象是不同的。
+
 ### 访问
 
 根据以上定义好的 `Ws模块`、`消息解析器`、`消息控制器` 等内容后启动我们的服务。然后打开webscoket 调试工具，链接Ws的地址： `ws://localhost:port/chat ` 然后测试发送一个内容
