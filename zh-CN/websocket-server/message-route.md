@@ -193,7 +193,7 @@ public function autoReply(Message $msg): string
 // inject Request object
 public function autoReply(Request $req): string
 {
-    return $$req->getMessage()->toString();
+    return $req->getMessage()->toString();
 }
 ```
 
