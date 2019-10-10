@@ -5,7 +5,7 @@ swoft 提供了灵活的 websocket 使用，支持自定义和由框架托管处
 - 如果你在ws模块类没有添加 `@OnMessage` 处理方法，框架将会自动托管这个阶段，解析消息并根据路由分发到不同的方法执行
 - 如果你在ws模块类里面绑定了 `@OnMessage` 处理方法，swoft就认为你想自己处理这个阶段，框架就不会处理了
 
-> 本篇文档的使用是建立在由框架托管消息路由的基础上。
+> 注意：本篇文档的使用是建立在由框架托管消息路由的基础上。
 
 ## 注解
 
@@ -180,17 +180,20 @@ class HomeController
 
 ```php
 use Swoft\WebSocket\Server\Message\Message;
+use Swoft\WebSocket\Server\Message\Request;
 
 ...
 
+// inject Message object
 public function autoReply(Message $msg): string
 {
     return $msg->toString();
 }
 
-public function autoReply(Message $msg): string
+// inject Request object
+public function autoReply(Request $req): string
 {
-    return $msg->toString();
+    return $$req->getMessage()->toString();
 }
 ```
 
