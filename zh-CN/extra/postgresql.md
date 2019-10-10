@@ -91,7 +91,7 @@ use Swoft\Config\Annotation\Mapping\Config;
  * @Bean()
  */
 class Test
-
+{
     /**
      * @Inject("pgsql.pool")
      * @var Pool
