@@ -1,6 +1,6 @@
 # SwooleTracker
 
-[SwooleTracker](https://www.swoole-cloud.com/tracker.html) 作为 `Swoole` 官方出品的一整套企业级`PHP`和`Swoole`分析调试工具，更专一、更专业。
+[SwooleTracker](https://www.swoole-cloud.com/tracker.html) 作为 `Swoole` 官方出品的一整套企业级 `PHP` 和 `Swoole` 分析调试工具，更专一、更专业。
 
 ## 介绍
 
@@ -19,15 +19,7 @@
 
 ## 安装
 
-### 安装组件
-
-当你需要自定义应用名称时则需要安装组件，使用`Composer`安装：
-
-```bash
-composer require swoft/swoole-tracker
-```
-
-### 安装扩展
+### 安装依赖
 
 注册完账户后，进入[控制台](https://www.swoole-cloud.com/dashboard/catdemo/)，并申请试用，下载对应客户端。
 
@@ -96,7 +88,7 @@ docker run --rm --name swoft-tracker -v $(pwd):/var/www/swoft -p 18306:18306 swo
 
 ### 不依赖组件
 
-`Swoole Tracker`的`v2.5.0`版本支持自动生成应用名称并创建应用，无需修改任何代码，生成的应用名称格式为：
+`Swoole Tracker`的支持自动生成应用名称并创建应用，无需修改任何代码，生成的应用名称格式为：
 
 `Swoole`的`HttpServer`：`ip:prot`
 
@@ -105,6 +97,14 @@ docker run --rm --name swoft-tracker -v $(pwd):/var/www/swoft -p 18306:18306 swo
 即安装好`swoole_tracker`扩展之后就可以正常使用`Swoole Tracker`的功能
 
 ### 依赖组件
+
+当你需要自定义应用名称时则需要安装组件，使用`Composer`安装：
+
+#### 安装组件
+
+```bash
+composer require swoft/swoole-tracker
+```
 
 安装完成后在 `app/bean.php` 配置文件中注册 `Swoft\Swoole\Tracker\Middleware\SwooleTrackerMiddleware` 中间件即可，如下：
 
@@ -128,7 +128,13 @@ return [
 /** @var SwooleTracker $swooleTracker */
 $swooleTracker = bean(SwooleTracker::class);
 
-$tick = $swooleTracker->startRpcAnalysis('/get/user', 'demo', '53.65.77.11', $traceId, $spanId);
+/**
+ * 参数说明：
+ * 1. 接口名称
+ * 2. 应用名称
+ * 3. serverIp
+ */
+$tick = $swooleTracker->startRpcAnalysis('/get/user', 'demo', '53.65.77.11');
 
 // todo ...
 $handlerStatus = false;
