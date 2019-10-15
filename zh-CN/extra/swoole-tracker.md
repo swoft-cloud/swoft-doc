@@ -1,21 +1,21 @@
-# SwooleTracker
+# Swoole Tracker
 
-[SwooleTracker](https://www.swoole-cloud.com/tracker.html) 作为 `Swoole` 官方出品的一整套企业级 `PHP` 和 `Swoole` 分析调试工具，更专一、更专业。
+[Swoole Tracker](https://www.swoole-cloud.com/tracker.html) 作为 `Swoole` 官方出品的一整套企业级 `PHP` 和 `Swoole` 分析调试工具，更专一、更专业。
 
 ## 介绍
 
 - 时刻掌握应用架构模型
-- 自动发现应用依赖拓扑结构和展示，时刻掌握应用的架构模型
+> 自动发现应用依赖拓扑结构和展示，时刻掌握应用的架构模型
 - 分布式跨应用链路追踪
-- 支持无侵入的分布式跨应用链路追踪，让每个请求一目了然，全面支持协程/非协程环境，数据实时可视化
+> 支持无侵入的分布式跨应用链路追踪，让每个请求一目了然，全面支持协程/非协程环境，数据实时可视化
 - 全面分析报告服务状况
-- 各种维度统计服务上报的调用信息， 比如总流量、平均耗时、超时率等，并全面分析报告服务状况
+> 各种维度统计服务上报的调用信息， 比如总流量、平均耗时、超时率等，并全面分析报告服务状况
 - 拥有强大的调试工具链
-- 本系统支持远程调试，可在系统后台远程开启检测内存泄漏、阻塞检测和代码性能分析
+> 本系统支持远程调试，可在系统后台远程开启检测内存泄漏、阻塞检测和代码性能分析
 - 完善的系统监控
-- 支持完善的系统监控，零成本部署，监控机器的CPU、内存、网络、磁盘等资源，可以很方便的集成到现有报警系统
+> 支持完善的系统监控，零成本部署，监控机器的CPU、内存、网络、磁盘等资源，可以很方便的集成到现有报警系统
 - 零成本接入系统
-- 本系统的客户端提供脚本可一键部署，服务端可在Docker环境中运行，简单快捷
+> 本系统的客户端提供脚本可一键部署，服务端可在Docker环境中运行，简单快捷
 
 ## 安装
 
@@ -123,18 +123,20 @@ return [
 
 ### 链路追踪
 
-配置了中间件框架会自动开启链路追踪, 你也可以单独使用它 例如:
+配置了中间件后框架会自动开启链路追踪。你也可以在需要`透传TraceId/SpanId`、`自定义应用名称`时单独使用它，例如:
 ```php
 /** @var SwooleTracker $swooleTracker */
 $swooleTracker = bean(SwooleTracker::class);
 
 /**
  * 参数说明：
- * 1. 接口名称
- * 2. 应用名称
- * 3. serverIp
+ * 1. $func eg. 'App\Login\Weibo::login'
+ * 2. $serviceName 自定义的应用名称，后台会自动创建 eg. 'user'
+ * 3. $serverIp eg. '192.1.1.1'
+ * 4. $traceId
+ * 5. $spanId
  */
-$tick = $swooleTracker->startRpcAnalysis('/get/user', 'demo', '53.65.77.11');
+$tick = $swooleTracker->startRpcAnalysis('/get/user', 'demo', '53.65.77.11', $traceId, $spanId);
 
 // todo ...
 $handlerStatus = false;
