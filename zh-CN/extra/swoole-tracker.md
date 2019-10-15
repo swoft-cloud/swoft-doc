@@ -121,9 +121,12 @@ return [
 ];
 ```
 
-### 链路追踪
+配置了中间件后框架会自动开启链路追踪。
 
-配置了中间件后框架会自动开启链路追踪。你也可以在需要`透传TraceId/SpanId`、`自定义应用名称`时单独使用它，例如:
+### 单独使用
+
+你也可以在需要链路追踪`透传TraceId/SpanId`、`自定义应用名称`时单独使用它，例如:
+
 ```php
 /** @var SwooleTracker $swooleTracker */
 $swooleTracker = bean(SwooleTracker::class);
