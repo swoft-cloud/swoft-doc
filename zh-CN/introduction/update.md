@@ -6,8 +6,12 @@
 
 - 修复 config 注入时，没有找到值也会使用对应类型的默认值覆盖属性，导致属性默认值被覆盖 [d84d50a7](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d84d50a76c4c7ff19dc0896868745cfe8f0d93c9)
 - 修复 ws server 中使用message调度时，没有过滤空数据，导致多发出一个响应。避免方法[swoft-cloud/swoft#1002](https://github.com/swoft-cloud/swoft/issues/1002) [d84d50a7](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d84d50a76c4c7ff19dc0896868745cfe8f0d93c9)
+- 修复 tcp server 中使用message调度时，没有过滤空数据，导致多发出一个响应。[07a01ba1](https://github.com/swoft-cloud/swoft-component/pull/522/commits/07a01ba1e6ff52baffbc7b2baf997e0e6a07ae04)
 
 **更新(Update)**:
+
+- 更新 console 在渲染 help信息之前也会发出事件 `ConsoleEvent::SHOW_HELP_BEFORE` [d3f7bc3](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d3f7bc3c5093a11a1de3710fd239c4375b835160)
+- 简化和统一 http,ws,tcp,rpc server管理命令逻辑 [f202c826](https://github.com/swoft-cloud/swoft-component/pull/522/commits/f202c826b74972775fe97ad91b2c38e5c7d97014)
 
 **增强(Enhancement)**：
 
