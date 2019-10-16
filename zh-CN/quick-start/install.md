@@ -48,4 +48,13 @@ cp .env.example .env
 vim .env # 根据需要调整启动参数
 ```
 
+## 使用Swoftcli
+
+关于swoftcli工具，请查看 [swoftcli 文档](../tool/swoftcli/index.md)。支持快速的从不同模板项目创建一个干净的swoft应用
+
+```php
+php swoftcli.phar create:app --type full YOUR_APP_NAME
+php swoftcli.phar create:app --type ws YOUR_APP_NAME
+php swoftcli.phar create:app --type tcp YOUR_APP_NAME
+```
 
