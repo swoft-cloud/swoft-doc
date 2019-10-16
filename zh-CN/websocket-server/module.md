@@ -77,6 +77,22 @@ websocket 模块类注解tag `@WsModule`
 
 > 注意：触发此事件时连接已被关闭，不能再给对方发消息
 
+## 快速创建模块类
+
+可以使用 `swoftcli` 工具来快速创建一个websocket 模块类：
+
+- 默认生成的是支持内置路由调度的模块类
+
+```php
+php swoftcli.phar gen:wsmod chat --prefix /chat
+```
+
+- 生成用户自定义调度的模块类
+
+```php
+php swoftcli.phar gen:wsmod chat --prefix /chat --tpl-file ws-module-user
+```
+
 ## 代码示例
 
 - 这里面方法上的 server 对象都是 `Swoole\WebSocket\Server` 的实例
