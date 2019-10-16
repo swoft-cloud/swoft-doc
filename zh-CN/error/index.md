@@ -1,6 +1,6 @@
 # 错误处理
 
-swoft 提供了完善的异常与错误处理机制，与通常fpm下情况不同，swoft里将错误分为了不同的场景类型。
+swoft 提供了完善的异常与错误处理机制，与通常fpm下情况不同，swoft里将错误分为了不同的场景类型。因此你无需关心如何处理在不同场景下的错误响应，你只需要实现对应场景的错误处理逻辑即可，swoft会自动调度对应的错误处理器。
 
 ## 安装
 
@@ -64,13 +64,13 @@ final class ErrorType
 }
 ```
 
-现在支持错误处理的有：
+现在支持错误处理的场景有：
 
-- console 应用场景
-- http server 应用场景
-- rpc server 应用场景
-- tcp server 应用场景
-- websocket server 应用场景
+- console 应用
+- http server 应用
+- rpc server 应用
+- tcp server 应用
+- websocket server 应用
 
 异常处理的具体使用，请继续查看下一篇文档。
 
