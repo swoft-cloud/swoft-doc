@@ -83,13 +83,13 @@ websocket 模块类注解tag `@WsModule`
 
 - 默认生成的是支持内置路由调度的模块类
 
-```php
+```bash
 php swoftcli.phar gen:wsmod chat --prefix /chat
 ```
 
 - 生成用户自定义调度的模块类
 
-```php
+```bash
 php swoftcli.phar gen:wsmod chat --prefix /chat --tpl-file ws-module-user
 ```
 
