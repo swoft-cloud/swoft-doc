@@ -32,12 +32,15 @@ namespace Swoft\Error;
  */
 final class ErrorType
 {
+    // Console application
     public const CLI  = 2;
+    
     public const RPC  = 3;
     public const UDP  = 4;
-    public const TCP  = 5;
     public const SOCK = 7;
     public const TASK = 8;
+
+    public const WORKER = 9;
 
     // HTTP server
     public const HTTP = 16;
@@ -48,13 +51,26 @@ final class ErrorType
     public const WS_MSG = 23;
     public const WS_CLS = 24;
 
+    // Tcp server
+    public const TCP_CNT = 31;
+    public const TCP_RCV = 32;
+    public const TCP_CLS = 33;
+
     public const SYS = 85;
 
-    // default
+    // Default error type
     public const DEF     = 90;
     public const DEFAULT = 90;
 }
 ```
+
+现在支持错误处理的有：
+
+- console 应用场景
+- http server 应用场景
+- rpc server 应用场景
+- tcp server 应用场景
+- websocket server 应用场景
 
 异常处理的具体使用，请继续查看下一篇文档。
 
