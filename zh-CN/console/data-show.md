@@ -85,7 +85,7 @@ Show::mList($data);
 ## 面板展示信息输出
 
 ```php
-public static function panel(mixed $data, $title = 'Information Panel', $borderChar = '*')
+public static function show(mixed $data, string $title = 'Information Panel', array $opts = [])
 ```
 
 展示信息面板。比如 命令行应用 开始运行时需要显示一些 版本信息，环境信息等等。
@@ -99,7 +99,7 @@ $data = [
     'see help' => 'please use php bin/app -h',
     'a only value message',
 ];
-Show::panel($data, 'panel show', '#');
+Show::panel($data, 'panel show', ['borderChar' => '#']);
 ```
 
 渲染效果：
@@ -158,13 +158,13 @@ public static function helpPanel(array $config, $showAfterQuit = true)
 
 ```php
 Show::helpPanel([
-    Show::HELP_DES => 'a help panel description text. (help panel show)',
-    Show::HELP_USAGE => 'a usage text',
-    Show::HELP_ARGUMENTS => [
+    "description" => 'a help panel description text. (help panel show)',
+    "usage" => 'a usage text',
+    "arguments" => [
         'arg1' => 'arg1 description',
         'arg2' => 'arg2 description',
     ],
-    Show::HELP_OPTIONS => [
+    "options" => [
         '--opt1' => 'a long option',
         '-s' => 'a short option',
         '-d' => 'Run the server on daemon.(default: <comment>false</comment>)',
