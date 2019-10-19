@@ -7,6 +7,7 @@
 - 修复 config 注入时，没有找到值也会使用对应类型的默认值覆盖属性，导致属性默认值被覆盖 [d84d50a7](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d84d50a76c4c7ff19dc0896868745cfe8f0d93c9)
 - 修复 ws server 中使用message调度时，没有过滤空数据，导致多发出一个响应。避免方法[swoft-cloud/swoft#1002](https://github.com/swoft-cloud/swoft/issues/1002) [d84d50a7](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d84d50a76c4c7ff19dc0896868745cfe8f0d93c9)
 - 修复 tcp server 中使用message调度时，没有过滤空数据，导致多发出一个响应。[07a01ba1](https://github.com/swoft-cloud/swoft-component/pull/522/commits/07a01ba1e6ff52baffbc7b2baf997e0e6a07ae04)
+- 修复 独立使用console组件时缺少 swoft/stdlib 库依赖 [c569c81a](https://github.com/swoft-cloud/swoft-component/pull/529/commits/c569c81ae15c0b2b73db3a15c457d7b982a06d7f)
 
 **更新(Update)**:
 
