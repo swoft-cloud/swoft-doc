@@ -101,7 +101,7 @@ php bin/swoft group:cmd john male 43 --opt1 value1 -y
 
 下面是 `sowftcli` 里的 `serve:run` 命令定义。命令帮助显示效果如下：
 
-![hot-restart-help](../image/tool/hot-restart-help.jpg)
+![hot-restart-help](../image/tool/swoftcli/hot-restart-help.jpg)
 
 ```php
 /**
