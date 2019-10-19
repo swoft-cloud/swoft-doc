@@ -85,7 +85,7 @@ Show::mList($data);
 ## 面板展示信息输出
 
 ```php
-public static function show(mixed $data, string $title = 'Information Panel', array $opts = [])
+public static function panel(mixed $data, string $title = 'Information Panel', array $opts = [])
 ```
 
 展示信息面板。比如 命令行应用 开始运行时需要显示一些 版本信息，环境信息等等。
