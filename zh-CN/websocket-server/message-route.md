@@ -39,7 +39,7 @@ websocket 消息控制器注解tag `@WsController`
 - `Swoft\WebSocket\Server\MessageParser\TokenTextParser` 简单的token字符串协议(_方便测试使用的_)
 - `Swoft\WebSocket\Server\MessageParser\JsonParser` 简单的 json 数据协议
 
-JOSN 协议通信数据结构：
+JSON 协议通信数据结构：
 
 ```json
 {
