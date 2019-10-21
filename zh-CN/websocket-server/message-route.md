@@ -37,14 +37,14 @@ websocket 消息控制器注解tag `@WsController`
 
 - `Swoft\WebSocket\Server\MessageParser\RawTextParser` 简单的字符串
 - `Swoft\WebSocket\Server\MessageParser\TokenTextParser` 简单的token字符串协议(_方便测试使用的_)
-- `Swoft\WebSocket\Server\MessageParser\JsonParser` 简单的 json 数据协议
+- `Swoft\WebSocket\Server\MessageParser\JsonParser` 简单的 JSON 数据协议
 
 JSON 协议通信数据结构：
 
 ```json
 {
     "cmd": "message route path. eg: home.index", // type: string
-    "data": "message data", // type: mixed
+    "data": "message data", // type: array
     "ext": "message extea data", // optional, type: mixed
 }
 ```
