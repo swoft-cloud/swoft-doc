@@ -30,28 +30,28 @@ composer require swoft/websocket-server
                          |
                          v
           消息请求 --> 接收消息
-                         |
-                         |创建消息上下文Context，存储到Context管理器
-                         |同时通过CoID会与Session的绑定关系
-                         |
-                         V
-                    解析消息数据
-                         |
-                         |得到消息指令和消息body       
-                         |(根据消息指令找到处理控制器 eg ChatController)
-                         |
-                         V
-                    调度消息处理
-                         |
-                         |调用对应的message控制器方法处理
-                         |
-                         V
-                    打包返回数据
-                         |
-                         |销毁此次消息请求的上下文Context
-                         |同时删除与Session的绑定关系
-                         |
-                         v
+          |              |
+          |              |创建消息上下文Context，存储到Context管理器
+          |              |同时通过CoID会与Session的绑定关系
+          |              |
+          |              V
+          |         解析消息数据
+          |              |
+          |              |得到消息指令和消息body       
+          |              |(根据消息指令找到处理控制器 eg ChatController)
+     消息处理流程          |
+          |              V
+          |         调度消息处理
+          |              |
+          |              |调用对应的message控制器方法处理
+          |              |
+          |              V
+          |         打包返回数据
+          |              |
+          |              |销毁此次消息请求的上下文Context
+          |              |同时删除与Session的绑定关系
+          |              |
+          |              v
           得到响应 <--- 返回结果
                          |
           消息请求 -->    |
