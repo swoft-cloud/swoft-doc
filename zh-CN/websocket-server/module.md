@@ -167,6 +167,33 @@ class EchoModule
 }
 ```
 
+## 客户端代码
+
+简易的客户端js代码示例
+
+```js
+// wsUrl = websocket host + module path
+const wsUrl = 'ws://127.0.0.1:18308/echo'
+let ws = new WebSocket(wsUrl)
+
+ws.onerror = function (event){
+    console.log("error: " + event.data)
+}
+
+ws.onopen = function (event){
+    console.log("open: connection opened");
+}
+
+ws.onmessage = function (event){
+    console.log("message: " + event.data);
+}
+
+ws.onclose = function (event){
+    console.log("close: connection closed")
+    ws.close()
+}
+```
+
 ## 客户端测试
 
 如果你安装并启用了 devtool, 那么你可以打开页面 `IP:PORT/__devtool/ws/test` 来进行ws测试
