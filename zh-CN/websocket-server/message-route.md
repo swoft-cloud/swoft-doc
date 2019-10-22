@@ -37,15 +37,15 @@ websocket 消息控制器注解tag `@WsController`
 
 - `Swoft\WebSocket\Server\MessageParser\RawTextParser` 简单的字符串
 - `Swoft\WebSocket\Server\MessageParser\TokenTextParser` 简单的token字符串协议(_方便测试使用的_)
-- `Swoft\WebSocket\Server\MessageParser\JsonParser` 简单的 json 数据协议
+- `Swoft\WebSocket\Server\MessageParser\JsonParser` 简单的 JSON 数据协议
 
 JSON 协议通信数据结构：
 
 ```json
 {
     "cmd": "message route path. eg: home.index", // type: string
-    "data": "message data", // type: mixed
-    "ext": "message extea data", // optional, type: mixed
+    "data": "message data", // type: mixed(array|string|int)
+    "ext": {"ip": "xx", "os": "mac"}, // optional, type: array
 }
 ```
 
@@ -226,7 +226,7 @@ $frm = $req->getFrame();
 
 > 注意这里的 `Request` 是指消息阶段的请求对象，与打开连接时的请求对象是不同的。
 
-### 访问
+### 访问服务
 
 根据以上定义好的 `Ws模块`、`消息解析器`、`消息控制器` 等内容后启动我们的服务。然后打开webscoket 调试工具，链接Ws的地址： `ws://localhost:port/chat ` 然后测试发送一个内容
 
