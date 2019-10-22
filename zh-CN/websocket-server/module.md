@@ -171,9 +171,18 @@ class EchoModule
 
 如果你安装并启用了 devtool, 那么你可以打开页面 `IP:PORT/__devtool/ws/test` 来进行ws测试
 
-- 填上你的ws server地址(注意不要忘了URI path)
+- 填上你的ws server地址(注意不要忘了URI path)(**2.0 devtool 暂无web UI**)
 - 然后就可以连接上ws server 并收发消息了
 - 如果你在前台运行的server 你也能在运行 server的console 上看到ws连接与消息log
 
-> 当然也可在网上找一个 ws test网页来进行测试
+这里我们使用 http://www.websocket.org/echo.html 简单测试使用下
+
+```txt
+// wsUrl = websocket host + module path
+var wsUrl = 'ws://127.0.0.1:18308/echo'
+```
+
+![ws-echo-test](../image/ws-server/ws-echo-test.jpg)
+
+> 当然也可在网上找一个 ws test网页来进行测试。注意，请确保server是启动且地址没有填写错误。
 
