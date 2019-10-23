@@ -4,7 +4,7 @@ Context 指的是请求上下文，这是 **请求级别** 的对象，每次请
 
 上下文分割了不同请求的信息，保证各个请求之间的数据不会发生混乱。
 
-> 区别于fpm应用，在swoft中存在不同的生命周期，就有了不同的上下文 `Context`。
+> 区别于fpm应用，在swoft中存在不同的生命周期，就有了不同的上下文 `Context`，`请求` 也不是单指Http请求。
 
 ## context接口
 
@@ -152,6 +152,6 @@ http server中请求上下文是 `Swoft\Http\Server\HttpContext` 的实例，它
     }
 ```
 
-> 注意这里的 `Request` `Response` 是指消息阶段的请求、响应对象，与打开连接时的请求对象是不同的。
+> 注意这里的 `Request` `Response` 是指消息阶段的请求、响应对象，与打开连接时的 Http 请求对象是不同的。
 
 
