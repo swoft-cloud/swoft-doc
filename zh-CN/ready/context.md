@@ -87,11 +87,31 @@ $age = context()->get('age');
 
 http server中请求上下文是 `Swoft\Http\Server\HttpContext` 的实例，它扩展了 `getRequest()` 和 `getResponse()` 方法，可以快速的获取PSR-7 接口规范的 http请求、响应对象。
 
+```php
+
+    /**
+     * @return Request
+     */
+    public function getRequest(): Request
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return Response
+     */
+    public function getResponse(): Response
+    {
+        return $this->response;
+    }
+```
+
 ### ws server
 
 - 握手请求
 
-上下文是 `Swoft\WebSocket\Server\Context\WsHandshakeContext` 的实例。它跟 http context 基本类似，拥有 `getRequest()` 和 `getResponse()` 方法。
+上下文是 `Swoft\WebSocket\Server\Context\WsHandshakeContext` 的实例。
+它跟 http context 基本类似，拥有 `getRequest()` 和 `getResponse()` 方法。
 
 - 消息请求
 
