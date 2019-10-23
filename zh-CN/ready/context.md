@@ -78,6 +78,6 @@ $age = context()->get('age');
 
 - 例如http server中，中间件认证用户后，将当前用户信息放到上下文
 
-## 常见上下文对象
+## 常见上下文
 
 - http server 中请求上下文是 `Swoft\Http\Server\HttpContext` 的实例。它扩展了 `getRequest()` 和 `getResponse()` 方法，可以快速的获取请求、响应对象 
