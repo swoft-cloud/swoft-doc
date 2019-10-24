@@ -9,6 +9,7 @@
 - 修复 tcp server 中使用message调度时，没有过滤空数据，导致多发出一个响应。[07a01ba1](https://github.com/swoft-cloud/swoft-component/pull/522/commits/07a01ba1e6ff52baffbc7b2baf997e0e6a07ae04)
 - 修复 独立使用console组件时缺少 swoft/stdlib 库依赖 [c569c81a](https://github.com/swoft-cloud/swoft-component/pull/529/commits/c569c81ae15c0b2b73db3a15c457d7b982a06d7f)
 - 修复 `ArrayHelper::get` 传入key为 integer 时，报参数错误 [a44dcad](https://github.com/swoft-cloud/swoft-component/pull/528/commits/a44dcad42cbdd20cb4078351a8dea3b966b1ca09)
+- 修复 console 渲染使用table，有int值时，计算宽度报类型错误 [74a835ab](https://github.com/swoft-cloud/swoft-component/pull/528/commits/74a835abd78ed58c081668129e723d5e83429398)
 
 **更新(Update)**:
 
