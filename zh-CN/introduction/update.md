@@ -14,6 +14,7 @@
 
 - 更新 console 在渲染 help信息之前也会发出事件 `ConsoleEvent::SHOW_HELP_BEFORE` [d3f7bc3](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d3f7bc3c5093a11a1de3710fd239c4375b835160)
 - 简化和统一 http,ws,tcp,rpc server管理命令逻辑 [f202c826](https://github.com/swoft-cloud/swoft-component/pull/522/commits/f202c826b74972775fe97ad91b2c38e5c7d97014)
+- 更新 ws 和 tcp Connection类添加 `newFromArray` 和 `toArray` 方法，方便通过第三方存储(`redis`)时导出信息和恢复连接。
 
 **增强(Enhancement)**：
 
