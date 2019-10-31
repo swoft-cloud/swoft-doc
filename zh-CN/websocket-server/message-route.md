@@ -91,7 +91,7 @@ class ChatModule
 ```
 
 - 定义的ws模块路径为 `/chat`
-- 绑定了的控制器有： `HomeController::class`
+- 绑定了的控制器有： `HomeController::class` **你可以绑定多个控制器**
 - 绑定了一个内置的消息解析器
 
 > **注意** 这里定义Ws模块时，绑定了一个框架自带的消息解析器，`TokenTextParser::class`  内置了一个decode 的方法用来解析数据
