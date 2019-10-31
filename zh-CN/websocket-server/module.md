@@ -22,11 +22,13 @@ websocket 模块类注解tag `@WsModule`
 
 ```php
 /**
- * @WsModule("/echo")
+ * @WsModule("/echo", controllers={XXController::class, XYController::class})
  */
 ```
 
 上面的注解标明了允许ws连接的URI path. 即客户端请求的ws连接类似： `ws://IP:PORT/echo`
+
+> 提示：你可以绑定多个控制器，请注意引入完整的控制器、消息解析器类
 
 ### OnHandshake
 
