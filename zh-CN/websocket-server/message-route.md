@@ -49,7 +49,66 @@ JSON 协议通信数据结构：
 }
 ```
 
-## 示例
+## 获取数据
+
+有多种方式可以获取消息请求的数据信息。
+
+### 通过参数注入
+
+```php
+use Swoft\WebSocket\Server\Message\Message;
+use Swoft\WebSocket\Server\Message\Request;
+
+...
+// inject raw frame data string
+public function autoReply(string $data): string
+{
+    return $data;
+}
+
+// inject Message object
+public function autoReply(Message $msg): string
+{
+    return $msg->toString();
+}
+
+// inject Request object
+public function autoReply(Request $req): string
+{
+    return $req->getMessage()->toString();
+}
+```
+
+### 通过上下文获取
+
+```php
+use Swoft\WebSocket\Server\Message\Message;
+
+...
+
+public function autoReply(): string
+{
+    $msg = context()->getMessage();
+}
+```
+
+更多获取方式：
+
+```php
+use Swoft\WebSocket\Server\Message\Request;
+
+$req = context()->getRequest();
+
+/** @var \Swoft\WebSocket\Server\Message\Message $msg */
+$msg = $req->getMessage();
+
+/** @var \Swoole\WebSocket\Frame $frame */
+$frame = $req->getFrame();
+```
+
+> 注意这里的 `Request` 是指消息阶段的请求对象，与打开连接时的请求对象是不同的。
+
+## 使用示例
 
 ### 定义ws模块
 
@@ -171,60 +230,6 @@ class HomeController
 ```
 
 > 注意，自 `v2.0.6` 版本起，通过参数注入接收websocket原始数据时，需要加上类型 `string`。例如： `public function echo(string $data)`
-
-### 获取数据
-
-有多种方式可以获取消息请求的数据信息。
-
-- 方式一 通过参数注入
-
-```php
-use Swoft\WebSocket\Server\Message\Message;
-use Swoft\WebSocket\Server\Message\Request;
-
-...
-
-// inject Message object
-public function autoReply(Message $msg): string
-{
-    return $msg->toString();
-}
-
-// inject Request object
-public function autoReply(Request $req): string
-{
-    return $req->getMessage()->toString();
-}
-```
-
-- 方式二 通过上下文获取
-
-```php
-use Swoft\WebSocket\Server\Message\Message;
-
-...
-
-public function autoReply(): string
-{
-    $msg = context()->getMessage();
-}
-```
-
-更多获取方式：
-
-```php
-use Swoft\WebSocket\Server\Message\Request;
-
-$req = context()->getRequest();
-
-/** @var \Swoft\WebSocket\Server\Message\Message $msg */
-$msg = $req->getMessage();
-
-/** @var \Swoole\WebSocket\Frame $msg */
-$frm = $req->getFrame();
-```
-
-> 注意这里的 `Request` 是指消息阶段的请求对象，与打开连接时的请求对象是不同的。
 
 ### 访问服务
 
