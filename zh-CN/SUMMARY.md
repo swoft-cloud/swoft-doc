@@ -66,6 +66,7 @@
 
 ### [错误处理](error/index.md)
 
+  * [错误场景](error/scenes.md)
   * [添加处理器](error/usage.md)
 
 ### [公共方法](common/index.md)
@@ -151,7 +152,6 @@
   * [原生操作](db/origin.md)
   * [切库](db/selectDb.md)
 
-  
 ### [Redis](redis/index.md)
 
   * [配置](redis/setting.md)
