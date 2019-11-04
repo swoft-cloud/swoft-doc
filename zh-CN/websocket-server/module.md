@@ -22,11 +22,13 @@ websocket 模块类注解tag `@WsModule`
 
 ```php
 /**
- * @WsModule("/echo")
+ * @WsModule("/echo", controllers={XXController::class, XYController::class})
  */
 ```
 
 上面的注解标明了允许ws连接的URI path. 即客户端请求的ws连接类似： `ws://IP:PORT/echo`
+
+> 提示：你可以绑定多个控制器，请注意引入完整的控制器、消息解析器类
 
 ### OnHandshake
 
@@ -76,6 +78,22 @@ websocket 模块类注解tag `@WsModule`
 - 此方法也是可选的，可以没有
 
 > 注意：触发此事件时连接已被关闭，不能再给对方发消息
+
+## 快速创建模块类
+
+可以使用 `swoftcli` 工具来快速创建一个websocket 模块类：
+
+- 默认生成的是支持内置路由调度的模块类
+
+```bash
+php swoftcli.phar gen:wsmod chat --prefix /chat
+```
+
+- 生成用户自定义调度的模块类
+
+```bash
+php swoftcli.phar gen:wsmod chat --prefix /chat --tpl-file ws-module-user
+```
 
 ## 代码示例
 
@@ -151,13 +169,49 @@ class EchoModule
 }
 ```
 
+## 客户端代码
+
+简易的客户端js代码示例
+
+```js
+// wsUrl = websocket host + module path
+const wsUrl = 'ws://127.0.0.1:18308/echo'
+let ws = new WebSocket(wsUrl)
+
+ws.onerror = function (event){
+    console.log("error: " + event.data)
+}
+
+ws.onopen = function (event){
+    console.log("open: connection opened");
+}
+
+ws.onmessage = function (event){
+    console.log("message: " + event.data);
+}
+
+ws.onclose = function (event){
+    console.log("close: connection closed")
+    ws.close()
+}
+```
+
 ## 客户端测试
 
 如果你安装并启用了 devtool, 那么你可以打开页面 `IP:PORT/__devtool/ws/test` 来进行ws测试
 
-- 填上你的ws server地址(注意不要忘了URI path)
+- 填上你的ws server地址(注意不要忘了URI path)(**2.0 devtool 暂无web UI**)
 - 然后就可以连接上ws server 并收发消息了
 - 如果你在前台运行的server 你也能在运行 server的console 上看到ws连接与消息log
 
-> 当然也可在网上找一个 ws test网页来进行测试
+这里我们使用 http://www.websocket.org/echo.html 简单测试使用下
+
+```txt
+// wsUrl = websocket host + module path
+var wsUrl = 'ws://127.0.0.1:18308/echo'
+```
+
+![ws-echo-test](../image/ws-server/ws-echo-test.jpg)
+
+> 当然也可在网上找一个 ws test网页来进行测试。注意，请确保server是启动且地址没有填写错误。
 

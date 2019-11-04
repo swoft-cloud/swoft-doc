@@ -1,6 +1,32 @@
 # 版本更新
 
-## v2.0.6
+## v2.0.7[WIP]
+
+**修复(Fixed)**：
+
+- 修复 config 注入时，没有找到值也会使用对应类型的默认值覆盖属性，导致属性默认值被覆盖 [d84d50a7](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d84d50a76c4c7ff19dc0896868745cfe8f0d93c9)
+- 修复 ws server 中使用message调度时，没有过滤空数据，导致多发出一个响应。避免方法[swoft-cloud/swoft#1002](https://github.com/swoft-cloud/swoft/issues/1002) [d84d50a7](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d84d50a76c4c7ff19dc0896868745cfe8f0d93c9)
+- 修复 tcp server 中使用message调度时，没有过滤空数据，导致多发出一个响应。[07a01ba1](https://github.com/swoft-cloud/swoft-component/pull/522/commits/07a01ba1e6ff52baffbc7b2baf997e0e6a07ae04)
+- 修复 独立使用console组件时缺少 swoft/stdlib 库依赖 [c569c81a](https://github.com/swoft-cloud/swoft-component/pull/529/commits/c569c81ae15c0b2b73db3a15c457d7b982a06d7f)
+- 修复 `ArrayHelper::get` 传入key为 integer 时，报参数错误 [a44dcad](https://github.com/swoft-cloud/swoft-component/pull/528/commits/a44dcad42cbdd20cb4078351a8dea3b966b1ca09)
+- 修复 console 渲染使用table，有int值时，计算宽度报类型错误 [74a835ab](https://github.com/swoft-cloud/swoft-component/pull/528/commits/74a835abd78ed58c081668129e723d5e83429398)
+- 修复 error 无法设置默认的错误处理级别 [4c78aeb](https://github.com/swoft-cloud/swoft-component/pull/530/commits/4c78aeb3326bfb333227f07b675a2bdfc3b95f0f)
+
+**更新(Update)**:
+
+- 更新 console 在渲染 help信息之前也会发出事件 `ConsoleEvent::SHOW_HELP_BEFORE` [d3f7bc3](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d3f7bc3c5093a11a1de3710fd239c4375b835160)
+- 简化和统一 http, ws, tcp, rpc server管理命令逻辑 [f202c826](https://github.com/swoft-cloud/swoft-component/pull/522/commits/f202c826b74972775fe97ad91b2c38e5c7d97014)
+- 更新 ws 和 tcp Connection类添加 `newFromArray` 和 `toArray` 方法，方便通过第三方存储(`redis`)时导出信息和恢复连接。
+
+**增强(Enhancement)**：
+
+- 现在 tcp 请求支持添加全局或对应的方法中间件，流程和使用跟http中间件类似。_仅当使用系统调度时有用_ [6b593877](https://github.com/swoft-cloud/swoft-component/pull/528/commits/6b593877acc5cb78bbd863e08c0559454fb0b59c)
+- 现在 websocket message 请求支持添加全局或对应的方法中间件，流程和使用跟http中间件类似。_仅当使用系统调度时有用_ [9739815](https://github.com/swoft-cloud/swoft-component/pull/530/commits/973981568df4bca18a4858efe1ef7730d903353e)
+
+## v2.0.6(2019-09-21)
+
+> 升级提示：
+- 通过参数注入接收websocket原始数据时，现在需要加上类型 `string`。例如： `public function echo(string $data)`
 
 **修复(Fixed)**：
 
@@ -11,6 +37,18 @@
 - 修复 模型属性 `$modelTimestamps` 关闭了无效 [94c7171](https://github.com/swoft-cloud/swoft-component/pull/502/commits/94c7171f57c4d8952fdb0214da27e6e12231fe2d)
 - 修复 在初始化前调用了log，导致可能会在启动阶段报context丢失错误 [5a27704f](https://github.com/swoft-cloud/swoft-component/pull/504/commits/5a27704f1bd3a056b144e2ecbb4accf1c59680df)
 - 修复 ws server的握手和open使用同一个顶级协程ID，如果有一个先执行完成，可能会导致后面的出现session丢失 [c2cd17a](https://github.com/swoft-cloud/swoft-component/pull/509/commits/c2cd17aaf0989ef9f4a2feaac714e152c1795d8c)
+- 修复 `after` 定时器传递参数 bug [8ed609a](https://github.com/swoft-cloud/swoft-component/pull/508/files)
+- 修复定时任务内存泄漏和日志打印数据丢失问题 [aa6bc32](https://github.com/swoft-cloud/swoft-ext/pull/40/commits/aa6bc3223a4fc7b3cb97ec1f324c257eaa2356bf)
+- 优化 Http server `sgo` 处理流程 [e60d92e](https://github.com/swoft-cloud/swoft-component/pull/507/commits/e60d92e78853a9f0b2e9f823c941bc214c6c409f)
+- 修复数据库在事物情况下重连导致数据不一致问题 [c2e87f2](https://github.com/swoft-cloud/swoft-component/pull/507/commits/c2e87f278815fd14dbccb71d5f6a63d4f974d38b)
+- 修复 Aop 极端情况返回 `0` 问题 [85bc1b1](https://github.com/swoft-cloud/swoft-component/pull/511/commits/85bc1b186f125773d55c582ecc40cde9f30c87cf)
+- 修复 `BeanFactory::createBean()` 方法创建问题[c2e2c89](https://github.com/swoft-cloud/swoft-component/pull/474/commits/c2e2c894ea17dcb3a0e97cccaff42355b72066f7)
+- 修复 RPC 错误数据是字符串问题 [3a34658](https://github.com/swoft-cloud/swoft-component/pull/474/commits/3a346589a81e35a0dd1b2ffc43dcd430153d86c7)
+- 修复 `redisCluster` 初始化问题[3a60c06](https://github.com/swoft-cloud/swoft-component/pull/515/commits/3a60c063189224a360400f9fcfd9d5cb55bd3587)
+- 修复 `DbException` 没有抛出 `Database` 的异常 `Code`[3a60c06](https://github.com/swoft-cloud/swoft-component/pull/515/commits/3a60c063189224a360400f9fcfd9d5cb55bd3587)
+- 修复 `ModelAttribute` 的 `getter` 和 `setter` 驼峰判断错误[2e2f0f1](https://github.com/swoft-cloud/swoft-component/pull/502/commits/2e2f0f197c64fecfdee82ade45a40ed509ed6108)
+- 修复 `Aggregate` 聚合, 返回字符串强行转换 `int`错误[7aa98a6](https://github.com/swoft-cloud/swoft-component/pull/502/commits/7aa98a6a565236639c9803facf2a4b01bc2adacb)
+- 修复模型 `updateCounters` 方法更新之后没有同步实体数据[967d6f8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/967d6f84e3e1eae4c495e46c5a5edbfa79b5a7fe)
 
 **更新(Update)**:
 
@@ -23,11 +61,18 @@
 - 新增日志支持传递额外参数 [55d5533](https://github.com/swoft-cloud/swoft-component/pull/503/commits/55d55335f77572611ae0a469f5c848454838fc1f)
 - 调整和新增了一些ws server相关事件，方便用户使用 [e1b0583](https://github.com/swoft-cloud/swoft-component/pull/504/commits/e1b058340e27e6773a3fbac0daafaffbabea5571)
 - 模型对 `Prop` 支持 [630aad8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/630aad8315894a993ef9021c23c70eed14e3fa47)
+- 新增连接连接池(mysql/redis/rpc)启动初始化连接功能 [a367173](https://github.com/swoft-cloud/swoft-component/pull/507/commits/a3671739863bacf1ba514fbe637e981b19b22b94)
+- tcp server 使用长度分包时，支持自定义头部数据打包、解包格式 [a6fbe932](https://github.com/swoft-cloud/swoft-component/pull/509/commits/a6fbe93261b2facadd0c9d3384c3abd86e8779dc)
+- RPC 调用错误信息调整 [d9226b1](https://github.com/swoft-cloud/swoft-component/pull/515/commits/d9226b13e7bf1b3154922439dc4990c8f55de040)
+- 新增操作 `Database` 异常, 打印控制台 错误 `SQL`[3a60c06](https://github.com/swoft-cloud/swoft-component/pull/515/commits/3a60c063189224a360400f9fcfd9d5cb55bd3587)
+- 新增操作数据迁移 `int` 系列 长度支持[967d6f8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/967d6f84e3e1eae4c495e46c5a5edbfa79b5a7fe)
+- 新增获取原始 sql 方法`getRawSql`[967d6f8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/967d6f84e3e1eae4c495e46c5a5edbfa79b5a7fe)
+- 扩展`updateOrInsert`和`updateOrCreate` 支持自增参数[967d6f8](https://github.com/swoft-cloud/swoft-component/pull/502/commits/967d6f84e3e1eae4c495e46c5a5edbfa79b5a7fe)
 
 
 **扩展(Extra)**:
 
-- `swoftcli` 已经支持基本的应用骨架和组件结构创建，以及部分类文件生成功能
+- `swoftcli` 支持类生成，创建新的应用、组件结构。使用请查看文档
 - `swoftTracker` 支持方便开发者调试
 
 ## v2.0.5-beta(2019-08-06)

@@ -112,3 +112,14 @@ public function sendToAll(string $data, int $sender = 0, int $pageSize = 50): in
 
 会自动根据参数判断调用上面的（`sendTo`, `sendToAll`, `sendToSome`）中的一个方法
 
+
+## 断开连接
+
+服务端可以主动断开连接，断开后会触发 `close` 事件
+
+```php
+bean('wsServer')->disconnect($fd);
+
+// OR
+server()->disconnect($fd);
+```

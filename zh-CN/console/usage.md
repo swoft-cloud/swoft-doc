@@ -35,7 +35,7 @@ php bin/swoft --version
 
 ## 命令帮助信息
 
-- 命令组帮助信息
+### 命令组帮助信息
 
 ```bash
 php bin/swoft http
@@ -45,7 +45,7 @@ php bin/swoft http -h
 
 ![](../image/console/cli-group.jpg)
 
-- 具体命令帮助信息
+### 具体命令帮助信息
 
 ```bash
 php bin/swoft http:start -h

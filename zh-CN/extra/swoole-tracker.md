@@ -1,6 +1,8 @@
 # Swoole Tracker
 
-[Swoole Tracker](https://www.swoole-cloud.com/tracker.html) 作为 `Swoole` 官方出品的一整套企业级`PHP`和`Swoole`分析调试工具，更专一、更专业。
+[Swoole Tracker](https://www.swoole-cloud.com/tracker.html) 作为 `Swoole` 官方出品的一整套企业级 `PHP` 和 `Swoole` 分析调试工具，更专一、更专业。
+
+## 介绍
 
 - 时刻掌握应用架构模型
 > 自动发现应用依赖拓扑结构和展示，时刻掌握应用的架构模型
@@ -17,7 +19,7 @@
 
 ## 安装
 
-### 安装扩展
+### 安装依赖
 
 注册完账户后，进入[控制台](https://www.swoole-cloud.com/dashboard/catdemo/)，并申请试用，下载对应客户端。
 
@@ -86,7 +88,7 @@ docker run --rm --name swoft-tracker -v $(pwd):/var/www/swoft -p 18306:18306 swo
 
 ### 不依赖组件
 
-`Swoole Tracker`的`v2.5.0`版本支持自动生成应用名称并创建应用，无需修改任何代码，生成的应用名称格式为：
+`Swoole Tracker`的支持自动生成应用名称并创建应用，无需修改任何代码，生成的应用名称格式为：
 
 `Swoole`的`HttpServer`：`ip:prot`
 
@@ -97,6 +99,8 @@ docker run --rm --name swoft-tracker -v $(pwd):/var/www/swoft -p 18306:18306 swo
 ### 依赖组件
 
 当你需要自定义应用名称时则需要安装组件，使用`Composer`安装：
+
+#### 安装组件
 
 ```bash
 composer require swoft/swoole-tracker
@@ -117,20 +121,31 @@ return [
 ];
 ```
 
-### 链路追踪
+配置了中间件后框架会自动开启链路追踪。
 
-配置了中间件框架会自动开启链路追踪, 你也可以单独使用它 例如:
+#### 单独使用
+
+你也可以在需要链路追踪`透传TraceId/SpanId`、`自定义应用名称`时单独使用它，例如:
+
 ```php
 /** @var SwooleTracker $swooleTracker */
 $swooleTracker = bean(SwooleTracker::class);
 
+/**
+ * 参数说明：
+ * 1. $func eg. 'App\Login\Weibo::login'
+ * 2. $serviceName 自定义的应用名称，后台会自动创建 eg. 'user'
+ * 3. $serverIp eg. '192.1.1.1'
+ * 4. $traceId
+ * 5. $spanId
+ */
 $tick = $swooleTracker->startRpcAnalysis('/get/user', 'demo', '53.65.77.11', $traceId, $spanId);
 
 // todo ...
 $handlerStatus = false;
 $errno         = 401;
 
-$swooleTracker->endAnalysis($tick, $handlerStatus, $errno);
+$swooleTracker->endRpcAnalysis($tick, $handlerStatus, $errno);
 ```
 
 登录管理后台看
@@ -139,11 +154,20 @@ $swooleTracker->endAnalysis($tick, $handlerStatus, $errno);
 
 ![trace](../image/extra/trace.png)
  
-应用监控
+### 应用监控
  
 ![stats](../image/extra/monitor.png)
  
-调试器
+### 调试器
 ![debuger](../image/extra/process.png)
+
+
+### 内存泄露
+![memory](../image/extra/memory.png)
+
+### 阻塞检查
+
+![block](../image/extra/block.png)
+
 
 如果需要开启 `阻塞检查`, `泄露分析`, `性能分析` 在 进程列表 中后面的按钮开启就是, 不需要客户端手动上报

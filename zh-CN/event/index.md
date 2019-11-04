@@ -87,4 +87,4 @@ swoft.udp.after
 
 ### 更多介绍
 
-更多关于自定义事件的理解参考 https://github.com/inhere/php-event-manager/blob/master/README.md
+更多关于自定义事件的理解参考 [https://github.com/inhere/php-event-manager/blob/master/README.md](https://github.com/inhere/php-event-manager/blob/master/README.md)

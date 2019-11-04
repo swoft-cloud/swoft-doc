@@ -70,7 +70,7 @@ $ php bin/swoft demo:test status=2 name=john arg0 -s=test --page 23 --id=154 -e 
 ## 获取基本信息
 
 ```php
-echo $input->getScript();  // 'bin/swoft' 执行的入口脚本文件
+echo $input->getScriptFile();  // 'bin/swoft' 执行的入口脚本文件
 echo $input->getCommand(); // 'http:start' 命令名称 解析到的第一个参数将会被认为是命令名称，并且不会再存入到 参数列表中
 echo $input->getPwd(); // 当前工作目录
 ```

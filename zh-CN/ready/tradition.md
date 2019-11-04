@@ -34,7 +34,7 @@ PHP框架初始化会占用大量的计算资源，每个请求都需要初始�
 
 ## php-fpm工作模式的问题
 
-![模型](../image/ready/lnpm.png)
+![模型](../image/ready/lnmp.png)
 
 - `nginx`基于`epoll`事件模型，一个`worker`同时可处理多个请求
 

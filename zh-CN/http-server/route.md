@@ -93,7 +93,9 @@ class UserController
 ### 绑定路由path参数
 
 - 指定路由参数: `@RequestMapping(route="index/{name}")`，Action 方法中可以直接使用 `$name` 作为方法参数
-- 当路由参数被 `[]` 包起来则URL path传递参数是可选的，可有可无
+- 当路由参数被 `[]` 包起来则URL path传递参数是可选的，可有可无。_注意，可选符只能用在最后面_
+  - 示例1: `@RequestMapping("/index[/{name}]")` 这样 `/index` `/index/tom` 都可以访问到
+  - 示例2: `@RequestMapping("/about[.html]")` 相当于伪静态，`/about` `/about.html` 都可以访问到
 
 ```php
 <?php declare(strict_types=1);
@@ -109,12 +111,14 @@ class UserController
 {
     /**
      * @RequestMapping(route="/index/{name}")
+     * @param string $name
      */
     public function index(string $name)
     {}
 
     /**
      * @RequestMapping(route="/index/{name}")
+     * @param string $name
      */
     public function index(string $name)
     {}

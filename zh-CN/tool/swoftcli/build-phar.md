@@ -20,7 +20,7 @@ php -d phar.readonly=0 swoftcli phar:pack -o=myapp.phar
 
 运行效果：
 
-![pack-phar](../../image/tool/pack-phar.jpg)
+![pack-phar](../../image/tool/swoftcli/pack-phar.jpg)
 
 ### phar 打包配置
 
