@@ -16,6 +16,9 @@
 - 修复 在 cygwin 环境不能够设置进程title而导致报错 [c466f6a](https://github.com/swoft-cloud/swoft-component/pull/530/commits/c466f6a3841b6fb58e581d517c2151699ac4cf3e)
 - 修复 使用 http `response->delCookie()` 无法删除浏览器的cookie数据问题 [8eb9241](https://github.com/swoft-cloud/swoft-component/pull/530/commits/8eb9241329e46dcab78e4f18ea4771808a1f034e)
 - 修复 ws server消息调度时，接收到的ext数据不一定是数组导致报错 [ff45b35](https://github.com/swoft-cloud/swoft-component/pull/530/commits/ff45b356c709d97bc2937dab8d467e4680d58cf0)
+- 修复 日志文件按时间拆分问题[c195413](https://github.com/swoft-cloud/swoft-component/pull/533/commits/08c42449cc5ca7922e5bf54d6523b0d8799ba910)
+- 修复 日志 `JSON` 格式小问题[a3fc6b9](https://github.com/swoft-cloud/swoft-component/pull/535/commits/a3fc6b94a8afff873f7f3ac8248432ff2a409d13)
+- 修复 `rpc` 服务提供者 `getList` 调用两次问题[fd03e71](https://github.com/swoft-cloud/swoft-component/pull/535/commits/fd03e71f525c265add11e9334cc6dd505daf62ec)
 
 **更新(Update)**:
 
@@ -29,6 +32,9 @@
 - 现在 tcp 请求支持添加全局或对应的方法中间件，流程和使用跟http中间件类似。_仅当使用系统调度时有用_ [6b593877](https://github.com/swoft-cloud/swoft-component/pull/528/commits/6b593877acc5cb78bbd863e08c0559454fb0b59c)
 - 现在 websocket message 请求支持添加全局或对应的方法中间件，流程和使用跟http中间件类似。_仅当使用系统调度时有用_ [9739815](https://github.com/swoft-cloud/swoft-component/pull/530/commits/973981568df4bca18a4858efe1ef7730d903353e)
 - 事件管理允许设置 `destroyAfterFire` 在每次事件调度后清理事件中携带的数据 [50bf43d3](https://github.com/swoft-cloud/swoft-component/pull/530/commits/50bf43d39857fea7328c83a790c941e83847b82b)
+- 数据库错误异常新增 `code` 返回[fd306f4](https://github.com/swoft-cloud/swoft-component/pull/533/commits/fd306f470ba171f556bc05682aae58cab217cacc)
+- 协程文件操作 `writeFile` 新增写失败异常[08c4244](https://github.com/swoft-cloud/swoft-component/pull/533/commits/08c42449cc5ca7922e5bf54d6523b0d8799ba910)
+- RPC 新增参数验证[8646fc5](https://github.com/swoft-cloud/swoft-component/pull/533/commits/8646fc5c64bcfeb84c0c38adb31ff2759a20726d)
 
 ## v2.0.6(2019-09-21)
 
