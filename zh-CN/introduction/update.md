@@ -2,6 +2,9 @@
 
 ## v2.0.7[WIP]
 
+> 升级提示：
+- `Swoole\WebSocket\Server::push` 第四个参数 `4.4.12` 后改为了 int 类型。
+
 **修复(Fixed)**：
 
 - 修复 config 注入时，没有找到值也会使用对应类型的默认值覆盖属性，导致属性默认值被覆盖 [d84d50a7](https://github.com/swoft-cloud/swoft-component/pull/522/commits/d84d50a76c4c7ff19dc0896868745cfe8f0d93c9)
