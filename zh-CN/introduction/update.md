@@ -21,7 +21,7 @@
 - 修复 `rpc` 服务提供者 `getList` 调用两次问题[fd03e71](https://github.com/swoft-cloud/swoft-component/pull/535/commits/fd03e71f525c265add11e9334cc6dd505daf62ec)
 - 修复 `redis cluster` 不支持 `auth` 参数[7a678f](https://github.com/swoft-cloud/swoft-component/pull/525/commits/7a678fd866e3ec842b00f734f7f6c3b7b1a03a9b)
 - 修复 模型查询 `json` 类型, 不支持 `array` [6023a9](https://github.com/swoft-cloud/swoft-component/pull/525/commits/6023a99aad06d9e87ff0a38bb4f37242f331a771)
-- 修复 redis `multi` 操作没有及时是否连接 [749241](https://github.com/swoft-cloud/swoft-component/pull/525/commits/749241561dbb5a6b94c659b2642e255900cb6b69)
+- 修复 redis `multi` 操作没有及时是否连接 [e5f698](https://github.com/swoft-cloud/swoft-component/pull/525/commits/e5f69802947ec3d9b56b7d56ec2dc4b1d70b4995)
 - 修复 redis 不支持 `expireAt`, `geoRadius` [749241](https://github.com/swoft-cloud/swoft-component/pull/525/commit/749241561dbb5a6b94c659b2642e255900cb6b69)
 
 
