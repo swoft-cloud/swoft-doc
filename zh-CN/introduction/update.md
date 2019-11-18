@@ -1,6 +1,12 @@
 # 版本更新
 
-## v2.0.7[WIP]
+
+## v2.0.8[WIP]
+
+## v2.0.7(2019-11-18)
+
+> 升级提示：
+- `Swoole\WebSocket\Server::push` 第四个参数 `4.4.12` 后改为了 int 类型。
 
 **修复(Fixed)**：
 
@@ -23,7 +29,7 @@
 - 修复 模型查询 `json` 类型, 不支持 `array` [6023a9](https://github.com/swoft-cloud/swoft-component/pull/525/commits/6023a99aad06d9e87ff0a38bb4f37242f331a771)
 - 修复 redis `multi` 操作没有及时是否连接 [e5f698](https://github.com/swoft-cloud/swoft-component/pull/525/commits/e5f69802947ec3d9b56b7d56ec2dc4b1d70b4995)
 - 修复 redis 不支持 `expireAt`, `geoRadius` [749241](https://github.com/swoft-cloud/swoft-component/pull/525/commit/749241561dbb5a6b94c659b2642e255900cb6b69)
-
+- 修复 `crontab` 时间戳检测偏差问题 [eb08a46](https://github.com/swoft-cloud/swoft-ext/commit/eb08a46833188f49e05b1ea3c041c8a60ff53606)
 
 **更新(Update)**:
 
@@ -45,6 +51,7 @@
 
 > 升级提示：
 - 通过参数注入接收websocket原始数据时，现在需要加上类型 `string`。例如： `public function echo(string $data)`
+- ws server 中使用message调度时，没有过滤空数据，导致多发出一个响应。避免方法[swoft-cloud/swoft#1002](https://github.com/swoft-cloud/swoft/issues/1002)
 
 **修复(Fixed)**：
 
