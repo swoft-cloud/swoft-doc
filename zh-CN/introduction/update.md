@@ -25,6 +25,7 @@
 - 修复 日志文件按时间拆分问题[c195413](https://github.com/swoft-cloud/swoft-component/pull/533/commits/08c42449cc5ca7922e5bf54d6523b0d8799ba910)
 - 修复 日志 `JSON` 格式小问题[a3fc6b9](https://github.com/swoft-cloud/swoft-component/pull/535/commits/a3fc6b94a8afff873f7f3ac8248432ff2a409d13)
 - 修复 `rpc` 服务提供者 `getList` 调用两次问题[fd03e71](https://github.com/swoft-cloud/swoft-component/pull/535/commits/fd03e71f525c265add11e9334cc6dd505daf62ec)
+- 修复 `crontab` 时间戳检测偏差问题 [eb08a46](https://github.com/swoft-cloud/swoft-ext/commit/eb08a46833188f49e05b1ea3c041c8a60ff53606)
 
 **更新(Update)**:
 
