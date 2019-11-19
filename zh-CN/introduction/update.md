@@ -48,6 +48,10 @@
 - 协程文件操作 `writeFile` 新增写失败异常[08c4244](https://github.com/swoft-cloud/swoft-component/pull/533/commits/08c42449cc5ca7922e5bf54d6523b0d8799ba910)
 - RPC 新增参数验证[8646fc5](https://github.com/swoft-cloud/swoft-component/pull/533/commits/8646fc5c64bcfeb84c0c38adb31ff2759a20726d)
 
+**扩展(Extra)**:
+
+- `swoft/session` http session 组件重写，这个版本开始可用
+
 ## v2.0.6(2019-09-21)
 
 > 升级提示：
