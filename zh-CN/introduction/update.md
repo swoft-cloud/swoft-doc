@@ -7,6 +7,7 @@
 
 > 升级提示：
 - `Swoole\WebSocket\Server::push` 第四个参数 `4.4.12` 后改为了 int 类型。
+- tcp server 的 `TcpServerEvent::CONNECT` 事件参数保持跟receive, close一致。 `$fd, $server` 互换位置。
 
 **修复(Fixed)**：
 
