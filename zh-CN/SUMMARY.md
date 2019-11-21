@@ -23,6 +23,7 @@
   * [IO复用](ready/io.md)
   * [Swoole 扩展](ready/swoole.md)
   * [Composer](ready/composer.md)
+  * [上下文](ready/context.md)
 
 ### [特别注意](notice/index.md)
 
@@ -65,6 +66,7 @@
 
 ### [错误处理](error/index.md)
 
+  * [错误场景](error/scenes.md)
   * [添加处理器](error/usage.md)
 
 ### [公共方法](common/index.md)
@@ -150,7 +152,6 @@
   * [原生操作](db/origin.md)
   * [切库](db/selectDb.md)
 
-  
 ### [Redis](redis/index.md)
 
   * [配置](redis/setting.md)

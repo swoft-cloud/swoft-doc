@@ -19,7 +19,7 @@ composer require curtis18/swoft-pgsql
 - 通过 `composer.json` 配置:
 
 ```json
-    "curtis18/swoft-pgsql": "~1.0.1"
+    "curtis18/swoft-pgsql": "~1.0.2"
 ```
 
 ## 使用
