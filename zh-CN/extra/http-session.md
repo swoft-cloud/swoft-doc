@@ -10,6 +10,7 @@
 - `coFile` 本机文件处理器，但是使用swoole的协程方法读写内容
 - `array` php内存驱动处理器，使用php array存储数据。_用于测试，数据仅在当前进程保存_
 - `memTable` 使用swoole table 存储数据
+- `redis` 使用redis存储数据，依赖swoft-redis组件
 
 ## 安装
 
@@ -29,6 +30,8 @@ composer require swoft/session
 
 ## 配置组件
 
+### 启用组件
+
 当你安装了 session 组件后，需要配置http 全局中间件来使用它(`app/bean.php`)。
 
 ```php
@@ -40,29 +43,51 @@ composer require swoft/session
    ],
 ```
 
-## 简单使用
+### 自定义配置
 
-### 设置session
+你可以自定义配置session组件，默认配置如下：
+
+> 默认使用本地文件存储，存放于 `@runtime/sessions` 目录
+
 ```php
-    HttpSession::current()->get(string $key, $value): viod
+    'sessionManager' => [
+        'class'   => SessionManager::class,
+        'handler' => bean('sessionHandler'),
+    ],
+    'sessionHandler' => [
+        'class'    => FileHandler::class,
+        // For storage session files
+        'savePath' => alias('@runtime/sessions')
+    ],
 ```
 
-### 获取session值
+## 简单使用
+
+### 设置值
+
+```php
+    HttpSession::current()->set(string $key, $value): viod
+```
+
+### 获取值
+
 ```php
     HttpSession::current()->get(string $key, $default)
 ```
 
-### 查看session值是否存在
+### 检查是否存在
+
 ```php
     HttpSession::current()->has(string $key): bool
 ```
 
-### 删除session值
+### 删除值
+
 ```php
     HttpSession::current()->delete(string $key): bool
 ```
 
-## 使用
+## 使用示例
 
 ```php
 <?php declare(strict_types=1);
@@ -74,11 +99,14 @@ composer require swoft/session
  * @contact  group@swoft.org
  * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
  */
+ 
 namespace App\Http\Controller;
+
 use Swoft\Http\Message\Response;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Http\Session\HttpSession;
+
 /**
  * Class SessionController
  *
@@ -110,6 +138,7 @@ class SessionController
         $sess = HttpSession::current();
         return $sess->toArray();
     }
+    
     /**
      * @RequestMapping()
      * @param Response $response
@@ -123,6 +152,7 @@ class SessionController
         $sess->set('testKey1', ['k' => 'v', 'v1', 3]);
         return $response->withData(['testKey', 'testKey1']);
     }
+    
     /**
      * @RequestMapping()
      *
@@ -133,6 +163,7 @@ class SessionController
         $sess = HttpSession::current();
         return ['get.testKey' => $sess->get('testKey')];
     }
+    
     /**
      * @RequestMapping("del")
      *
@@ -144,6 +175,7 @@ class SessionController
         $sess->set('testKey', 'test-value');
         return ['set.testKey' => 'test-value'];
     }
+    
     /**
      * @RequestMapping()
      * @param Response $response
@@ -155,6 +187,7 @@ class SessionController
         $sess = HttpSession::current();
         return $response->withData(['destroy' => $sess->destroy()]);
     }
+    
     // ------------ flash session usage
     /**
      * @RequestMapping()
