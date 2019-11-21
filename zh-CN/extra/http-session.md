@@ -40,23 +40,133 @@ composer require swoft/session
    ],
 ```
 
-- 视图组件注册到容器里的名称为： `view`
-- bean配置(file: `app/beans.php`)
+## 简单使用
 
+### 设置session
 ```php
-'view' => [
-    // class 配置是可以省略的, 因为 view 组件里已经配置了它
-    // 'class' => \Swoft\View\Renderer::class,
-    'viewsPath' => dirname(__DIR__) . '/resource/views/',
-],
+    HttpSession::current()->get(string $key, $value): viod
 ```
 
-现在在任何地方都可以通过 `view()` OR `\Swoft::getBean('view')` 来获取组件实例。
+### 获取session值
+```php
+    HttpSession::current()->get(string $key, $default)
+```
 
-### 配置项说明
+### 查看session值是否存在
+```php
+    HttpSession::current()->has(string $key): bool
+```
 
-- `viewsPath` 视图存放路径
-- `layout` 默认的布局文件。 调用 `render()` 方法时会默认的使用它
-- `suffix` 默认的视图后缀(默认是 `php`)
-- `suffixes` 允许的视图后缀列表。 用于判断是否需要添加默认后缀
-- `placeholder` 在布局文件里使用的内容占位符。 默认 `{_CONTENT_}`
+### 删除session值
+```php
+    HttpSession::current()->delete(string $key): bool
+```
+
+## 使用
+
+```php
+<?php declare(strict_types=1);
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
+namespace App\Http\Controller;
+use Swoft\Http\Message\Response;
+use Swoft\Http\Server\Annotation\Mapping\Controller;
+use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
+use Swoft\Http\Session\HttpSession;
+/**
+ * Class SessionController
+ *
+ * @Controller()
+ */
+class SessionController
+{
+    /**
+     * @RequestMapping("/session")
+     * @param Response $response
+     *
+     * @return Response
+     */
+    public function session(Response $response): Response
+    {
+        $sess  = HttpSession::current();
+        $times = $sess->get('times', 0);
+        $times++;
+        $sess->set('times', $times);
+        return $response->withData(['times' => $times]);
+    }
+    /**
+     * @RequestMapping("all")
+     *
+     * @return array
+     */
+    public function all(): array
+    {
+        $sess = HttpSession::current();
+        return $sess->toArray();
+    }
+    /**
+     * @RequestMapping()
+     * @param Response $response
+     *
+     * @return Response
+     */
+    public function set(Response $response): Response
+    {
+        $sess = HttpSession::current();
+        $sess->set('testKey', 'test-value');
+        $sess->set('testKey1', ['k' => 'v', 'v1', 3]);
+        return $response->withData(['testKey', 'testKey1']);
+    }
+    /**
+     * @RequestMapping()
+     *
+     * @return array
+     */
+    public function get(): array
+    {
+        $sess = HttpSession::current();
+        return ['get.testKey' => $sess->get('testKey')];
+    }
+    /**
+     * @RequestMapping("del")
+     *
+     * @return array
+     */
+    public function del(): array
+    {
+        $sess = HttpSession::current();
+        $sess->set('testKey', 'test-value');
+        return ['set.testKey' => 'test-value'];
+    }
+    /**
+     * @RequestMapping()
+     * @param Response $response
+     *
+     * @return Response
+     */
+    public function close(Response $response): Response
+    {
+        $sess = HttpSession::current();
+        return $response->withData(['destroy' => $sess->destroy()]);
+    }
+    // ------------ flash session usage
+    /**
+     * @RequestMapping()
+     *
+     * @return array
+     */
+    public function flash(): array
+    {
+        $sess = HttpSession::current();
+        $sess->setFlash('flash1', 'test-value');
+        return ['set.testKey' => 'test-value'];
+    }
+}
+```
+
