@@ -1,5 +1,14 @@
 # 如何使用
 
+## 注解
+
+### @Reference
+
+- pool 指定使用那个服务的连接池(使用那个服务)
+- version 指定服务的版本
+
+## 代码示例
+
 ```php
 /**
  * Class RpcController
@@ -67,10 +76,7 @@ class RpcController
 }
 ```
 
-## @Reference
-
-- pool 指定使用那个服务的连接池(使用那个服务)
-- version 指定服务的版本
+> 提示：接口只是定义了方法，注入也是 refer 的接口类。但是使用是要用真实类的实例。所以swoft会自动生成对应的类实现到临时目录。
 
 ## 非 Swoft 框架调用
 
