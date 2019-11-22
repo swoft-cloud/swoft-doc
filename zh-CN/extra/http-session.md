@@ -172,8 +172,8 @@ class SessionController
     public function del(): array
     {
         $sess = HttpSession::current();
-        $sess->set('testKey', 'test-value');
-        return ['set.testKey' => 'test-value'];
+        $result = $sess->del('testKey');
+        return ['del.testKey' => $result];
     }
     
     /**
@@ -182,7 +182,7 @@ class SessionController
      *
      * @return Response
      */
-    public function close(Response $response): Response
+    public function destroy(Response $response): Response
     {
         $sess = HttpSession::current();
         return $response->withData(['destroy' => $sess->destroy()]);
