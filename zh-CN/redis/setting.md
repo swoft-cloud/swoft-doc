@@ -67,6 +67,7 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
     'option'   => [
         'timeout'    => 3,
         'persistent' => true,
+        'auth'       => 'password-AuthXXXXX',
     ],
     'clusters' => [
         [
@@ -84,6 +85,7 @@ Swoft 应用的 Redis 配置都在配置文件 app/bean.php 中。在这个文�
 - option 集群配置
     - timeout 超时时间 默认 0 单位秒
     - persistent 是否持久化 默认 false
+    - auth 集群密码 
 - clusters redis clusters 节点二维数组方法配置
     - host 节点地址
     - port 节点端口
