@@ -3,6 +3,23 @@
 
 ## v2.0.8[WIP]
 
+**修复(Fixed)**：
+
+- 修复 ws server 的 message response.finish 兼容 `swoole 4.4.12` 问题 [d724a949](https://github.com/swoft-cloud/swoft-component/pull/544/commits/d724a949e0f90037eede019ae4d177cec8ae22dd)
+- 修复 console 组件中拥有短选项的选项获取值不同步问题 [ac41eca](https://github.com/swoft-cloud/swoft-component/pull/544/commits/ac41ecadd5fd1030ffd0515c858e21c6098c9ba3)
+- 修复 部分字符串操作不兼容 php 7.4 的问题 [b4d0e90](https://github.com/swoft-cloud/swoft-component/pull/544/commits/b4d0e903cbf92ca615e79a1b2ea32d8fd94a786b)
+- 修复 输入未知命令时，显示http server 命令帮助信息有误 [684807e](https://github.com/swoft-cloud/swoft-component/pull/544/commits/684807e51bd8bd2be53770a6df30423ca209574a)
+- 修复 去除 process 组件中无效的调试语句 [2bc84aa](https://github.com/swoft-cloud/swoft-component/pull/544/commits/2bc84aaced6cfa35f4d12a25ab6941fd2e470831)
+
+**更新(Update)**:
+
+- 调整 路由没找到时抛出的异常将会携带错误 code [7e06afa](https://github.com/swoft-cloud/swoft-component/pull/544/commits/7e06afa86419cd5f0175646615ad18cfaa96882c)
+
+**增强(Enhancement)**：
+
+- 优化 phar 包构建速度，现在打包时间将会大幅度缩短 [1055fff](https://github.com/swoft-cloud/swoft-component/pull/544/commits/1055fffc7affc46eda1c2484665f0452917c1ab2)
+- 优化 console 命令参数和选项的解析绑定，设置的类型的将会格式化为对应的类型 [7dc0d58](https://github.com/swoft-cloud/swoft-component/pull/544/commits/7dc0d58108591a152f538ca417201afe148a7bdd)
+
 ## v2.0.7(2019-11-18)
 
 > 升级提示：
