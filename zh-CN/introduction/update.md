@@ -10,6 +10,7 @@
 - 修复 部分字符串操作不兼容 php 7.4 的问题 [b4d0e90](https://github.com/swoft-cloud/swoft-component/pull/544/commits/b4d0e903cbf92ca615e79a1b2ea32d8fd94a786b)
 - 修复 输入未知命令时，显示http server 命令帮助信息有误 [684807e](https://github.com/swoft-cloud/swoft-component/pull/544/commits/684807e51bd8bd2be53770a6df30423ca209574a)
 - 修复 去除 process 组件中无效的调试语句 [2bc84aa](https://github.com/swoft-cloud/swoft-component/pull/544/commits/2bc84aaced6cfa35f4d12a25ab6941fd2e470831)
+- 打包为phar后不能正确的加载同目录下的 `.env` 文件问题 [8046c15](https://github.com/swoft-cloud/swoft-component/pull/544/commits/8046c156844b59e0a332e47f9e96ce115bb24384)
 
 **更新(Update)**:
 
