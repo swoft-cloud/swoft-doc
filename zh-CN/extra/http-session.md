@@ -61,6 +61,16 @@ composer require swoft/session
     ],
 ```
 
+### 配置redis驱动
+
+```php
+    'sessionHandler' => [
+        'class'    => RedisHandler::class,
+        // set redis pool
+        'redis' => bean('redis.pool')
+    ],
+```
+
 ## 简单使用
 
 ### 设置值
