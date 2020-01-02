@@ -54,7 +54,7 @@ composer require swoft/view
 ## 使用视图
 
 - 通过方法： `view()` 渲染一个视图文件
-- 通过 `\Swoft::getBean('view')->rander('view file')` 渲染一个视图文件
+- 通过 `\Swoft::getBean('view')->render('view file')` 渲染一个视图文件
 - 在控制器的action注释上还可以快捷的使用 `@View()` 来使用(_2.0 暂未支持_)
 
 ## 使用示例
