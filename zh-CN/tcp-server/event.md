@@ -28,7 +28,7 @@ final class TcpServerEvent
     public const CONNECT_ERROR = 'swoft.tcp.server.connect.error';
 
     /**
-     * On receive
+     * On receive before
      */
     public const RECEIVE = 'swoft.tcp.server.receive';
 
@@ -77,16 +77,14 @@ class TcpConnectListener implements EventHandlerInterface
      */
     public function handle(EventInterface $event): void
     {
-
-        /* @var \Swoole\Server $server */
-        $server = $event->getTarget();
+        /* @var int $fd */
+        $fd = $event->getTarget();
         
         var_dump(
-          $event->getParam(0), // fd
+          $event->getParam(0), // \Swoole\Server
           $event->getParam(1), // reactorId
         );
     }
 }
 ```
-
 
