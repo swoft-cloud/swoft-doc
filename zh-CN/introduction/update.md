@@ -11,6 +11,8 @@
 - 修复 输入未知命令时，显示http server 命令帮助信息有误 [684807e](https://github.com/swoft-cloud/swoft-component/pull/544/commits/684807e51bd8bd2be53770a6df30423ca209574a)
 - 修复 去除 process 组件中无效的调试语句 [2bc84aa](https://github.com/swoft-cloud/swoft-component/pull/544/commits/2bc84aaced6cfa35f4d12a25ab6941fd2e470831)
 - 打包为phar后不能正确的加载同目录下的 `.env` 文件问题 [8046c15](https://github.com/swoft-cloud/swoft-component/pull/544/commits/8046c156844b59e0a332e47f9e96ce115bb24384)
+- 修复不能通过Application设置排除扫描的 psr4 命名空间 [5934088](https://github.com/swoft-cloud/swoft-component/pull/555/commits/59340887f1bf50039f9e9299941ec3f14a94a4cf)
+- 修复 http headers 里出现数字key时，导致初始化请求报错 [c168434](https://github.com/swoft-cloud/swoft-component/pull/554/commits/c1684343710143c6d4cc90d2a1a79d8f47b06fb8)
 
 **更新(Update)**:
 
@@ -20,6 +22,8 @@
 
 - 优化 phar 包构建速度，现在打包时间将会大幅度缩短 [1055fff](https://github.com/swoft-cloud/swoft-component/pull/544/commits/1055fffc7affc46eda1c2484665f0452917c1ab2)
 - 优化 console 命令参数和选项的解析绑定，设置的类型的将会格式化为对应的类型 [7dc0d58](https://github.com/swoft-cloud/swoft-component/pull/544/commits/7dc0d58108591a152f538ca417201afe148a7bdd)
+- 全局验证方法 validate 方法新增 `$unfields` 参数 [ca86dc8](https://github.com/swoft-cloud/swoft-component/pull/556/commits/ca86dc885132953188038f80752d736cd39f961d)
+- 调整了ws和tcp连接的存储逻辑，现在可以自定义存储连接会话信息到自定义驱动(如 redis, swoole-table等) [5a52586](https://github.com/swoft-cloud/swoft-component/pull/550/commits/5a52586c5523ab7dee46f5936cf62e9955d8992f)
 
 ## v2.0.7(2019-11-18)
 
