@@ -14,10 +14,16 @@
 - 修复不能通过Application设置排除扫描的 psr4 命名空间 [5934088](https://github.com/swoft-cloud/swoft-component/pull/555/commits/59340887f1bf50039f9e9299941ec3f14a94a4cf)
 - 修复 http headers 里出现数字key时，导致初始化请求报错 [c168434](https://github.com/swoft-cloud/swoft-component/pull/554/commits/c1684343710143c6d4cc90d2a1a79d8f47b06fb8)
 - 修复 log 在禁用后仍然在写入conting信息到内存中，导致内存增长问题 [0a51739b](https://github.com/swoft-cloud/swoft-component/pull/560/commits/0a51739b3e7917e63cc4ff5e8c694af019b8eb8e)
+- 修复 log 并发可能导致重复写入日志 [c6b396f](https://github.com/swoft-cloud/swoft-component/pull/542/commits/c6b396f6db72a7276bafb9ced7bc5b42fa9d25e0)
+- 修复 clog 不支持写入文件 [e88c4d5](https://github.com/swoft-cloud/swoft-component/pull/542/commits/e88c4d59416fc3439476eb4c25457298e2d0a800)
+- 修复 连接池未关闭, 已经过期的连接 [53ca548](https://github.com/swoft-cloud/swoft-component/pull/542/commits/53ca5485d61c6eaddf5dac5b2c3e18db0f7b775c)
+
 
 **更新(Update)**:
 
 - 调整 路由没找到时抛出的异常将会携带错误 code [7e06afa](https://github.com/swoft-cloud/swoft-component/pull/544/commits/7e06afa86419cd5f0175646615ad18cfaa96882c)
+- 调整 Redis `Set` 方法和接口, 使用方式和 phpredis 完全一致, 第三个参数支持数组 [503f4df](https://github.com/swoft-cloud/swoft-component/pull/542/commits/503f4df06dcf067afbf5e105027c97a2548c90b2)
+- `Swoft\Redis\Contract\ConnectionInterface::set` 第三个参数 改成了不限制类型
 
 **增强(Enhancement)**：
 
@@ -25,6 +31,9 @@
 - 优化 console 命令参数和选项的解析绑定，设置的类型的将会格式化为对应的类型 [7dc0d58](https://github.com/swoft-cloud/swoft-component/pull/544/commits/7dc0d58108591a152f538ca417201afe148a7bdd)
 - 全局验证方法 validate 方法新增 `$unfields` 参数 [ca86dc8](https://github.com/swoft-cloud/swoft-component/pull/556/commits/ca86dc885132953188038f80752d736cd39f961d)
 - 调整了ws和tcp连接的存储逻辑，现在可以自定义存储连接会话信息到自定义驱动(如 redis, swoole-table等) [5a52586](https://github.com/swoft-cloud/swoft-component/pull/550/commits/5a52586c5523ab7dee46f5936cf62e9955d8992f)
+- 优化聚合方法支持分组如(`sum,avg,count`) 等 [ab58ffd](https://github.com/swoft-cloud/swoft-component/pull/542/commits/ab58ffd39fb98fd47f7161a0095b8cdc812b2f9e)
+- 优化实体生成, 解决和模型属性/方法冲突 [54be347](https://github.com/swoft-cloud/swoft-ext/commit/54be347f32b38b328111b1fe5f7999c09eda9358)
+- 添加 `setFetchMode` 方便获取不同类型的 pdo 格式的数据[31210bf](https://github.com/swoft-cloud/swoft-component/pull/542/commits/31210bfe51cde8114161590392acd745b0aac800)
 
 ## v2.0.7(2019-11-18)
 
