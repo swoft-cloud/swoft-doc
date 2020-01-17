@@ -13,6 +13,7 @@
 - 打包为phar后不能正确的加载同目录下的 `.env` 文件问题 [8046c15](https://github.com/swoft-cloud/swoft-component/pull/544/commits/8046c156844b59e0a332e47f9e96ce115bb24384)
 - 修复不能通过Application设置排除扫描的 psr4 命名空间 [5934088](https://github.com/swoft-cloud/swoft-component/pull/555/commits/59340887f1bf50039f9e9299941ec3f14a94a4cf)
 - 修复 http headers 里出现数字key时，导致初始化请求报错 [c168434](https://github.com/swoft-cloud/swoft-component/pull/554/commits/c1684343710143c6d4cc90d2a1a79d8f47b06fb8)
+- 修复 log 在禁用后仍然在写入conting信息到内存中，导致内存增长问题 [0a51739b](https://github.com/swoft-cloud/swoft-component/pull/560/commits/0a51739b3e7917e63cc4ff5e8c694af019b8eb8e)
 
 **更新(Update)**:
 
