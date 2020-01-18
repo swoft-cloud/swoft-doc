@@ -1,7 +1,12 @@
 # 版本更新
 
 
-## v2.0.8[WIP]
+## v2.0.9[WIP]
+
+**修复(Fixed)**：
+
+
+## v2.0.8(2020-01-18)
 
 **修复(Fixed)**：
 
@@ -15,7 +20,6 @@
 - 修复 http headers 里出现数字key时，导致初始化请求报错 [c168434](https://github.com/swoft-cloud/swoft-component/pull/554/commits/c1684343710143c6d4cc90d2a1a79d8f47b06fb8)
 - 修复 log 在禁用后仍然在写入conting信息到内存中，导致内存增长问题 [0a51739b](https://github.com/swoft-cloud/swoft-component/pull/560/commits/0a51739b3e7917e63cc4ff5e8c694af019b8eb8e)
 - 修复 log 并发可能导致重复写入日志 [c6b396f](https://github.com/swoft-cloud/swoft-component/pull/542/commits/c6b396f6db72a7276bafb9ced7bc5b42fa9d25e0)
-- 修复 clog 不支持写入文件 [e88c4d5](https://github.com/swoft-cloud/swoft-component/pull/542/commits/e88c4d59416fc3439476eb4c25457298e2d0a800)
 - 修复 连接池未关闭, 已经过期的连接 [53ca548](https://github.com/swoft-cloud/swoft-component/pull/542/commits/53ca5485d61c6eaddf5dac5b2c3e18db0f7b775c)
 
 
@@ -27,6 +31,7 @@
 
 **增强(Enhancement)**：
 
+- 增强 clog 现在支持写入日志到文件 [e88c4d5](https://github.com/swoft-cloud/swoft-component/pull/542/commits/e88c4d59416fc3439476eb4c25457298e2d0a800)
 - 优化 phar 包构建速度，现在打包时间将会大幅度缩短 [1055fff](https://github.com/swoft-cloud/swoft-component/pull/544/commits/1055fffc7affc46eda1c2484665f0452917c1ab2)
 - 优化 console 命令参数和选项的解析绑定，设置的类型的将会格式化为对应的类型 [7dc0d58](https://github.com/swoft-cloud/swoft-component/pull/544/commits/7dc0d58108591a152f538ca417201afe148a7bdd)
 - 全局验证方法 validate 方法新增 `$unfields` 参数 [ca86dc8](https://github.com/swoft-cloud/swoft-component/pull/556/commits/ca86dc885132953188038f80752d736cd39f961d)
