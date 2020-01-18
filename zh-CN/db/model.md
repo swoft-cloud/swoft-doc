@@ -584,7 +584,7 @@ $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 
 ```php
 <?php
-    class User
+    class User extends Model
     {
        protected const CREATED_AT = 'create_time';
        protected const UPDATED_AT = 'update_data';
