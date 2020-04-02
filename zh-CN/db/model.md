@@ -56,7 +56,29 @@
       */
      private $age;
      
- 
+     /**
+      * @Column(name="user_desc", prop="udesc")
+      *
+      * @var string|null
+      */
+     private $userDesc;
+
+    /**
+     * @return string|null
+     */
+     public function getUserDesc(): ?string
+     {
+        return $this->userDesc;
+     }
+    
+    /**
+     * @param string|null $userDesc
+     */
+     public function setUserDesc(?string $userDesc): void
+     {
+        $this->userDesc = $userDesc;
+     }
+    
      /**
       * @return int|null
       */
@@ -106,11 +128,13 @@
      }
  }
  ```
- 也可以使用 devtool 里面的快速生成实体工具 
+ 也可以使用 devtool 里面的快速`生成实体`工具 
  
-### 注解标签 
+> 如果没有定义 `@Column` 的列, 使用插入/更新 的不存在`@Column`值, 将会被框架自动过滤. 
 
-#### @Entity
+## 注解标签 
+
+### @Entity
 
 标记一个类是一个实体，有两个参数
 
@@ -119,31 +143,77 @@
 
 假如 `User` 表 是 `MySQL` 的， `Count` 表 可以是 `PostSQL` 的使用不同的连接池即可实现。
 
-#### @Column
+### @Column
 
 标记一个列，如果一个列没有定义`@Column`那么查询它将不会显示，这样即使你新增了数据库字段也不会影响生产环境运行。
 
 - name 定义类属性映射的表字段，没该注解标记的属性，不映射(默认为字段名为属性名)
 - prop 为字段设置一个别名
 > prop 只是为字段设置一个别名，只有在调用`toArray`的时候才会被转换。这样能隐藏数据库真实的字段。使用`where`等子句，需要使用数据库字段。
-- hidden 是否隐藏，如果为真那么它 `toArray()` 的时候将会被隐藏，但是不影响你通过 `Getter`获取它，你也可以调用实体的`setVisible`方法将他取消隐藏。
+- hidden 是否隐藏，如果为真那么它 `toArray()` 的时候将会被隐藏，但是不影响你通过 `Getter`获取它，你也可以调用实体的`addVisible`方法将他取消隐藏。
 > 说明：所有字段属性，必须要有`getter`和`setter`方法，你可以使用`phpstorm` 快捷键 `ctrl+n`，它会更具属性 快速生成 `getter`和`setter`。
 
 > **注意** 若表字段有下划线，类属性均定义为 `小驼峰` 写法 例： 字段 `user_name`  则属性写为 `$userName`
 
 2.x 去掉了 type 属性 现在会使用 属性上定义的 `@var` 注解定义的第一个类型，决定了返回值类型，底层会强转类型
 
-#### @Id
+### @Id
 
 该注解标明当前类属性对应了数据库表中的主键，必须有这个注解标记，不能设置多个`@Id`注解
 
 - incrementing 是否为递增主键，默认为递增主键。
 
-## 使用实体
+## Prop 操作
 
-### 插入数据
+> 2.0.6 支持
 
-#### 对象方式
+模型插入支持 使用 `prop` 插入 
+
+例如 上面例子中实体, 真实数据库字段是 `user_desc`, prop 字段是 `udesc`, 底层会自动转化成  `user_desc` 插入
+
+当然这不影响之前的使用
+
+```php
+User::new([
+    'udesc' => $desc,
+])->save();
+```
+
+条件使用 `prop` ,使用 `whereProp` 方法, `whereProp` 方法和可以用 `where` 一样使用.
+
+```php
+
+$where      = [
+    'pwd' => md5(uniqid()),
+    ['udesc', 'like', 'swoft%'],
+    ['whereIn', 'id', [1]]
+];
+
+// 'select * from `user` where (`password` = ? and `user_desc` like ? and `id` in (?))';
+$sql = User::whereProp($where)->toSql();
+```
+
+`where` 扩展使用, 数据里面每一个元素, 为方法名, 支持 `Query Builder` 里面的所有与 `Where` 相关的方法,
+
+```php
+$toSql = 'select * from `user` where (`id` in (?) or `id` = ? or `status` > ? and `age` between ? and ?)';
+$where = [
+    ['whereIn', 'id', [1]],
+    ['orWhere', 'id', 2],
+    ['orWhere', 'status', '>', -1],
+    ['whereBetween', 'age', [18, 25]]
+];
+$sql   = User::where($where)->toSql();
+// same as
+User::where('id', '=', [1])
+            ->orWhere('id', 2)
+            ->orWhere('status', '>', -1)
+            ->whereBetween('age', [18, 25])
+```
+
+## 插入数据
+
+### 对象方式 插入获取自增 Id
 
 ```php
 $user = User::new();
@@ -151,10 +221,12 @@ $user->setName('name');
 $user->setSex(1);
 $user->setDesc('this my desc');
 $user->setAge(mt_rand(1, 100));
-$id  = $user->save();
+$user->save();
+// saved after getId()  
+$id = $user->getId();
 ```
 
-#### 数组方式
+### 数组方式
 
 ```php
 $attributes = [
@@ -163,15 +235,20 @@ $attributes = [
     'age'       => mt_rand(1, 100),
     'user_desc' => 'u desc'
 ];
+$user  = User::new($attributes)
 
-$result3 = User::new($attributes)->save();
+$result3 =$user->save();
+
+$id = $user->getId()
 ```
 
-#### 批量插入
+> 在新增`save` 之后可以用过 `getter` 方法获取自增 id. 
+
+### 批量插入
 
 如果你想批量插入可以使用 `User::insert([])`方法 使用和 查询构造器的 `insert`方法 使用完全一致
 
-### 删除数据
+## 删除数据
 
 指定 id 删除
 
@@ -192,11 +269,10 @@ $result = User::where('id', 1)->delete();
 $result = User::where('stauts',1 )->limit(1)->delete();
 ```
 
-### 更新数据
 
-#### 实体更新
+## 实体更新
 
-使用 `setter` 或者`array`都可以更新
+使用 `setter` 或者`array` 都可以更新
 
 ```php
 $user = User::find($id);
@@ -207,25 +283,25 @@ $user->setAge(1);
 $result = $user->update(['name' => $name]);
 ```
 
-#### 条件更新
+## 条件批量更新
 
 更新一条数据
 
 ```php
 $wheres   = [
-    'name' => 'sakuraovq',
+    'name' => 'swoft',
     ['id', '>=', 2]
 ];
 $orWheres = [
-    ['status', '<>', 1']
+    ['status', '<>', '1']
 ];
 $result   = User::where($wheres)
                 ->limit(1)
                 ->orWhere($orWheres)
-                ->update(['name' => 'sakuraovq' . mt_rand(1, 10)]);
+                ->update(['status' => 1]);
 ```
 
-#### 更新/插入
+## 更新/插入
 
 可以使用`updateOrCreate` 返回的是一个实体
 
@@ -240,7 +316,77 @@ echo $user->getName();
 $isOk = User::updateOrInsert(['id' => 1], ['age' => 18, 'name' => 'sakuraovq']);
 ```
 
-### 查询数据
+## 使用主键进行批量更新
+
+在这例子中 `id` 是 `User`实体的 `@Id()` 主键
+
+```php
+$values = [
+    ['id' => 1, 'age' => 18],
+    ['id' => 2, 'age' => 19],
+];
+
+User::batchUpdateByIds($values);
+```
+
+> 使用批量更新 必须指定主键的值, 框架会根据主键的值进行 批量更新
+
+## 快速更新
+
+如果已知道 更新的 主键 `id` 可以使用 `modifyById` 方法进行快速更新
+ 
+```php
+  // method 1
+  $row = User::modifyById($id, ['user_desc' => $expectLabel]);
+  // method 2
+  User::find($id)->update(['user_desc' => $expectLabel]);
+```
+
+如果不知道需要更新的主键 `id` 可以使用`modify` 方法,该方法会先根据条件查找 `id` 再进行 `update`
+
+```php
+
+   $where  = ['user_desc' => 'CP'];
+   $values = ['user_desc' => $expectLabel];
+    
+   // method 1
+   $row = User::modify($where, $values);
+   // method 2
+   $model = User::where($where)->first()->update($values);
+```
+
+> 方法 1 和方法 2 是相同的意思
+
+## 递增/递减
+
+**单个字段 递增/递减**
+
+使用 `increment` 递减 `decrement` 递减, 第三个参数是附带更新的值
+```php
+    $updateByWhereId = User::where('id', 1)->increment('age', 1);
+    $updateByModel   = User::find(1)->decrement('age', 2);
+```
+
+**多个字段 递增/递减**
+
+使用 `updateAllCounters` 方法更新. 需要注意的是, 请谨慎使用更新条件,最好使用主键更新以免造成表锁
+
+```php
+   User::updateAllCounters(['user_desc' => $expectLabel], ['age' => -1]);
+```
+
+如果知道 需要更新的 主键`id` 可以使用 `updateAllCountersById` 方法
+
+```php
+    // method 1
+    User::updateAllCountersById((array)$id, ['age' => 1], ['user_desc' => $expectLabel]);
+    
+    // method 2
+    User::find($id)->updateCounters(['age' => -1]);
+```
+
+
+## 查询数据
 
 > 模型的查询方法和查询构造器完全兼容
 
@@ -291,4 +437,283 @@ foreach ($users as $id => $user) {
 $userCounts = User::join('count', 'user.id', '=', 'count.user_id')->get();
 ```
 
+## 分块结果
+
+如果你需要处理数千个 Eloquent 记录，可以使用 `chunk` 命令。`chunk` 方法会检索 Eloquent 模型的「分块」，将它们提供给指定的 `Closure` 进行处理。在处理大型结果集时，使用 `chunk` 方法可节省内存：
+
+```php
+ Flight::chunk(200, function ($flights) {
+        foreach ($flights as $flight) {
+            //
+        }
+ });
+```
+   
+
+传递到方法的第一个参数是希望每个「分块」接收的数据量。闭包则被作为第二个参数传递，它会在每次执行数据库查询传递每个块时被调用。
+
+
+## 使用游标
+
+`cursor` 允许你使用游标来遍历数据库数据，该游标只执行一个查询。处理大量数据时，可以使用 `cursor` 方法可以大幅度减少内存的使用量：
+
+```php
+    foreach (Flight::where('foo', 'bar')->cursor() as $flight) {
+        //
+    }
+```
+
+## 「找不到」异常
+
+如果你希望在找不到模型时抛出异常，可以使用 `findOrFail` 以及 `firstOrFail` 方法。这些方法会检索查询的第一个结果。如果没有找到相应结果，就会抛出一个 `DbException`：
+
+```php
+    $model = App\Flight::findOrFail(1);
+
+    $model = App\Flight::where('legs', '>', 100)->firstOrFail();
+```
+
+## 赋值
+ 如果你觉得 `setter` 太麻烦了可以使用,批量填充功能, 使用这种方式要注意如果该字段`没有匹配`到 `@Column` 值将会被忽 这样能保证安全的更新和插入
+ ```php
+// Properties
+    $attributes = [
+        'name'      => uniqid(),
+        'password'  => md5(uniqid()),
+        'age'       => mt_rand(1, 100),
+        'user_desc' => 'u desc'
+    ];
+    // one 
+    $result3 = User::new($attributes)->save();
+    // two
+    $result3 = User::new()->fill($attributes)->save();
+```
+
+## 检索集合
+
+你还可以使用 [查询构造器](builder.md) 提供的 `count`、`sum`、`max` 以及其它 聚合函数。这些方法只会返回适当的标量值而不是整个模型实例：
+
+```php
+    $count = App\Flight::where('active', 1)->count();
+
+    $max = App\Flight::where('active', 1)->max('price');
+```
+
+## 其他创建方法
+
+### `firstOrCreate`/ `firstOrNew`
+ 
+你还可以使用其他两种方法来创建模型：`firstOrCreate` 和 `firstOrNew`。`firstOrCreate` 方法会使用给定的字段及其值在数据库中查找记录。如果在数据库中找不到模型，则将使用第一个参数中的属性以及可选的第二个参数中的属性插入记录。
+
+`firstOrNew` 方法就类似 `firstOrCreate` 方法，会在数据库中查找匹配给定属性的记录。如果模型未被找到，则会返回一个新的模型实例。请注意，在这里面，`firstOrnew` 返回的模型还尚未保存到数据库，必须要手动调用 `save` 方法才能保存它：
+
+```php
+    // 通过 name 属性检索航班，当结果不存在时创建它...
+    $flight = App\Flight::firstOrCreate(['name' => 'Flight 10']);
+
+    // 通过 name 属性检索航班，当结果不存在的时候用 name 属性和 delayed 属性去创建它
+    $flight = App\Flight::firstOrCreate(
+        ['name' => 'Flight 10'], ['delayed' => 1]
+    );
+
+    // 通过 name 属性检索航班，当结果不存在时实例化...
+    $flight = App\Flight::firstOrNew(['name' => 'Flight 10']);
+
+    // 通过 name 属性检索航班，当结果不存在的时候用 name 属性和 delayed 属性实例化
+    $flight = App\Flight::firstOrNew(
+        ['name' => 'Flight 10'], ['delayed' => 1]
+    );
+```
+
+### `updateOrCreate`
+
+你也可能会遇到想要更新现有模型或创建新模型（如果不存在）的情况。Swoft 提供了 `updateOrCreate` 方法来完成该操作，像 `firstOrCreate` 方法一样，`updateOrCreate` 方法会保存模型，所以不需要调用 `save()` :
+
+```php
+    // 如果有从奥克兰飞往圣地亚哥的航班，将价格设为 99 美元
+    // 如果不存在匹配的模型就创建一个
+    $flight = App\Flight::updateOrCreate(
+        ['departure' => 'Oakland', 'destination' => 'San Diego'],
+        ['price' => 99]
+    );
+```   
+
+
 更多方法请参照 [查询构造器](builder.md)
+
+## 自动写入时间戳
+
+默认情况下，Eloquent 会默认数据表中存在 `created_at` 和 `updated_at` 这两个字段。如果你不需要自动更新这两个字段，则需要在模型内将 `$modelTimestamps` 属性设置为 `false`：
+
+```php
+<?php
+
+    namespace App;
+
+    use App\Model\Entity;
+
+    class User
+    {
+        /**
+         * Whether the model is automatically maintained with a timestamp
+         *
+         * @var bool
+         */
+        public $modelTimestamps = false;
+    }
+```    
+
+如果你需要自定义时间戳格式，可在模型内设置 `$modelDateFormat` 属性。这个属性决定了日期属性应如何存储在数据库中，以及模型被序列化成数组或 JSON 时的格式：
+
+```php
+<?php
+    class User
+    {
+        /**
+         * The storage format of the model's date field
+         *
+         * @var string
+         */
+        protected $modelDateFormat = 'Y-m-d H:i:s';
+    }
+```
+
+如果需要自定义用于存储时间戳的字段名，可在模型中通过设置 `CREATED_AT` 和 `UPDATED_AT` 常量来实现：
+
+> 时间戳 支持 数据库 `int`  和 `timestamp` 类型, 底层会自动根据实体的属性  `CREATED_AT` 和 `UPDATED_AT` 这个两个字段定义的 `@var` 来判断. 用户无需操心生成时间戳格式
+
+```php
+<?php
+    class User extends Model
+    {
+       protected const CREATED_AT = 'create_time';
+       protected const UPDATED_AT = 'update_data';
+    }
+```  
+
+> 暂不支持注解继承 `Dao` 层继承 `Entity` 暂不可用
+
+ <p class="tip"> 如果要让框架自动维护  CREATED_AT  和 UPDATED_AT , 那么这两个常量对应的字段, 必须要有与之对应的 getter 和 setter </p>
+
+
+## 事件
+
+Eloquent 的模型触发了几个事件，可以在模型的生命周期的以下几点进行监控： `creating`、`created`、`updating`、`updated`、`saving`、`saved`、`deleting`、`deleted`。事件能在每次在数据库中保存或更新特定模型类时轻松地执行代码。当然你完全可以通过 `AOP` 来实现它
+
+ 当新模型第一次被保存时， `creating` 以及 `created` 事件会被触发。如果模型已经存在于数据库中并且调用了 `save` 方法，会触发 `updating` 和 `updated` 事件。在这两种情况下，`saving` / `saved` 事件都会触发。
+
+事件名称是 `swoft.model`+模型名+动作名
+
+- 模型名 是首字母默认会小写 例如实体名称 `SendMessage` 要监听它的`saving` 动作的话 格式就是 `swoft.model.sendMessage.saving` 其他模型也类似.
+
+可以监听某个模型的`saving`操作的动作, 也可以监听所有模型的`saving`动作 
+
+- 监听模型单个动作
+
+```php
+<?php declare(strict_types=1);
+
+
+namespace App\Listener;
+
+use App\Model\Entity\User;
+use Swoft\Event\Annotation\Mapping\Listener;
+use Swoft\Event\EventHandlerInterface;
+use Swoft\Event\EventInterface;
+
+/**
+ * Class UserSavingListener
+ *
+ * @since 2.0
+ *
+ * @Listener("swoft.model.user.saving")
+ */
+class UserSavingListener implements EventHandlerInterface
+{
+    /**
+     * @param EventInterface $event
+     */
+    public function handle(EventInterface $event): void
+    {
+        /* @var User $user */
+        $user = $event->getTarget();
+
+        if ($user->getAge() > 100) {
+            // stopping saving
+            $event->stopPropagation(true);
+
+            $user->setAdd(100);
+        }
+    }
+}
+
+```
+
+- 监听所有模型的单个动作
+
+```php
+<?php declare(strict_types=1);
+
+
+namespace App\Listener;
+
+use App\Model\Entity\User;
+use Swoft\Db\DbEvent;
+use Swoft\Db\Eloquent\Model;
+use Swoft\Event\Annotation\Mapping\Listener;
+use Swoft\Event\EventHandlerInterface;
+use Swoft\Event\EventInterface;
+
+/**
+ * Class RanListener
+ *
+ * @since 2.0
+ *
+ * @Listener(DbEvent::MODEL_SAVED)
+ */
+class ModelSavedListener implements EventHandlerInterface
+{
+    /**
+     * @param EventInterface $event
+     */
+    public function handle(EventInterface $event): void
+    {
+        /* @var Model $modelStatic */
+        $modelStatic = $event->getTarget();
+
+        if ($modelStatic instanceof User) {
+            // to do something....
+        }
+
+        // ....
+    }
+}
+
+```
+
+公共的事件名列表, 可以在`Swoft\Db\DbEvent` 类中参看所有事件
+
+Event  | Params | Description
+------------- | ------------- | -------------
+`swoft.db.transaction.begin`  | 没有参数 | 事务启动。
+`swoft.db.transaction.commit`  | 没有参数 | 事务提交。
+`swoft.db.transaction.rollback`  | 没有参数 | 事务回滚。
+`swoft.model.saving`  | target 是具体操作实体类 | 所有实体保存中事件。
+`swoft.model.saved`  | target 是具体操作实体类 | 所有实体保存后事件。
+`swoft.model.updating`  | target 是具体操作实体类 | 所有实体更新前事件。
+`swoft.model.updated`  | target 是具体操作实体类 | 所有实体更新后事件。
+`swoft.model.creating`  | target 是具体操作实体类 | 所有实体创建前事件。
+`swoft.model.created`  | target 是具体操作实体类 | 所有实体创建后事件。
+`swoft.model.deleting`  | target 是具体操作实体类 | 所有实体删除前事件。
+`swoft.model.deleted`  | target 是具体操作实体类 | 所有实体后删除前事件。
+`swoft.db.ran`  | target 是连接对象,参数 1=未预处理 sql ,参数 2=绑定的参数 | 所有 sql 执行后的事件,事件返回的连接已返回给连接池只能获取它的配置信息。
+`swoft.db.affectingStatementing`  | target 是连接对象,参数 1=正在处理的` PDO statement` ,参数 2=绑定的参数 | 正在执行 `update` 和`delete`动作
+`swoft.db.selecting`  | target 是连接对象,参数 1=正在处理的` PDO statement` ,参数 2=绑定的参数  | 正在执行查询动作。
+
+> 如果是`正在进行时(ing)` 在监听事件中是调用了 `$event->stopPropagation(true);` 后续操作会终止直接返回结果. 对`过去式`停止无效
+
+## FQA
+
+使用模型 使用 `select` 方法最好, 不要使用 `as` 不然查询结果与实体映射可能会有问题
+
+> 使用模型的方法 更新/插入的值 都会过滤处理 没有 定义 `@Column` 的值将会被过滤

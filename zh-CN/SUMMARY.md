@@ -23,6 +23,7 @@
   * [IO复用](ready/io.md)
   * [Swoole 扩展](ready/swoole.md)
   * [Composer](ready/composer.md)
+  * [上下文](ready/context.md)
 
 ### [特别注意](notice/index.md)
 
@@ -65,14 +66,17 @@
 
 ### [错误处理](error/index.md)
 
+  * [错误场景](error/scenes.md)
   * [添加处理器](error/usage.md)
 
 ### [公共方法](common/index.md)
 
   * [协程方法](common/co.md)
+  * [定时器](common/timer.md)
   * [通用函数](common/generic.md)
   * [基础帮助库](common/stdlib.md)
-
+    * [数组](common/stdlib-array.md)
+    
 ## 核心
 
 ### [命令行](console/index.md)
@@ -88,14 +92,13 @@
 
   * [常用命令](http-server/command.md)
   * [配置参数](http-server/setting.md)
-  * [执行流程](http-server/process.md)
   * [控制器](http-server/controller.md)
   * [路由绑定](http-server/route.md)
   * [请求对象](http-server/request.md)
   * [响应对象](http-server/response.md)
   * [中间件](http-server/middleware.md)
   * [异常处理](http-server/exception.md)
-  * [HTTP 客户端](extra/http.md)
+  * [HTTP 客户端](http-server/http.md)
 
 ### [Websocket](websocket-server/index.md)
 
@@ -116,6 +119,21 @@
 
   * [配置服务](rpc-client/setting.md)
   * [如何使用](rpc-client/usage.md)
+  * [1.0 RPC](rpc-client/rpc-1.0.md)
+
+### [TCP Server](tcp-server/index.md)
+
+  * [配置服务](tcp-server/config.md)
+  * [管理服务](tcp-server/manage.md)
+  * [事件通知](tcp-server/event.md)
+  * [控制器](tcp-server/controller.md)
+  * [客户端通信](tcp-server/client-communicate.md)
+
+### [进程](process/index.md)
+
+  * [进程](process/process.md)  
+  * [用户进程](process/user-process.md)  
+  * [进程池](process/process-pool.md)  
   
 ### [任务](task/index.md)
 
@@ -123,6 +141,7 @@
   * [声明一个任务](task/statement.md)
   * [协程任务](task/coroutine.md)
   * [异步任务](task/async.md)
+  * [定时任务](task/crontab.md)
 
 ### [数据库](db/index.md)
 
@@ -133,7 +152,6 @@
   * [原生操作](db/origin.md)
   * [切库](db/selectDb.md)
 
-  
 ### [Redis](redis/index.md)
 
   * [配置](redis/setting.md)
@@ -149,6 +167,7 @@
   
 ### [验证器](validator/index.md)
 
+  * [配置](validator/setting.md)
   * [声明验证器](validator/statement.md)
   * [自定义验证器](validator/user-validator.md)
   * [自定义验证器规则](validator/customer-rule.md)
@@ -166,7 +185,7 @@
 
   * [注册与发现](ms/govern/register-discovery.md)
   * [服务熔断](ms/govern/breaker.md)
-  * [服务限流](ms/govern/limit.md)
+  * [服务限流](ms/govern/limiter.md)
   * [配置中心](ms/govern/config.md)
 
 ## 工具
@@ -175,15 +194,24 @@
 
   * [下载安装](tool/swoftcli/install.md)
   * [自动重启服务](tool/swoftcli/hot-restart.md)
+  * [生成应用类文件](tool/swoftcli/generate-app-classs.md)
+  * [创建新应用或组件](tool/swoftcli/create-app-or-component.md)
   * [打包应用为PHAR](tool/swoftcli/build-phar.md)
 
 ### [Devtool](tool/devtool/index.md)
+
   * [实体生成](tool/devtool/entity.md)
+  * [数据迁移](tool/devtool/migrations.md)
 
 ## 扩展
 
   * [视图渲染](extra/view.md)
   * [Apollo](extra/apollo.md)
+  * [Consul](extra/consul.md)
+  * [Whoops](extra/whoops.md)
+  * [PostgreSql](extra/postgresql.md)
+  * [Http Session](extra/http-session.md)
+  * [SwooleTracker](extra/swoole-tracker.md)
 
 ### [开发组件](component/index.md)
 
@@ -194,8 +222,5 @@
 ### [最佳实践](best-practices/index.md)
 
   * [常规架构](best-practices/architecture.md)
-  * [中间件简介](best-practices/middleware.md)
-  * [部署与使用](best-practices/deploy.md)
-  * [演示案例](best-practices/demo.md)
   * [Nginx配置](best-practices/nginx-config.md)
 

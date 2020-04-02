@@ -1,5 +1,14 @@
 # 如何使用
 
+## 注解
+
+### @Reference
+
+- pool 指定使用那个服务的连接池(使用那个服务)
+- version 指定服务的版本
+
+## 代码示例
+
 ```php
 /**
  * Class RpcController
@@ -67,13 +76,9 @@ class RpcController
 }
 ```
 
-## @Reference
+> 提示：接口只是定义了方法，注入也是 refer 的接口类。但是使用是要用真实类的实例。所以swoft会自动生成对应的类实现到临时目录。
 
-- pool 指定使用那个服务的连接池(使用那个服务)
-- version 指定服务的版本
-
-
-## 非 Swoft 框架
+## 非 Swoft 框架调用
 
 默认消息协议是 json-rpc， 所以我们按照这个格式就可以了，需要注意的是，默认消息协议是以 `\r\n\r\n` 结尾的。
 
@@ -88,6 +93,8 @@ class RpcController
     "ext": []
 }
 ```
+
+### 代码示例
 
 如果使用默认消息协议，可以按照如下方式进行封装
 
@@ -111,17 +118,25 @@ function request($host, $class, $method, $param, $version = '1.0', $ext = []) {
     ];
     $data = json_encode($req) . RPC_EOL;
     fwrite($fp, $data);
+
     $result = '';
     while (!feof($fp)) {
-            $tmp = stream_socket_recvfrom($fp, 1024);
-            if (strpos($result, RPC_EOL) !== false) {
-                break;
-            } else {
-                $result .= $tmp;
-            }
+        $tmp = stream_socket_recvfrom($fp, 1024);
+        $pos = strpos($tmp, RPC_EOL);
+
+        if ($pos !== false) {
+            $result .= substr($tmp, 0, $pos);
+            break;
+        } else {
+            $result .= $tmp;
         }
+    }
+
+    fclose($fp);
     return json_decode($result, true);
 }
 
-var_dump(request('tcp://127.0.0.1:18307', \App\Rpc\Lib\UserInterface::class, 'getList',  [1, 2], "1.0"));
+$ret = request('tcp://127.0.0.1:18307', \App\Rpc\Lib\UserInterface::class, 'getList',  [1, 2], "1.0");
+
+var_dump($ret);
 ```

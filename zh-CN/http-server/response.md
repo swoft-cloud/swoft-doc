@@ -27,13 +27,14 @@ PSR-7 接口为响应对象提供了这些方法:
 
 ## 如何获取
 
-- 通过控制器方法参数注入 `(Request $request)`
-- 通过请求上下文获取 `Swoft\Context\Context::mustGet()->getResponse()`
+- 通过控制器方法参数注入 `(Response $response)`
+- 通过请求上下文获取 `context()->getResponse()`
+- 通过请求上下文获取 `Swoft\Context\Context::mustGet()->getResponse()` (_已废弃_)
 
 ## 设置状态码
 
 ```php
-$response = \Swoft\Context\Context::mustGet()->Response();
+$response = \context()->getResponse();
 return $response->withStatus(404);
 ```
 
@@ -59,7 +60,11 @@ return $response->withHeader("name","Swoft2.0");
 ## 重定向
 
 ```php
+// 302
 return $response->redirect("http://www.swoft.org",302);
+
+// 404 page
+return $response->redirect('/404');
 ```
 
 ## 文件下载
@@ -71,8 +76,9 @@ return $response->file(\alias('@runtime/1.zip'), "application/octet-stream");
 ## 设置Cookies
 
 ```php
-$response->setCookie(’name', 'value');
-$response->setCookie(’name', [
+$response = $response->withCookie(’name', 'value');
+
+$response = $response->withCookie(’name', [
     'value'    => 'value3',
     'httpOnly' => true
 ]);
@@ -92,6 +98,6 @@ $cookies = [
     ],
 ];
 
-$response->setCookies($cookies);
+$response = $response->withCookies($cookies);
 ```
 

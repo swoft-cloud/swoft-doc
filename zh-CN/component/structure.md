@@ -28,3 +28,12 @@
 └── phpunit.xml
 ```
 
+## 快速开始
+
+你可以使用 swoftcli 工具来快速创建一个自定义组件，它会帮你创建好基础的文件结构和入口类：
+
+```bash
+php swoftcli.phar create:component my-swoft-component -n 'MySwoft\Component' -o vendor/somedir
+```
+
+详细的命令使用请查看 [创建新应用或组件](../tool/swoftcli/create-app-or-component.md)

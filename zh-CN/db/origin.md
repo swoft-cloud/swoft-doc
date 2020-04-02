@@ -85,3 +85,4 @@ if ($unprepared) {
 }
 ```
 
+只有使用 `unprepared` 方法才可以执行多条sql, 需要预处理的 不能执行多条 sql 

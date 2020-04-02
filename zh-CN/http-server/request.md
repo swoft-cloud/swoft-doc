@@ -40,7 +40,7 @@ PSR-7 接口为请求对象提供了这些方法:
 ## 请求动作方法
 
 ```php
-$request = \Swoft\Context\Context::mustGet()->getRequest();
+$request = context()->getRequest();
 $method = $request->getMethod();
 ```
 
@@ -117,20 +117,13 @@ $data = $request->post();
 $some = $request->post('key', 'default value')
 ```
 
+> 提示： 无需关心请求的数据格式，`json` `xml` 请求都会自动解析为php的数组数据。都可以通过 `$request->post()` 获取。
+
 ### GET & POST 数据
 
 ```php
 $data = $request->input();
 $some = $request->input('key', 'default value')
-```
-
-### JSON 数据
-
-仅当 `Content-Type` 为 `application/json` 时有效
-
-```php
-$data = $request->json();
-$some = $request->json('key', 'default value')
 ```
 
 ### RAW 数据
@@ -145,6 +138,68 @@ $data = $request->raw();
 $data = $request->getServerParams();
 $some = $request->server('key', 'default value')
 ```
+
+### 获取上传文件
+
+```php
+$file = $request->getUploadedFiles();
+```
+获取的结果是一维数组或者二位数组，数据结构如下。
+若表单中上传的是单文件则返回的是一个一维数组，数组内容是 `Swoft\Http\Message\Upload\UploadedFile` 文件对象，例如文件字段名为 `file` 则数据结构为
+```text
+array(1) {
+  ["file"]=>
+  object(Swoft\Http\Message\Upload\UploadedFile)#6510 (7) {
+    ["size":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+    int(1319)
+    ["errorCode":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+    int(0)
+    ["file":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+    string(25) "/tmp/swoole.upfile.f7p2EL"
+    ["clientFilename":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+    string(6) "at.png"
+    ["clientMediaType":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+    string(9) "image/png"
+    ["moved":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+    NULL
+    ["path":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+    NULL
+  }
+}
+```
+若表单中是一个字段数组上传多个文件如 `file[]` 则返回的是一个二维数组，数组内容依然是 `Swoft\Http\Message\Upload\UploadedFile` 文件对象，数据结构如下
+```text
+array(1) {
+  ["file"]=>
+  array(2) {
+    [0]=>
+    object(Swoft\Http\Message\Upload\UploadedFile)#6516 (7) {
+      ["size":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+      int(1319)
+      ["errorCode":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+      int(0)
+      ["file":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+      string(25) "/tmp/swoole.upfile.TVKdOS"
+      ["clientFilename":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+      string(6) "at.png"
+      ["clientMediaType":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+      string(9) "image/png"
+      ["moved":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+      NULL
+      ["path":"Swoft\Http\Message\Upload\UploadedFile":private]=>
+      NULL
+    }
+    ...
+  }
+}
+```
+## 文件操作方法
+
+- `moveTo()` 将上传的文件移动到新位置。
+- `getSize()` 获取文件大小，单位 `byte`。
+- `getError()` 获取上传文件相关的错误信息，若无错将必须返回`UPLOAD_ERR_OK` 常量，若又错误将返回`UPLOAD_ERR_XXX` 相关常量。
+- `getClientFilename()` 获取文件上传时客户端本地的文件名，不要相信此方法返回的值。客户端可能会发送*恶意虚假文件名*，意图破坏或破解您的应用程序。
+- `getClientMediaType()` 获取客户端中文件的 `MediaType` 类型，不要相信此方法返回的值。客户端可能会发送*恶意虚假文件名*，意图破坏或破解您的应用程序。
 
 ## 一些辅助方法
 

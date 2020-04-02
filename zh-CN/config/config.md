@@ -22,7 +22,8 @@ return [
 
 ## 数据格式
 
-配置目录所有配置文件会解析成一个数组，但是不会递归合并数据，只会合并当前目录文件数据，以它的文件名称为数组 key 进行合并数组。比如 config 目录配置文件如下
+配置目录所有配置文件会解析成一个数组，但是不会递归合并数据，只会合并当前目录文件数据，以它的文件名称为数组 key 进行合并数组。
+比如 `config` 目录配置文件如下:
 
 ```
 |-- base.php
@@ -34,7 +35,7 @@ return [
 
 > 只会解析当前目录文件数据，不会递归解析数据。当前使用 env 配置时，环境目录里面的配置信息会覆盖最外层文件名称相同的数据。提醒：配置文件里面可以使用 `env()`函数读取环境配置。
 
-base.php
+- `config/base.php`
 
 ```php
 return [
@@ -42,7 +43,7 @@ return [
 ];
 ```
 
-data.php
+- `config/data.php`
 
 ```php
 return [
@@ -53,7 +54,7 @@ return [
 ];
 ```
 
-/pro/base.php
+- `config/pro/base.php`
 
 ```php
 return [
@@ -61,15 +62,18 @@ return [
 ];
 ```
 
-/pro/data.php
+- `config/pro/data.php`
 
 ```php
 return [
+    'dkey' => [
+        'dvalue'
+    ],
     'key' => 'valuePro'
 ];
 ```
 
-如上配置文件，当不配置 env 参数，合并的数据格式如下：
+如上配置文件，当不配置 config 的 `env` 参数，合并的数据格式如下：
 
 ```php
 return [
@@ -83,7 +87,7 @@ return [
 ];
 ```
 
-当配置 env=pro 参数，合并的数据格式如下：
+当配置 config 对象的  `'env' => 'pro'` 参数，合并的数据格式如下：
 
 ```php
 return [
@@ -143,9 +147,7 @@ class Demo
 如果上面两种方式还不能满足你的业务需求，你可以从容器里面获取配置对象，里面自带很多方式操作配置数据。
 
 ```php
-use Swoft\Bean\BeanFactory;
-
-$config = BeanFactory::getBean('config');
+$config = \Swoft::getBean('config');
 ```
 
 config 对象常用方法

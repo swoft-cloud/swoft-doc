@@ -6,6 +6,12 @@
 
 主要通过 `@Controller` 注解实现。代码可以放置任意位置，不过为了统一标准，建议放在 `app/Http/Controller` 下
 
+可以通过 `swoftcli` 快速创建新的控制器：
+
+```php
+php swoftcli.phar gen:http-ctrl user --prefix /users
+```
+
 ## 注解
 
 ### Controller

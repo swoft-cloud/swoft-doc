@@ -5,7 +5,7 @@ swoft 提供了灵活的 websocket 使用，支持自定义和由框架托管处
 - 如果你在ws模块类没有添加 `@OnMessage` 处理方法，框架将会自动托管这个阶段，解析消息并根据路由分发到不同的方法执行
 - 如果你在ws模块类里面绑定了 `@OnMessage` 处理方法，swoft就认为你想自己处理这个阶段，框架就不会处理了
 
-> 本篇文档的使用是建立在由框架托管消息路由的基础上。
+> 注意：本篇文档的使用是建立在由框架托管消息路由的基础上。
 
 ## 注解
 
@@ -37,19 +37,80 @@ websocket 消息控制器注解tag `@WsController`
 
 - `Swoft\WebSocket\Server\MessageParser\RawTextParser` 简单的字符串
 - `Swoft\WebSocket\Server\MessageParser\TokenTextParser` 简单的token字符串协议(_方便测试使用的_)
-- `Swoft\WebSocket\Server\MessageParser\JsonParser` 简单的 json 数据协议
+- `Swoft\WebSocket\Server\MessageParser\JsonParser` 简单的 JSON 数据协议
 
-JOSN 协议通信数据结构：
+JSON 协议通信数据结构：
 
 ```json
 {
     "cmd": "message route path. eg: home.index", // type: string
-    "data": "message data", // type: mixed
-    "ext": "message extea data", // optional, type: mixed
+    "data": "message data", // type: mixed(array|string|int)
+    "ext": {"ip": "xx", "os": "mac"}, // optional, type: array
 }
 ```
 
-## 示例
+## 获取数据
+
+有多种方式可以获取消息请求的数据信息。
+
+Message 对象是一个通用的websocket数据对象，里面保存了解析后的数据，包含 `cmd` `data` `ext` 三个字段。
+
+### 通过参数注入
+
+```php
+use Swoft\WebSocket\Server\Message\Message;
+use Swoft\WebSocket\Server\Message\Request;
+
+...
+// inject raw frame data string
+public function autoReply(string $data): string
+{
+    return $data;
+}
+
+// inject Message object
+public function autoReply(Message $msg): string
+{
+    return $msg->toString();
+}
+
+// inject Request object
+public function autoReply(Request $req): string
+{
+    return $req->getMessage()->toString();
+}
+```
+
+### 通过上下文获取
+
+```php
+use Swoft\WebSocket\Server\Message\Message;
+
+...
+
+public function autoReply(): string
+{
+    $msg = context()->getMessage();
+}
+```
+
+更多获取方式：
+
+```php
+use Swoft\WebSocket\Server\Message\Request;
+
+$req = context()->getRequest();
+
+/** @var \Swoft\WebSocket\Server\Message\Message $msg */
+$msg = $req->getMessage();
+
+/** @var \Swoole\WebSocket\Frame $frame */
+$frame = $req->getFrame();
+```
+
+> 注意这里的 `Request` 是指消息阶段的请求对象，与打开连接时的请求对象是不同的。
+
+## 使用示例
 
 ### 定义ws模块
 
@@ -91,7 +152,7 @@ class ChatModule
 ```
 
 - 定义的ws模块路径为 `/chat`
-- 绑定了的控制器有： `HomeController::class`
+- 绑定了的控制器有： `HomeController::class` **你可以绑定多个控制器**
 - 绑定了一个内置的消息解析器
 
 > **注意** 这里定义Ws模块时，绑定了一个框架自带的消息解析器，`TokenTextParser::class`  内置了一个decode 的方法用来解析数据
@@ -147,10 +208,10 @@ class HomeController
     /**
      * Message command is: 'home.echo'
      *
-     * @param $data
+     * @param string $data
      * @MessageMapping()
      */
-    public function echo($data): void
+    public function echo(string $data): void
     {
         Session::mustGet()->push('(home.echo)Recv: ' . $data);
     }
@@ -158,19 +219,21 @@ class HomeController
     /**
      * Message command is: 'home.ar'
      *
-     * @param $data
+     * @param string $data
      * @MessageMapping("ar")
      *
      * @return string
      */
-    public function autoReply($data): string
+    public function autoReply(string $data): string
     {
         return '(home.ar)Recv: ' . $data;
     }
 }
 ```
 
-### 访问
+> 注意，自 `v2.0.6` 版本起，通过参数注入接收websocket原始数据时，需要加上类型 `string`。例如： `public function echo(string $data)`
+
+### 访问服务
 
 根据以上定义好的 `Ws模块`、`消息解析器`、`消息控制器` 等内容后启动我们的服务。然后打开webscoket 调试工具，链接Ws的地址： `ws://localhost:port/chat ` 然后测试发送一个内容
 

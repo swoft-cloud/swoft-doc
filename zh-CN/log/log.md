@@ -12,23 +12,15 @@ return [
     ],
     'noticeHandler'      => [
         'class'     => FileHandler::class,
-        'logFile'   => '@runtime/logs/notice.log',
+        'logFile'   => '@runtime/logs/notice-%d{Y-m-d}.log',  // 2.0.6 支持日志按时间切割
         'formatter' => \bean('lineFormatter'),
-        'levels'    => [
-            Logger::NOTICE,
-            Logger::INFO,
-            Logger::DEBUG,
-            Logger::TRACE,
-        ],
+        'levels'    => 'notice,info,debug,trace',
     ],
     'applicationHandler' => [
         'class'     => FileHandler::class,
         'logFile'   => '@runtime/logs/error.log',
         'formatter' => \bean('lineFormatter'),
-        'levels'    => [
-            Logger::ERROR,
-            Logger::WARNING,
-        ],
+        'levels'    => 'error,warning',
     ],
     'logger'             => [
         'flushRequest' => false,
@@ -43,6 +35,7 @@ return [
 
 此配置也是框架默认的配置文件，把应用日志按日志级别分别写到两个不同的文件里面。
 
+> swoft 2.0.3 `levels` 修改成字符串，方便开发者覆盖框架默认配置
 
 ### 日志格式
 
@@ -59,6 +52,7 @@ return [
 
 - class 配置采用哪种类型的，框架默认提供文件，用户可以自己扩展其它类型
 - logFile 输出日志文件路径，支持别名
+    - `2.0.6` 支持日志按时间切割，格式： `%d{Y-m-d}` ， `{ }` 中的格式适用 PHP date format
 - formatter 日志输出使用日志格式，就是之前配置的日志格式
 - levels 支持日志输出的日志级别
 

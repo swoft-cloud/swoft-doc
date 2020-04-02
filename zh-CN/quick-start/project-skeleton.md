@@ -6,6 +6,7 @@
 - http 服务(跟传统的框架差不多)
 - websocket 服务
 - rpc 服务
+- tcp 服务
 
 > `swoft-cloud/swoft` 即是一个完整应用的demo。当然，如果你只想使用一部分功能也是可以的
 
@@ -17,12 +18,12 @@
 ├── app/   ------ 应用代码目录
 │   ├── Annotation/   ------- 定义注解相关
 │   ├── Aspect/       ------- AOP 切面
-│   ├── Bean/         ------- 一些具有独立功能的class bean
-│   ├── Console/      ------ 命令行代码目录
+│   ├── Common/       ------- 一些具有独立功能的 class bean
+│   ├── Console/      ------- 命令行代码目录
 │   │   ├── Command/
 │   ├── Exception/      ------ 定义异常类目录
-│   │   └── Handler/     ------ 定义异常处理类目录
-│   ├── Http/         ------ HTTP 代码目录
+│   │   └── Handler/       ------ 定义异常处理类目录
+│   ├── Http/         ------ HTTP 服务代码目录
 │   │   ├── Controller/
 │   │   └── Middleware/
 │   ├── Helper/
@@ -33,13 +34,15 @@
 │   │   ├── Data/
 │   │   ├── Logic/
 │   │   └── Entity/
-│   ├── Rpc/          ------ RPC 代码目录
+│   ├── Rpc/          ------ RPC 服务代码目录
 │   │   └── Service/
 │   │   └── Middleware/
-│   ├── WebSocket/     ------ WebSocket 代码目录
+│   ├── WebSocket/     ------ WebSocket 服务代码目录
 │   │   ├── Chat/
 │   │   ├── Middleware/
 │   │   └── ChatModule.php
+│   ├── Tcp/          ------ Tcp 服务代码目录
+│   │   └── Controller/  ------ Tcp 服务处理控制器目录
 │   ├── Application.php -------- 应用类文件继承自swoft核心
 │   ├── AutoLoader.php  -------- 项目扫描等信息(应用本身也算是一个组件)
 │   └── bean.php
@@ -70,8 +73,8 @@
 ```
 ├── src/
 │   ├── Annotation/  -------- 组件注解类定义
-│   ├── Bean/         ------- 一些具有独立功能的 class bean
-│   ├── Concern/      ------- traits classes
+│   ├── Common/         ------- 一些具有独立功能的 class bean
+│   ├── Concern/      ------- abstract, traits classes
 │   ├── Contract/     ------- interface classes
 │   ├── Exception/
 │   ├── Helper/
@@ -91,4 +94,4 @@
 
 ### 开发自定义组件
 
-在2.0版本你可以非常容易的开发一个swoft组件。延伸阅读 [开发自定义组件](../extra/write-component.md)
+在2.0版本你可以非常容易的开发一个swoft组件。延伸阅读 [开发自定义组件](../component/index.md)

@@ -57,6 +57,24 @@ websocket 的 host, port 等配置是都是完全可以自定义的。
 
 ok, 现在 `IP:PORT` 上可以同时处理 http 和 ws 请求了。
 
+## 启用wss支持
+
+跟在http server启用https类似，在swoft里启用 wss 也非常简单，添加如下的配置即可：
+
+```php
+'httpServer' => [
+    'type' => SWOOLE_SOCK_TCP | SWOOLE_SSL,
+    
+    /* @see WebSocketServer::$setting */
+    'setting'  => [
+        'ssl_cert_file' => '/my/certs/2288803_www.domain.com.pem',
+        'ssl_key_file'  => '/my/certs/2288803_www.domain.com.key',
+    ]
+]
+```
+
+> 注意： 你必须安装 OpenSSL 库，并且确保安装swoole时是启用了 ssl 选项的。同时，需要设置 `'type' => SWOOLE_SOCK_TCP | SWOOLE_SSL`
+
 ## 添加RPC服务
  
 如果你想开启ws时，同时启动RPC Server服务。
