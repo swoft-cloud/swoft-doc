@@ -122,8 +122,9 @@ function request($host, $class, $method, $param, $version = '1.0', $ext = []) {
     $result = '';
     while (!feof($fp)) {
         $tmp = stream_socket_recvfrom($fp, 1024);
-        
-        if ($pos = strpos($tmp, RPC_EOL)) {
+        $pos = strpos($tmp, RPC_EOL);
+
+        if ($pos !== false) {
             $result .= substr($tmp, 0, $pos);
             break;
         } else {
