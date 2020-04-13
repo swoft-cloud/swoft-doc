@@ -1,9 +1,19 @@
 # 版本更新
 
-
-## v2.0.9[WIP]
+## v2.0.10[WIP]
 
 **修复(Fixed)**：
+
+**更新(Update)**:
+
+**增强(Enhancement)**：
+
+
+## v2.0.9(2020-04-12)
+
+**修复(Fixed)**：
+
+- pidfile 文件内容可能为空检查 [20dadbf](https://github.com/swoft-cloud/swoft-component/commit/20dadbf198f069828a301e4f36a4c0df694976c1)
 
 
 ## v2.0.8(2020-01-18)
