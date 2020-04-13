@@ -28,7 +28,7 @@
 **增强(Enhancement)**：
 
 - 优化代理类生成逻辑，相同的类代码只需生成一次 [e1f68c0](https://github.com/swoft-cloud/swoft-component/commit/e1f68c04342b2576f8e7aba73086b915eb3219ed)
-- 忽略db可能的出现连接关闭错误 [0b3b7bd](https://github.com/swoft-cloud/swoft-component/commit/0b3b7bdbda290a91bba7d86cf4e0da551733f037)
+- 忽略db连接关闭时可能出现的错误 [0b3b7bd](https://github.com/swoft-cloud/swoft-component/commit/0b3b7bdbda290a91bba7d86cf4e0da551733f037)
 - 销毁协程处理添加try-catch防止错误导致worker退出 [da237cb](https://github.com/swoft-cloud/swoft-component/commit/da237cb75e5d213d7c4562fc5923667d56a69a06)
 
 ## v2.0.8(2020-01-18)
