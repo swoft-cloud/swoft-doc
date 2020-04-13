@@ -14,7 +14,22 @@
 **修复(Fixed)**：
 
 - pidfile 文件内容可能为空检查 [20dadbf](https://github.com/swoft-cloud/swoft-component/commit/20dadbf198f069828a301e4f36a4c0df694976c1)
+- 兼容websocket 服务器的 open_websocket_close_frame 设置 [e6428a5](https://github.com/swoft-cloud/swoft-component/commit/e6428a5603e5670619f4c42cbe28b7a638aea3d1)
+- 修复无法设置rpc client读取数据超时问题 [53e771b](https://github.com/swoft-cloud/swoft-component/commit/53e771bd3d360b886c6a4369256017e7dbe08caf)
+- 修复Required验证注解可能无效问题 [d3f5dd2](https://github.com/swoft-cloud/swoft-component/commit/d3f5dd2d9e77ace8885e3e2b7b7b961768a3f1b4)
+- 修复文件验证不通过问题 [15d3f4b](https://github.com/swoft-cloud/swoft-component/commit/15d3f4bfd2a739c9c93cf59474af1b5cfd469af1)
+- 修复配置的websocket中间件可能失效问题 [f4902ff](https://github.com/swoft-cloud/swoft-component/commit/f4902fff6c1fdecde4a0225797e0b53aae7eaec5)
+- 修复命令行 MultiList::show 中调用方法参数类型问题 [58c4e358](https://github.com/swoft-cloud/swoft-component/commit/58c4e3583072a468a2bf8a4e26ee26b41195304a)
 
+**更新(Update)**:
+
+- 用户进程类上保存了swoole原始进程对象，方便后续使用 [eccc718](https://github.com/swoft-cloud/swoft-component/commit/eccc718be9eb7fcd7f83d0a4c5a55eac3ec85edf)
+
+**增强(Enhancement)**：
+
+- 优化代理类生成逻辑，相同的类代码只需生成一次 [e1f68c0](https://github.com/swoft-cloud/swoft-component/commit/e1f68c04342b2576f8e7aba73086b915eb3219ed)
+- 忽略db可能的出现连接关闭错误 [0b3b7bd](https://github.com/swoft-cloud/swoft-component/commit/0b3b7bdbda290a91bba7d86cf4e0da551733f037)
+- 销毁协程处理添加try-catch防止错误导致worker退出 [da237cb](https://github.com/swoft-cloud/swoft-component/commit/da237cb75e5d213d7c4562fc5923667d56a69a06)
 
 ## v2.0.8(2020-01-18)
 
