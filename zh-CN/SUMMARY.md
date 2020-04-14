@@ -207,6 +207,7 @@
 
   * [视图渲染](extra/view.md)
   * [Apollo](extra/apollo.md)
+  * [缓存组件](extra/cache.md)
   * [Consul](extra/consul.md)
   * [Whoops](extra/whoops.md)
   * [PostgreSql](extra/postgresql.md)
