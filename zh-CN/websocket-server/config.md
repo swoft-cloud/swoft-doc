@@ -159,7 +159,7 @@ websocket server 是通过 `wsConnectionManager` bean 管理所有的websocket�
 
 这里使用了swoft内部提供的基于swoole table 封装的存储驱动 `\Swoft\Session\SwooleStorage`，它是跨进程的并且生命周期跟随server，不会受到worker重启的影响。
 
-当worker重启后，再收到客户端的消息请求时，如果没有从内存中拿到连接信息，会自动从存储的连接信息中恢复连接对象。
+当worker重启后，再收到客户端的消息请求时，如果没有从内存中拿到连接对象，会自动从存储的连接信息中恢复连接对象。
 
 > 当然，你也可以自定义自己的存储驱动，可以使用redis等。只需要实现 `Swoft\Contract\SessionStorageInterface` 接口，然后参照上面的配置覆盖默认设置即可。
 
