@@ -39,3 +39,9 @@
 <p class="tip">
    <strong>项目地址</strong> <a href="https://github.com/swoft-cloud/swoft">https://github.com/swoft-cloud/swoft</a>
 </p>
+
+## 学习交流
+
+- QQ Group3: 541038173
+- QQ Group2: 778656850(已满)
+- QQ Group1: 548173319(已满)
