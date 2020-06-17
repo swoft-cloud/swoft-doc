@@ -4,9 +4,14 @@
 
 **修复(Fixed)**：
 
+- rpc 发出的ext数据格式问题修复 [15bad437](https://github.com/swoft-cloud/swoft-component/pull/582/commits/15bad4375c3a255d3e12f5540a657ad3e8ca19cf)
+- rpc client 收发数据异常时可能导致没有释放连接 [4a7d7cb](https://github.com/swoft-cloud/swoft-component/pull/582/commits/4a7d7cbc9d3de71c6c98e4f8d9f84a2a8ec51e69)
+
 **更新(Update)**:
 
 **增强(Enhancement)**：
+
+- rpc 接收到错误异常时携带完整的响应对象 [c9454e1](https://github.com/swoft-cloud/swoft-component/pull/580/commits/c9454e1a8b4eed2eb2ce4115d4c199cfde1fd3d9)
 
 
 ## v2.0.9(2020-04-12)
