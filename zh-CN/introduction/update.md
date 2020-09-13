@@ -6,12 +6,19 @@
 
 - rpc 发出的ext数据格式问题修复 [15bad437](https://github.com/swoft-cloud/swoft-component/pull/582/commits/15bad4375c3a255d3e12f5540a657ad3e8ca19cf)
 - rpc client 收发数据异常时可能导致没有释放连接 [4a7d7cb](https://github.com/swoft-cloud/swoft-component/pull/582/commits/4a7d7cbc9d3de71c6c98e4f8d9f84a2a8ec51e69)
+- 修复 redis 不支持`select` [702ab45](https://github.com/swoft-cloud/swoft-component/commit/702ab451f495692fe27d2dad571af8db60579ba7)
+- 修复 通过 Id批量更新,可能会出现的语法问题 [issues1340](https://github.com/swoft-cloud/swoft-component/commit/5e314e575d4cf673c8fda47422dc5c415b989c1d)
+- 修复 使用数据库模型查询数据时，设置隐藏字段不生效 [5559a7c](https://github.com/swoft-cloud/swoft-component/pull/595/commits/5559a7c53f74f54c02f063d08899d0d7b81427f2)
 
 **更新(Update)**:
+
+- Redis 组件不在限制方法使用支持扩展所有方法 [702ab45](https://github.com/swoft-cloud/swoft-component/commit/702ab451f495692fe27d2dad571af8db60579ba7)
+
 
 **增强(Enhancement)**：
 
 - rpc 接收到错误异常时携带完整的响应对象 [c9454e1](https://github.com/swoft-cloud/swoft-component/pull/580/commits/c9454e1a8b4eed2eb2ce4115d4c199cfde1fd3d9)
+- 迁移文件支持同时在多个连接池 [0a8c5bf](https://github.com/swoft-cloud/swoft-ext/pull/68/commits/0a8c5bf768b624782d5ed2e2605ce0b1e0e80b79)
 
 
 ## v2.0.9(2020-04-12)
