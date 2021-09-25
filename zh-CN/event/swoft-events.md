@@ -70,7 +70,7 @@ final class ServerEvent
 
 ### 使用示例
 
-我们可以在swoole server启动前注册一个自定义进程，这样可以让进程有server托管
+我们可以在swoole server启动前注册一个自定义进程，这样可以让进程由server托管
 
 - 不需要执行start。在Server启动时会自动创建进程，并执行指定的子进程函数
 - 在shutdown关闭服务器时，会向用户进程发送SIGTERM信号，关闭用户进程
