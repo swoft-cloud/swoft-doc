@@ -1,18 +1,12 @@
----
-layout: default
-title: Summary
-nav_exclude: true
----
-
-# Summary
+# Swoft
 
 ## 简介
 
   * [框架特性](README.md)
-  * [关于 Swoft](introduction/swoft.md)
+  * [关于Swoft](introduction/swoft.md)
   * [版本更新](introduction/update.md)
   * [常见问题](introduction/question.md)
-  * [参与 Swoft](introduction/join.md)
+  * [参与Swoft](introduction/join.md)
 
 ## 开始
 

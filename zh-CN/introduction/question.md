@@ -1,8 +1,3 @@
----
-parent: Swoft
-nav_order: 3
----
-
 # 常见问题
 
 ## The HTTP server have been running!(PID: xx)

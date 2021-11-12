@@ -1,8 +1,3 @@
----
-parent: Swoft
-nav_order: 1
----
-
 # 关于 Swoft
 
 Swoft是基于 Swoole 的最流行的企业级PHP应用程序开发框架。有大量开发人员使用Swoft Framework来创建高性能，易于测试和可重用的代码。

@@ -1,8 +1,3 @@
----
-nav_order: 1
-has_children: true
----
-
 # Swoft
 
 [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/swoft.svg)](https://packagist.org/packages/swoft/swoft)
