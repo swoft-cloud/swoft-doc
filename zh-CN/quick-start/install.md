@@ -1,9 +1,14 @@
+---
+parent: 环境搭建
+nav_order: 2
+---
+
 # 安装Swoft
 
 ## Docker方式安装（推荐）
 
 ```bash
-docker run -p 18306:18306 --name swoft swoft/swoft 
+docker run -p 18306:18306 --name swoft swoft/swoft
 ```
 
 ## Docker-Compose安装（推荐）

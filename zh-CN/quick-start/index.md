@@ -1,3 +1,8 @@
+---
+has_children: true
+nav_order: 2
+---
+
 # 环境搭建
 
 接下来的几篇文章主要介绍swoft需要的运行环境搭建，以及一些使用注意

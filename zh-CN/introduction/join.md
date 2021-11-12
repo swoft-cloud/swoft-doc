@@ -1,10 +1,15 @@
+---
+parent: Swoft
+nav_order: 4
+---
+
 # 参与 Swoft
 
 Swoft 开源框架，非商业项目，由开源组织开发与维护，这意味着任何人都可以为其开发和进步贡献力量。参与 Swoft 有多种方式：
 
-- 代码贡献 
-- 文档贡献 
-- 官网维护 
+- 代码贡献
+- 文档贡献
+- 官网维护
 - 社区维护
 
 ## 代码贡献
@@ -52,7 +57,7 @@ services: # 定义服务
         links: # 其他基础服务也可以用 docker 解决, 用不到可以先去掉
             - redis
             - mysql
-            - rabbitmq       
+            - rabbitmq
         tty: true # 开启后, 可以使用 exec 进入到容器中
 ```
 
@@ -67,7 +72,7 @@ docker-compose exec swoft # 进入容器中
 
 swoft 包含2个重要项目:
 
-- [swoft-cloud/swoft-component](https://github.com/swoft-cloud/swoft-component): swoft 源码, 组件都在此项目的 `src/` 目录下 
+- [swoft-cloud/swoft-component](https://github.com/swoft-cloud/swoft-component): swoft 源码, 组件都在此项目的 `src/` 目录下
 - [swoft-cloud/swoft](https://github.com/swoft-cloud/swoft): swoft 脚手架, 加载了全部组件并提供了所有组件的使用 demo
 
 换一个说法:

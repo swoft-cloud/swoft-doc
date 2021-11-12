@@ -1,3 +1,8 @@
+---
+parent: Swoft
+nav_order: 2
+---
+
 # 版本更新
 
 ## v2.0.10[WIP]
@@ -223,7 +228,7 @@
 
 > 升级注意：
 1. 请去掉 `bin/swoft` 里的 `Runtime::enableCoroutine()` 设置
-2. 请确保 swoole 的 `swoole.use_shortname` 的值为 `On` 
+2. 请确保 swoole 的 `swoole.use_shortname` 的值为 `On`
 3. 从这个版本开始要求 swoole `4.4.1+`
 
 增强(Enhancement)：
@@ -291,7 +296,7 @@
 - 修复 cookies 设置时的一些问题，增加一些 withCookie 相关方法([b05afbb01](https://github.com/swoft-cloud/swoft-component/pull/443/commits/b05afbb011457d217bb3a40c6a3639c28b0eef18))
 - 修复 在console使用协程方式运行命令时，没有捕获处理错误([8a5418bf](https://github.com/swoft-cloud/swoft-component/pull/443/commits/8a5418bf25a4d4797d99281bf7db8881b7ca43ed))
 - 修复 websocket server 重启命令没有先停止旧server问题([db2d935](https://github.com/swoft-cloud/swoft-component/pull/443/commits/db2d935542c715bbe1ed4b3ed822b2d946317b6f))
-- 修复任务返回值为 `null` 问题([a69347c](https://github.com/swoft-cloud/swoft-component/pull/455/commits/a69347c8ce486102e23bb82d70cfef63573a94eb)) 
+- 修复任务返回值为 `null` 问题([a69347c](https://github.com/swoft-cloud/swoft-component/pull/455/commits/a69347c8ce486102e23bb82d70cfef63573a94eb))
 - 修复 RPC Server 只有类中间件无法使用问题()[204bc7f](https://github.com/swoft-cloud/swoft-component/pull/455/commits/204bc7f4f23a26f75534ac808e2f9eb05a0118a2)
 - 修复 RPC Server 返回值为 `null` 问题([4d091be](https://github.com/swoft-cloud/swoft-component/pull/455/commits/4d091bef0ece773bcd382a750de01eef830f2949))
 - 修复 Logger 和 CLog 日志等级无法覆盖和无效问题([8eb8aba](https://github.com/swoft-cloud/swoft-component/pull/459/commits/8eb8aba2313a45191318b52a3698135d92cb3e71))
@@ -430,7 +435,7 @@ Swoft 2 重构归来，基于 Swoole hook 方式，底层完全重构，相比�
 - 可扩展的高性能 RPC
 - 国际化(i18n)支持
 - 简单高效的参数验证器
-- 高性能连接池(Mysql/Redis/RPC)，自带断线重连 
+- 高性能连接池(Mysql/Redis/RPC)，自带断线重连
 - 数据库高度兼容 laravel
 - 缓存 Redis 高度兼容 Laravel
 - 高效任务处理

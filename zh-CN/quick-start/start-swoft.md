@@ -1,3 +1,8 @@
+---
+parent: 环境搭建
+nav_order: 3
+---
+
 # 服务启动与管理
 
 Swoft 拥有完善的命令行工具，和相应的服务器管理命令
@@ -107,7 +112,7 @@ php bin/swoft rpc:stop
         $config = parent::getCLoggerConfig();
         // disable print console start log
         $config['enable'] = false;
-        
+
         return $config;
     }
 ```
