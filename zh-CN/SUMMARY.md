@@ -1,3 +1,9 @@
+---
+layout: default
+title: Summary
+nav_exclude: true
+---
+
 # Summary
 
 ## 简介
@@ -9,28 +15,28 @@
   * [参与 Swoft](introduction/join.md)
 
 ## 开始
-  
+
 ### [快速起步](quick-start/index.md)
 
   * [Annotations插件](quick-start/development.md)
   * [swoft安装](quick-start/install.md)
   * [运行服务](quick-start/start-swoft.md)
   * [应用结构](quick-start/project-skeleton.md)
-  
-### [技术说明](ready/index.md)
 
-  * [传统架构](ready/tradition.md)
-  * [IO复用](ready/io.md)
-  * [Swoole 扩展](ready/swoole.md)
-  * [Composer](ready/composer.md)
-  * [上下文](ready/context.md)
+### [技术说明](ready/1.index.md)
+
+  * [传统架构](ready/2.tradition.md)
+  * [IO复用](ready/3.io.md)
+  * [Swoole 扩展](ready/4.swoole.md)
+  * [Composer](ready/5.composer.md)
+  * [上下文](ready/6.context.md)
 
 ### [特别注意](notice/index.md)
 
   * [严禁使用](notice/prohibited.md)
   * [内存泄漏排查](notice/memory-leak.md)
   * [性能优化](notice/performance-optimization.md)
-  
+
 ## 基础
 
 ### [注解](annotation/index.md)
@@ -38,12 +44,12 @@
   * [为什么使用注解](annotation/why.md)
   * [开发工具](annotation/tool.md)
   * [如何使用](annotation/usage.md)
-  
+
 ### [配置](config/index.md)
 
   * [环境配置](config/env.md)
   * [应用配置](config/config.md)
-  
+
 ### [容器](bean/index.md)
 
   * [Bean](bean/bean.md)
@@ -76,7 +82,7 @@
   * [通用函数](common/generic.md)
   * [基础帮助库](common/stdlib.md)
     * [数组](common/stdlib-array.md)
-    
+
 ## 核心
 
 ### [命令行](console/index.md)
@@ -114,7 +120,7 @@
   * [常用命令](rpc-server/command.md)
   * [配置参数](rpc-server/setting.md)
   * [声明服务](rpc-server/statement.md)
-  
+
 ### [RPC Client](rpc-client/index.md)
 
   * [配置服务](rpc-client/setting.md)
@@ -131,10 +137,10 @@
 
 ### [进程](process/index.md)
 
-  * [进程](process/process.md)  
-  * [用户进程](process/user-process.md)  
-  * [进程池](process/process-pool.md)  
-  
+  * [进程](process/process.md)
+  * [用户进程](process/user-process.md)
+  * [进程池](process/process-pool.md)
+
 ### [任务](task/index.md)
 
   * [配置与启用](task/setting.md)
@@ -159,12 +165,12 @@
   * [事务](redis/transaction.md)
   * [通道](redis/pipeline.md)
   * [发布订阅](redis/pub-sub.md)
-  
+
 ### [国际化](i18n/index.md)
 
   * [配置参数](i18n/setting.md)
   * [如何使用](i18n/usage.md)
-  
+
 ### [验证器](validator/index.md)
 
   * [配置](validator/setting.md)
@@ -173,12 +179,12 @@
   * [自定义验证器规则](validator/customer-rule.md)
   * [控制器中使用](validator/controller-validator.md)
   * [非注解使用](validator/anywhere-validator.md)
-    
+
 ### [日志](log/index.md)
 
   * [控制台日志](log/clog.md)
   * [应用日志](log/log.md)
-  
+
 ## 微服务
 
 ### [服务治理](ms/govern/index.md)
