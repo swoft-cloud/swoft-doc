@@ -13,7 +13,7 @@ app/bean.php
 ```php
 return [
     'processPool' => [
-        'class' => ProcessPool::class,
+        'class' => \Swoft\Process\ProcessPool::class,
         'workerNum' => 3
     ]
 ];
@@ -26,6 +26,9 @@ return [
 - `coroutine` 是否开启协程，默认是开启
 
 <p class="tip"> Swoft 框架中必须是协程模式运行，协程模式运行下，可以使用 Swoft 封装的所有 IO 操作，以及其它非 Swoft 协程操作。</p>
+
+
+
 
 
 ## 注解

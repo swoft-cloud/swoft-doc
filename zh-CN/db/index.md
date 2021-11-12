@@ -1,8 +1,16 @@
 # 数据库
 
-Swoft 2.x DB操作的方法 高度兼容 `Laravel`，让上手更变得简单，
+Swoft 2.x DB操作的方法 高度兼容 `Laravel` ，让上手更变得简单，
+
+## 安装
+
+- 通过 composer.json 配置:
+```json
+     "swoft/db": "~2.0.0"
+```
 
 ## 事务
+
 开始事务后，之间的所有操作都在同一个事务里面，但是不支持并发操作，因为是同一个连接。
 
 ## 查询构造器
@@ -11,9 +19,11 @@ Swoft 2.x DB操作的方法 高度兼容 `Laravel`，让上手更变得简单，
 其他类型的数据库客户端可以自己实现，参考配置章节。
 
 ## 实体
+
 实体只有一点小的改动，参考**模型**章节。
 
 ## SQL语句
+
 2.x 没有直接可以获取 之前之后的 `SQL` 可以 调用 `toSql()` 方法查看。
 
-或者在 `Swoft\Db\Query\Processor\Processor`查看正在运行的 sql
+或者在 `Swoft\Db\Query\Processor\Processor` 查看正在运行的 sql

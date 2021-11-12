@@ -12,7 +12,7 @@ return [
     ],
     'noticeHandler'      => [
         'class'     => FileHandler::class,
-        'logFile'   => '@runtime/logs/notice.log',
+        'logFile'   => '@runtime/logs/notice-%d{Y-m-d}.log',  // 2.0.6 支持日志按时间切割
         'formatter' => \bean('lineFormatter'),
         'levels'    => 'notice,info,debug,trace',
     ],
@@ -52,6 +52,7 @@ return [
 
 - class 配置采用哪种类型的，框架默认提供文件，用户可以自己扩展其它类型
 - logFile 输出日志文件路径，支持别名
+    - `2.0.6` 支持日志按时间切割，格式： `%d{Y-m-d}` ， `{ }` 中的格式适用 PHP date format
 - formatter 日志输出使用日志格式，就是之前配置的日志格式
 - levels 支持日志输出的日志级别
 

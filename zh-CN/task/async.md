@@ -62,7 +62,7 @@ class FinishListener implements EventHandlerInterface
 
 ## 异步任务完成上下文
 
-在异步任务完成监听器里面可以通过 `content()` 全局函数获取上下文 `Swoft\Task\FinishContext` 对象。
+在异步任务完成监听器里面可以通过 `context()` 全局函数获取上下文 `Swoft\Task\FinishContext` 对象。
 
 ```php
 $taskData = context()->getTaskData();

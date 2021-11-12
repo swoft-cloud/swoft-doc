@@ -6,16 +6,19 @@ Modern High performance AOP and Coroutine PHP Framework, based on Swoole
 - [Gitee repository](https://gitee.com/swoft/swoft)
 - [Official website](https://swoft.org/)
 - [Documentation website](https://swoft.org/docs)
+- [Github pages](https://swoft-cloud.github.io/swoft-doc/zh-CN/)
 
 ## Chats & Discussion
 
-- QQ Group (1): **548173319**
+- QQ Group (3): **541038173**
 - QQ Group (2): **778656850**
+- QQ Group (1): **548173319**
+- Gitter.im https://gitter.im/swoft-cloud/community
 
 ## Languages
 
 - [简体中文](./zh-CN)
-- [English](./en)
+- [English](https://en.swoft.org/docs)
 - More ...
 
 ## LICENSE

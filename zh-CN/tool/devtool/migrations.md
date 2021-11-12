@@ -14,7 +14,6 @@ Swoft 的 `Schema` 对所有 Swoft 支持的数据库系统提供了创建和操
         
 ![migrate](../../image/tool/migrate.png)
 
-
 ### create 迁移生成
 
 使用 `migrate:create` 来创建迁移：
@@ -109,7 +108,7 @@ class Message extends BaseMigration
 
 在 `BaseMigration` 中提供了 
 
-- `schema` 属性该属性是一个 `Schema Builder` 提供了 和 `Schema::xxx` 一样的方法 底层会根据 `@Migration`  注解里面的 `pool` 参数选择好连接池 注入到 `schema` 属性中
+- `schema` 属性该属性是一个 `Schema Builder` 提供了 和 `$this->schema->xxx` 一样的方法 底层会根据 `@Migration`  注解里面的 `pool` 参数选择好连接池 注入到 `schema` 属性中
 
 - 如果需要执行原生 SQL 可以使用 `execute` 方法, 在底层执行迁移的时候 这些 SQL 会被自动执行
 ```php
@@ -186,9 +185,9 @@ sql;
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        $this->schema->dropIfExists('users');
 
-        Schema::getSchemaBuilder('db2.pool')->dropIfExists('users');
+        $this->schema->getSchemaBuilder('db2.pool')->dropIfExists('users');
     }
 ```
 
@@ -248,7 +247,7 @@ sql;
 要创建一张新的数据表，可以使用 `Schema` facade 的 `create` 方法。`create` 方法接收两个参数：第一个参数为数据表的名称，第二个参数为一个 `闭包` ，此闭包会接收一个用于定义新数据表的 `Blueprint` 对象：
 
 ```php
-Schema::create('users', function (Blueprint $table) {
+$this->schema->create('users', function (Blueprint $table) {
         $table->increments('id');
 });
 ```     
@@ -260,11 +259,11 @@ Schema::create('users', function (Blueprint $table) {
 你可以方便地使用 `hasTable` 和 `hasColumn` 方法来检查数据表或字段是否存在：
 
 ```php
-    if (Schema::hasTable('users')) {
+    if ($this->schema->hasTable('users')) {
         //
     }
 
-    if (Schema::hasColumn('users', 'email')) {
+    if ($this->schema->hasColumn('users', 'email')) {
         //
     }
 
@@ -274,7 +273,7 @@ Schema::create('users', function (Blueprint $table) {
 如果你想要在一个非默认的数据库连接中进行数据库结构操作，可以使用 `getSchemaBuilder` 方法：
 ```php
 
-    Schema::getSchemaBuilder('db.pool2')->create('users', function (Blueprint $table) {
+    $this->schema->getSchemaBuilder('db.pool2')->create('users', function (Blueprint $table) {
         $table->increments('id');
     });
     
@@ -283,7 +282,7 @@ Schema::create('users', function (Blueprint $table) {
 你可以在数据库结构构造器上设置 `engine` 属性来设置数据表的存储引擎, Mysql 默认为 `InnoDB` ：
 
 ```php
-Schema::create('users', function (Blueprint $table) {
+$this->schema->create('users', function (Blueprint $table) {
         $table->engine = 'InnoDB';
 
         $table->increments('id');
@@ -293,7 +292,7 @@ Schema::create('users', function (Blueprint $table) {
 如果要判断数据表已存在就不创建可以使用 `createIfNotExists` 方法只针对[可用的字段类型](#可用的字段类型)有效其他方法无法判断是否已经被创建过了
     
 ```php
-Schema::createIfNotExists('users', function (Blueprint $blueprint) {
+$this->schema->createIfNotExists('users', function (Blueprint $blueprint) {
         $blueprint->increments('id');
 });
 ```     
@@ -303,15 +302,15 @@ Schema::createIfNotExists('users', function (Blueprint $blueprint) {
 若要重命名一张已存在的数据表，可以使用 `rename` 方法：
 
 ```php
- Schema::rename($from, $to);
+ $this->schema->rename($from, $to);
 ```
 
 要删除已存在的数据表，可使用 `drop` 或 `dropIfExists` 方法：
 
 ```php
-Schema::drop('users');
+$this->schema->drop('users');
 
-Schema::dropIfExists('users');
+$this->schema->dropIfExists('users');
 ```    
 
 #### 重命名带外键的数据表
@@ -325,7 +324,7 @@ Schema::dropIfExists('users');
 使用 `Schema` facade 的 `table` 方法可以更新已有的数据表。如同 `create` 方法，`table` 方法会接收两个参数：一个是数据表的名称，另一个则是接收 `Blueprint` 实例的`闭包`。我们可以使用它来为数据表新增字段：
 
 ```php
-Schema::table('users', function (Blueprint $table) {
+$this->schema->table('users', function (Blueprint $table) {
         $table->string('email');
 });
 ```  
@@ -334,8 +333,10 @@ Schema::table('users', function (Blueprint $table) {
 
 使用 `comment` 方法 可以为数据表添加上注释
 
+>  添加评论之前, 请先检查是否设置了 charset 不然生成的数据表注释, 将会是乱码.
+
 ```php
-Schema::table('users', function (Blueprint $table) {
+$this->schema->table('users', function (Blueprint $table) {
         $table->comment('this users table comment wow !');
 });
 ```  
@@ -398,7 +399,7 @@ Schema::table('users', function (Blueprint $table) {
 除了上述的字段类型列表，还有一些其它的字段「修饰」，你可以将它增加到字段中。例如，若要让字段「nullable」，那么你可以使用 `nullable` 方法：
 
 ```php
-Schema::table('users', function (Blueprint $table) {
+$this->schema->table('users', function (Blueprint $table) {
         $table->string('email')->nullable();
 });
 ```
@@ -423,7 +424,7 @@ Modifier  | Description
 要重命名字段，可使用数据库结构构造器的 `renameColumn` 方法。
 
 ```php
-Schema::table($table, function (Blueprint $blueprint) {
+$this->schema->table($table, function (Blueprint $blueprint) {
    // Rename column
    $blueprint->renameColumn('id', 'user_id', 'bigint', 20);
 });
@@ -434,7 +435,7 @@ Schema::table($table, function (Blueprint $blueprint) {
 要移除字段，可使用数据库结构构造器的 `dropColumn` 方法。
 
 ```php
-Schema::table('users', function (Blueprint $table) {
+$this->schema->table('users', function (Blueprint $table) {
     $table->dropColumn('votes');
 });
 ```    
@@ -442,7 +443,7 @@ Schema::table('users', function (Blueprint $table) {
 你可以传递多个字段的数组至 `dropCloumn` 方法来移除多个字段：
 
 ```php
-Schema::table('users', function (Blueprint $table) {
+$this->schema->table('users', function (Blueprint $table) {
     $table->dropColumn(['votes', 'avatar', 'location']);
 });
 ```    
@@ -488,10 +489,10 @@ Command  | Description
 
 #### 索引长度 & MySQL / MariaDB
 
-Swoft 默认使用 `utf8mb4` 字符，包括支持在数据库存储「表情」。如果你正在运行的 MySQL release 版本低于5.7.7 或 MariaDB release 版本低于10.2.2 ，为了MySQL为它们创建索引，你可能需要手动配置迁移生成的默认字符串长度， `Schema::defaultStringLength` 方法来配置它：
+Swoft 默认使用 `utf8mb4` 字符，包括支持在数据库存储「表情」。如果你正在运行的 MySQL release 版本低于5.7.7 或 MariaDB release 版本低于10.2.2 ，为了MySQL为它们创建索引，你可能需要手动配置迁移生成的默认字符串长度， `$this->schema->defaultStringLength` 方法来配置它：
 
 ```php
-Schema::defaultStringLength(191);
+$this->schema->defaultStringLength(191);
 ```   
 
 或者你可以为数据库开启 `innodb_large_prefix` 选项，有关如何正确开启此选项的说明请查阅数据库文档。
@@ -509,7 +510,7 @@ Schema::defaultStringLength(191);
 如果你对 `dropIndex` 传参索引数组，默认的约定是索引名称由数据库表名字和键名拼接而成：
 
 ```php
-Schema::table('geo', function (Blueprint $table) {
+$this->schema->table('geo', function (Blueprint $table) {
     $table->dropIndex(['state']); // 移除索引 'geo_state_index'
 });
 ```
@@ -519,7 +520,7 @@ Schema::table('geo', function (Blueprint $table) {
 Swoft 也为创建外键约束提供了支持，用于在数据库层中的强制引用完整性。例如，让我们定义一个有 `user_id` 字段的 `posts` 数据表，`user_id` 引用了 `users` 数据表的 `id` 字段：
 
 ```php
-Schema::table('posts', function (Blueprint $table) {
+$this->schema->table('posts', function (Blueprint $table) {
         $table->integer('user_id')->unsigned();
 
         $table->foreign('user_id')->references('id')->on('users');
@@ -549,7 +550,7 @@ $table->dropForeign(['user_id']);
 你可以在迁移文件里使用以下方法来开启和关闭外键约束：
 
 ```php
-Schema::enableForeignKeyConstraints();
+$this->schema->enableForeignKeyConstraints();
 
-Schema::disableForeignKeyConstraints();
+$this->schema->disableForeignKeyConstraints();
 ```    

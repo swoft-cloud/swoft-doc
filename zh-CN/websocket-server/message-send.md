@@ -81,7 +81,7 @@ public function sendToSome(string $data, array $receivers = [], array $excluded 
 
 ### 广播消息
 
-发送消息给除了 sender 自己外的所有人。使用分页方式发送，每 50 个一页，直到全部发送完毕
+发送消息给除了 `sender` 外的所有人。使用分页方式发送，每 50 个一页，直到全部发送完毕
 
 ```php
 broadcast(string $data, array $receivers = [], array $excluded = [], int $sender = 0): int
@@ -112,3 +112,14 @@ public function sendToAll(string $data, int $sender = 0, int $pageSize = 50): in
 
 会自动根据参数判断调用上面的（`sendTo`, `sendToAll`, `sendToSome`）中的一个方法
 
+
+## 断开连接
+
+服务端可以主动断开连接，断开后会触发 `close` 事件
+
+```php
+bean('wsServer')->disconnect($fd);
+
+// OR
+server()->disconnect($fd);
+```

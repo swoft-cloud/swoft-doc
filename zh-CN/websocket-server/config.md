@@ -55,7 +55,25 @@ websocket 的 host, port 等配置是都是完全可以自定义的。
     ],
 ```
 
-ok, 现在 `IP:PORT` 上可以同时处理 http 和 ws 请求了。
+ok, 现在 `IP:PORT` 上可以同时处理 http 和 ws 请求了。你可以到此页面 http://swoft.io/wstest 进行简单测试
+
+## 启用wss支持
+
+跟在http server启用https类似，在swoft里启用 wss 也非常简单，添加如下的配置即可：
+
+```php
+'httpServer' => [
+    'type' => SWOOLE_SOCK_TCP | SWOOLE_SSL,
+    
+    /* @see WebSocketServer::$setting */
+    'setting'  => [
+        'ssl_cert_file' => '/my/certs/2288803_www.domain.com.pem',
+        'ssl_key_file'  => '/my/certs/2288803_www.domain.com.key',
+    ]
+]
+```
+
+> 注意： 你必须安装 OpenSSL 库，并且确保安装swoole时是启用了 ssl 选项的。同时，需要设置 `'type' => SWOOLE_SOCK_TCP | SWOOLE_SSL`
 
 ## 添加RPC服务
  
@@ -113,4 +131,35 @@ ok, 现在 `IP:PORT` 上可以同时处理 http 和 ws 请求了。
 ```
 
 ok, 现在通过 `php bin/swoft ws:start` 启动的服务器，就支持上面的全部功能了
+
+## 连接数据存储
+
+websocket server 是通过 `wsConnectionManager` bean 管理所有的websocket连接的。
+
+每个连接握手后的连接请求信息等都会存储到当前worker的 `wsConnectionManager` bean（并且会同步到 `Swoft\Session\Session` 类中），这样在后面进行消息路由时就能找到对应消息模块，控制器。
+
+`wsConnectionManager` 默认配置的存储驱动是 `Swoft\Session\ArrayStorage`。
+
+> 如果worker重启或者异常退出都会导致 `ArrayStorage` 里面的数据被清空，从而出现 `session information has been lost of the SID: 23` 这样的错误信息。
+
+### 自定义连接信息存储
+
+为了保持连接信息数据不受worker 退出/重启的影响，你可以覆盖设置 `wsConnectionManager` 的 `storage` 存储驱动。
+
+配置参考如下(`app/bean.php`)：
+
+```php
+'wsConnectionManager' => [
+    'storage' => bean('wsConnectionStorage')
+],
+'wsConnectionStorage' => [
+    'class' => \Swoft\Session\SwooleStorage::class,
+],
+```
+
+这里使用了swoft内部提供的基于swoole table 封装的存储驱动 `\Swoft\Session\SwooleStorage`，它是跨进程的并且生命周期跟随server，不会受到worker重启的影响。
+
+当worker重启后，再收到客户端的消息请求时，如果没有从内存中拿到连接对象，会自动从存储的连接信息中恢复连接对象。
+
+> 当然，你也可以自定义自己的存储驱动，可以使用redis等。只需要实现 `Swoft\Contract\SessionStorageInterface` 接口，然后参照上面的配置覆盖默认设置即可。
 

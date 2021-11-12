@@ -83,6 +83,10 @@ class ApolloLogic
 
 以上就是一个简单的 Apollo 配置拉取，swoft-apollo 除此方法外，还提供了更多的使用方法。
 
+### 使用demo
+
+请查看 `app/Console/Command/AgentCommand.php`
+
 ## 方法列表
 
 ### pullWithCache

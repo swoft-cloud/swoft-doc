@@ -40,7 +40,7 @@ PSR-7 接口为请求对象提供了这些方法:
 ## 请求动作方法
 
 ```php
-$request = \Swoft\Context\Context::mustGet()->getRequest();
+$request = context()->getRequest();
 $method = $request->getMethod();
 ```
 
@@ -117,20 +117,13 @@ $data = $request->post();
 $some = $request->post('key', 'default value')
 ```
 
+> 提示： 无需关心请求的数据格式，`json` `xml` 请求都会自动解析为php的数组数据。都可以通过 `$request->post()` 获取。
+
 ### GET & POST 数据
 
 ```php
 $data = $request->input();
 $some = $request->input('key', 'default value')
-```
-
-### JSON 数据
-
-仅当 `Content-Type` 为 `application/json` 时有效
-
-```php
-$data = $request->json();
-$some = $request->json('key', 'default value')
 ```
 
 ### RAW 数据
@@ -196,23 +189,7 @@ array(1) {
       ["path":"Swoft\Http\Message\Upload\UploadedFile":private]=>
       NULL
     }
-    [1]=>
-    object(Swoft\Http\Message\Upload\UploadedFile)#6510 (7) {
-      ["size":"Swoft\Http\Message\Upload\UploadedFile":private]=>
-      int(5489)
-      ["errorCode":"Swoft\Http\Message\Upload\UploadedFile":private]=>
-      int(0)
-      ["file":"Swoft\Http\Message\Upload\UploadedFile":private]=>
-      string(25) "/tmp/swoole.upfile.XS2vQg"
-      ["clientFilename":"Swoft\Http\Message\Upload\UploadedFile":private]=>
-      string(8) "deal.png"
-      ["clientMediaType":"Swoft\Http\Message\Upload\UploadedFile":private]=>
-      string(9) "image/png"
-      ["moved":"Swoft\Http\Message\Upload\UploadedFile":private]=>
-      NULL
-      ["path":"Swoft\Http\Message\Upload\UploadedFile":private]=>
-      NULL
-    }
+    ...
   }
 }
 ```

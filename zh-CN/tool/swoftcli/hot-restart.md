@@ -1,6 +1,6 @@
 # 自动重启服务
 
-swoft 2.0 在内置组件中去除了自动重启功能，由新的独立工具 swoft-cli 来提供。
+swoft 2.0 在内置组件中去除了自动重启功能，由新的独立工具 swoft-cli 来提供。帮助开发者在开发时能让改动的代码快速生效。
 
 > 需要注意的是，2.0 里面是重启整个服务而不是像 1.0 一样只reload工作进程
 
@@ -15,7 +15,7 @@ php swoftcli.phar run -h
 swoftcli run -h
 ```
 
-![hot-restart-help](../../image/tool/hot-restart-help.jpg)
+![hot-restart-help](../../image/tool/swoftcli/hot-restart-help.jpg)
 
 ### 选项列表
 
@@ -37,7 +37,7 @@ swoftcli run -c ws:start -b bin/swoft /path/to/php/swoft
 
 运行成功后你可以看到如下的信息：
 
-![run-hot-restart](../../image/tool/run-hot-restart.jpg)
+![run-hot-restart](../../image/tool/swoftcli/run-hot-restart.jpg)
 
 当有文件发生变动时，swoft-cli 就会自动的重新启动应用
 

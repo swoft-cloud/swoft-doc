@@ -9,7 +9,7 @@
 
 
 上图是断路器（Curcuit Breaker）的结构，它有两个基本状态（close和open）和一个基本trip动作：
-- close状态下， client向supplier发起的服务请求， 直接无阻碍通过断路器， supplier的返回值接直接由断路器交回给client.
+- close状态下， client向supplier发起的服务请求， 直接无阻碍通过断路器， supplier的返回值直接由断路器交回给client.
 - open状态下，client向supplier发起的服务请求后，断路器不会将请求转到supplier, 而是直接返回client, client和supplier之间的通路是断的
 - trip: 在close状态下，如果supplier持续超时报错， 达到规定的阀值后，断路器就发生trip, 之后断路器状态就会从close进入open.
 
@@ -55,7 +55,8 @@ return [
 
 ## 使用
 
-熔断器的使用想到简单且功能强大，使用一个 `@Breaker` 注解即可，Swoft 中的熔断是针对于类里面的方法熔断，只要方法里面没有抛出异常就什么是成功访问的，所以 `@Breaker` 注解可以在任何 bean对象方法上面使用。
+
+熔断器的使用相当简单且功能强大，使用一个 `@Breaker` 注解即可，Swoft 中的熔断是针对于类里面的方法熔断，只要方法里面没有抛出异常就说明是成功访问的，所以 `@Breaker` 注解可以在任何 bean对象方法上面使用。
 
 ```php
 <?php declare(strict_types=1);

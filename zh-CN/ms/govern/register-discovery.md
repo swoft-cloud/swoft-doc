@@ -4,7 +4,9 @@
 
 ## 服务注册
 
-无论是 http / rpc / ws 服务，启动的时候只需监听 `SwooleEvent::START` 事件，即可启把启动的服务注册到第三方集群。
+无论是 http / rpc / ws 服务，启动的时候只需监听 `SwooleEvent::START` 事件，即可把启动的服务注册到第三方集群。
+
+> 提示：在这里当前服务是一个服务提供者，比如 用户服务、商品服务。
 
 ### 注册服务
 
@@ -143,15 +145,16 @@ class DeregisterServiceListener implements EventHandlerInterface
 
 ## 服务发现
 
-本章这里以 Rpc client 为例，通过第三方集群 consul 下发可用的服务列表。
+本章这里以 Rpc client 为例，通过第三方集群 consul 下发可用的服务(eg: 用户服务、商品服务)列表。
 
-首先定义服务提供者：
+首先定义服务提供者，一个 provider 只提供一个服务，只是有多个地址。
+
+### 代码示例
+
 ```php
 <?php declare(strict_types=1);
 
-
 namespace App\Common;
-
 
 use ReflectionException;
 use Swoft\Bean\Annotation\Mapping\Bean;
@@ -219,8 +222,9 @@ class RpcProvider implements ProviderInterface
 
 >  db / redis 也是支持这种方式发现可用的服务，但是需要实现其相应的接口。
 
+### 配置服务
 
-有了服务提供者，现在接下把服务提供者，配置(app/bean.php)到对应的 RPC 服务上面:
+现在我们有了服务提供者，接下来将其配置到对应的 RPC 服务上面(`app/bean.php`):
 
 ```php
 return [
@@ -244,5 +248,5 @@ return [
 ];
 ```
 
-- 这里在 user 服务上，通过 `provider` 熟悉注册注入了一个服务提供者 `RpcProvider::class` (bean 名称)
+- 这里在 user 服务上，通过 `provider` 参数注入了一个服务提供者 `RpcProvider::class` (bean 名称)
 

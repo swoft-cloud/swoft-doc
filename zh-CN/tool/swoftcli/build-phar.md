@@ -20,7 +20,7 @@ php -d phar.readonly=0 swoftcli phar:pack -o=myapp.phar
 
 运行效果：
 
-![pack-phar](../../image/tool/pack-phar.jpg)
+![pack-phar](../../image/tool/swoftcli/pack-phar.jpg)
 
 ### phar 打包配置
 
@@ -88,7 +88,7 @@ $compiler->setStripFilter(function ($file) use ($stripDirs) {
 
 ## 展开Phar包
 
-讲一个打包过的 phar 展开，类似于解压缩。
+将一个打包过的 phar 展开，类似于解压缩。
 
 ```bash
 swoftcli phar:unpack myapp.phar

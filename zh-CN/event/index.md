@@ -2,6 +2,8 @@
 
 Swoft 2 事件进行了更加清晰和严谨的规划。提供了基本的事件注册与触发管理。
 
+## 功能说明
+
 - implement the [Psr 14](https://github.com/php-fig/fig-standards/blob/master/proposed/event-dispatcher.md) - Event dispatcher
 - 支持通过注解快速的注册事件，事件组
 - 支持设置事件优先级
@@ -9,11 +11,23 @@ Swoft 2 事件进行了更加清晰和严谨的规划。提供了基本的事件
 
 > 作为Swoft的核心组件，事件管理会自动启用
 
-```php
-'eventManager'    => [
-    'class'     => \Swoft\Event\Manager\EventManager::class,
-],           
+## 安装
+
+```bash
+composer require swoft/event
 ```
+
+## Git仓库
+
+- Github https://github.com/swoft-cloud/swoft-event
+
+## 参与贡献
+
+欢迎参与贡献，您可以
+
+- fork 我们的开发仓库 [swoft/component](https://github.com/swoft-cloud/swoft-component)
+- 修改代码然后发起 PR
+- 关于发起PR的[注意事项](https://github.com/swoft-cloud/swoft/issues/829)
 
 ## swoft里的事件
 
@@ -65,12 +79,12 @@ swoft.udp.after
 
 支持使用事件通配符 `*` 对一组相关的事件进行监听, 分两种。
 
-1. `*` 全局的事件通配符。直接对 `*` 添加监听器(`$em->attach('*', 'global_listener')`), 此时所有触发的事件都会被此监听器接收到。
-2. `{prefix}.*` 指定分组事件的监听。eg `$em->attach('db.*', 'db_listener')`, 此时所有触发的以 `db.` 为前缀的事件(eg `db.query` `db.connect`)都会被此监听器接收到。
+1. `*` 全局的事件通配符。直接对 `*` 添加监听器(`@Listener("*")`), 此时所有触发的事件都会被此监听器接收到。
+2. `{prefix}.*` 指定分组事件的监听。
+  - 例如 `@Listener("swoft.db.*")`, 此时所有触发的以 `swoft.db.` 为前缀的事件(eg `swoft.db.query` `swoft.db.connect`)都会被此监听器接收到。
 
-> 当然，你在事件到达监听器前停止了本次事件的传播`$event->stopPropagation(true);`，就不会被后面的监听器接收到了。
+> 当然，你在事件到达监听器前停止了本次事件的传播`$event->stopPropagation(true)`，就不会被后面的监听器接收到了。
 
 ### 更多介绍
 
-更多关于自定义事件的理解参考 https://github.com/inhere/php-event-manager/blob/master/README.md
-
+更多关于自定义事件的理解参考 [https://github.com/inhere/php-event-manager/blob/master/README.md](https://github.com/inhere/php-event-manager/blob/master/README.md)

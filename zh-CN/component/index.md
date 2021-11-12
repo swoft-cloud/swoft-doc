@@ -9,6 +9,7 @@ swoft 的各项功能都是有不同的组件提供的，比如 `http-server` �
 swoft 提供了非常方便的自定义和扩展能力，你可以像编写一个普通的 composer 包一样为swoft编写组件。
 通过swoft的事件你基本上可以接入swoft应用运行的任何阶段，得到你需要的任何信息。
 
+> 组件通常就是一个 `composer` 包，只是里面会包含一个swoft会自动识别的 `AutoLoader.php` 文件
 
 ## 代码规范
 
