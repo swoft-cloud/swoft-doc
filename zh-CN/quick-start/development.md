@@ -1,8 +1,3 @@
----
-parent: 环境搭建
-nav_order: 1
----
-
 # 开发准备
 
 ## PHPStorm 安装Annotations插件

@@ -1,8 +1,3 @@
----
-parent: 环境搭建
-nav_order: 2
----
-
 # 安装Swoft
 
 ## Docker方式安装（推荐）
